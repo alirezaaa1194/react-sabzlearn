@@ -1,7 +1,12 @@
 import React from "react";
 
 function home() {
-  return <div>home</div>;
+  return (
+    <div>
+      <title>آکادمی آموزش برنامه نویسی سبزلرن | Sabzlearn</title>
+      home
+    </div>
+  );
 }
 
 export default home;
