@@ -2,6 +2,7 @@ import { ChevronDownMiniIcon, LogoIcon } from "public/svg/svgs";
 import React from "react";
 import { Link, NavLink } from "react-router";
 import DesktopNavbar from "./Desktop/Navbar/DesktopNavbar";
+import Searchbar from "./Desktop/Searchbar/Searchbar";
 
 function Header() {
   return (
@@ -15,7 +16,9 @@ function Header() {
           <DesktopNavbar />
         </div>
         {/* header left hand */}
-        <div className="flex items-center gap-x-5"></div>
+        <div className="flex items-center gap-x-5">
+          <Searchbar />
+        </div>
       </div>
       {/* mobile header */}
       <div className="flex lg:hidden">mobile heade</div>
