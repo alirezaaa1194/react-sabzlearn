@@ -13,6 +13,18 @@ export default {
         MorabaMedium: "MorabaMedium",
         MorabaBold: "MorabaBold",
       },
+      colors: {
+        darker: "#242a38",
+        dark: "#333c4c",
+      },
+      height: {
+        13: "52px",
+        25: "100px",
+      },
+      width: {
+        13: "52px",
+        54: "216px",
+      },
     },
   },
   plugins: [],
