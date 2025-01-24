@@ -3,6 +3,7 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import DesktopNavbar from "./Desktop/Navbar/DesktopNavbar";
 import Searchbar from "./Desktop/Searchbar/Searchbar";
+import ThemeBtns from "./Desktop/ThemeBtns/ThemeBtns";
 
 function Header() {
   return (
@@ -18,6 +19,7 @@ function Header() {
         {/* header left hand */}
         <div className="flex items-center gap-x-5">
           <Searchbar />
+          <ThemeBtns />
         </div>
       </div>
       {/* mobile header */}

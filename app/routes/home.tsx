@@ -1,4 +1,5 @@
 import React from "react";
+import UserProfileDropdown from "~/components/Header/Desktop/userProfile/userProfileDropdown";
 import Header from "~/components/Header/Header";
 
 function home() {
@@ -6,6 +7,7 @@ function home() {
     <div>
       <title>آکادمی آموزش برنامه نویسی سبزلرن | Sabzlearn</title>
       <Header />
+      <UserProfileDropdown />
     </div>
   );
 }
