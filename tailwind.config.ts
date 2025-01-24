@@ -16,6 +16,8 @@ export default {
       colors: {
         darker: "#242a38",
         dark: "#333c4c",
+        primary: "#1eb35b",
+        "primary-hover": "#009c4b",
       },
       height: {
         13: "52px",
