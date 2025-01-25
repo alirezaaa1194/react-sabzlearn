@@ -1,9 +1,10 @@
-import { ChevronDownMiniIcon, LogoIcon } from "public/svg/svgs";
-import React from "react";
-import { Link, NavLink } from "react-router";
+import { LogoIcon } from "public/svg/svgs";
+import { Link } from "react-router";
 import DesktopNavbar from "./Desktop/Navbar/DesktopNavbar";
 import Searchbar from "./Desktop/Searchbar/Searchbar";
 import ThemeBtns from "./Desktop/ThemeBtns/ThemeBtns";
+import CartDropdown from "./Desktop/cart/CartDropdown";
+import UserProfileDropdown from "./Desktop/userProfile/UserProfileDropdown";
 
 function Header() {
   return (
@@ -20,6 +21,8 @@ function Header() {
         <div className="flex items-center gap-x-5">
           <Searchbar />
           <ThemeBtns />
+          <CartDropdown />
+          <UserProfileDropdown />
         </div>
       </div>
       {/* mobile header */}

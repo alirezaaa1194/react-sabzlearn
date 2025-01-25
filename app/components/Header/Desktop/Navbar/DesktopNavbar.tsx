@@ -1,6 +1,4 @@
-import { ChevronDownMiniIcon } from "public/svg/svgs";
-import React from "react";
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 import SubMenu from "./SubMenu";
 
 function DesktopNavbar() {
@@ -16,10 +14,14 @@ function DesktopNavbar() {
           </div>
         </li>
         <li>
-          <Link to="/courses">همه دوره ها</Link>
+          <NavLink to="/courses" className="active:text-primary">
+            همه دوره ها
+          </NavLink>
         </li>
         <li>
-          <Link to="/blogs">مقالات</Link>
+          <NavLink to="/blogs" className="active:text-primary">
+            مقالات
+          </NavLink>
         </li>
       </ul>
     </nav>

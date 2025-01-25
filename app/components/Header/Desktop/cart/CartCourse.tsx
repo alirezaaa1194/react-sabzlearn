@@ -8,7 +8,7 @@ function CartCourse() {
       <div className="flex items-center gap-x-3">
         <div className="h-15 w-[106px]">
           <Link to="/course/a" className="inline-block h-15 w-[106px]">
-            <img src="public/images/nodejs-course.webp" className="h-15 w-[106px] aspect-video rounded-lg" alt="" />
+            <img src="../public/images/nodejs-course.webp" className="h-15 w-[106px] aspect-video rounded-lg" alt="" />
           </Link>
         </div>
         <div className="flex flex-col gap-1 justify-between">

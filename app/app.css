@@ -29,4 +29,9 @@
     font-family: MorabaBold;
     src: url("../fonts/Morabba/woff2/Morabba-Bold.woff2");
   }
+
+  button,
+  a {
+    @apply outline-none;
+  }
 }
