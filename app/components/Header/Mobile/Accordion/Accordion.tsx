@@ -6,17 +6,17 @@ import AccordionItem from "./AccordionItem";
 const data = [
   {
     id: 1,
-    title: "test1",
+    title: "فرانت اند",
     subs: ["sub1 test1", "sub1 test2"],
   },
   {
     id: 2,
-    title: "test2",
+    title: "بک اند",
     subs: ["sub2 test1", "sub2 test2"],
   },
   {
     id: 3,
-    title: "test3",
+    title: "امنیت",
     subs: ["sub3 test1", "sub3 test2"],
   },
 ];

@@ -36,8 +36,8 @@ function Header() {
           <Searchbar />
           <ThemeBtns />
           <CartDropdown />
-          <UserProfileDropdown />
-          {/* <LoginBtn /> */}
+          {/* <UserProfileDropdown /> */}
+          <LoginBtn />
         </div>
       </div>
       {/* mobile sidebar */}

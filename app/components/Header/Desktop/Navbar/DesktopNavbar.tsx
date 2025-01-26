@@ -1,11 +1,22 @@
 import { NavLink } from "react-router";
 import SubMenu from "./SubMenu";
+import { useState } from "react";
 
 function DesktopNavbar() {
+  const [isHoverMenu, setIsHoverMenu] = useState<boolean>(false);
+
+  const handleShowOverlay = () => {
+    setIsHoverMenu(true);
+  };
+  const handleHideOverlay = () => {
+    setIsHoverMenu(false);
+  };
+
   return (
     <nav>
-      <ul className="hidden lg:flex items-center gap-x-6 font-DanaRegular">
-        <li className="relative group/sub-menu">
+      {isHoverMenu && <div className="w-screen h-screen fixed top-0 right-0 bg-black/40 z-30"></div>}
+      <ul className="hidden lg:flex items-center gap-x-6 font-DanaRegular relative">
+        <li className="relative group/sub-menu z-40" onMouseEnter={handleShowOverlay} onMouseLeave={handleHideOverlay}>
           <span className="cursor-pointer group-hover/sub-menu:text-sky-500">دوره های آموزشی</span>
           <div className="absolute pt-[38px] right-0 invisible opacity-0 group-hover/sub-menu:visible group-hover/sub-menu:opacity-100">
             <ul className="bg-white dark:bg-darker w-44 text-sm transition-all relative">
