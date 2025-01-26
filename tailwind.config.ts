@@ -19,6 +19,8 @@ export default {
         dark: "#333c4c",
         primary: "#1eb35b",
         "primary-hover": "#009c4b",
+        secondary: "#0a97d4",
+        "secondary-hover": "#127bbb",
       },
       height: {
         13: "52px",

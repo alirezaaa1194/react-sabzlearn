@@ -10,7 +10,7 @@ function CartDropdown() {
     <Dropdown backdrop="blur" onOpenChange={setIsOpen} placement="bottom-start" offset={23} className={`p-0 bg-transparent`}>
       <DropdownTrigger>
         <button aria-expanded={false} className={`w-13 h-13 rounded-full bg-gray-100 text-slate-500 dark:bg-white/5 dark:text-white flex items-center justify-center relative z-[1] ${isOpen ? "z-[100001]" : "z-[1]"}`}>
-          <span className="font-DanaRegular flex items-center justify-center absolute -top-1 -right-1 text-[10px] size-5 border-2 border-white dark:border-darker rounded-full bg-green-500 text-white">3</span>
+          <span className="font-DanaRegular hidden lg:flex items-center justify-center absolute -top-1 -right-1 text-[10px] size-5 border-2 border-white dark:border-darker rounded-full bg-green-500 text-white">3</span>
           <ShoppingBagIcon className="size-6" />
         </button>
       </DropdownTrigger>

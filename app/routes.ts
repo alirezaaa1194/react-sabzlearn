@@ -10,7 +10,7 @@ export default [
         route('course/:course-name', 'routes/general/course.tsx'),
         route('terms-conditions', 'routes/general/terms-conditions.tsx'),
         route('cart', 'routes/general/cart.tsx'),
-        route('test', 'routes/themeRoute/themeRoute.tsx'),
+        route('switchTheme', 'routes/themeRoute/themeRoute.tsx'),
     ]),
     layout('./layouts/auth/AuthLayout.tsx',[
         route('login', 'routes/auth/login.tsx'),

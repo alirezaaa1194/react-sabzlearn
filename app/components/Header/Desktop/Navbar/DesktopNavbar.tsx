@@ -4,7 +4,7 @@ import SubMenu from "./SubMenu";
 function DesktopNavbar() {
   return (
     <nav>
-      <ul className="flex items-center gap-x-6 font-DanaRegular">
+      <ul className="hidden lg:flex items-center gap-x-6 font-DanaRegular">
         <li className="relative group/sub-menu">
           <span className="cursor-pointer group-hover/sub-menu:text-sky-500">دوره های آموزشی</span>
           <div className="absolute pt-[38px] right-0 invisible opacity-0 group-hover/sub-menu:visible group-hover/sub-menu:opacity-100">
