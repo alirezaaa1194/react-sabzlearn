@@ -10,6 +10,7 @@ export default [
         route('course/:course-name', 'routes/general/course.tsx'),
         route('terms-conditions', 'routes/general/terms-conditions.tsx'),
         route('cart', 'routes/general/cart.tsx'),
+        route('test', 'routes/themeRoute/themeRoute.tsx'),
     ]),
     layout('./layouts/auth/AuthLayout.tsx',[
         route('login', 'routes/auth/login.tsx'),
@@ -21,5 +22,5 @@ export default [
         route('my-account/courses', 'routes/user-panel/courses.tsx'),
         route('my-account/tickets', 'routes/user-panel/tickets.tsx'),
         route('my-account/edit-account', 'routes/user-panel/edit-account.tsx'),
-])
+    ]),
 ] satisfies RouteConfig;

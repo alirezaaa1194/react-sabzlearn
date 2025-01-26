@@ -34,4 +34,31 @@
   a {
     @apply outline-none;
   }
+
+  body {
+    height: 300vh;
+  }
+
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+  body::-webkit-scrollbar-track {
+    @apply bg-[#e4e4e4] dark:bg-[#28293d];
+  }
+  body::-webkit-scrollbar-thumb {
+    @apply bg-[#c0c2c5] dark:bg-[#4a4b6d];
+  }
+
+  div::-webkit-scrollbar,
+  ul::-webkit-scrollbar {
+    width: 6px;
+  }
+  div::-webkit-scrollbar-track,
+  ul::-webkit-scrollbar-track {
+    @apply bg-[#f3f4f6] dark:bg-[#28293d];
+  }
+  div::-webkit-scrollbar-thumb,
+  ul::-webkit-scrollbar-thumb {
+    @apply bg-[#e4e4e4] dark:bg-[#333c4c] rounded-3xl;
+  }
 }

@@ -18,7 +18,10 @@ function CartDropdownCard() {
       </div> */}
 
       {/* body */}
-      <ul className="flex flex-col gap-y-4 p-5">
+      <ul className="flex flex-col gap-y-4 p-5 max-h-[200px] overflow-y-auto">
+        <CartCourse />
+        <CartCourse />
+        <CartCourse />
         <CartCourse />
       </ul>
       {/* footer */}

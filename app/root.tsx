@@ -1,25 +1,24 @@
-import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from "react-router";
+import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteLoaderData } from "react-router";
 
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
+import session from "./sessions.server";
+import type { ComponentProps } from "react";
 
-export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
-  { rel: "stylesheet", href: stylesheet },
-];
+export const links: Route.LinksFunction = () => [{ rel: "stylesheet", href: stylesheet }];
+
+export const loader = async ({ request }: Route.LoaderArgs) => {
+  const cookieHeader = request.headers.get("Cookie");
+  const currentSession = await session.getSession(cookieHeader);
+
+  return { theme: currentSession.data.theme ?? "light" };
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { theme } = useRouteLoaderData("root");
+
   return (
-    <html lang="fa" dir="rtl" className="dark">
+    <html lang="fa" dir="rtl" className={theme}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />

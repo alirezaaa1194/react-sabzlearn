@@ -1,14 +1,9 @@
-import React from "react";
-import CartDropdown from "~/components/Header/Desktop/cart/CartDropdown";
-import UserProfileDropdown from "~/components/Header/Desktop/userProfile/UserProfileDropdownCard";
-import Header from "~/components/Header/Header";
+import React from 'react'
 
 function home() {
   return (
-    <div>
-      <title>آکادمی آموزش برنامه نویسی سبزلرن | Sabzlearn</title>
-    </div>
-  );
+    <div>home</div>
+  )
 }
 
-export default home;
+export default home
