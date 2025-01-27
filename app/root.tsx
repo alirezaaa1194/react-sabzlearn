@@ -36,6 +36,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+
+// export function HydrateFallback(){
+//   return <span className="text-white">'loading...'</span>
+// }
+
+
 export default function App() {
   return <Outlet />;
 }

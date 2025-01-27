@@ -4,10 +4,9 @@ import DesktopNavbar from "./Desktop/Navbar/DesktopNavbar";
 import Searchbar from "./Desktop/Searchbar/Searchbar";
 import ThemeBtns from "./Desktop/ThemeBtns/ThemeBtns";
 import CartDropdown from "./Desktop/cart/CartDropdown";
-import UserProfileDropdown from "./Desktop/userProfile/UserProfileDropdown";
 import LoginBtn from "./Desktop/userProfile/LoginBtn";
 import MobileSidebar from "./Mobile/MobileSidebar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Overlay from "../Overlay/Overlay";
 
 function Header() {
