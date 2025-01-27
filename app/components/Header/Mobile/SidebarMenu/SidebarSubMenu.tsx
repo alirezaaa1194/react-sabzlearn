@@ -2,7 +2,7 @@ import { ChevronLeftMiniIcon } from "public/svg/svgs";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router";
 import type { subMenuType } from "~/types/menus.type";
-import SubSubMenu from "./SubSubMenu";
+import SidebarSubSubMenu from "./SidebarSubSubMenu";
 
 type SidebarSubMenuPropsType = {
   subMenu: subMenuType;
@@ -40,7 +40,7 @@ function SidebarSubMenu({ subMenu, mainMenu, setMainMenu }: SidebarSubMenuPropsT
       {mainMenu === subMenu._id && isOpen && subMenu.submenus.length ? (
         <ul className="bg-[#f5f5f5] dark:bg-dark rounded-lg w-full p-3 text-xs font-DanaRegular flex flex-col gap-3">
           {subMenu.submenus.map((subSubMenu) => (
-            <SubSubMenu subSubMenu={subSubMenu} />
+            <SidebarSubSubMenu subSubMenu={subSubMenu} />
           ))}
         </ul>
       ) : null}

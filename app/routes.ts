@@ -1,8 +1,8 @@
 import { type RouteConfig, index, layout, route } from "@react-router/dev/routes";
 
 export default [
-    layout('./layouts/site/site.tsx',[
-        layout('./layouts/site/general/GeneralLayout.tsx',[
+    layout('./layouts/mainLayout.tsx',[
+        layout('./layouts/general/GeneralLayout.tsx',[
             index("routes/home.tsx"),
             route('blogs', 'routes/general/blogs.tsx'),
             route('blog/:blog-name', 'routes/general/blog.tsx'),
@@ -13,12 +13,12 @@ export default [
             route('cart', 'routes/general/cart.tsx'),
             route('switchTheme', 'routes/themeRoute/themeRoute.tsx'),
     ]),
-    layout('./layouts/site/auth/AuthLayout.tsx',[
+    layout('./layouts/auth/AuthLayout.tsx',[
         route('login', 'routes/auth/login.tsx'),
         route('signup', 'routes/auth/signup.tsx'),
     ]),
     
-    layout('./layouts/site/user-panel/UserPanelLayout.tsx',[
+    layout('./layouts/user-panel/UserPanelLayout.tsx',[
         route('my-account', 'routes/user-panel/my-account.tsx'),
         route('my-account/courses', 'routes/user-panel/courses.tsx'),
         route('my-account/tickets', 'routes/user-panel/tickets.tsx'),
