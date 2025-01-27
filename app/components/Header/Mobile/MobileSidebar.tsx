@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
 import ThemeBtns from "./ThemeBtns/ThemeBtns";
-import Accordion from "./Accordion/Accordion";
+import SidebarMenu from "./SidebarMenu/SidebarMenu";
 
 type MobileSidebarPropsType = {
   isOpenSideBar: boolean;
@@ -20,7 +20,7 @@ function MobileSidebar({ isOpenSideBar }: MobileSidebarPropsType) {
       <div className="flex flex-col px-6">
         <div className="pt-5 pb-3 flex flex-col gap-y-2.5">
           <p className="text-sm font-DanaMedium text-green-500">دسته بندی ها</p>
-          <Accordion />
+          <SidebarMenu />
         </div>
         <ThemeBtns />
       </div>
