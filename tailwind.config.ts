@@ -33,6 +33,10 @@ export default {
       transitionDuration: {
         DEFAULT: "150ms",
       },
+
+      screens: {
+        lg: "1084px",
+      },
     },
   },
   plugins: [

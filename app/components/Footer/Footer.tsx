@@ -3,7 +3,6 @@ import { Link } from "react-router";
 
 function Footer() {
   return (
-    // <footer className="py-8 mt-[100px] lg:pt-16 lg:pb-10 lg:mt-40 bg-white dark:bg-darker">
     <footer className="mt-25 sm:mt-40 bg-white dark:bg-darker py-8 md:pt-16 md:pb-10">
       <div className="container flex flex-col">
         {/* footer top section */}
@@ -49,7 +48,7 @@ function Footer() {
           <div className="flex gap-x-6 sm:gap-x-7">
             <div className="flex flex-col">
               <span className="inline-block sm:text-2xl font-DanaDemiBold mb-3 sm:mb-4">دوره های پرطرفدار</span>
-              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-gray-700 dark:text-gray-400">
+              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-gray-700 dark:text-gray-400 font-DanaRegular">
                 <Link to="/">آموزش پایتون</Link>
                 <Link to="/">آموزش Html</Link>
                 <Link to="/">آموزش Css</Link>
@@ -58,7 +57,7 @@ function Footer() {
             </div>
             <div className="flex flex-col">
               <span className="inline-block sm:text-2xl font-DanaDemiBold mb-3 sm:mb-4">دسترسی سریع</span>
-              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-gray-700 dark:text-gray-400">
+              <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-gray-700 dark:text-gray-400 font-DanaRegular">
                 <Link to="/">قوانین و مقررات</Link>
                 <Link to="/">ارسال تیکت</Link>
                 <Link to="/">همه دوره ها</Link>

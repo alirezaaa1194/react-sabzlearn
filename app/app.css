@@ -68,6 +68,12 @@
   }
 
   .container {
-    @apply mx-auto px-4 max-w-[475px] sm:px-2.5 sm:max-w-full md:max-w-[700px];
+    @apply mx-auto px-4 max-w-[475px] sm:px-2.5 sm:max-w-full md:max-w-[700px] lg:px-12;
+  }
+  :root {
+    @apply bg-gray-100;
+  }
+  :root.dark {
+    @apply bg-gray-900;
   }
 }
