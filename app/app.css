@@ -60,22 +60,14 @@
   aside::-webkit-scrollbar-thumb {
     @apply bg-[#e4e4e4] dark:bg-[#333c4c] rounded-3xl;
   }
-
-  /* .sidebar-subsub-menu::-webkit-scrollbar {
-    width: 6px;
-  }
-  .sidebar-subsub-menu::-webkit-scrollbar-track {
-    @apply bg-[#f3f4f6] bg-red-400;
-  }
-  .sidebar-subsub-menu::-webkit-scrollbar-thumb {
-    @apply bg-[#e4e4e4] dark:bg-[#28293d] rounded-3xl;
-  } */
-
-
   .navbar-subsub-menu::-webkit-scrollbar-track {
     @apply bg-[#f3f4f6] dark:bg-[#333c4c];
   }
   .navbar-subsub-menu::-webkit-scrollbar-thumb {
-    @apply  bg-[#e4e4e4] dark:bg-[#28293d]
+    @apply bg-[#e4e4e4] dark:bg-[#28293d];
+  }
+
+  .container {
+    @apply mx-auto px-4 max-w-[475px] sm:px-2.5 sm:max-w-full md:max-w-[700px];
   }
 }

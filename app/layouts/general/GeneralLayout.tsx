@@ -1,6 +1,7 @@
 import { HeroUIProvider } from "@heroui/system";
 import React from "react";
 import { Outlet } from "react-router";
+import Footer from "~/components/Footer/Footer";
 import Header from "~/components/Header/Header";
 
 function GeneralLayout() {
@@ -9,6 +10,7 @@ function GeneralLayout() {
       <HeroUIProvider>
         <Header />
         <Outlet />
+        <Footer />
       </HeroUIProvider>
     </div>
   );
