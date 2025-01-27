@@ -12,7 +12,7 @@ function SubMenu({ subMenu }: { subMenu: subMenuType }) {
       </NavLink>
 
       {subMenu.submenus.length ? (
-        <ul className="w-54 h-full pe-2 py-3 ps-4 overflow-y-auto absolute right-full top-0 bg-zinc-50 dark:bg-dark flex flex-col gap-y-4 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+        <ul className="navbar-subsub-menu w-54 h-full pe-2 py-3 ps-4 overflow-y-auto absolute right-full top-0 bg-zinc-50 dark:bg-dark flex flex-col gap-y-4 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
           {subMenu.submenus.map((subSubMenu) => (
             <SubSubMenu subSubMenu={subSubMenu} />
           ))}
