@@ -19,7 +19,7 @@ function Header() {
   return (
     <header className="bg-white dark:bg-darker relative">
       {/* desktop header */}
-      <div className="flex items-center justify-between px-4 lg:px-12 h-20 lg:h-25 relative">
+      <div className="container flex items-center justify-between h-20 lg:h-25 relative">
         <button type="submit" className="w-13 h-13 rounded-full flex lg:hidden items-center justify-center bg-gray-100 text-slate-500 dark:bg-white/5 dark:text-white" onClick={handleOpenAndCloseSidebar}>
           <BarsIcon className="size-6" />
         </button>

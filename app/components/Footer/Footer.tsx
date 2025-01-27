@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 function Footer() {
   return (
-    <footer className="mt-25 sm:mt-40 bg-white dark:bg-darker py-8 md:pt-16 md:pb-10">
+    <footer className="mt-[100px] sm:mt-40 bg-white dark:bg-darker py-8 md:pt-16 md:pb-10">
       <div className="container flex flex-col">
         {/* footer top section */}
         <div className="flex flex-col pb-5 border-b border-b-neutral-200 dark:border-b-dark">

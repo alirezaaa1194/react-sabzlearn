@@ -30,6 +30,12 @@
     src: url("../fonts/Morabba/woff2/Morabba-Bold.woff2");
   }
 
+  :root {
+    @apply bg-gray-100;
+  }
+  :root.dark {
+    @apply bg-gray-900;
+  }
   button,
   a {
     @apply outline-none;
@@ -68,12 +74,10 @@
   }
 
   .container {
-    @apply mx-auto px-4 max-w-[475px] sm:px-2.5 sm:max-w-full md:max-w-[700px] lg:px-12;
+    @apply mx-auto px-4 max-w-[475px] sm:px-2.5 sm:max-w-full md:max-w-[700px];
   }
-  :root {
-    @apply bg-gray-100;
-  }
-  :root.dark {
-    @apply bg-gray-900;
+
+  .btn-parimary--outline {
+    @apply text-primary border border-primary bg-transparent transition-colors hover:bg-[#1eb35b1a]
   }
 }
