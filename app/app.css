@@ -80,4 +80,8 @@
   .btn-parimary--outline {
     @apply text-primary border border-primary bg-transparent transition-colors hover:bg-[#1eb35b1a]
   }
+
+  .link-section-header::after{
+    clip-path: polygon(6px 0,100% 0,100% 100%,0 100%);
+  }
 }
