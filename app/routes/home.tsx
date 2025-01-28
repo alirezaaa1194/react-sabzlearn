@@ -5,6 +5,7 @@ import { Link } from "react-router";
 import CourseCard from "~/components/Courses/CourseCard";
 import AboutSection from "~/components/Sections/AboutSection";
 import AllCoursesSection from "~/components/Sections/AllCoursesSection";
+import HelpSection from "~/components/Sections/HelpSection";
 import HeroSection from "~/components/Sections/HeroSection";
 import LinkSectionHeader from "~/components/Sections/LinkSectionHeader";
 import RoadmapSection from "~/components/Sections/RoadmapSection";
@@ -16,6 +17,7 @@ function home() {
       <HeroSection />
       <AllCoursesSection />
       <RoadmapSection />
+      <HelpSection />
       <AboutSection />
     </div>
   );

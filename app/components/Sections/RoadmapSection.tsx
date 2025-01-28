@@ -61,7 +61,7 @@ function RoadmapSection() {
                 <path d="M20.7188 7.03125C21.4954 7.03125 22.125 7.66087 22.125 8.4375C22.125 9.21413 21.4954 9.84375 20.7188 9.84375C19.9421 9.84375 19.3125 9.21413 19.3125 8.4375C19.3125 7.66087 19.9421 7.03125 20.7188 7.03125Z" fill="white" />
                 <path d="M27.2812 40.9688C26.5046 40.9688 25.875 40.3391 25.875 39.5625C25.875 38.7859 26.5046 38.1562 27.2812 38.1562C28.0579 38.1562 28.6875 38.7859 28.6875 39.5625C28.6875 40.3391 28.0579 40.9688 27.2812 40.9688Z" fill="white" />
               </g>
-            </svg>{" "}
+            </svg>
             <div className="text-center text-white mt-3 sm:mt-4">
               <h3 className="font-DanaDemiBold sm:text-lg mb-0 sm:mb-1">پایتون</h3>
               <span className="inline-block font-DanaMedium text-sm sm:text-base">6 دوره</span>
@@ -70,7 +70,7 @@ function RoadmapSection() {
         </div>
         <div className="py-5 bg-gradient-to-r from-[#FF3571] to-[#880175] overflow-hidden rounded-xl">
           <Link to="/course-cat/soft-skills/" className="flex flex-col justify-center items-center h-full" title="مهارت های نرم">
-            <svg className="w-10 sm:w-12 w-10 sm:h-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="sm:w-12 w-10 sm:h-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clipPath="url(#clip0_135_44883)">
                 <mask id="mask0_135_44883" style={{ maskType: "luminance" }} maskUnits="userSpaceOnUse" x={0} y={0} width={48} height={48}>
                   <path d="M0 7.62939e-06H48V48H0V7.62939e-06Z" fill="white" />
