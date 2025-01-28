@@ -12,6 +12,7 @@ import HeroSection from "~/components/Sections/HeroSection";
 import LinkSectionHeader from "~/components/Sections/LinkSectionHeader";
 import PopularCourseSection from "~/components/Sections/PopularCourseSection";
 import RoadmapSection from "~/components/Sections/RoadmapSection";
+import SliderAllCourseSection from "~/components/Sections/SliderAllCourseSection";
 import SliderPopularCourseSection from "~/components/Sections/SliderPopularCourseSection";
 import { getAllCourses } from "~/utils/utils";
 
@@ -21,9 +22,10 @@ function home() {
       <HeroSection />
       <AllCoursesSection />
       <RoadmapSection />
-      <HelpSection />
-      <ArticlesSection />
       <SliderPopularCourseSection />
+      <HelpSection />
+      <SliderAllCourseSection />
+      <ArticlesSection />
       <PopularCourseSection />
       <AboutSection />
     </div>

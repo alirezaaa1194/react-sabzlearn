@@ -14,7 +14,7 @@ function AboutSection() {
   };
 
   return (
-    <section className="container flex flex-col items-center" ref={AboutSectionRef}>
+    <section className="container flex flex-col items-center mt-[100px] lg:mt-40" ref={AboutSectionRef}>
       <div className={`h-64 overflow-hidden relative ${seeMore ? "h-fit" : "h-64"}`}>
         <div className="">
           <h2 className="font-DanaDemiBold text-2xl mb-3 mt-8">با دوره‌های سبزلرن برنامه‌نویس حرفه‌ای شوید!</h2>

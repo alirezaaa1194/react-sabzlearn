@@ -7,7 +7,7 @@ function Footer() {
       <div className="container flex flex-col">
         {/* footer top section */}
         <div className="flex flex-col pb-5 border-b border-b-neutral-200 dark:border-b-dark">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-y-2">
             <Link to="/">
               <SecondLogoIcon className="h-10 w-54 sm:h-12 lg:h-13" />
             </Link>
