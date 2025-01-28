@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-function About() {
+function AboutSection() {
   const [seeMore, setSeeMore] = useState<boolean>(false);
 
   const AboutSectionRef = useRef<HTMLDivElement | null>(null);
@@ -58,4 +58,4 @@ function About() {
   );
 }
 
-export default About;
+export default AboutSection;

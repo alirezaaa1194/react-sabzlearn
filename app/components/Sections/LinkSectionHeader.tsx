@@ -15,7 +15,7 @@ function LinkSectionHeader({ headerTitle, headerDesc, linkElem }: LinkSectionHea
         <h4 className="font-MorabaMedium text-base md:text-lg text-gray-700 dark:text-gray-400 relative z-30">{headerTitle}</h4>
       </div>
       <div className="flex flex-col lg:flex-row items-center justify-between gap-y-6">
-        <h2 className="self-start font-MorabaBold text-lg md:text-2xl">{headerDesc}</h2>
+        <h2 className="self-start font-MorabaBold text-lg md:text-[22px]">{headerDesc}</h2>
         <div className="self-end">{linkElem}</div>
       </div>
     </div>

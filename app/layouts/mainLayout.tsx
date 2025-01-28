@@ -1,7 +1,7 @@
 import { dehydrate, HydrationBoundary, QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Outlet, useLoaderData } from "react-router";
-import { getMenus } from "~/utils/utils";
+import { getAllCourses, getMenus } from "~/utils/utils";
 
 export async function loader() {
   const queryClient = new QueryClient();
@@ -9,6 +9,11 @@ export async function loader() {
   await queryClient.prefetchQuery({
     queryKey: ["posts"],
     queryFn: getMenus,
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: ["courses"],
+    queryFn: getAllCourses,
   });
   return { dehydratedState: dehydrate(queryClient) };
 }
