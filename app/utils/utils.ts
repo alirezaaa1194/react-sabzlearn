@@ -11,4 +11,9 @@ export function getAllCourses() {
   return data;
 }
 
+export function getPopularCourses() {
+  const data = apiRequest.get("/courses/popular");
+  return data;
+}
+
 export const baseUrl = "http://127.0.0.1:4000";

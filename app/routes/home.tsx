@@ -8,6 +8,7 @@ import AllCoursesSection from "~/components/Sections/AllCoursesSection";
 import HelpSection from "~/components/Sections/HelpSection";
 import HeroSection from "~/components/Sections/HeroSection";
 import LinkSectionHeader from "~/components/Sections/LinkSectionHeader";
+import PopularCourseSection from "~/components/Sections/PopularCourseSection";
 import RoadmapSection from "~/components/Sections/RoadmapSection";
 import { getAllCourses } from "~/utils/utils";
 
@@ -18,6 +19,7 @@ function home() {
       <AllCoursesSection />
       <RoadmapSection />
       <HelpSection />
+      <PopularCourseSection />
       <AboutSection />
     </div>
   );
