@@ -14,7 +14,7 @@ function AllCoursesSection() {
   });
 
   return (
-    <section className="container flex flex-col gap-[52px]">
+    <section className="container flex flex-col mt-9 lg:mt-20">
       <LinkSectionHeader
         headerTitle="آخـــرین دوره های ما"
         headerDesc="سکوی پرتاپ شما به سمت موفقیت"
@@ -26,7 +26,7 @@ function AllCoursesSection() {
         }
       />
       <div className="grid grid-rows-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
-        {courses?.data.map((course: courseType) => (
+        {courses?.data.slice(0, 12)?.map((course: courseType) => (
           <CourseCard course={course} />
         ))}
       </div>

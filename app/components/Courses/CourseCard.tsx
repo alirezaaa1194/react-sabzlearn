@@ -8,7 +8,7 @@ type CourseCardPropsType = { course: courseType };
 
 function CourseCard({ course }: CourseCardPropsType) {
   return (
-    <div className="flex flex-col rounded-xl bg-white dark:bg-darker max-w-[294px]">
+    <div className="flex flex-col rounded-xl bg-white dark:bg-darker">
       <Link to={`/course/${course.shortName}`}>
         <img src={`${baseUrl}/courses/covers/${course.cover}`} className="rounded-xl w-full" alt="" />
       </Link>
