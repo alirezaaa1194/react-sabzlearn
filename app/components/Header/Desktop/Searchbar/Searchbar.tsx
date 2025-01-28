@@ -1,12 +1,19 @@
 import { MagnifyingGlassIcon } from "public/svg/svgs";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useLocation, useNavigate, useSearchParams } from "react-router";
 
 function Searchbar() {
   const [searchParams] = useSearchParams();
   const [searchInputValue, setSearchInputValue] = useState<string>((searchParams.get("s") as string) || "");
   const navigate = useNavigate();
   const serachInputRef = useRef<HTMLInputElement>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!searchParams.get("s")) {
+      setSearchInputValue("");
+    }
+  }, [location]);
 
   const searchInputValueChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {

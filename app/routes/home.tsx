@@ -18,7 +18,7 @@ import { getAllCourses } from "~/utils/utils";
 
 function home() {
   return (
-    <div>
+    <>
       <HeroSection />
       <AllCoursesSection />
       <RoadmapSection />
@@ -28,7 +28,7 @@ function home() {
       <ArticlesSection />
       <PopularCourseSection />
       <AboutSection />
-    </div>
+    </>
   );
 }
 
