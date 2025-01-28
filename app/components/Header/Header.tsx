@@ -1,20 +1,25 @@
 import { BarsIcon, LogoIcon } from "public/svg/svgs";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import DesktopNavbar from "./Desktop/Navbar/DesktopNavbar";
 import Searchbar from "./Desktop/Searchbar/Searchbar";
 import ThemeBtns from "./Desktop/ThemeBtns/ThemeBtns";
 import CartDropdown from "./Desktop/cart/CartDropdown";
 import LoginBtn from "./Desktop/userProfile/LoginBtn";
 import MobileSidebar from "./Mobile/MobileSidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Overlay from "../Overlay/Overlay";
 
 function Header() {
   const [isOpenSideBar, setIsOpenSideBar] = useState<boolean>(false);
+  const location = useLocation();
 
   const handleOpenAndCloseSidebar = () => {
     setIsOpenSideBar((prev) => !prev);
   };
+
+  useEffect(() => {
+    setIsOpenSideBar(false);
+  }, [location]);
 
   return (
     <header className="bg-white dark:bg-darker relative">
