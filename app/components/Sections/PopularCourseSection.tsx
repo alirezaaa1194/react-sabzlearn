@@ -13,7 +13,7 @@ function PopularCourseSection() {
     queryFn: getPopularCourses,
   });
   return (
-    <section className="container flex flex-col mt-9 lg:mt-20">
+    <section className="container flex flex-col mt-[100px] lg:mt-40">
       <LinkSectionHeader
         headerTitle="محبوب ترین دوره ها"
         headerDesc="پرمخاطب ترین دوره های رایگان سبزلرن"
@@ -24,7 +24,7 @@ function PopularCourseSection() {
           </Link>
         }
       />
-      <div className="grid grid-rows-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
         {popularCourses?.data.slice(0, 8)?.map((course: courseType) => (
           <CourseCard course={course} />
         ))}

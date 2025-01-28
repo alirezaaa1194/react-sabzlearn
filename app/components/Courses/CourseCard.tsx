@@ -18,7 +18,7 @@ function CourseCard({ course }: CourseCardPropsType) {
             <Link to={`/course/${course.shortName}`} className="font-DanaDemiBold line-clamp-2 mb-3">
               {course.name}
             </Link>
-            <p className="text-sm line-clamp-2 text-gray-700 dark:text-gray-400">{course.description}</p>
+            <p className="text-sm line-clamp-2 text-gray-700 dark:text-gray-400 font-DanaMedium">{course.description}</p>
           </div>
           <div className="flex items-center justify-between  text-slate-500 dark:text-white/70 text-sm pb-3 border-b border-b-neutral-200/70 dark:border-b-white/10">
             <span className="flex items-center gap-x-0.5 hover:text-green-500 transition-colors font-DanaRegular">

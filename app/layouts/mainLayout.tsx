@@ -1,7 +1,7 @@
 import { dehydrate, HydrationBoundary, QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Outlet, useLoaderData } from "react-router";
-import { getAllCourses, getMenus, getPopularCourses } from "~/utils/utils";
+import { getAllArticles, getAllCourses, getMenus, getPopularCourses } from "~/utils/utils";
 
 export async function loader() {
   const queryClient = new QueryClient();
@@ -19,6 +19,11 @@ export async function loader() {
   await queryClient.prefetchQuery({
     queryKey: ["popular-courses"],
     queryFn: getPopularCourses,
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: ["articles"],
+    queryFn: getAllArticles,
   });
   return { dehydratedState: dehydrate(queryClient) };
 }
