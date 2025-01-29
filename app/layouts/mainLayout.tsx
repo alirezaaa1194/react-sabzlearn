@@ -1,13 +1,16 @@
 import { dehydrate, HydrationBoundary, QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Outlet, useLoaderData } from "react-router";
-import { getAllArticles, getAllCourses, getMenus, getPopularCourses } from "~/utils/utils";
+import { getAllArticles, getAllCourses, getCookie, getMe, getMenus, getPopularCourses } from "~/utils/utils";
+import type { Route } from "./+types/mainLayout";
 
-export async function loader() {
+export async function loader({ request }: Route.LoaderArgs) {
+  const cookieHeader = request.headers.get("Cookie");
+  const token = getCookie(cookieHeader, "token");
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: ["posts"],
+    queryKey: ["menus"],
     queryFn: getMenus,
   });
 
@@ -25,6 +28,12 @@ export async function loader() {
     queryKey: ["articles"],
     queryFn: getAllArticles,
   });
+
+  await queryClient.prefetchQuery({
+    queryKey: ["getme"],
+    queryFn: () => getMe(token),
+  });
+
   return { dehydratedState: dehydrate(queryClient) };
 }
 
@@ -41,7 +50,6 @@ function site() {
   );
 
   const { dehydratedState } = useLoaderData<typeof loader>();
-
   return (
     <div>
       <QueryClientProvider client={queryClient}>

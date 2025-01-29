@@ -1,3 +1,4 @@
+import { Button } from "@heroui/button";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowUpLeftMiniIcon } from "public/svg/svgs";
 import React from "react";
@@ -14,8 +15,6 @@ import PopularCourseSection from "~/components/Sections/PopularCourseSection";
 import RoadmapSection from "~/components/Sections/RoadmapSection";
 import SliderAllCourseSection from "~/components/Sections/SliderAllCourseSection";
 import SliderPopularCourseSection from "~/components/Sections/SliderPopularCourseSection";
-import { getAllCourses } from "~/utils/utils";
-
 function home() {
   return (
     <>

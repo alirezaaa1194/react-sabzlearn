@@ -84,4 +84,8 @@
   .link-section-header::after{
     clip-path: polygon(6px 0,100% 0,100% 100%,0 100%);
   }
+  
+  .slider-btn{
+    width: 500px !important;
+  }
 }

@@ -1,3 +1,4 @@
+import { Button } from "@heroui/button";
 import React, { useEffect, useRef, useState } from "react";
 
 function AboutSection() {
@@ -51,9 +52,9 @@ function AboutSection() {
         </div>
         {!seeMore ? <div className="w-full h-64 absolute right-0 bottom-0 bg-gradient-to-b from-transparent from-5% to-gray-100 dark:to-gray-900"></div> : null}
       </div>
-      <button className={`btn-parimary--outline rounded-lg h-10 px-3 text-sm font-DanaRegular mt-4 ${seeMore ? "bg-[#1eb35b1a]" : "bg-transparent"}`} onClick={seeMoreToggleHandler}>
+      <Button className={`btn-parimary--outline text-primary rounded-lg h-10 px-3 text-sm font-DanaRegular mt-4 ${seeMore ? "bg-[#1eb35b1a]" : "bg-transparent"}`} onClick={seeMoreToggleHandler}>
         {seeMore ? "مشاهده کمتر" : "مشاهده بیشتر"}
-      </button>
+      </Button>
     </section>
   );
 }

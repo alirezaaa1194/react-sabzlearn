@@ -26,11 +26,11 @@ export default function SliderAllCourseSection() {
         headerDesc="دوره های محبوب و پروژه محور سبزلرن"
         linkElem={
           <div className="hidden lg:flex gap-4">
-            <button className="w-[50px] h-[50px] border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slidePrev()}>
+            <button className="w-[50px] h-[50px] bg-transparent p-0 border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slidePrev()}>
               <ChevronRightIcon className="size-6" />
             </button>
 
-            <button className="w-[50px] h-[50px] border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slideNext()}>
+            <button className="w-[50px] h-[50px] bg-transparent p-0 border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slideNext()}>
               <ChevronLeftIcon className="size-6" />
             </button>
           </div>
@@ -67,18 +67,18 @@ export default function SliderAllCourseSection() {
           className="mySwiper rounded-xl"
         >
           {courses?.data.map((course: courseType) => (
-            <SwiperSlide>
+            <SwiperSlide key={course._id}>
               <CourseCard course={course} />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
       <div className="flex gap-4 lg:hidden mx-auto mt-7">
-        <button className="w-[50px] h-[50px] border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slidePrev()}>
+        <button className="w-[50px] h-[50px] bg-transparent p-0 border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slidePrev()}>
           <ChevronRightIcon className="size-6" />
         </button>
 
-        <button className="w-[50px] h-[50px] border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slideNext()}>
+        <button className="w-[50px] h-[50px] bg-transparent p-0 border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slideNext()}>
           <ChevronLeftIcon className="size-6" />
         </button>
       </div>

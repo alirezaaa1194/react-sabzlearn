@@ -40,7 +40,7 @@ function SidebarSubMenu({ subMenu, mainMenu, setMainMenu }: SidebarSubMenuPropsT
       {mainMenu === subMenu._id && isOpen && subMenu.submenus.length ? (
         <ul className="bg-[#f5f5f5] dark:bg-dark rounded-lg w-full p-3 text-xs font-DanaRegular flex flex-col gap-3">
           {subMenu.submenus.map((subSubMenu) => (
-            <SidebarSubSubMenu subSubMenu={subSubMenu} />
+            <SidebarSubSubMenu key={subSubMenu._id} subSubMenu={subSubMenu} />
           ))}
         </ul>
       ) : null}

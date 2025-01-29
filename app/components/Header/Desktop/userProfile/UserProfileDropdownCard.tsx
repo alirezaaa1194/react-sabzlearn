@@ -1,8 +1,17 @@
 import { ChatBubbleLeftRightIcon, FolderOpenIcon, HomeIcon, PowerIcon, UserIcon } from "public/svg/svgs";
-import React from "react";
-import { Link } from "react-router";
+import React, { use } from "react";
+import { Link, useFetcher } from "react-router";
+import { AuthContext } from "~/contexts/AuthContext";
+import type { userType } from "~/types/user.type";
+import * as Spinners from "react-spinners";
+import {Button, ButtonGroup} from "@heroui/button";
+const PulseLoader = Spinners.PulseLoader;
 
 function UserProfileDropdownCard() {
+  const userInfoContext = use(AuthContext) as userType;
+
+  const fetcher = useFetcher();
+
   return (
     <div className="w-[278px] bg-white dark:bg-darker p-5 pb-[14px] rounded-lg flex flex-col">
       {/* header */}
@@ -13,7 +22,7 @@ function UserProfileDropdownCard() {
           </Link>
         </div>
         <div className="flex flex-col gap-y-3">
-          <span className="font-DanaDemiBold">Alireza1194</span>
+          <span className="font-DanaDemiBold">{userInfoContext.name}</span>
           <span className="text-sm font-DanaMedium text-green-500">موجودی: 0 تومان</span>
         </div>
       </div>
@@ -43,13 +52,26 @@ function UserProfileDropdownCard() {
             جزئیات حساب
           </Link>
         </li>
+          
       </ul>
       {/* footer */}
       <div className="pt-2 border-t border-t-neutral-200 dark:border-t-white/5 font-DanaMedium">
-        <button className="w-full flex items-center gap-x-2.5 h-12 px-2.5 rounded-xl hover:text-white hover:bg-red-500 transition-colors">
-          <PowerIcon className="size-6" />
-          خروج
-        </button>
+        <fetcher.Form action="/logout" method="POST">
+        <button className="w-full">
+
+          <Button className={`w-full flex items-center justify-start gap-x-2.5 h-12 px-2.5 rounded-xl hover:text-white hover:bg-red-500 transition-colors bg-transparent ${fetcher.state === "loading" ? "bg-red-500" : "bg-transparent"}`}>
+
+            {fetcher.state === "loading" ? (
+              <PulseLoader color="#fff" className="mx-auto" size={12} />
+            ) : (
+              <>
+                <PowerIcon className="size-6" />
+                خروج
+              </>
+            )}
+          </Button>
+            </button>
+        </fetcher.Form>
       </div>
     </div>
   );

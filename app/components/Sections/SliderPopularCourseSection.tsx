@@ -67,7 +67,7 @@ export default function SliderPopularCourseSection() {
           className="mySwiper rounded-xl"
         >
           {popularCourses?.data.map((popularCourse: courseType) => (
-            <SwiperSlide>
+            <SwiperSlide key={popularCourse._id}>
               <CourseCard course={popularCourse} />
             </SwiperSlide>
           ))}

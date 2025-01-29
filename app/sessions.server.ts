@@ -2,6 +2,7 @@ import { createCookieSessionStorage } from "react-router";
 
 export type SessionType = {
   theme: "light" | "dark";
+  token?: string;
 };
 
 const session = createCookieSessionStorage<SessionType>({

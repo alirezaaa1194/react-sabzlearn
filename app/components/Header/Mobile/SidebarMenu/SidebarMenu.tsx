@@ -15,7 +15,7 @@ function SidebarMenu() {
   return (
     <ul className="flex flex-col gap-x-1 font-DanaRegular text-sm">
       {menus?.data.map((subMenu: subMenuType) => (
-        <SidebarSubMenu subMenu={subMenu} mainMenu={mainMenu} setMainMenu={setMainMenu} />
+        <SidebarSubMenu key={subMenu._id} subMenu={subMenu} mainMenu={mainMenu} setMainMenu={setMainMenu} />
       ))}
     </ul>
   );

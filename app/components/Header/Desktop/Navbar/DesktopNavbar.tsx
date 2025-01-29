@@ -26,7 +26,7 @@ function DesktopNavbar() {
           <div className="absolute pt-[38px] right-0 invisible opacity-0 group-hover/sub-menu:visible group-hover/sub-menu:opacity-100">
             <ul className="bg-white dark:bg-darker w-44 text-sm transition-all relative">
               {menus?.data.map((subMenu: subMenuType) => {
-                return <SubMenu subMenu={subMenu} />;
+                return <SubMenu key={subMenu._id} subMenu={subMenu} />;
               })}
             </ul>
           </div>

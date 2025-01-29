@@ -6,12 +6,17 @@ import ThemeBtns from "./Desktop/ThemeBtns/ThemeBtns";
 import CartDropdown from "./Desktop/cart/CartDropdown";
 import LoginBtn from "./Desktop/userProfile/LoginBtn";
 import MobileSidebar from "./Mobile/MobileSidebar";
-import { useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import Overlay from "../Overlay/Overlay";
+import { AuthContext } from "~/contexts/AuthContext";
+import UserProfileDropdown from "./Desktop/userProfile/UserProfileDropdown";
+import type { userType } from "~/types/user.type";
 
 function Header() {
   const [isOpenSideBar, setIsOpenSideBar] = useState<boolean>(false);
   const location = useLocation();
+
+  const userInfoContext = use(AuthContext) as userType;
 
   const handleOpenAndCloseSidebar = () => {
     setIsOpenSideBar((prev) => !prev);
@@ -40,8 +45,8 @@ function Header() {
           <Searchbar />
           <ThemeBtns />
           <CartDropdown />
-          {/* <UserProfileDropdown /> */}
-          <LoginBtn />
+
+          {userInfoContext?._id ? <UserProfileDropdown /> : <LoginBtn />}
         </div>
       </div>
       {/* mobile sidebar */}
