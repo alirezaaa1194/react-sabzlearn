@@ -3,9 +3,14 @@ import { apiRequest } from "~/Services/Axios/config";
 import { getCookie, registerHandler, type registerFuncPropsType } from "~/utils/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
-import { redirect, useFetcher } from "react-router";
+import { Link, redirect, useFetcher } from "react-router";
 import type { Route } from "./+types/signup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { EnvelopeIcon, LockIcon, PhoneIcon, SecondLogoIcon, UserIcon } from "public/svg/svgs";
+import { Button } from "@heroui/button";
+import * as Spinners from "react-spinners";
+
+const PulseLoader = Spinners.PulseLoader;
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
@@ -64,28 +69,66 @@ function signup() {
 
   return (
     <>
-      {isSubmitting && "loading..."}
-      <form className="flex flex-col items-center gap-2" onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="name" {...register("name")} autoFocus />
-        {errors.name && <p>{errors.name.message}</p>}
+      <div className="flex flex-col items-center gap-y-8 px-4 py-6 relative">
+        <Link to="/">
+          <SecondLogoIcon className="w-[250px] h-[60px]" />
+        </Link>
+        <div className="max-w-[330px] w-full pt-5 pb-6 px-6 text-center bg-white dark:bg-darker rounded-xl flex flex-col mt-2">
+          <span className="font-DanaDemiBold text-xl mb-4 sm:mb-4.5">عضویت</span>
+          <span className="font-DanaRegular mb-5">
+            قبلا ثبت نام کرده اید؟{" "}
+            <Link to="/login" className="font-DanaDemiBold text-green-500">
+              وارد شوید
+            </Link>
+          </span>
+          <form className="flex flex-col items-center gap-5" onSubmit={handleSubmit(onSubmit)}>
+            <div className="relative w-full text-start">
+              <UserIcon className="absolute left-4 top-3.5 size-5 text-slate-500" />
+              <input type="text" placeholder="نام" {...register("name")} autoFocus className={`w-full px-4 pe-[52px] placeholder:text-slate-500 bg-gray-100 text-slate-500 dark:bg-dark dark:text-white rounded-xl h-12 font-DanaRegular text-sm outline-none border transition-colors ${errors.name ? "border-red-500 focus:border-red-500" : "border-gray-100 dark:border-dark focus:border-neutral-200 dark:focus:border-slate-500"}`} />
+              {errors.name && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.name.message}</span>}
+            </div>
+            <div className="relative w-full text-start">
+              <UserIcon className="absolute left-4 top-3.5 size-5 text-slate-500" />
+              <input type="text" placeholder="نام کاربری" {...register("username")} className={`w-full px-4 pe-[52px] placeholder:text-slate-500 bg-gray-100 text-slate-500 dark:bg-dark dark:text-white rounded-xl h-12 font-DanaRegular text-sm outline-none border transition-colors ${errors.username ? "border-red-500 focus:border-red-500" : "border-gray-100 dark:border-dark focus:border-neutral-200 dark:focus:border-slate-500"}`} />
+              {errors.username && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.username.message}</span>}
+            </div>
+            <div className="relative w-full text-start">
+              <EnvelopeIcon className="absolute left-4 top-3.5 size-5 text-slate-500" />
+              <input type="text" placeholder="آدرس ایمیل" {...register("email")} className={`w-full px-4 pe-[52px] placeholder:text-slate-500 bg-gray-100 text-slate-500 dark:bg-dark dark:text-white rounded-xl h-12 font-DanaRegular text-sm outline-none border transition-colors ${errors.email ? "border-red-500 focus:border-red-500" : "border-gray-100 dark:border-dark focus:border-neutral-200 dark:focus:border-slate-500"}`} />
+              {errors.email && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.email.message}</span>}
+            </div>
+            <div className="relative w-full text-start">
+              <PhoneIcon className="absolute left-4 top-3.5 size-5 text-slate-500" />
+              <input type="text" placeholder="شماره تماس" {...register("phone")} className={`w-full px-4 pe-[52px] placeholder:text-slate-500 bg-gray-100 text-slate-500 dark:bg-dark dark:text-white rounded-xl h-12 font-DanaRegular text-sm outline-none border transition-colors ${errors.phone ? "border-red-500 focus:border-red-500" : "border-gray-100 dark:border-dark focus:border-neutral-200 dark:focus:border-slate-500"}`} />
+              {errors.phone && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.phone.message}</span>}
+            </div>
+            <div className="relative w-full text-start">
+              <LockIcon className="absolute left-4 top-3.5 size-5 text-slate-500" />
+              <input type="password" placeholder="رمز عبور" {...register("password")} className={`w-full px-4 pe-[52px] placeholder:text-slate-500 bg-gray-100 text-slate-500 dark:bg-dark dark:text-white rounded-xl h-12 font-DanaRegular text-sm outline-none border transition-colors ${errors.password ? "border-red-500 focus:border-red-500" : "border-gray-100 dark:border-dark focus:border-neutral-200 dark:focus:border-slate-500"}`} />
+              {errors.password && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.password.message}</span>}
+            </div>
+            <div className="relative w-full text-start">
+              <LockIcon className="absolute left-4 top-3.5 size-5 text-slate-500" />
+              <input type="password" placeholder="تکرار رمز عبور" {...register("confirmPassword")} className={`w-full px-4 pe-[52px] placeholder:text-slate-500 bg-gray-100 text-slate-500 dark:bg-dark dark:text-white rounded-xl h-12 font-DanaRegular text-sm outline-none border transition-colors ${errors.confirmPassword ? "border-red-500 focus:border-red-500" : "border-gray-100 dark:border-dark focus:border-neutral-200 dark:focus:border-slate-500"}`} />
+              {errors.confirmPassword && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.confirmPassword.message}</span>}
+            </div>
 
-        <input type="text" placeholder="username" {...register("username")} />
-        {errors.username && <p>{errors.username.message}</p>}
+            <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
+              {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={12} /> : <>ثبت نام</>}
+            </Button>
+          </form>
+        </div>
+        <p className="max-w-[330px] w-full text-center font-DanaMedium">
+          با عضویت در سایت، تمامی قوانین و شرایط استفاده از خدمات{" "}
+          <Link to="/" className="text-green-500">
+            سبزلرن
+          </Link>{" "}
+          را پذیرفته اید.
+        </p>
 
-        <input type="text" placeholder="email" {...register("email")} />
-        {errors.email && <p>{errors.email.message}</p>}
-
-        <input type="text" placeholder="phone" {...register("phone")} />
-        {errors.phone && <p>{errors.phone.message}</p>}
-
-        <input type="password" placeholder="password" {...register("password")} />
-        {errors.password && <p>{errors.password.message}</p>}
-
-        <input type="password" placeholder="confirmPassword" {...register("confirmPassword")} />
-        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
-
-        <button className="bg-primary px-2 py-1">register</button>
-      </form>
+        <div className="w-[300px] h-[300px] absolute top-0 left-0 rounded-full bg-sky-500 blur-[120px] opacity-20 hidden lg:block"></div>
+        <div className="w-[300px] h-[300px] absolute bottom-0 right-0 rounded-full bg-amber-400 blur-[120px] opacity-20 hidden lg:block"></div>
+      </div>
     </>
   );
 }
