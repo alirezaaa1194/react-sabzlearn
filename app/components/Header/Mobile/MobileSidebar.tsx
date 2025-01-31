@@ -5,6 +5,7 @@ import SidebarMenu from "./SidebarMenu/SidebarMenu";
 import type { userType } from "~/types/user.type";
 import { AuthContext } from "~/contexts/AuthContext";
 import { ChevronDownMiniIcon, ChevronLeftMiniIcon } from "public/svg/svgs";
+import moment from "jalali-moment";
 
 type MobileSidebarPropsType = {
   isOpenSideBar: boolean;
@@ -12,6 +13,9 @@ type MobileSidebarPropsType = {
 
 function MobileSidebar({ isOpenSideBar }: MobileSidebarPropsType) {
   const userInfoContext = use(AuthContext) as userType;
+
+  const date = moment();
+  const persianDate = date.locale("fa").format("dddd D MMMM YYYY");
 
   return (
     <aside className={`h-screen w-64 overflow-y-auto flex flex-col lg:hidden fixed z-50 ${isOpenSideBar ? "right-0" : "-right-full"} top-0 transition-all bg-white dark:bg-darker`}>
@@ -26,7 +30,7 @@ function MobileSidebar({ isOpenSideBar }: MobileSidebarPropsType) {
               </Link>
               <div className="flex flex-col gap-y-1">
                 <span className="text-sm font-DanaMedium truncate">{userInfoContext.name}</span>
-                <span className="text-xs opacity-80 font-DanaRegular">جمعه 12 بهمن 1403</span>
+                <span className="text-xs opacity-80 font-DanaRegular">{persianDate}</span>
               </div>
             </div>
             <Link to="/my-account">
