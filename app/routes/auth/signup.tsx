@@ -1,6 +1,6 @@
-import React, { cache, useReducer, useState } from "react";
+import React, { cache, useEffect, useReducer, useState } from "react";
 import { apiRequest } from "~/Services/Axios/config";
-import { getCookie, registerHandler, type registerFuncPropsType } from "~/utils/utils";
+import { getCookie, loginHandler, registerHandler, type registerFuncPropsType } from "~/utils/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { Link, redirect, useFetcher } from "react-router";
@@ -9,6 +9,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { EnvelopeIcon, LockIcon, PhoneIcon, SecondLogoIcon, UserIcon } from "public/svg/svgs";
 import { Button } from "@heroui/button";
 import * as Spinners from "react-spinners";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 const PulseLoader = Spinners.PulseLoader;
 
@@ -67,6 +69,48 @@ function signup() {
     }
   };
 
+  const login = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        const res = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenResponse.access_token}`, {
+          headers: {
+            Authorization: `Bearer ${tokenResponse.access_token}`,
+            Accept: "application/json",
+          },
+        });
+
+        const res2 = await registerHandler({
+          name: res.data.name,
+          username: res.data.name,
+          email: res.data.email,
+          phone: "09111111111",
+          password: "11111111",
+          confirmPassword: "11111111",
+        });
+        const token = res2.data.accessToken;
+
+        fetcher.submit({ token }, { method: "POST", action: "/auth" });
+
+        console.log("User Info:", res.data.name);
+      } catch (error) {
+        const res = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${tokenResponse.access_token}`, {
+          headers: {
+            Authorization: `Bearer ${tokenResponse.access_token}`,
+            Accept: "application/json",
+          },
+        });
+
+        const res2 = await loginHandler({
+          identifier: res.data.email,
+          password: "11111111",
+        });
+        const token = res2.data.accessToken;
+        fetcher.submit({ token }, { method: "POST", action: "/auth" });
+      }
+    },
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
   return (
     <>
       <div className="flex flex-col items-center gap-y-8 px-4 py-6 relative">
@@ -116,6 +160,7 @@ function signup() {
             <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
               {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={12} /> : <>ثبت نام</>}
             </Button>
+            <Button onClick={login}>google</Button>
           </form>
         </div>
         <p className="max-w-[330px] w-full text-center font-DanaMedium">

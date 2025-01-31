@@ -1,5 +1,18 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { Outlet, redirect } from "react-router";
+import { getCookie } from "~/utils/utils";
+import type { Route } from "./+types/UserPanelLayout";
+
+export const loader = async ({ request }: Route.LoaderArgs) => {
+  const cookieHeader = request.headers.get("Cookie");
+
+  const token = getCookie(cookieHeader, "token");
+  if (!token) {
+    return redirect("/");
+  }
+
+  return null;
+};
 
 function UserPanelLayout() {
   return (
