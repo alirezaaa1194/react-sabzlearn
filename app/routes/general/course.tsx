@@ -9,6 +9,10 @@ import RateBox from "~/components/Course/sidebar/RateBox";
 import TeacherInfo from "~/components/Course/sidebar/TeacherInfo";
 import ShortLinkBox from "~/components/Course/sidebar/ShortLinkBox";
 import CourseDesc from "~/components/Course/CourseDesc/CourseDesc";
+import { Accordion, AccordionItem, Button } from "@heroui/react";
+import { AcademicCapFillIcon, ChevronDownIcon, PlayCircleIcon } from "public/svg/svgs";
+import { Link } from "react-router";
+import CourseTopic from "~/components/Course/CourseTopic/CourseTopic";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const course = await getSingleCourse(params["course-name"]);
@@ -28,6 +32,10 @@ function course({ loaderData }: Route.ComponentProps) {
         <div className="col-span-12 lg:col-span-8">
           <SummaryInfos course={course} />
           <CourseDesc course={course} />
+          <CourseTopic course={course} />
+
+
+          
         </div>
         <aside className="col-span-12 lg:col-span-4 space-y-8">
           <RateBox course={course} />

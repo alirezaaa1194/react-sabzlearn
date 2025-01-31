@@ -2,7 +2,10 @@ import { heroui } from "@heroui/theme";
 import type { Config } from "tailwindcss";
 
 export default {
-  content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}", "./node_modules/@heroui/theme/dist/components/(button|dropdown|ripple|spinner|menu|divider|popover).js"],
+  content: [
+    "./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/@heroui/theme/dist/components/(accordion|button|dropdown|divider|ripple|spinner|menu|popover).js"
+  ],
   darkMode: "class",
   theme: {
     extend: {

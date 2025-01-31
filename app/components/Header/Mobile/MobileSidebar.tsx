@@ -14,7 +14,7 @@ function MobileSidebar({ isOpenSideBar }: MobileSidebarPropsType) {
   const userInfoContext = use(AuthContext) as userType;
 
   return (
-    <aside className={`h-screen w-64 overflow-y-auto flex flex-col lg:hidden fixed z-50 ${isOpenSideBar ? "right-0" : "-right-full"} top-0 bg-white dark:bg-darker`}>
+    <aside className={`h-screen w-64 overflow-y-auto flex flex-col lg:hidden fixed z-50 transition-all ${isOpenSideBar ? "right-0" : "-right-full"} top-0 bg-white dark:bg-darker`}>
       {/* sidebar header */}
 
       {userInfoContext?._id ? (

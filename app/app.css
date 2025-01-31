@@ -81,7 +81,7 @@
     @apply mx-auto px-4 max-w-[475px] sm:px-2.5 sm:max-w-full md:max-w-[700px];
   }
 
-  .btn-primary{
+  .btn-primary {
     @apply text-white bg-primary transition-colors hover:bg-primary-hover;
   }
   .btn-primary--outline {

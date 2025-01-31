@@ -90,7 +90,7 @@ export const courseTimeHandler = (sessions: courseSessionType[]) => {
     const sumSecs = secs.reduce((prev, current) => prev + current);
 
     let finishTime = Math.round((sumMins + Math.round(sumSecs / 60)) / 60);
-    return finishTime > 1 ? finishTime + " ساعت" : finishTime + " دقیقه";
+    return finishTime > 1 ? finishTime + " ساعت" : sumMins + Math.round(sumSecs / 60) + " دقیقه";
   }
   return "0 ساعت";
 };
