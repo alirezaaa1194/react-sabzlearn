@@ -1,4 +1,4 @@
-import React, { cache, useEffect, useReducer, useState } from "react";
+import React, { cache, useEffect, useReducer, useState, type MouseEventHandler } from "react";
 import { apiRequest } from "~/Services/Axios/config";
 import { getCookie, loginHandler, registerHandler, type registerFuncPropsType } from "~/utils/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
@@ -157,10 +157,15 @@ function signup() {
               {errors.confirmPassword && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.confirmPassword.message}</span>}
             </div>
 
-            <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
-              {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={12} /> : <>ثبت نام</>}
-            </Button>
-            <Button onClick={login}>google</Button>
+            <div className="flex gap-4 w-full">
+              <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
+                {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={12} /> : <>ثبت نام</>}
+              </Button>
+
+              <Button className="w-2/12 h-12 bg-slate-200 hover:bg-slate-300 hover:transition-colors" onClick={login as unknown as MouseEventHandler<HTMLButtonElement>}>
+                <img src="public/images/Google_Icon2.webp" alt="google-logo" />
+              </Button>
+            </div>
           </form>
         </div>
         <p className="max-w-[330px] w-full text-center font-DanaMedium">

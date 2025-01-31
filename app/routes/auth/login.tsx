@@ -1,4 +1,4 @@
-import React, { cache, useReducer, useState } from "react";
+import React, { cache, useReducer, useState, type MouseEventHandler } from "react";
 import { apiRequest } from "~/Services/Axios/config";
 import { getCookie, loginHandler, registerHandler, type loginFuncPropsType } from "~/utils/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
@@ -123,11 +123,15 @@ function loign() {
             <input type="password" placeholder="رمز عبور" {...register("password")} className={`w-full px-4 pe-[52px] placeholder:text-slate-500 bg-gray-100 text-slate-500 dark:bg-dark dark:text-white rounded-xl h-12 font-DanaRegular text-sm outline-none border transition-colors ${errors.password ? "border-red-500 focus:border-red-500" : "border-gray-100 dark:border-dark focus:border-neutral-200 dark:focus:border-slate-500"}`} />
             {errors.password && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.password.message}</span>}
           </div>
+          <div className="flex gap-4 w-full">
+            <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
+              {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={12} /> : <>ورود</>}
+            </Button>
 
-          <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
-            {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={12} /> : <>ورود</>}
-          </Button>
-          <Button onClick={login}>google</Button>
+            <Button className="w-2/12 h-12 bg-slate-200 hover:bg-slate-300 hover:transition-colors" onClick={login as unknown as MouseEventHandler<HTMLButtonElement>}>
+              <img src="public/images/Google_Icon2.webp" alt="google-logo" />
+            </Button>
+          </div>
         </form>
       </div>
       <p className="max-w-[330px] w-full text-center font-DanaMedium">
