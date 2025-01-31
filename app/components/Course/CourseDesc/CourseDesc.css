@@ -1,0 +1,6 @@
+#course-desc-container img{
+    @apply rounded-lg w-full
+}
+#course-desc-container b, #course-desc-container strong{
+    @apply font-DanaDemiBold text-gray-900 dark:text-gray-100
+}

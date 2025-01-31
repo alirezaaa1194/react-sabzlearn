@@ -1,5 +1,7 @@
+import { QueryClient, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { apiRequest } from "~/Services/Axios/config";
+import type { courseSessionType, courseType } from "~/types/course.type";
 
 export function getMenus() {
   const data = apiRequest.get("/menus");
@@ -63,6 +65,34 @@ export const getMe = async (token: string | null) => {
   });
 
   return res;
+};
+
+export const getSingleCourse = async (courseName: string) => {
+  const data = await apiRequest.get(`/courses/${courseName}`);
+  return data;
+};
+
+export const courseTimeHandler = (sessions: courseSessionType[]) => {
+  if (sessions.length) {
+    const times: string[] = [];
+    sessions.map((session: courseSessionType) => times.push(session.time));
+
+    const mins: number[] = [];
+    const secs: number[] = [];
+
+    times.map((time: string) => {
+      let splitedTime = time.split(":");
+      mins.push(+splitedTime[0]);
+      secs.push(+splitedTime[1]);
+    });
+
+    const sumMins = mins.reduce((prev, current) => prev + current);
+    const sumSecs = secs.reduce((prev, current) => prev + current);
+
+    let finishTime = Math.round((sumMins + Math.round(sumSecs / 60)) / 60);
+    return finishTime > 1 ? finishTime + " ساعت" : finishTime + " دقیقه";
+  }
+  return "0 ساعت";
 };
 
 export const baseUrl = "http://127.0.0.1:4000";

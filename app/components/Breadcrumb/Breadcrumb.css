@@ -1,0 +1,15 @@
+.breadcrumb::-webkit-scrollbar {
+  display: none;
+}
+.breadcrumb-item::before {
+  content: "";
+  width: 5px;
+  height: 40px;
+  @apply bg-gray-100 dark:bg-gray-900 absolute top-[-15px] left-[-10px] origin-top rotate-[35deg] cursor-default;
+}
+.breadcrumb-item::after {
+  content: "";
+  width: 5px;
+  height: 40px;
+  @apply bg-gray-100 dark:bg-gray-900 absolute bottom-[-30px] left-[-33px] origin-top rotate-[-35deg] cursor-default;
+}

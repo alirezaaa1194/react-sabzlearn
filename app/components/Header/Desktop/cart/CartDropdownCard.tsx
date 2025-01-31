@@ -34,7 +34,7 @@ function CartDropdownCard() {
               <TomanIcon className="size-5" />
             </span>
           </div>
-          <Link to="/cart" className="w-full flex items-center justify-center h-12 rounded-lg bg-primary text-white transition-colors hover:bg-primary-hover font-DanaMedium">
+          <Link to="/cart" className="btn-primary w-full flex items-center justify-center h-12 rounded-lg font-DanaMedium">
             مشاهده سبد خرید
           </Link>
         </div>

@@ -7,6 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
+        DanaLight: "DanaLight",
         DanaRegular: "DanaRegular",
         DanaMedium: "DanaMedium",
         DanaDemiBold: "DanaDemiBold",
