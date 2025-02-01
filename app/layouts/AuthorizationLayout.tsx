@@ -23,7 +23,7 @@ function AuthorizationLayout({ loaderData }: Route.ComponentProps) {
 
     return (
       <div>
-        <AuthContext value={data?.data}>
+        <AuthContext value={{ userInfo: data?.data, isUserRegister: !!token }}>
           <Outlet />
         </AuthContext>
       </div>

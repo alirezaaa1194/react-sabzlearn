@@ -37,7 +37,6 @@ export type courseCreatorType = {
   createdAt: string;
   updatedAt: string;
   __v: number;
-  profile: string;
   phone: string;
 };
 

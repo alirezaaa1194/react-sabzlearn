@@ -1,6 +1,6 @@
 import React from "react";
 import type { Route } from "./+types/course";
-import { baseUrl, courseTimeHandler, getSingleCourse } from "~/utils/utils";
+import { baseUrl, courseTimeHandler, getSingleCourse, saveComment } from "~/utils/utils";
 import type { courseType, singleCourseType } from "~/types/course.type";
 import Breadcrumb from "~/components/Breadcrumb/Breadcrumb";
 import CourseInfo from "~/components/Course/CourseInfo";
@@ -10,18 +10,35 @@ import TeacherInfo from "~/components/Course/sidebar/TeacherInfo";
 import ShortLinkBox from "~/components/Course/sidebar/ShortLinkBox";
 import CourseDesc from "~/components/Course/CourseDesc/CourseDesc";
 import { Accordion, AccordionItem, Button } from "@heroui/react";
-import { AcademicCapFillIcon, ArrowLeftCircleMiniIcon, ChevronDownIcon, PlayCircleIcon, SparklesIcon } from "public/svg/svgs";
-import { Link } from "react-router";
+import { AcademicCapFillIcon, AcademicCapMiniIcon, ArrowLeftCircleMiniIcon, ArrowUturnLeftIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightFillIcon, CheckMiniIcon, ChevronDownIcon, ExclamationTriangleIcon, PlayCircleIcon, SparklesIcon, UserMiniIcon } from "public/svg/svgs";
+import { Link, useFetcher } from "react-router";
 import CourseTopic from "~/components/Course/CourseTopic/CourseTopic";
 import SuggestionCourses from "~/components/Course/SuggestionCourses/SuggestionCourses";
+import CommentSection from "~/components/Course/Comment/CommentSection";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const course = await getSingleCourse(params["course-name"]);
   return { course };
 }
 
+export async function action({ request, params }: Route.ActionArgs) {
+  const formData = await request.formData();
+  const commentText: FormDataEntryValue | null = formData.get("commentText");
+  const cookies = request.headers.get("Cookie");
+
+  const token: string | undefined = cookies
+    ?.split("; ")
+    .find((row) => row.startsWith("token="))
+    ?.split("=")[1];
+
+  const res = await saveComment(commentText, params["course-name"], token);
+}
+
 function course({ loaderData }: Route.ComponentProps) {
   const course: singleCourseType = loaderData.course.data;
+
+  const fetcher = useFetcher();
+
   console.log(course);
 
   return (
@@ -35,6 +52,8 @@ function course({ loaderData }: Route.ComponentProps) {
           <CourseDesc course={course} />
           <CourseTopic course={course} />
           <SuggestionCourses course={course} />
+
+          <CommentSection fetcher={fetcher} course={course} />
         </div>
         <aside className="col-span-12 lg:col-span-4 space-y-8">
           <RateBox course={course} />

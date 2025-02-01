@@ -95,4 +95,20 @@ export const courseTimeHandler = (sessions: courseSessionType[]) => {
   return "0 ساعت";
 };
 
+export const saveComment = async (commentText: FormDataEntryValue | null, courseName: string, token: string | undefined) => {
+  const res = await apiRequest.post(
+    "/comments",
+    {
+      body: commentText,
+      courseShortName: courseName,
+      score: "5",
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
 export const baseUrl = "http://127.0.0.1:4000";

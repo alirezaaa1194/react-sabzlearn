@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import ThemeBtns from "./ThemeBtns/ThemeBtns";
 import SidebarMenu from "./SidebarMenu/SidebarMenu";
 import type { userType } from "~/types/user.type";
-import { AuthContext } from "~/contexts/AuthContext";
+import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
 import UserInfo from "./SidebarMenu/UserInfo";
 
 type MobileSidebarPropsType = {
@@ -11,13 +11,13 @@ type MobileSidebarPropsType = {
 };
 
 function MobileSidebar({ isOpenSideBar }: MobileSidebarPropsType) {
-  const userInfoContext = use(AuthContext) as userType;
+  const userInfoContext = use(AuthContext) as AuthContextType;
 
   return (
     <aside className={`h-screen w-64 overflow-y-auto flex flex-col lg:hidden fixed z-50 transition-all ${isOpenSideBar ? "right-0" : "-right-full"} top-0 bg-white dark:bg-darker`}>
       {/* sidebar header */}
 
-      {userInfoContext?._id ? (
+      {userInfoContext?.isUserRegister ? (
         <UserInfo />
       ) : (
         <div className="w-full flex">

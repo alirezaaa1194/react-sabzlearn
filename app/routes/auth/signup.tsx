@@ -158,7 +158,7 @@ function signup() {
             </div>
 
             <div className="flex gap-4 w-full">
-              <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
+              <Button type="submit" className="w-full h-12 text-white bg-primary hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
                 {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={12} /> : <>ثبت نام</>}
               </Button>
 

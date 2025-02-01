@@ -1,14 +1,14 @@
 import { ChatBubbleLeftRightIcon, FolderOpenIcon, HomeIcon, PowerIcon, UserIcon } from "public/svg/svgs";
 import React, { use } from "react";
 import { Link, useFetcher } from "react-router";
-import { AuthContext } from "~/contexts/AuthContext";
+import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
 import type { userType } from "~/types/user.type";
 import * as Spinners from "react-spinners";
 import {Button, ButtonGroup} from "@heroui/button";
 const PulseLoader = Spinners.PulseLoader;
 
 function UserProfileDropdownCard() {
-  const userInfoContext = use(AuthContext) as userType;
+  const userInfoContext = use(AuthContext) as AuthContextType;
 
   const fetcher = useFetcher();
 
@@ -22,7 +22,7 @@ function UserProfileDropdownCard() {
           </Link>
         </div>
         <div className="flex flex-col gap-y-3">
-          <span className="font-DanaDemiBold">{userInfoContext.name}</span>
+          <span className="font-DanaDemiBold">{userInfoContext.userInfo.name}</span>
           <span className="text-sm font-DanaMedium text-green-500">موجودی: 0 تومان</span>
         </div>
       </div>

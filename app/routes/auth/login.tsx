@@ -124,7 +124,7 @@ function loign() {
             {errors.password && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.password.message}</span>}
           </div>
           <div className="flex gap-4 w-full">
-            <Button type="submit" className="w-full h-12 bg-primary hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
+            <Button type="submit" className="w-full h-12 bg-primary text-white hover:bg-primary-hover hover:transition-colors font-DanaMedium text-base">
               {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={12} /> : <>ورود</>}
             </Button>
 

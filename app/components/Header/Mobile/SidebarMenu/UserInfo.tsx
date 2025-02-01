@@ -2,11 +2,11 @@ import moment from "jalali-moment";
 import { ChevronLeftMiniIcon } from "public/svg/svgs";
 import React, { use } from "react";
 import { Link } from "react-router";
-import { AuthContext } from "~/contexts/AuthContext";
+import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
 import type { userType } from "~/types/user.type";
 
 function UserInfo() {
-  const userInfoContext = use(AuthContext) as userType;
+  const userInfoContext = use(AuthContext) as AuthContextType;
 
   const date = moment();
   const persianDate = date.locale("fa").format("dddd D MMMM YYYY");
@@ -18,7 +18,7 @@ function UserInfo() {
             <img src="/public/images/user-profile.png" className="w-14 h-14 rounded-full" alt="" />
           </Link>
           <div className="flex flex-col gap-y-1">
-            <span className="text-sm font-DanaMedium truncate">{userInfoContext.name}</span>
+            <span className="text-sm font-DanaMedium truncate">{userInfoContext.userInfo.name}</span>
             <span className="text-xs opacity-80 font-DanaRegular">{persianDate}</span>
           </div>
         </div>
