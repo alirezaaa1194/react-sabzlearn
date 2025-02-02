@@ -3,6 +3,7 @@ import { createCookieSessionStorage } from "react-router";
 export type SessionType = {
   theme: "light" | "dark";
   token?: string;
+  coursesId: FormDataEntryValue | null;
 };
 
 const session = createCookieSessionStorage<SessionType>({

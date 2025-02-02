@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use, useEffect, useState } from "react";
 import type { Route } from "./+types/course";
 import { baseUrl, courseTimeHandler, getSingleCourse, saveComment } from "~/utils/utils";
 import type { courseType, singleCourseType } from "~/types/course.type";
@@ -16,6 +16,7 @@ import CourseTopic from "~/components/Course/CourseTopic/CourseTopic";
 import SuggestionCourses from "~/components/Course/SuggestionCourses/SuggestionCourses";
 import CommentSection from "~/components/Course/Comment/CommentSection";
 import { Toaster } from "react-hot-toast";
+import { CartContext } from "~/contexts/CartContext";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const course = await getSingleCourse(params["course-name"]);
@@ -39,12 +40,15 @@ export async function action({ request, params }: Route.ActionArgs) {
 
 function course({ loaderData }: Route.ComponentProps) {
   const course: singleCourseType = loaderData.course.data;
+  const [mounted, setMounted] = useState(false);
 
-  const fetcher = useFetcher();
-
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
   return (
     <div className="container pt-8 lg:pt-10 flex flex-col gap-y-8 lg:gap-y-10">
-      <Toaster />
+      {mounted && <Toaster />}
       <Breadcrumb titleName="دوره ها" titleLink="/courses" categoryName={course.categoryID.title.split("برنامه نویسی ").join("")} categoryLink={`/course-cat/${course.categoryID.name}`} dataName={course.name} dataLink={`/course/${course.shortName}`} />
       <CourseInfo course={course} />
 
@@ -55,7 +59,7 @@ function course({ loaderData }: Route.ComponentProps) {
           <CourseTopic course={course} />
           <SuggestionCourses course={course} />
 
-          <CommentSection fetcher={fetcher} course={course} />
+          <CommentSection  course={course} />
         </div>
         <aside className="col-span-12 lg:col-span-4 space-y-8">
           <RateBox course={course} />

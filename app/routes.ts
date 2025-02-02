@@ -14,6 +14,7 @@ export default [
                 route('terms-conditions', 'routes/general/terms-conditions.tsx'),
                 route('cart', 'routes/general/cart.tsx'),
                 route('switchTheme', 'routes/themeRoute/themeRoute.tsx'),
+                route('cartRoute', 'routes/cartRoute/cartRoute.tsx'),
         ]),
         layout('./layouts/auth/AuthLayout.tsx',[
             route('login', 'routes/auth/login.tsx'),

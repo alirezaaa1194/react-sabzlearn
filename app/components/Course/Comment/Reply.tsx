@@ -4,7 +4,6 @@ import React from "react";
 import type { courseCommentAnswerType } from "~/types/course.type";
 
 function Reply({ answerContent }: { answerContent: courseCommentAnswerType }) {
-  console.log(answerContent);
   
   return (
     <div className="mt-4 space-y-4">

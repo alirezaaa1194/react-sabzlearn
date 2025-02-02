@@ -1,11 +1,14 @@
 import React, { use, useEffect, useRef, useState } from "react";
 import { Accordion, AccordionItem, Button } from "@heroui/react";
 import { AcademicCapFillIcon, AcademicCapMiniIcon, ArrowLeftCircleMiniIcon, ArrowUturnLeftIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightFillIcon, CheckMiniIcon, ChevronDownIcon, ExclamationTriangleIcon, PlayCircleIcon, SparklesIcon, UserMiniIcon } from "public/svg/svgs";
-import { Link, type FetcherWithComponents } from "react-router";
+import { Link, useFetcher, type FetcherWithComponents } from "react-router";
 import { AuthContext } from "~/contexts/AuthContext";
 import * as Spinners from "react-spinners";
 import { showToast } from "~/components/Notification/Notification";
-function CommentForm({ fetcher }: { fetcher: FetcherWithComponents<any> }) {
+function CommentForm() {
+
+  const fetcher=useFetcher()
+  
   const [isOpenCommentForm, setIsOpenCommentForm] = useState<boolean>(false);
   const [commentFormInputValue, setCommentFormInputValue] = useState<string>("");
   const commentFormInputRef = useRef<HTMLTextAreaElement | null>(null);

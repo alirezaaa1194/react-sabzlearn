@@ -6,10 +6,10 @@ import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import type { courseCommentType, singleCourseType } from "~/types/course.type";
 
-function CommentSection({ fetcher, course }: { fetcher: FetcherWithComponents<any>; course: singleCourseType }) {
+function CommentSection({ course }: {course: singleCourseType }) {
   return (
     <div className="bg-white dark:bg-darker rounded-xl p-[18px] sm:p-5 mt-8">
-      <CommentForm fetcher={fetcher} />
+      <CommentForm  />
       {course.comments.length ? (
         <div className="space-y-[18px] sm:space-y-5">
           {course.comments.map((comment: courseCommentType) => (

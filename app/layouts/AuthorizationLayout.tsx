@@ -4,16 +4,20 @@ import { AuthContext } from "~/contexts/AuthContext";
 import { getCookie, getMe } from "~/utils/utils";
 import type { Route } from "./+types/AuthorizationLayout";
 import { useQuery } from "@tanstack/react-query";
+import { CartContext } from "~/contexts/CartContext";
+import session from "~/sessions.server";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
   const token = getCookie(cookieHeader, "token");
 
-  return { token };
+  const currentSession = await session.getSession(cookieHeader);
+  const coursesId: any = currentSession.data.coursesId;
+  return { token, coursesId };
 };
 
 function AuthorizationLayout({ loaderData }: Route.ComponentProps) {
-  const { token } = loaderData;
+  const { token, coursesId } = loaderData;
 
   if (token) {
     const { data } = useQuery({
@@ -24,7 +28,9 @@ function AuthorizationLayout({ loaderData }: Route.ComponentProps) {
     return (
       <div>
         <AuthContext value={{ userInfo: data?.data, isUserRegister: !!token }}>
-          <Outlet />
+          <CartContext value={coursesId}>
+            <Outlet />
+          </CartContext>
         </AuthContext>
       </div>
     );
