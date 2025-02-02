@@ -32,7 +32,7 @@ function AllocatoToCourse({ course }: { course: singleCourseType }) {
             onClick={() => {
               if (!cartCoursesId?.includes(course._id)) {
                 fetcher.submit({ courseId: course._id }, { method: "POST", action: "/cartRoute" });
-                showToast("موفق", "دوره با موفقیت به سبد خرید اضافه شد", "success");
+                showToast("موفق", "به سبد خرید شما اضافه شد", "success");
               } else {
                 showToast("خطا", "این دوره قبلا اضافه شده !", "error");
               }
