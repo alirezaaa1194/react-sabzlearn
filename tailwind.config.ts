@@ -22,6 +22,7 @@ export default {
         "primary-hover": "#009c4b",
         secondary: "#0a97d4",
         "secondary-hover": "#127bbb",
+        "red-500": "#db2e34",
       },
       height: {
         13: "52px",

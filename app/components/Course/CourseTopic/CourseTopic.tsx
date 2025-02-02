@@ -37,7 +37,7 @@ function CourseTopic({ course }: { course: singleCourseType }) {
                   <div className="flex items-center flex-grow gap-x-2.5 md:gap-x-3.5 child:transition-colors">
                     <div className="flex items-center justify-center w-8 h-6 md:h-7 text-sm font-DanaDemiBold bg-white dark:bg-white/10 group-hover:bg-green-500 group-hover:text-white rounded">{index + 1}</div>
                     {session.free === 1 || course.isUserRegisteredToThisCourse ? (
-                      <Link to={`/lesson/${session._id}?index=${index+1}`} className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 font-DanaRegular transition-colors">
+                      <Link to={`/lesson/${course.shortName}/${session._id}?index=${index+1}`} className="inline-block lg:max-w-3/4 text-sm md:text-base group-hover:text-green-500 font-DanaRegular transition-colors">
                         {session.title}
                       </Link>
                     ) : (

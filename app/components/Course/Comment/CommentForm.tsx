@@ -3,11 +3,14 @@ import { Accordion, AccordionItem, Button } from "@heroui/react";
 import { AcademicCapFillIcon, AcademicCapMiniIcon, ArrowLeftCircleMiniIcon, ArrowUturnLeftIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightFillIcon, CheckMiniIcon, ChevronDownIcon, ExclamationTriangleIcon, PlayCircleIcon, SparklesIcon, UserMiniIcon } from "public/svg/svgs";
 import { Link, type FetcherWithComponents } from "react-router";
 import { AuthContext } from "~/contexts/AuthContext";
+import * as Spinners from "react-spinners";
 function CommentForm({ fetcher }: { fetcher: FetcherWithComponents<any> }) {
   const [isOpenCommentForm, setIsOpenCommentForm] = useState<boolean>(false);
   const [commentFormInputValue, setCommentFormInputValue] = useState<string>("");
   const commentFormInputRef = useRef<HTMLTextAreaElement | null>(null);
   const userContext = use(AuthContext);
+
+  const PulseLoader = Spinners.PulseLoader;
 
   useEffect(() => {
     if (commentFormInputRef.current) {
@@ -18,6 +21,16 @@ function CommentForm({ fetcher }: { fetcher: FetcherWithComponents<any> }) {
       }
     }
   }, [isOpenCommentForm]);
+
+  useEffect(() => {
+    if (fetcher.data) {
+      if (fetcher.data.res.status === 201) {
+        setIsOpenCommentForm(false);
+        setCommentFormInputValue("");
+        // alert('ok')
+      }
+    }
+  }, [fetcher.data]);
 
   return (
     <>
@@ -45,7 +58,7 @@ function CommentForm({ fetcher }: { fetcher: FetcherWithComponents<any> }) {
             </div>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="font-DanaMedium">Alireza1194</span>
+            <span className="font-DanaMedium">{userContext?.userInfo.name}</span>
             <span className="font-DanaLight text-sm text-gray-700 dark:text-gray-400">ثبت نظر جدید</span>
           </div>
         </div>
@@ -79,7 +92,7 @@ function CommentForm({ fetcher }: { fetcher: FetcherWithComponents<any> }) {
             }}
             className="flex-grow sm:grow-0 sm:w-36 h-[46px] rounded-lg font-DanaMedium text-base bg-primary btn-primary text-white"
           >
-            ارسال
+            {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={12} /> : "ارسال"}
           </Button>
         </div>
       </div>

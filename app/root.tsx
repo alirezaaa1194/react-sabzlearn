@@ -22,7 +22,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="icon" href="https://sabzlearn.ir/wp-content/uploads/2024/12/cropped-128px-1-192x192.png" sizes="192x192"></link>
+        <link rel="icon" href="/public/images/favicon.png" sizes="192x192"></link>
         <meta name="theme-color" content="#22C55E"></meta>
         <Meta />
         <Links />

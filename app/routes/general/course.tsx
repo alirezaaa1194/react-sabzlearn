@@ -11,7 +11,7 @@ import ShortLinkBox from "~/components/Course/sidebar/ShortLinkBox";
 import CourseDesc from "~/components/Course/CourseDesc/CourseDesc";
 import { Accordion, AccordionItem, Button } from "@heroui/react";
 import { AcademicCapFillIcon, AcademicCapMiniIcon, ArrowLeftCircleMiniIcon, ArrowUturnLeftIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightFillIcon, CheckMiniIcon, ChevronDownIcon, ExclamationTriangleIcon, PlayCircleIcon, SparklesIcon, UserMiniIcon } from "public/svg/svgs";
-import { Link, useFetcher } from "react-router";
+import { redirect, useFetcher } from "react-router";
 import CourseTopic from "~/components/Course/CourseTopic/CourseTopic";
 import SuggestionCourses from "~/components/Course/SuggestionCourses/SuggestionCourses";
 import CommentSection from "~/components/Course/Comment/CommentSection";
@@ -32,14 +32,14 @@ export async function action({ request, params }: Route.ActionArgs) {
     ?.split("=")[1];
 
   const res = await saveComment(commentText, params["course-name"], token);
+
+  return { res };
 }
 
 function course({ loaderData }: Route.ComponentProps) {
   const course: singleCourseType = loaderData.course.data;
 
   const fetcher = useFetcher();
-
-  console.log(course);
 
   return (
     <div className="container pt-8 lg:pt-10 flex flex-col gap-y-8 lg:gap-y-10">

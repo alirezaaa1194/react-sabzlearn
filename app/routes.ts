@@ -10,7 +10,7 @@ export default [
                 route('courses', 'routes/general/courses.tsx'),
                 route('course-cat/:cat-name', 'routes/general/course-cat.tsx'),
                 route('course/:course-name', 'routes/general/course.tsx'),
-                route('lesson/:lesson-id', 'routes/general/lesson.tsx'),
+                route('lesson/:course-name/:lesson-id', 'routes/general/lesson.tsx'),
                 route('terms-conditions', 'routes/general/terms-conditions.tsx'),
                 route('cart', 'routes/general/cart.tsx'),
                 route('switchTheme', 'routes/themeRoute/themeRoute.tsx'),

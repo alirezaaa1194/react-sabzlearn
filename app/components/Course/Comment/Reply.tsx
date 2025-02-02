@@ -4,6 +4,8 @@ import React from "react";
 import type { courseCommentAnswerType } from "~/types/course.type";
 
 function Reply({ answerContent }: { answerContent: courseCommentAnswerType }) {
+  console.log(answerContent);
+  
   return (
     <div className="mt-4 space-y-4">
       <div className="p-[18px] md:p-5 bg-gray-200 dark:bg-darker rounded-lg">
@@ -17,14 +19,14 @@ function Reply({ answerContent }: { answerContent: courseCommentAnswerType }) {
             </div>
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-x-1">
-                <span className="inline-block max-w-40 truncate font-DanaRegular">{answerContent.creator.name}</span>
-                <strong className="font-DanaDemiBold">| {answerContent.creator.role==='ADMIN'?'مدیریت':'مدرس'}</strong>
+                <span className="inline-block max-w-40 truncate font-DanaRegular">{answerContent?.creator.name}</span>
+                <strong className="font-DanaDemiBold">| {answerContent?.creator.role==='ADMIN'?'مدیریت':'مدرس'}</strong>
               </div>
-              <span className="font-DanaRegular text-sm text-gray-700 dark:text-gray-400">{moment(answerContent.createdAt, "YYYY/MM/DD").locale("fa").format("YYYY/MM/DD")}</span>
+              <span className="font-DanaRegular text-sm text-gray-700 dark:text-gray-400">{moment(answerContent?.createdAt, "YYYY/MM/DD")?.locale("fa")?.format("YYYY/MM/DD")}</span>
             </div>
           </div>
         </div>
-        <p className="font-DanaLight text-sm sm:text-base break-words">{answerContent.body}</p>
+        <p className="font-DanaLight text-sm sm:text-base break-words">{answerContent?.body}</p>
       </div>
     </div>
   );
