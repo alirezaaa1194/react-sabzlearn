@@ -1,4 +1,4 @@
-import React, { cache, useReducer, useState, type MouseEventHandler } from "react";
+import React, { cache, useEffect, useReducer, useState, type MouseEventHandler } from "react";
 import { apiRequest } from "~/Services/Axios/config";
 import { getCookie, loginHandler, registerHandler, type loginFuncPropsType } from "~/utils/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
@@ -11,6 +11,8 @@ import * as Spinners from "react-spinners";
 import { Button } from "@heroui/button";
 import axios from "axios";
 import { useGoogleLogin } from "@react-oauth/google";
+import { Toaster } from "react-hot-toast";
+import { showToast } from "~/components/Notification/Notification";
 
 const PulseLoader = Spinners.PulseLoader;
 
@@ -51,8 +53,9 @@ function loign() {
       const token = res.data.accessToken;
 
       fetcher.submit({ token }, { method: "POST", action: "/auth" });
+      showToast("موفق", "ورود موفقیت آمیز بود", "success");
     } catch (err) {
-      console.log(err);
+      showToast("خطا", "ایمیل یا رمزعبور اشتباه", "success");
     }
   };
 
@@ -98,8 +101,15 @@ function loign() {
     onError: (error) => console.log("Login Failed:", error),
   });
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="flex flex-col items-center gap-y-8 px-4 py-6 relative">
+      {mounted && <Toaster />}
       <Link to="/">
         <SecondLogoIcon className="w-[250px] h-[60px]" />
       </Link>

@@ -1,5 +1,5 @@
 #accrordion * {
-  @apply outline-none;
+  @apply outline-none shadow-none;
 }
 .session-item:last-child {
   @apply !border-none;
@@ -8,7 +8,7 @@
   @apply py-0 border-none;
 }
 #accrordion button {
-  @apply bg-gray-100 dark:bg-dark rounded-lg p-4 h-14 lg:h-[60px];
+  @apply bg-gray-100 dark:bg-dark !rounded-lg p-4 h-14 lg:h-[60px];
 }
 #accrordion button[aria-expanded="true"] {
   @apply bg-slate-500 rounded-b-none;

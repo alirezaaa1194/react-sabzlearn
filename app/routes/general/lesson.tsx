@@ -11,6 +11,11 @@ import SummaryInfo from "~/components/Lesson/SummaryInfo";
 import CourseTopicContainer from "~/components/Lesson/CourseTopic/CourseTopicContainer";
 import CoursePercent from "~/components/Lesson/CoursePercent";
 import DownloadBox from "~/components/Lesson/DownloadBox";
+import { redirect } from "react-router";
+
+import Notification, { showToast } from "~/components/Notification/Notification";
+
+import toast, { Toaster } from "react-hot-toast";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookies = request.headers.get("Cookie");
@@ -41,6 +46,7 @@ function lesson({ loaderData }: Route.ComponentProps) {
 
   return (
     <main className="container pt-8 lg:pt-10 flex flex-col ">
+      <Toaster />
       <Breadcrumb titleName="دوره ها" titleLink="/courses" categoryName={course.categoryID.title.split("برنامه نویسی ").join("")} categoryLink={`/course-cat/${course.categoryID.name}`} dataName={course.name} dataLink={`/course/${course.shortName}`} />
       {/* <video controls src={`${baseUrl}/courses/covers/${session.session.video}`} className="w-full"  /> */}
       <img className="w-full rounded-lg mt-8 sm:mt-10" src={`${baseUrl}/courses/covers/${course.cover}`} alt={session.session.title} />

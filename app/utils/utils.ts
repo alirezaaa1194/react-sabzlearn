@@ -119,12 +119,6 @@ export const getOneSession = async (courseShortName: string, sessionId: string, 
     }
   });
   return res;
-
-  // const res = await fetch(`${baseUrl}/v1/courses/${courseShortName}/${sessionId}`, {
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //   },
-  // });
-  // return res;
 };
 export const baseUrl = "http://127.0.0.1:4000";
+export const baseRoute = "http://localhost:5173";

@@ -1,5 +1,5 @@
 #accrordion * {
-    @apply outline-none;
+    @apply outline-none shadow-none;
   }
   .session-item:last-child {
     @apply !border-none;

@@ -15,6 +15,7 @@ import { redirect, useFetcher } from "react-router";
 import CourseTopic from "~/components/Course/CourseTopic/CourseTopic";
 import SuggestionCourses from "~/components/Course/SuggestionCourses/SuggestionCourses";
 import CommentSection from "~/components/Course/Comment/CommentSection";
+import { Toaster } from "react-hot-toast";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const course = await getSingleCourse(params["course-name"]);
@@ -43,6 +44,7 @@ function course({ loaderData }: Route.ComponentProps) {
 
   return (
     <div className="container pt-8 lg:pt-10 flex flex-col gap-y-8 lg:gap-y-10">
+      <Toaster />
       <Breadcrumb titleName="دوره ها" titleLink="/courses" categoryName={course.categoryID.title.split("برنامه نویسی ").join("")} categoryLink={`/course-cat/${course.categoryID.name}`} dataName={course.name} dataLink={`/course/${course.shortName}`} />
       <CourseInfo course={course} />
 

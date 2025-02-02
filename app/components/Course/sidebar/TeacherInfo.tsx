@@ -1,4 +1,5 @@
 import { Button } from "@heroui/button";
+import { ArrowLeftCircleIcon } from "public/svg/svgs";
 import React from "react";
 import type { singleCourseType } from "~/types/course.type";
 
@@ -8,8 +9,10 @@ function TeacherInfo({ course }: { course: singleCourseType }) {
       <img className="block mb-4 mx-auto object-cover rounded-full" width="90" height="90" src="/public/images/user-profile.png" alt={course.creator.name} />
       <span className="font-DanaDemiBold text-lg mb-2">{course.creator.name} | مدرس دوره</span>
       <p className="mt-2"></p>
-      <a href="https://github.com/alirezaaa1194">
-        <Button className="btn-primary--outline bg-transparent text-primary mx-auto mt-4 px-3 w-fit h-9 font-DanaRegular flex items-center rounded-lg text-sm">مشاهده پروفایل من</Button>
+
+      <a href="https://github.com/alirezaaa1194" className="flex items-center justify-center gap-x-2.5 mt-3 text-green-500 font-DanaMedium">
+        مشاهده پروفایل من
+        <ArrowLeftCircleIcon className="size-7" />
       </a>
     </div>
   );

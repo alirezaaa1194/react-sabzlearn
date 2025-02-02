@@ -4,6 +4,7 @@ import { AcademicCapFillIcon, AcademicCapMiniIcon, ArrowLeftCircleMiniIcon, Arro
 import { Link, type FetcherWithComponents } from "react-router";
 import { AuthContext } from "~/contexts/AuthContext";
 import * as Spinners from "react-spinners";
+import { showToast } from "~/components/Notification/Notification";
 function CommentForm({ fetcher }: { fetcher: FetcherWithComponents<any> }) {
   const [isOpenCommentForm, setIsOpenCommentForm] = useState<boolean>(false);
   const [commentFormInputValue, setCommentFormInputValue] = useState<string>("");
@@ -27,7 +28,7 @@ function CommentForm({ fetcher }: { fetcher: FetcherWithComponents<any> }) {
       if (fetcher.data.res.status === 201) {
         setIsOpenCommentForm(false);
         setCommentFormInputValue("");
-        // alert('ok')
+        showToast('موفق', 'دیدگاه با موفقیت ثبت شد', 'success')
       }
     }
   }, [fetcher.data]);
@@ -81,11 +82,9 @@ function CommentForm({ fetcher }: { fetcher: FetcherWithComponents<any> }) {
           <Button
             type="submit"
             onClick={(e) => {
-              e.preventDefault(); // جلوگیری از رفتار پیش‌فرض
-              if (!userContext?.isUserRegister) {
-                alert("please register");
-              } else if (!commentFormInputValue.trim()) {
-                alert("متن کامنت نمی‌تواند خالی باشد.");
+              e.preventDefault();
+               if (!commentFormInputValue.trim()) {
+                showToast('خطا', 'لطفا متن دیدگاه را وارد کنید!', 'error')
               } else {
                 fetcher.submit({ commentText: commentFormInputValue }, { method: "post" });
               }

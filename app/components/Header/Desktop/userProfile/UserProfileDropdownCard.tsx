@@ -5,6 +5,7 @@ import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
 import type { userType } from "~/types/user.type";
 import * as Spinners from "react-spinners";
 import { Button, ButtonGroup } from "@heroui/button";
+import { showToast } from "~/components/Notification/Notification";
 const PulseLoader = Spinners.PulseLoader;
 
 function UserProfileDropdownCard() {
@@ -56,18 +57,16 @@ function UserProfileDropdownCard() {
       {/* footer */}
       <div className="pt-2 border-t border-t-neutral-200 dark:border-t-white/5 font-DanaMedium">
         <fetcher.Form action="/logout" method="POST">
-          <button className="w-full">
-            <Button className={`w-full flex items-center justify-start gap-x-2.5 h-12 px-2.5 rounded-xl hover:text-white hover:bg-red-500 transition-colors bg-transparent ${fetcher.state === "loading" ? "bg-red-500" : "bg-transparent"}`}>
-              {fetcher.state === "loading" ? (
-                <PulseLoader color="#fff" className="mx-auto" size={12} />
-              ) : (
-                <>
-                  <PowerIcon className="size-6" />
-                  خروج
-                </>
-              )}
-            </Button>
-          </button>
+          <Button type="submit" className={`w-full flex items-center justify-start gap-x-2.5 h-12 px-2.5 rounded-xl hover:text-white hover:bg-red-500 transition-colors bg-transparent ${fetcher.state === "loading" ? "bg-red-500" : "bg-transparent"}`}>
+            {fetcher.state === "loading" ? (
+              <PulseLoader color="#fff" className="mx-auto" size={12} />
+            ) : (
+              <>
+                <PowerIcon className="size-6" />
+                خروج
+              </>
+            )}
+          </Button>
         </fetcher.Form>
       </div>
     </div>
