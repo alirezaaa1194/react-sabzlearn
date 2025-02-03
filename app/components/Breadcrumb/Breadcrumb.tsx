@@ -7,8 +7,8 @@ type BreadcrumbPropsType = {
   titleName: string;
   titleLink: string;
 
-  categoryName: string;
-  categoryLink: string;
+  categoryName?: string;
+  categoryLink?: string;
 
   dataName: string;
   dataLink: string;
@@ -23,9 +23,14 @@ function Breadcrumb({ titleName, titleLink, categoryName, categoryLink, dataName
       <Link to={titleLink} className="breadcrumb-item font-DanaLight relative shrink-0">
         <span>{titleName}</span>
       </Link>
-      <Link to={categoryLink} className="breadcrumb-item font-DanaLight relative shrink-0">
-        <span>{categoryName}</span>
-      </Link>
+
+      {categoryName && categoryLink ? (
+        <Link to={categoryLink} className="breadcrumb-item font-DanaLight relative shrink-0">
+          <span>{categoryName}</span>
+        </Link>
+      ) : (
+        ""
+      )}
       <Link to={dataLink} className="font-DanaMedium shrink-0">
         <span>{dataName}</span>
       </Link>

@@ -113,12 +113,18 @@ export const saveComment = async (commentText: FormDataEntryValue | null, course
 };
 
 export const getOneSession = async (courseShortName: string, sessionId: string, token: string | undefined) => {
-  const res = await apiRequest.get(`/courses/${courseShortName}/${sessionId}`,{
-    headers:{
-      Authorization:`Bearer ${token}`
-    }
+  const res = await apiRequest.get(`/courses/${courseShortName}/${sessionId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   return res;
 };
+
+export const getSingleArticle = async (ArticleShortName: string) => {
+  const res = await apiRequest.get(`${baseUrl}/v1/articles/${ArticleShortName}`);
+  return res
+};
+
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";
