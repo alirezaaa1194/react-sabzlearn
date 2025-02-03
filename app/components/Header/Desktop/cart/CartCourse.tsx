@@ -1,11 +1,13 @@
+import { Spinner } from "@heroui/react";
 import { TomanIcon, TrashIcon } from "public/svg/svgs";
 import React from "react";
 import { Link, useFetcher } from "react-router";
+import { showToast } from "~/components/Notification/Notification";
 import type { courseType } from "~/types/course.type";
 import { baseUrl } from "~/utils/utils";
 
 function CartCourse({ course }: { course: courseType }) {
-  const fetcher=useFetcher()
+  const fetcher = useFetcher();
   return (
     <li className="flex items-center justify-between">
       <div className="flex items-center gap-x-3">
@@ -30,8 +32,15 @@ function CartCourse({ course }: { course: courseType }) {
           </div>
         </div>
       </div>
-      <button onClick={()=>fetcher.submit({courseId:course._id},{method:'POST', action:'/RemoveCartCourse'})}>
-        <TrashIcon className="size-4 transition-colors text-gray-400 hover:text-red-500" />
+      <button
+        onClick={() => {
+          fetcher.submit({ courseId: course._id }, { method: "POST", action: "/RemoveCartCourse" });
+          // if (fetcher.state !== "loading") {
+          //   showToast("موفق", "از سبد خرید شما حذف شد", "success");
+          // }
+        }}
+      >
+        {fetcher.state === "loading" ? <Spinner size="sm" /> : <TrashIcon className="size-4 transition-colors text-gray-400 hover:text-red-500" />}
       </button>
     </li>
   );

@@ -35,7 +35,7 @@ function Notification({ t, title, desc, status }: notificationPropsType) {
               <span className="font-DanaDemiBold text-medium">{title}</span>
               <p className="font-DanaRegular text-sm">{desc}</p>
             </div>
-            <div className="w-full h-[3px] bg-white absolute bottom-0 left-0" dir="ltr">
+            <div className="w-full h-[3px]  bg-gray-100 absolute bottom-0 left-0" dir="ltr">
               <motion.span initial={{ width: "100%" }} animate={{ width: 0 }} transition={{ duration: 5 }} className={`block h-full ${status === "error" ? " bg-red-500" : status === "success" ? " bg-green-500" : status === "warning" ? " bg-amber-500" : ""}`}></motion.span>
             </div>
           </div>

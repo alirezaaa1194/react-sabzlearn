@@ -7,6 +7,7 @@ import * as Spinners from "react-spinners";
 import { Toaster } from "react-hot-toast";
 import { showToast } from "../Notification/Notification";
 import { CartContext } from "~/contexts/CartContext";
+import { Spinner } from "@heroui/react";
 const PulseLoader = Spinners.PulseLoader;
 
 function AllocatoToCourse({ course }: { course: singleCourseType }) {
@@ -41,7 +42,7 @@ function AllocatoToCourse({ course }: { course: singleCourseType }) {
           >
             <span className="font-DanaRegular">
               {fetcher.state === "loading" ? (
-                <PulseLoader color="#fff" className="mx-auto" size={12} />
+                <Spinner size="md" color="white" />
               ) : (
                 <span className="flex items-center gap-x-2.5">
                   <AcademicCapIcon className="size-6" /> افزودن به سبد خرید
