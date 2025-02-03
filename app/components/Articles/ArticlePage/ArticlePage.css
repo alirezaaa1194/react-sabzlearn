@@ -1,0 +1,33 @@
+.blog-body {
+  @apply flex flex-col text-[#374151] dark:text-[#d1d5db] font-DanaMedium text-base left-10;
+}
+.blog-body p {
+  @apply text-medium font-DanaRegular text-gray-700 dark:text-gray-400 leading-7 first:mt-8;
+}
+.blog-body strong,
+.blog-body b {
+  @apply font-DanaDemiBold text-[#111827] dark:text-white;
+}
+.blog-body h2 {
+  @apply text-justify mb-3 mt-8 font-DanaDemiBold;
+  font-size: 1.5rem;
+}
+.blog-body h3 {
+  @apply text-justify mb-3 mt-8 font-DanaMedium text-xl;
+}
+.blog-body a {
+  @apply text-justify inline-block text-secondary no-underline;
+}
+.blog-body ul,
+.blog-body ol {
+  @apply text-justify mx-5 px-0 font-DanaLight;
+}
+.blog-body ul li::marker {
+  @apply text-secondary;
+}
+.blog-body img {
+  @apply w-full max-h-[500px] rounded-xl mt-8;
+}
+.blog-body div {
+  @apply hidden sm:flex items-center gap-x-4 p-2 h-20 my-5 bg-gray-100 dark:bg-dark rounded-xl [&>img]:w-fit [&>img]:m-0 [&>img]:rounded-lg [&>a]:text-gray-900 [&>a]:dark:text-white;
+}

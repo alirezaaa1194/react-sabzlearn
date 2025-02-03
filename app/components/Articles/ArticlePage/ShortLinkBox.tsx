@@ -5,7 +5,7 @@ import { showToast } from "~/components/Notification/Notification";
 import { baseRoute } from "~/utils/utils";
 
 function ShortLinkBox() {
-  const [isOpenBox, setIsOpenBox] = useState<boolean>(false);
+  const [isOpenBox, setIsOpenBox] = useState<boolean>(true);
   const location = useLocation();
 
   const copyLinkHandler = () => {

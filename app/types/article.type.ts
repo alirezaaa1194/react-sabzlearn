@@ -25,3 +25,27 @@ export type articleType = {
   updatedAt: string;
   __v: number;
 };
+
+export type singleArticleCategoryType = {
+  _id: string;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  name: string;
+};
+
+export type singleArticleType = {
+  _id: string;
+  title: string;
+  description: string;
+  body: string;
+  cover: string;
+  shortName: string;
+  categoryID: singleArticleCategoryType;
+  creator: articleCreatorType;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  publish: number;
+};
