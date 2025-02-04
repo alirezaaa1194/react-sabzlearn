@@ -1,0 +1,32 @@
+.terms-content p {
+  @apply text-base;
+}
+
+.terms-content strong {
+  @apply font-bold;
+}
+
+.terms-content h1,
+.terms-content h2 {
+  @apply text-2xl !important;
+}
+
+.terms-content h3 {
+  @apply text-xl;
+}
+
+.terms-content a {
+  @apply inline-block text-blue-500 underline !important;
+}
+
+.terms-content ul,
+.terms-content ol {
+  @apply my-5 px-5;
+}
+
+.terms-content li {
+  @apply text-lg my-2;
+}
+.terms-content img {
+  @apply w-full rounded-3xl;
+}

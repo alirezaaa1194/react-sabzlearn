@@ -20,7 +20,7 @@ function CartDropdownCard() {
   const coursesSumPrice = cartCourses.reduce((prev: number, curr: courseType) => prev + curr.price, 0);
 
   return (
-    <div className="w-80 xs:w-[362px] h-fit bg-white dark:bg-darker rounded-lg flex flex-col">
+    <div className="w-80 sm:w-[362px] h-fit bg-white dark:bg-darker rounded-lg flex flex-col">
       {/* header */}
       <div className="px-5 py-4 bg-sky-50 dark:bg-sky-500/10 text-sky-500 rounded-t-lg flex items-center justify-between">
         <span className="font-DanaDemiBold">سبد خرید من</span>
