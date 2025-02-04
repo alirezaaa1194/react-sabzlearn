@@ -12,7 +12,6 @@ export async function action({ request }: Route.ActionArgs) {
 
   const splitedCoursesId = coursesId.split("; ");
   let filteredCoursesId = splitedCoursesId.filter((ids: string) => ids !== mainCourseId).join("; ");
-
   currentSession.set("coursesId", filteredCoursesId);
 
   return data(

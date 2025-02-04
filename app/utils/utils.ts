@@ -19,7 +19,7 @@ export function getPopularCourses() {
 }
 
 export async function getAllArticles() {
-  const res =await apiRequest.get("/articles");
+  const res = await apiRequest.get("/articles");
   return res;
 }
 
@@ -123,7 +123,22 @@ export const getOneSession = async (courseShortName: string, sessionId: string, 
 
 export const getSingleArticle = async (ArticleShortName: string) => {
   const res = await apiRequest.get(`${baseUrl}/v1/articles/${ArticleShortName}`);
-  return res
+  return res;
+};
+
+export const registerCourse = async (courseId: string, token: string | null) => {
+  const res = apiRequest.post(
+    `/courses/${courseId}/register`,
+    {
+      price: "1111",
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res;
 };
 
 export const baseUrl = "http://127.0.0.1:4000";

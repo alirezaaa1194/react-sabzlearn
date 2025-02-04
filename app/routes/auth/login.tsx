@@ -55,7 +55,7 @@ function loign() {
       fetcher.submit({ token }, { method: "POST", action: "/auth" });
       showToast("موفق", "ورود موفقیت آمیز بود", "success");
     } catch (err) {
-      showToast("خطا", "ایمیل یا رمزعبور اشتباه", "success");
+      showToast("خطا", "ایمیل یا رمزعبور اشتباه", "error");
     }
   };
 

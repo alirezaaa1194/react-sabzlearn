@@ -8,24 +8,30 @@ import { Toaster } from "react-hot-toast";
 import { showToast } from "../Notification/Notification";
 import { CartContext } from "~/contexts/CartContext";
 import { Spinner } from "@heroui/react";
+import { AuthContext } from "~/contexts/AuthContext";
 const PulseLoader = Spinners.PulseLoader;
 
-function AllocatoToCourse({ course }: { course: singleCourseType }) {
+function AllocatoToCourse({ course, isUserRegisteredToThisCourse }: { course: singleCourseType; isUserRegisteredToThisCourse: boolean }) {
   const cartCoursesId = use(CartContext);
 
   const fetcher = useFetcher();
+
   return (
     <>
-      {course.isUserRegisteredToThisCourse ? (
+      {isUserRegisteredToThisCourse === true ? (
         <div className="w-full flex items-center justify-between mt-4 lg:mt-0">
           <div className="font-DanaDemiBold text-lg flex items-center gap-x-1">
             <UserIcon className="size-8" />
             شما دانشجوی دوره هستید
           </div>
-          <Link to="/" className="btn-primary flex items-center justify-center gap-x-2.5 px-5 lg:w-56 h-[46px] rounded-lg text-sm lg:text-base font-DanaRegular">
-            <BookOpenIcon className="size-6" />
-            <span>مشاهده دوره</span>
-          </Link>
+          {course.sessions.length ? (
+            <Link to={`/lesson/${course.shortName}/${course?.sessions[0]?._id}`} className="btn-primary flex items-center justify-center gap-x-2.5 px-5 lg:w-56 h-[46px] rounded-lg text-sm lg:text-base font-DanaRegular">
+              <BookOpenIcon className="size-6" />
+              <span>مشاهده دوره</span>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         <div className="w-full flex flex-col-reverse gap-y-3 lg:flex-row items-center justify-between mt-5 lg:mt-0 font-DanaRegular">

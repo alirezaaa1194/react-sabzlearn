@@ -16,7 +16,7 @@ function CartDropdownCard() {
     queryFn: getAllCourses,
   });
   const cartCourses = allCourses?.data.filter((course: courseType) => cartCoursesIds?.includes(course._id));
-
+  
   const coursesSumPrice = cartCourses.reduce((prev: number, curr: courseType) => prev + curr.price, 0);
 
   return (

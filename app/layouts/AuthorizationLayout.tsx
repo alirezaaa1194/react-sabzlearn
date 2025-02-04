@@ -27,17 +27,19 @@ function AuthorizationLayout({ loaderData }: Route.ComponentProps) {
 
     return (
       <div>
-        <AuthContext value={{ userInfo: data?.data, isUserRegister: !!token }}>
-          <CartContext value={coursesId}>
+        <CartContext value={coursesId}>
+          <AuthContext value={{ userInfo: data?.data, isUserRegister: !!token }}>
             <Outlet />
-          </CartContext>
-        </AuthContext>
+          </AuthContext>
+        </CartContext>
       </div>
     );
   } else
     return (
       <>
-        <Outlet />
+        <CartContext value={coursesId}>
+          <Outlet />
+        </CartContext>
       </>
     );
 }

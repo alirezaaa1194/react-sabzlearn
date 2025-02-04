@@ -1,11 +1,11 @@
 import { Button } from "@heroui/button";
 import { CheckCircleIcon, ChevronDownIcon, CreditCardIcon, TomanIcon } from "public/svg/svgs";
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useFetcher, useNavigate } from "react-router";
 import type { courseType } from "~/types/course.type";
 import { showToast } from "../Notification/Notification";
 
-function PaySection({ cartCourses }: { cartCourses: courseType[] }) {
+function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; userToken: string | null }) {
   const cartCoursesSumPrice = cartCourses.reduce((prev, curr) => prev + curr.price, 0);
 
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
@@ -20,6 +20,7 @@ function PaySection({ cartCourses }: { cartCourses: courseType[] }) {
   const changeOfferInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOfferInputValue(e.target.value);
   };
+
   const keyupOfferInputHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
       validateOfferCode();
@@ -46,6 +47,8 @@ function PaySection({ cartCourses }: { cartCourses: courseType[] }) {
     }
   };
 
+  const fetcher = useFetcher();
+
   return (
     <>
       <div className="rounded-xl overflow-hidden">
@@ -64,26 +67,34 @@ function PaySection({ cartCourses }: { cartCourses: courseType[] }) {
                 <TomanIcon className="size-6" />
               </div>
             </div>
-            <div className="flex items-center justify-between text-red-500">
-              <span className="font-DanaMedium">تخفیف</span>
-              <div className="flex items-center gap-x-1">
-                <div>
-                  <span className="text-sm font-DanaRegular">({offerPercent}%) </span>
-                  <span className="font-DanaDemiBold">{((offerPercent / 100) * cartCoursesSumPrice).toLocaleString()}</span>
+
+            {userToken ? (
+              <>
+                <div className="flex items-center justify-between text-red-500">
+                  <span className="font-DanaMedium">تخفیف</span>
+                  <div className="flex items-center gap-x-1">
+                    <div>
+                      <span className="text-sm font-DanaRegular">({offerPercent}%) </span>
+                      <span className="font-DanaDemiBold">{((offerPercent / 100) * cartCoursesSumPrice).toLocaleString()}</span>
+                    </div>
+                    <TomanIcon className="size-6" />
+                  </div>
                 </div>
-                <TomanIcon className="size-6" />
-              </div>
-            </div>
-            <div className="flex items-center justify-between text-red-500">
-              <span className="font-DanaMedium">تخفیف پلکانی</span>
-              <div className="flex items-center gap-x-1">
-                <div>
-                  <span className="text-sm font-DanaRegular">({cartCourses.length * 2}%) </span>
-                  <span className="font-DanaDemiBold">{!isValidOfferCode ? (((cartCourses.length * 2) / 100) * cartCoursesSumPrice).toLocaleString() : (((cartCourses.length * 2) / 100) * (offerPercent / 100) * cartCoursesSumPrice).toLocaleString()}</span>
+                <div className="flex items-center justify-between text-red-500">
+                  <span className="font-DanaMedium">تخفیف پلکانی</span>
+                  <div className="flex items-center gap-x-1">
+                    <div>
+                      <span className="text-sm font-DanaRegular">({cartCourses.length * 2}%) </span>
+                      <span className="font-DanaDemiBold">{!isValidOfferCode ? (((cartCourses.length * 2) / 100) * cartCoursesSumPrice).toLocaleString() : (((cartCourses.length * 2) / 100) * (offerPercent / 100) * cartCoursesSumPrice).toLocaleString()}</span>
+                    </div>
+                    <TomanIcon className="size-6" />
+                  </div>
                 </div>
-                <TomanIcon className="size-6" />
-              </div>
-            </div>
+              </>
+            ) : (
+              ""
+            )}
+
             <div className="flex items-center justify-between">
               <span className="font-DanaMedium">موجودی کیف پول</span>
               <div className="flex items-center gap-x-1">
@@ -95,25 +106,40 @@ function PaySection({ cartCourses }: { cartCourses: courseType[] }) {
           <div className="flex items-center justify-between mb-3">
             <span className="font-DanaDemiBold xl:text-lg">مجموع:</span>
             <div className="flex items-center gap-x-1">
+              <TomanIcon className="size-6" />
               <span className="font-DanaDemiBold text-xl xl:text-2xl flex items-center gap-1">{Math.floor(coursesSumPrice).toLocaleString()}</span>
             </div>
           </div>
-          <form id="pay_form" method="post" action="https://sabzlearn.ir/checkout?nonce=1b5e10f961">
-            <div className="flex items-center gap-x-1 mb-5">
-              <label className="flex items-center gap-2">
-                <input className="peer hidden" type="checkbox" required checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />
-                <span className="block w-4 h-4 rounded-sm bg-gray-200 dark:bg-dark peer-checked:bg-secondary cursor-pointer transition-colors duration-100" />
-                <span className="text-sm xl:text-base text-slate-500 dark:text-gray-400 select-none font-DanaRegular">قوانین را مطالعه نموده ام.</span>
-              </label>
+          <div>
+            {userToken ? (
+              <>
+                <div className="flex items-center gap-x-1 mb-5">
+                  <label className="flex items-center gap-2">
+                    <input className="peer hidden" type="checkbox" required checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />
+                    <span className="block w-4 h-4 rounded-sm bg-gray-200 dark:bg-dark peer-checked:bg-secondary cursor-pointer transition-colors duration-100" />
+                    <span className="text-sm xl:text-base text-slate-500 dark:text-gray-400 select-none font-DanaRegular">قوانین را مطالعه نموده ام.</span>
+                  </label>
 
-              <Link to="/terms-conditions" className="text-xs xl:text-sm text-sky-500 font-DanaRegular">
-                (مشاهده)
+                  <Link to="/terms-conditions" className="text-xs xl:text-sm text-sky-500 font-DanaRegular">
+                    (مشاهده)
+                  </Link>
+                </div>
+                <Button
+                  onClick={() => {
+                    fetcher.submit({ cartCourses }, { method: "POST" });
+                  }}
+                  className={`btn-primary w-full h-12 font-DanaMedium text-base bg-primary hover:bg-primary-hover transition-colors text-white rounded-lg disabled:opacity-50 disabled:cursor-no-drop disabled:hover:bg-primary disabled:hover:opacity-50`}
+                  disabled={!acceptedTerms}
+                >
+                  تکمیل خرید
+                </Button>
+              </>
+            ) : (
+              <Link to="/login" className={`btn-primary flex items-center justify-center w-full h-12 font-DanaMedium text-base bg-primary hover:bg-primary-hover transition-colors text-white rounded-lg disabled:opacity-50 disabled:cursor-no-drop disabled:hover:bg-primary disabled:hover:opacity-50`}>
+                ورود و ادامه
               </Link>
-            </div>
-            <Button className={`btn-primary w-full h-12 font-DanaMedium text-base bg-primary hover:bg-primary-hover transition-colors text-white rounded-lg disabled:opacity-50 disabled:cursor-no-drop disabled:hover:bg-primary disabled:hover:opacity-50`} disabled={!acceptedTerms}>
-              تکمیل خرید
-            </Button>
-          </form>
+            )}
+          </div>
         </div>
       </div>
 

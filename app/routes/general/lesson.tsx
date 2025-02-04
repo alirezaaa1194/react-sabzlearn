@@ -1,8 +1,8 @@
-import React from "react";
+import React, { use, useEffect } from "react";
 import type { Route } from "./+types/lesson";
-import { baseUrl, courseTimeHandler, getOneSession, getSingleCourse } from "~/utils/utils";
+import { baseUrl, courseTimeHandler, getMe, getOneSession, getSingleCourse } from "~/utils/utils";
 
-import { type courseSessionType, type singleCourseType } from "~/types/course.type";
+import { type courseSessionType, type courseType, type singleCourseType } from "~/types/course.type";
 import Breadcrumb from "~/components/Breadcrumb/Breadcrumb";
 import TeacherInfo from "~/components/Course/sidebar/TeacherInfo";
 import LessonInfo from "~/components/Lesson/LessonInfo";
@@ -11,11 +11,12 @@ import SummaryInfo from "~/components/Lesson/SummaryInfo";
 import CourseTopicContainer from "~/components/Lesson/CourseTopic/CourseTopicContainer";
 import CoursePercent from "~/components/Lesson/CoursePercent";
 import DownloadBox from "~/components/Lesson/DownloadBox";
-import { redirect } from "react-router";
+import { redirect, useNavigate } from "react-router";
 
 import Notification, { showToast } from "~/components/Notification/Notification";
 
 import toast, { Toaster } from "react-hot-toast";
+import { AuthContext } from "~/contexts/AuthContext";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookies = request.headers.get("Cookie");
@@ -24,25 +25,35 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     .find((row) => row.startsWith("token="))
     ?.split("=")[1];
 
+  const userInfo = await getMe(token as string);
   const session = await getOneSession(params["course-name"], params["lesson-id"], token);
   const course = await getSingleCourse(params["course-name"]);
 
-  return { session: session.data, course: course.data };
+  const isUserRegisteredToThisCourse = userInfo?.data?.courses.some((userCourse: courseType) => userCourse?._id === course.data._id);
+
+  if (session?.data.session.free === 0) {
+    if (!isUserRegisteredToThisCourse) {
+      return redirect(`/course/${course.data.shortName}`);
+    }
+  }
+
+  return { session: session.data, course: course.data, isUserRegisteredToThisCourse };
 }
 
 function lesson({ loaderData }: Route.ComponentProps) {
   const {
     course,
     session,
+    isUserRegisteredToThisCourse,
   }: {
     course: singleCourseType;
     session: {
       session: courseSessionType;
       sessions: courseSessionType[];
     };
+    isUserRegisteredToThisCourse: boolean;
   } = loaderData;
 
-  console.log(session.sessions);
 
   return (
     <main className="container pt-8 lg:pt-10 flex flex-col ">
@@ -62,7 +73,7 @@ function lesson({ loaderData }: Route.ComponentProps) {
           <Question />
         </div>
         <aside className="col-span-12 lg:col-span-4 space-y-8 order-1 lg:order-2">
-          <CourseTopicContainer course={course} session={session.session} />
+          <CourseTopicContainer course={course} session={session.session} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
 
           <SummaryInfo course={course} sessions={session.sessions} />
 
