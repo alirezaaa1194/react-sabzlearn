@@ -5,7 +5,7 @@ export default [
         layout('./layouts/AuthorizationLayout.tsx',[
             layout('./layouts/general/GeneralLayout.tsx',[
                 index("routes/home.tsx"),
-                route('blog', 'routes/general/blogs.tsx'),
+                route('blogs', 'routes/general/blogs.tsx'),
                 route('blog/:blog-name', 'routes/general/blog.tsx'),
                 route('courses', 'routes/general/courses.tsx'),
                 route('course-cat/:cat-name', 'routes/general/course-cat.tsx'),

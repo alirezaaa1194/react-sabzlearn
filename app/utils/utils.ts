@@ -18,9 +18,9 @@ export function getPopularCourses() {
   return data;
 }
 
-export function getAllArticles() {
-  const data = apiRequest.get("/articles");
-  return data;
+export async function getAllArticles() {
+  const res =await apiRequest.get("/articles");
+  return res;
 }
 
 export type registerFuncPropsType = {

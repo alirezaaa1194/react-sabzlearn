@@ -1,5 +1,5 @@
 import React from "react";
-import type { Route } from "./+types/blog";
+import type { Route } from "./+types/blogs";
 import { getSingleArticle } from "~/utils/utils";
 import type { singleArticleType } from "~/types/article.type";
 import Breadcrumb from "~/components/Breadcrumb/Breadcrumb";
@@ -17,12 +17,10 @@ export async function loader({ params }: Route.LoaderArgs) {
 function blog({ loaderData }: Route.ComponentProps) {
   const { data: article }: { data: singleArticleType } = loaderData.data;
 
-  console.log(article);
-
   return (
     <main className="container pt-8 lg:pt-10 flex flex-col">
       <Toaster />
-      <Breadcrumb titleName="بلاگ" titleLink="/blog" dataName={article.title} dataLink={`/blog/${article.shortName}`} />
+      <Breadcrumb titleName="بلاگ" titleLink="/blogs" dataName={article.title} dataLink={`/blog/${article.shortName}`} />
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-7 gap-y-8 mt-8 md:mt-10">
         <section className="col-span-full lg:col-span-8 xl:col-span-9">
           <ArticleBody article={article} />
