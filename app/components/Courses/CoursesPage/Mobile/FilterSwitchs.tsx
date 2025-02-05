@@ -61,12 +61,10 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
               onValueChange={(isSelected) => {
                 if (isSelected) {
                   searchParams.set("free-courses", "true");
-                  // setSearchParams(searchParams, { replace: true, preventScrollReset: true });
                   setFreeCourses(true);
                   setRemoveAllFilter(false);
                 } else {
                   searchParams.delete("free-courses");
-                  // setSearchParams(searchParams, { replace: true, preventScrollReset: true });
                   setFreeCourses(false);
                 }
               }}
@@ -80,12 +78,10 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
               onValueChange={(isSelected) => {
                 if (isSelected) {
                   searchParams.set("presell-courses", "true");
-                  // setSearchParams(searchParams, { replace: true, preventScrollReset: true });
                   setPresellCourses(true);
                   setRemoveAllFilter(false);
                 } else {
                   searchParams.delete("presell-courses");
-                  // setSearchParams(searchParams, { replace: true, preventScrollReset: true });
                   setPresellCourses(false);
                 }
               }}
@@ -100,12 +96,10 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
                 onValueChange={(isSelected) => {
                   if (isSelected) {
                     searchParams.set("registered-courses", "true");
-                    // setSearchParams(searchParams, { replace: true, preventScrollReset: true });
                     setRegisteredCourses(true);
                     setRemoveAllFilter(false);
                   } else {
                     searchParams.delete("registered-courses");
-                    // setSearchParams(searchParams, { replace: true, preventScrollReset: true });
                     setRegisteredCourses(false);
                   }
                 }}
@@ -127,7 +121,7 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
                 const categoryCourseLength = allCourses?.data.filter((course: courseType) => course?.categoryID._id === category._id);
 
                 return (
-                  <li className="flex items-center justify-between font-DanaMedium">
+                  <li key={category._id} className="flex items-center justify-between font-DanaMedium">
                     <Checkbox
                       color="secondary"
                       className="text-sm"
@@ -158,7 +152,7 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
       <div className="p-5">
         <Button
           className="w-full h-[42px] rounded-lg bg-primary transition-colors hover:bg-primary-hover text-white font-DanaMedium"
-          onClick={() => {
+          onPress={() => {
             setSearchParams(searchParams, { replace: true, preventScrollReset: true });
             setIsOpenFilterDrawer(false);
           }}

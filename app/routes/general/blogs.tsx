@@ -1,10 +1,11 @@
 import type { Route } from "./+types/blogs";
 import { getAllArticles } from "~/utils/utils";
 import type { articleType } from "~/types/article.type";
-import SearchBox from "~/components/Articles/BlogPage/SearchBox";
 import ArticlesSection from "~/components/Articles/BlogPage/ArticlesSection";
 import MobileSort from "~/components/Articles/BlogPage/MobileSort";
 import DesktopSort from "~/components/Articles/BlogPage/DesktopSort";
+import type { MetaFunction } from "react-router";
+import SearchBox from "~/components/SearchBox/SearchBox";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const data = await getAllArticles();
@@ -33,6 +34,12 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { filteredArticles };
 }
 
+
+export const meta: MetaFunction = () => {
+  return [{ title: "وبلاگ - سبزلرن" }];
+};
+
+
 function blogs({ loaderData }: Route.ComponentProps) {
   const { filteredArticles }: { filteredArticles: articleType[] } = loaderData;
 
@@ -51,7 +58,7 @@ function blogs({ loaderData }: Route.ComponentProps) {
       <section className="grid grid-cols-12 gap-y-5 md:gap-x-7">
         <aside className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
           <div className="space-y-6">
-            <SearchBox />
+            <SearchBox queryKey="blog_search" title="مقالات" />
           </div>
           <MobileSort />
         </aside>

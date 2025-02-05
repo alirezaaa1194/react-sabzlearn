@@ -36,9 +36,9 @@ function AllocatoToCourse({ course, isUserRegisteredToThisCourse }: { course: si
       ) : (
         <div className="w-full flex flex-col-reverse gap-y-3 lg:flex-row items-center justify-between mt-5 lg:mt-0 font-DanaRegular">
           <Button
-            onClick={() => {
+            onPress ={() => {
               if (!cartCoursesId?.includes(course._id)) {
-                fetcher.submit({ courseId: course._id }, { method: "POST", action: "/cartRoute" });
+                fetcher.submit({ courseId: course._id }, { method: "POST", action: "/saveCartCourses" });
                 showToast("موفق", "به سبد خرید شما اضافه شد", "success");
               } else {
                 showToast("خطا", "این دوره قبلا اضافه شده !", "error");

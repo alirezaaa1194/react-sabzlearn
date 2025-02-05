@@ -1,8 +1,8 @@
 import { Switch } from "@heroui/react";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { useSearchParams } from "react-router";
 
-function FilterSwitchs({ isUserLogedIn }: any) {
+const FilterSwitchs = memo(({ isUserLogedIn }: any) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [freeCourses, setFreeCourses] = useState<boolean>(searchParams.get("free-courses") ? true : false);
@@ -79,6 +79,6 @@ function FilterSwitchs({ isUserLogedIn }: any) {
       )}
     </div>
   );
-}
+});
 
 export default FilterSwitchs;

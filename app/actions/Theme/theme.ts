@@ -1,6 +1,6 @@
 import session from "~/sessions.server";
 import { data } from "react-router";
-import type { Route } from "./+types/themeRoute";
+import type { Route } from "./+types/theme";
 
 type themeType = "light" | "dark";
 

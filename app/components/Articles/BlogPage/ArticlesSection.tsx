@@ -9,7 +9,7 @@ function ArticlesSection({ filteredArticles }: { filteredArticles: articleType[]
       {filteredArticles.length ? (
         <div className="grid grid-rows-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
           {filteredArticles.map((article) => (
-            <ArticlesCard article={article} />
+            <ArticlesCard key={article._id} article={article} />
           ))}
         </div>
       ) : (

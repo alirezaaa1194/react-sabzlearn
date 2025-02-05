@@ -1,10 +1,9 @@
-import React, { cache, useEffect, useReducer, useState, type MouseEventHandler } from "react";
-import { apiRequest } from "~/Services/Axios/config";
+import { useEffect, useState, type MouseEventHandler } from "react";
 import { getCookie, loginHandler, registerHandler, type loginFuncPropsType } from "~/utils/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link, redirect, useFetcher, useNavigation } from "react-router";
+import { Link, redirect, useFetcher } from "react-router";
 import type { Route } from "./+types/signup";
 import { EnvelopeIcon, LockIcon, SecondLogoIcon } from "public/svg/svgs";
 import * as Spinners from "react-spinners";

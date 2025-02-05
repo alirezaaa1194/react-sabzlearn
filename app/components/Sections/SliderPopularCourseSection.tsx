@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -11,7 +11,7 @@ import type { courseType } from "~/types/course.type";
 import CourseCard from "../Courses/CourseCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "public/svg/svgs";
 
-export default function SliderPopularCourseSection() {
+const SliderPopularCourseSection = memo(() => {
   const { data: popularCourses } = useQuery({
     queryKey: ["popular-courses"],
     queryFn: getPopularCourses,
@@ -84,4 +84,6 @@ export default function SliderPopularCourseSection() {
       </div>
     </section>
   );
-}
+});
+
+export default SliderPopularCourseSection;

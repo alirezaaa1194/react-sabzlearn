@@ -6,9 +6,8 @@ import { AuthContext } from "~/contexts/AuthContext";
 import * as Spinners from "react-spinners";
 import { showToast } from "~/components/Notification/Notification";
 function CommentForm() {
+  const fetcher = useFetcher();
 
-  const fetcher=useFetcher()
-  
   const [isOpenCommentForm, setIsOpenCommentForm] = useState<boolean>(false);
   const [commentFormInputValue, setCommentFormInputValue] = useState<string>("");
   const commentFormInputRef = useRef<HTMLTextAreaElement | null>(null);
@@ -31,7 +30,7 @@ function CommentForm() {
       if (fetcher.data.res.status === 201) {
         setIsOpenCommentForm(false);
         setCommentFormInputValue("");
-        showToast('موفق', 'دیدگاه با موفقیت ثبت شد', 'success')
+        showToast("موفق", "دیدگاه با موفقیت ثبت شد", "success");
       }
     }
   }, [fetcher.data]);
@@ -75,7 +74,7 @@ function CommentForm() {
         <div className="flex gap-x-4 justify-end mt-[18px] sm:mt-6 mb-10">
           <Button
             className="flex-grow sm:grow-0 sm:w-36 h-[46px] rounded-lg font-DanaMedium text-base text-primary bg-transparent btn-primary--outline"
-            onClick={() => {
+            onPress ={() => {
               setIsOpenCommentForm(false);
               setCommentFormInputValue("");
             }}
@@ -84,12 +83,16 @@ function CommentForm() {
           </Button>
           <Button
             type="submit"
-            onClick={(e) => {
+            onPress ={(e) => {
               e.preventDefault();
-               if (!commentFormInputValue.trim()) {
-                showToast('خطا', 'لطفا متن دیدگاه را وارد کنید!', 'error')
+              if (!commentFormInputValue.trim()) {
+                showToast("خطا", "لطفا متن دیدگاه را وارد کنید!", "error");
               } else {
-                fetcher.submit({ commentText: commentFormInputValue }, { method: "post" });
+                if (userContext?.isUserRegister) {
+                  fetcher.submit({ commentText: commentFormInputValue }, { method: "post" });
+                } else {
+                  showToast("خطا", "لطفا وارد سایت شوید", "error");
+                }
               }
             }}
             className="flex-grow sm:grow-0 sm:w-36 h-[46px] rounded-lg font-DanaMedium text-base bg-primary btn-primary text-white"

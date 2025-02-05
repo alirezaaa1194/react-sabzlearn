@@ -21,7 +21,7 @@ function LessonInfo({ course, session }: { course: singleCourseType; session: co
           <Button className="w-full sm:w-36 h-13 lg:h-[46px] rounded-lg flex items-center justify-center text-base font-DanaRegular bg-gray-100 dark:bg-dark">سوال دارم!</Button>
         </a>
         <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
-          <a href="https://tech.sabzlearn.ir/uploads/ce01010101it/ts-pro/TS-01-intro.mp4?h=_h3qtWjRKknSIW92srRjKw&amp;t=1738507998" className="w-full sm:w-36">
+          <a href="" className="w-full sm:w-36">
             <Button type="submit" className="w-full sm:w-36 bg-primary hover:bg-primary-hover hover:transition-colors h-13 lg:h-[46px] rounded-lg flex items-center justify-center text-base font-DanaRegular text-white">
               دانلود ویدیو
             </Button>

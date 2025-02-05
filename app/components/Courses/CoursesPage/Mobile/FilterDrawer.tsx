@@ -1,17 +1,17 @@
 import { Button } from "@heroui/button";
 import { Switch } from "@heroui/switch";
 import { ArrowsUpDownIcon, FunnelIcon, TrashIcon, XCircleIcon } from "public/svg/svgs";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import FilterSwitch from "./FilterSwitchs";
 import { useSearchParams } from "react-router";
 
-function FilterDrawer({ isUserLogedIn }: any) {
+const FilterDrawer = memo(({ isUserLogedIn }: any) => {
   const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState<boolean>(false);
   const [removeAllFilter, setRemoveAllFilter] = useState<boolean>(false);
 
   return (
     <>
-      <Button onClick={() => setIsOpenFilterDrawer(true)} className="flex w-full md:hidden items-center !mb-0 dark:text-white dark:bg-darker rounded-lg h-[42px]">
+      <Button onPress={() => setIsOpenFilterDrawer(true)} className="flex w-full md:hidden items-center !mb-0 bg-white dark:text-white dark:bg-darker rounded-lg h-[42px]">
         <div className="button btn btn-white w-full flex items-center justify-center gap-2.5 font-DanaRegular text-sm">
           <FunnelIcon className="w-6 h-6 shrink-0" />
           <span>فیلتر</span>
@@ -34,6 +34,6 @@ function FilterDrawer({ isUserLogedIn }: any) {
       </div>
     </>
   );
-}
+});
 
 export default FilterDrawer;

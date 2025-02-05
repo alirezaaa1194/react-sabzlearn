@@ -23,7 +23,7 @@ function SuggestionArticles({ article }: { article: singleArticleType }) {
       {suggestionArticles.length ? (
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
           {suggestionArticles.slice(suggestionArticles.length - 5).map((suggestionArticle: articleType) => (
-            <SuggestionArticleBox suggestionArticle={suggestionArticle} />
+            <SuggestionArticleBox key={suggestionArticle._id} suggestionArticle={suggestionArticle} />
           ))}
         </div>
       ) : (

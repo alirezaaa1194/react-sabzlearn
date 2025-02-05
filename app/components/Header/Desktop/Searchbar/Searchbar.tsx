@@ -10,12 +10,14 @@ function Searchbar() {
   const serachInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setSearchInputValue("");
-  }, [location.pathname]);
+    if (!searchParams.get("s")) {
+      setSearchInputValue("");
+    }
+  }, [location]);
 
-  useEffect(() => {
-    setSearchInputValue(searchParams.get("s") as string);
-  }, [searchParams]);
+  // useEffect(() => {
+  //   setSearchInputValue(searchParams.get("s") as string);
+  // }, [searchParams]);
 
   const searchInputValueChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {

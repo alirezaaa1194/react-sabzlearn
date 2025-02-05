@@ -3,7 +3,6 @@ import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, 
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 import session from "./sessions.server";
-import type { ComponentProps } from "react";
 
 export const links: Route.LinksFunction = () => [{ rel: "stylesheet", href: stylesheet }];
 
@@ -35,11 +34,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
     </html>
   );
 }
-
-
-// export function HydrateFallback(){
-//   return <span className="text-white">'loading...'</span>
-// }
 
 
 export default function App() {

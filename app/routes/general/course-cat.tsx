@@ -1,14 +1,14 @@
-import SearchBox from "~/components/Courses/CoursesPage/SearchBox";
-import { getAllCategories, getAllCourses, getCookie, getCourseByCategory, getMe, getPreSellCourses } from "~/utils/utils";
+import { getAllCategories, getCookie, getCourseByCategory, getMe, getPreSellCourses } from "~/utils/utils";
 import MobileSort from "~/components/Courses/CoursesPage/Mobile/MobileSort";
 import DesktopSort from "~/components/Courses/CoursesPage/Desktop/DesktopSort";
 import type { courseType } from "~/types/course.type";
 import CoursesSection from "~/components/Courses/CoursesPage/CoursesSection";
 import type { Route } from "./+types/courses";
 import FilterSwitchs from "~/components/Courses/CoursesPage/Desktop/FilterSwitchs";
-import CategoryFilter from "~/components/Courses/CoursesPage/Desktop/CategoryFilter";
 import FilterDrawer from "~/components/CourseCat/Mobile/FilterDrawer";
 import type { categoryType } from "~/types/category.type";
+import type { MetaFunction } from "react-router";
+import SearchBox from "~/components/SearchBox/SearchBox";
 
 export async function loader({ request, params }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -77,6 +77,14 @@ export async function loader({ request, params }: Route.LoaderArgs) {
   return { filteredCourses, userInfos, mainCategory };
 }
 
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  
+  const { mainCategory }: any = data;
+  const { filteredCourses }:any = data;
+
+  return [{ title: `"آموزش ${mainCategory.title}" با +${filteredCourses.length} دوره آموزشی {از صفر تا استخدام}` }];
+};
+
 function CourseCat({ loaderData }: Route.ComponentProps) {
   const { filteredCourses }: { filteredCourses: courseType[] } = loaderData;
   const { mainCategory }: any = loaderData;
@@ -97,7 +105,7 @@ function CourseCat({ loaderData }: Route.ComponentProps) {
       <section className="grid grid-cols-12 gap-y-5 md:gap-x-7">
         <aside className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
           <div className="space-y-6">
-            <SearchBox />
+            <SearchBox queryKey="s" title="دوره ها" />
             <FilterSwitchs isUserLogedIn={isUserLogedIn} />
           </div>
           <div className="flex md:hidden items-center gap-6 mb-8">

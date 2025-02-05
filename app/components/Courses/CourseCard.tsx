@@ -1,12 +1,12 @@
 import { StarIcon, TomanIcon, UserIcon, UsersIcon } from "public/svg/svgs";
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router";
 import type { courseType } from "~/types/course.type";
 import { baseUrl } from "~/utils/utils";
 
 type CourseCardPropsType = { course: courseType };
 
-function CourseCard({ course }: CourseCardPropsType) {
+const CourseCard=memo(({ course }: CourseCardPropsType)=> {
   return (
     <div className="flex flex-col rounded-xl bg-white dark:bg-darker">
       <Link to={`/course/${course.shortName}`}>
@@ -97,6 +97,6 @@ function CourseCard({ course }: CourseCardPropsType) {
       </div>
     </div>
   );
-}
+})
 
 export default CourseCard;

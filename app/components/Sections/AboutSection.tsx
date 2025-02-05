@@ -13,6 +13,7 @@ function AboutSection() {
       window.scrollTo(0, AboutSectionRef.current?.offsetTop);
     }
   };
+  
 
   return (
     <section className="container flex flex-col items-center mt-[100px] lg:mt-40" ref={AboutSectionRef}>
@@ -52,7 +53,7 @@ function AboutSection() {
         </div>
         {!seeMore ? <div className="w-full h-64 absolute right-0 bottom-0 bg-gradient-to-b from-transparent from-5% to-gray-100 dark:to-gray-900"></div> : null}
       </div>
-      <Button className={`btn-primary--outline text-primary rounded-lg h-10 px-3 text-sm font-DanaRegular mt-4 ${seeMore ? "bg-[#1eb35b1a]" : "bg-transparent"}`} onClick={seeMoreToggleHandler}>
+      <Button className={`btn-primary--outline text-primary rounded-lg h-10 px-3 text-sm font-DanaRegular mt-4 ${seeMore ? "bg-[#1eb35b1a]" : "bg-transparent"}`} onPress ={seeMoreToggleHandler}>
         {seeMore ? "مشاهده کمتر" : "مشاهده بیشتر"}
       </Button>
     </section>

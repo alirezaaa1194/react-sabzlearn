@@ -1,6 +1,6 @@
 import session from "~/sessions.server";
-import type { Route } from "./+types/cartRoute";
 import { data } from "react-router";
+import type { Route } from "./+types/saveCartCourses";
 
 export const action = async ({ request }: Route.ActionArgs) => {
   const cookieHeader = request.headers.get("Cookie");
@@ -11,16 +11,14 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
   const currentCoursesInCart = currentSession.get("coursesId") as string;
 
+  let allCoursesInCart = currentCoursesInCart ? `${currentCoursesInCart}; ${courseId}` : courseId;
 
-    let allCoursesInCart = currentCoursesInCart ? `${currentCoursesInCart}; ${courseId}` : courseId;
+  currentSession.set("coursesId", allCoursesInCart);
 
-    currentSession.set("coursesId", allCoursesInCart);
-
-    return data(
-      { courseId },
-      {
-        headers: { "Set-Cookie": await session.commitSession(currentSession) },
-      }
-    );
-
+  return data(
+    { courseId },
+    {
+      headers: { "Set-Cookie": await session.commitSession(currentSession) },
+    }
+  );
 };

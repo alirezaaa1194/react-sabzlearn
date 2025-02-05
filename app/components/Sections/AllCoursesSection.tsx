@@ -11,7 +11,7 @@ function AllCoursesSection() {
   const { data: courses } = useQuery({
     queryKey: ["courses"],
     queryFn: getAllCourses,
-  });
+  });  
 
   return (
     <section className="container flex flex-col mt-9 lg:mt-20">

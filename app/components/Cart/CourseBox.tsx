@@ -29,7 +29,13 @@ function CourseBox({ cartCourse }: { cartCourse: courseType }) {
         <span className="sm:hidden text-xs md:text-sm text-slate-500 dark:text-gray-400 font-DanaRegular">{cartCourse.creator}</span>
         <div className="flex flex-col gap-1">
           <span className="text-green-500 font-DanaDemiBold text-lg flex items-center gap-1">
-            {cartCourse.price.toLocaleString()} <TomanIcon className="size-7" />
+            {cartCourse.price > 0 ? (
+              <>
+                {cartCourse.price.toLocaleString()} <TomanIcon className="size-7" />
+              </>
+            ) : (
+              "رایگان"
+            )}
           </span>
         </div>
         <button

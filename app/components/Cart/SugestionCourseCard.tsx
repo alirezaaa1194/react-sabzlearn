@@ -62,9 +62,9 @@ function SugestionCourseCard({ course }: { course: courseType }) {
         </div>
         <Button
           className="btn-primary--outline w-full mt-5 bg-transparent text-primary font-DanaMedium rounded-lg"
-          onClick={() => {
+          onPress ={() => {
             if (!cartCoursesId?.includes(course._id)) {
-              fetcher.submit({ courseId: course._id }, { method: "POST", action: "/cartRoute" });
+              fetcher.submit({ courseId: course._id }, { method: "POST", action: "/saveCartCourses" });
               showToast("موفق", "به سبد خرید شما اضافه شد", "success");
             } else {
               showToast("خطا", "این دوره قبلا اضافه شده !", "error");

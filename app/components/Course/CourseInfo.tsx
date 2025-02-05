@@ -1,9 +1,11 @@
-import React from "react";
+import React, { use } from "react";
 import AllocatoToCourse from "./AllocatoToCourse";
 import { baseUrl } from "~/utils/utils";
 import type { singleCourseType } from "~/types/course.type";
+import { AuthContext } from "~/contexts/AuthContext";
 
-function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCourseType, isUserRegisteredToThisCourse:boolean }) {
+function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCourseType; isUserRegisteredToThisCourse: boolean }) {
+  const authContext = use(AuthContext);
   return (
     <div className="flex flex-col-reverse lg:flex-row gap-y-[18px] gap-x-6 sm:gap-x-7 p-[18px] lg:p-0 rounded-xl bg-white dark:bg-darker lg:bg-transparent lg:dark:bg-transparent">
       <div className="w-full lg:w-1/2 flex flex-col justify-between">
@@ -14,7 +16,7 @@ function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCo
         <AllocatoToCourse course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
       </div>
       <div className="w-full lg:w-1/2">
-        <img src={`${baseUrl}/courses/covers/${course.cover}`} alt={`${course.shortName}-cover`} className="w-full h-full rounded-xl" />
+        {authContext?.isUserRegister ? <video poster={`${baseUrl}/courses/covers/${course?.cover}`} src={`${baseUrl}/courses/covers/${course.sessions[0]?.video}`} className="w-full h-full rounded-xl" controls></video> : <img src={`${baseUrl}/courses/covers/${course.cover}`} alt={`${course.shortName}-cover`} className="w-full h-full rounded-xl" />}
         {/* <video src={`${baseUrl}/courses/covers/b36e8afba55d2275896e1fbda77ec47f7981e20c230f3470f8678b2fc6160515.mp4`} className="w-full h-full rounded-xl" controls></video> */}
       </div>
     </div>

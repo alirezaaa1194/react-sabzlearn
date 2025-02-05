@@ -1,12 +1,12 @@
 import { ChevronDownIcon, FolderOpenIcon } from "public/svg/svgs";
 import { Checkbox } from "@heroui/checkbox";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCategories } from "~/utils/utils";
 import type { categoryType } from "~/types/category.type";
 import { useSearchParams } from "react-router";
 
-function CategoryFilter() {
+const CategoryFilter=memo(()=> {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpenCategoryBox, setIsOpenCategoryBox] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -34,7 +34,7 @@ function CategoryFilter() {
 
       <div className={`flex flex-col gap-y-[18px] ${isOpenCategoryBox ? "h-fit" : "h-0 overflow-hidden"}`}>
         {allCategories?.data.map((category: categoryType) => (
-          <div className="space-y-[18px]">
+          <div key={category._id} className="space-y-[18px]">
             <Checkbox
               color="secondary"
               isSelected={selectedCategory === category.name ? true : false}
@@ -57,6 +57,6 @@ function CategoryFilter() {
       </div>
     </div>
   );
-}
+})
 
 export default CategoryFilter;

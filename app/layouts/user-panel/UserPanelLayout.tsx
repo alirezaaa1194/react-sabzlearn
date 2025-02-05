@@ -11,7 +11,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
     return redirect("/");
   }
 
-  return null;
+  return token;
 };
 
 function UserPanelLayout() {

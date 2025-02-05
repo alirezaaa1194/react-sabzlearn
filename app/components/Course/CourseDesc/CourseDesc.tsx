@@ -35,7 +35,7 @@ function CourseDesc({ course }: { course: singleCourseType }) {
         {containerHeight > 800 ? <>{!isOpenDesc ? <div className="absolute bottom-0 right-0 left-0 h-[160px] bg-gradient-to-t from-white dark:from-darker from-0% via-white/[55%] dark:via-darker/[55%] via-70% to-white/0 dark:to-darker/0 to-100%"></div> : ""}</> : ""}
       </div>
       {containerHeight > 800 ? (
-        <Button onClick={seeMoreHandler} type="button" className={`btn-primary--outline bg-transparent text-primary mx-auto mt-5 rounded-lg flex items-center font-DanaMedium ${isOpenDesc ? "bg-[#1eb35b1a]" : ""}`}>
+        <Button onPress ={seeMoreHandler} type="button" className={`btn-primary--outline bg-transparent text-primary mx-auto mt-5 rounded-lg flex items-center font-DanaMedium ${isOpenDesc ? "bg-[#1eb35b1a]" : ""}`}>
           <span>مشاهده {isOpenDesc ? "کمتر" : "بیشتر"} مطلب</span>
           <ChevronDownIcon className={`size-6 ${isOpenDesc ? "rotate-180" : ""}`} />
         </Button>

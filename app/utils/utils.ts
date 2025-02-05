@@ -1,7 +1,5 @@
-import { QueryClient, useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { apiRequest } from "~/Services/Axios/config";
-import type { courseSessionType, courseType } from "~/types/course.type";
+import type { courseSessionType } from "~/types/course.type";
 
 export function getMenus() {
   const data = apiRequest.get("/menus");
@@ -31,6 +29,7 @@ export type registerFuncPropsType = {
   password: string;
   confirmPassword: string;
 };
+
 export function registerHandler({ name, username, email, phone, password, confirmPassword }: registerFuncPropsType) {
   const res = apiRequest.post("/auth/register", { name, username, email, phone, password, confirmPassword });
   return res;
@@ -122,7 +121,7 @@ export const getOneSession = async (courseShortName: string, sessionId: string, 
 };
 
 export const getSingleArticle = async (ArticleShortName: string) => {
-  const res = await apiRequest.get(`${baseUrl}/v1/articles/${ArticleShortName}`);
+  const res = await apiRequest.get(`/articles/${ArticleShortName}`);
   return res;
 };
 

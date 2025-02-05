@@ -1,5 +1,4 @@
-import React, { cache, useEffect, useReducer, useState, type MouseEventHandler } from "react";
-import { apiRequest } from "~/Services/Axios/config";
+import { useEffect, useReducer, useState, type MouseEventHandler } from "react";
 import { getCookie, loginHandler, registerHandler, type registerFuncPropsType } from "~/utils/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
@@ -26,7 +25,6 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 
   return null;
 };
-
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const schema = yup

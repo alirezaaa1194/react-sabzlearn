@@ -1,4 +1,3 @@
-import SearchBox from "~/components/Courses/CoursesPage/SearchBox";
 import { getAllCourses, getCookie, getMe, getPreSellCourses } from "~/utils/utils";
 import MobileSort from "~/components/Courses/CoursesPage/Mobile/MobileSort";
 import DesktopSort from "~/components/Courses/CoursesPage/Desktop/DesktopSort";
@@ -8,7 +7,8 @@ import type { Route } from "./+types/courses";
 import FilterSwitchs from "~/components/Courses/CoursesPage/Desktop/FilterSwitchs";
 import CategoryFilter from "~/components/Courses/CoursesPage/Desktop/CategoryFilter";
 import FilterDrawer from "~/components/Courses/CoursesPage/Mobile/FilterDrawer";
-import { useState } from "react";
+import type { MetaFunction } from "react-router";
+import SearchBox from "~/components/SearchBox/SearchBox";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -79,11 +79,14 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { filteredCourses, userInfos };
 }
 
+export const meta: MetaFunction = () => {
+  return [{ title: "ذوره ها - سبزلرن" }];
+};
+
 function Courses({ loaderData }: Route.ComponentProps) {
   const { filteredCourses }: { filteredCourses: courseType[] } = loaderData;
-  
-  const { userInfos: isUserLogedIn } = loaderData;
 
+  const { userInfos: isUserLogedIn } = loaderData;
   return (
     <main className="container mt-8 sm:mt-10">
       <div className="flex flex-col sm:flex-row gap-y-2 items-center justify-between mb-8 lg:mb-14">
@@ -99,7 +102,7 @@ function Courses({ loaderData }: Route.ComponentProps) {
       <section className="grid grid-cols-12 gap-y-8 md:gap-x-7">
         <aside className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
           <div className="space-y-6">
-            <SearchBox />
+            <SearchBox queryKey="s" title="دوره ها" />
             <FilterSwitchs isUserLogedIn={isUserLogedIn} />
             <CategoryFilter />
           </div>

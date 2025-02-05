@@ -7,7 +7,7 @@ import type { courseType } from "~/types/course.type";
 import CoursesSection from "~/components/Cart/CoursesSection";
 import NullMessage from "~/components/Header/Desktop/cart/NullMessage";
 import { Toaster } from "react-hot-toast";
-import { redirect } from "react-router";
+import { redirect, type MetaFunction } from "react-router";
 import SuggestionSlider from "~/components/Cart/SuggestionSlider";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
@@ -54,6 +54,12 @@ export async function action({ request }: Route.ActionArgs) {
     },
   });
 }
+
+
+export const meta: MetaFunction = () => {
+  return [{ title: "سبد خرید - سبزلرن" }];
+};
+
 
 function cart({ loaderData }: Route.ComponentProps) {
   const cartCourses: courseType[] = loaderData.cartCourses;

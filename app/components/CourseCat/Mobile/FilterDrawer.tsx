@@ -11,7 +11,7 @@ function FilterDrawer({ isUserLogedIn }: any) {
 
   return (
     <>
-      <Button onClick={() => setIsOpenFilterDrawer(true)} className="flex w-full md:hidden items-center !mb-0 dark:text-white dark:bg-darker rounded-lg h-[42px]">
+      <Button onPress ={() => setIsOpenFilterDrawer(true)} className="flex w-full md:hidden items-center !mb-0 bg-white dark:text-white dark:bg-darker rounded-lg h-[42px]">
         <div className="button btn btn-white w-full flex items-center justify-center gap-2.5 font-DanaRegular text-sm">
           <FunnelIcon className="w-6 h-6 shrink-0" />
           <span>فیلتر</span>

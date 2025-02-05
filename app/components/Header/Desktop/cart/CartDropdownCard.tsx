@@ -31,7 +31,7 @@ function CartDropdownCard() {
       {cartCourses.length ? (
         <ul className="flex flex-col gap-y-4 p-5 max-h-[200px] overflow-y-auto">
           {cartCourses.map((course: courseType) => (
-            <CartCourse course={course} />
+            <CartCourse key={course._id} course={course} />
           ))}
         </ul>
       ) : (

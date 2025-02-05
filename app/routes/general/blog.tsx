@@ -8,14 +8,19 @@ import { Toaster } from "react-hot-toast";
 import "../../components/Articles/ArticlePage/ArticlePage.css";
 import SuggestionArticles from "~/components/Articles/ArticlePage/SuggestionArticles/SuggestionArticles";
 import ArticleBody from "~/components/Articles/ArticlePage/ArticleBody";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const data = await getSingleArticle(params["blog-name"]);
+  const data: { data: singleArticleType } = await getSingleArticle(params["blog-name"] as string);
   return { data };
 }
 
+export const meta: MetaFunction<typeof loader> = ({ data }: any) => {
+  return [{ title: `${data.data.data.title} - سبزلرن` }];
+};
+
 function blog({ loaderData }: Route.ComponentProps) {
-  const { data: article }: { data: singleArticleType } = loaderData.data;
+  const { data: article } = loaderData.data;
 
   return (
     <main className="container pt-8 lg:pt-10 flex flex-col">

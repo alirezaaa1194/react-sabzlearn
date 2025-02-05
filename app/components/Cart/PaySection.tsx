@@ -1,10 +1,11 @@
 import { Button } from "@heroui/button";
 import { CheckCircleIcon, ChevronDownIcon, CreditCardIcon, TomanIcon } from "public/svg/svgs";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { Link, useFetcher, useNavigate } from "react-router";
 import type { courseType } from "~/types/course.type";
 import { showToast } from "../Notification/Notification";
-import { Tooltip } from "@heroui/react";
+import { Checkbox, Tooltip } from "@heroui/react";
+import { AuthContext } from "~/contexts/AuthContext";
 
 function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; userToken: string | null }) {
   const [cartCoursesSumPrice, setCartCoursesSumPrice] = useState(cartCourses.reduce((prev, curr) => prev + curr.price, 0));
@@ -48,6 +49,7 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
     }
   };
 
+  const authContext = use(AuthContext);
   const fetcher = useFetcher();
 
   return (
@@ -107,12 +109,7 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
           <div className="flex items-center justify-between mb-3">
             <span className="font-DanaDemiBold xl:text-lg">مجموع:</span>
             <div className="flex items-center gap-x-1">
-              <span className="font-DanaDemiBold text-xl xl:text-2xl flex items-center gap-1">
-                {
-                  // Math.floor(coursesSumPrice).toLocaleString()
-                  !isValidOfferCode ? (((100 - cartCourses.length * 2) / 100) * cartCoursesSumPrice).toLocaleString() : (((100 - offerPercent) / 100) * cartCoursesSumPrice * ((100 - cartCourses.length * 2) / 100)).toLocaleString()
-                }
-              </span>
+              <span className="font-DanaDemiBold text-xl xl:text-2xl flex items-center gap-1">{userToken ? <>{!isValidOfferCode ? (((100 - cartCourses.length * 2) / 100) * cartCoursesSumPrice).toLocaleString() : (((100 - offerPercent) / 100) * cartCoursesSumPrice * ((100 - cartCourses.length * 2) / 100)).toLocaleString()}</> : cartCoursesSumPrice.toLocaleString()}</span>
               <TomanIcon className="size-6" />
             </div>
           </div>
@@ -120,18 +117,14 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
             {userToken ? (
               <>
                 <div className="flex items-center gap-x-1 mb-5">
-                  <label className="flex items-center gap-2">
-                    <input className="peer hidden" type="checkbox" required checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} />
-                    <span className="block w-4 h-4 rounded-sm bg-gray-200 dark:bg-dark peer-checked:bg-secondary cursor-pointer transition-colors duration-100" />
-                    <span className="text-sm xl:text-base text-slate-500 dark:text-gray-400 select-none font-DanaRegular">قوانین را مطالعه نموده ام.</span>
-                  </label>
-
+                  <Checkbox color="secondary" onValueChange={setAcceptedTerms} isSelected={acceptedTerms} />
+                  <span className="text-sm xl:text-base text-slate-500 dark:text-gray-400 select-none font-DanaRegular">قوانین را مطالعه نموده ام.</span>
                   <Link to="/terms-conditions" className="text-xs xl:text-sm text-sky-500 font-DanaRegular">
                     (مشاهده)
                   </Link>
                 </div>
                 <Button
-                  onClick={() => {
+                  onPress ={() => {
                     fetcher.submit({ cartCourses }, { method: "POST" });
                   }}
                   className={`btn-primary w-full h-12 font-DanaMedium text-base bg-primary hover:bg-primary-hover transition-colors text-white rounded-lg disabled:opacity-50 disabled:cursor-no-drop disabled:hover:bg-primary disabled:hover:opacity-50`}
@@ -163,18 +156,23 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
             <ChevronDownIcon className={`size-6 ${isOpenOfferBox ? "rotate-180" : ""} text-slate-500 dark:text-gray-400`} />
           </button>
         </div>
+
         {isOpenOfferBox ? (
           <>
             {!isValidOfferCode ? (
               <div className="">
-                <div className="relative">
-                  <Tooltip content={<span className="font-DanaRegular">تخفیف 50 درصدی با کد: sabzlearn.ir 😉</span>} defaultOpen>
-                    <input type="text" className="w-full h-[60px] pr-3.5 pl-32 text-sm bg-gray-100 dark:bg-dark rounded-xl font-DanaRegular outline-none" placeholder="کد تخفیف را وارد کنید" value={offerInputValue} onChange={changeOfferInputHandler} onKeyUp={keyupOfferInputHandler} />
-                  </Tooltip>
-                  <Button className="bg-secondary hover:bg-secondary-hover text-white transition-colors rounded-lg absolute left-2.5 top-0 bottom-0 my-auto font-DanaRegular" onClick={validateOfferCode}>
-                    اعمال
-                  </Button>
-                </div>
+                {userToken ? (
+                  <div className="relative">
+                    <Tooltip content={<span className="font-DanaRegular">تخفیف 50 درصدی با کد: sabzlearn.ir 😉</span>} defaultOpen>
+                      <input type="text" className="w-full h-[60px] pr-3.5 pl-32 text-sm bg-gray-100 dark:bg-dark rounded-xl font-DanaRegular outline-none" placeholder="کد تخفیف را وارد کنید" value={offerInputValue} onChange={changeOfferInputHandler} onKeyUp={keyupOfferInputHandler} />
+                    </Tooltip>
+                    <Button className="bg-secondary hover:bg-secondary-hover text-white transition-colors rounded-lg absolute left-2.5 top-0 bottom-0 my-auto font-DanaRegular" onPress ={validateOfferCode}>
+                      اعمال
+                    </Button>
+                  </div>
+                ) : (
+                  <span className="font-DanaRegular">برای وارد کردن کد تخفیف اول وارد شدید</span>
+                )}
               </div>
             ) : (
               <div className="flex items-center gap-x-2 bg-sky-50 dark:bg-sky-500/10 text-sky-500 py-2.5 px-3 sm:px-3.5 rounded-xl mt-2.5">

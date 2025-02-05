@@ -1,6 +1,6 @@
 import { Form, redirect } from "react-router";
-import type { Route } from "./+types/logout";
 import { getCookie } from "~/utils/utils";
+import type { Route } from "./+types/logout";
 
 export async function action({ request }: Route.ActionArgs) {
   return redirect("/", {

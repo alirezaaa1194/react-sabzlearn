@@ -10,7 +10,7 @@ function CoursesSection({ filteredCourses }: { filteredCourses: courseType[] }) 
       {filteredCourses.length ? (
         <div className="grid grid-rows-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
           {filteredCourses.map((course) => (
-            <CourseCard course={course} />
+            <CourseCard key={course._id} course={course} />
           ))}
         </div>
       ) : (
