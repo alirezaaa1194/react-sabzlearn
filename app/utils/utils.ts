@@ -149,5 +149,10 @@ export const getPreSellCourses = async () => {
   return res;
 };
 
+export const getCourseByCategory = async (categoryName: string) => {
+  const res = await apiRequest.get(`/courses/category/${categoryName}`);
+  return res;
+};
+
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

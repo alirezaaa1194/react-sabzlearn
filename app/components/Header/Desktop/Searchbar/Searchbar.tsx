@@ -4,9 +4,14 @@ import { useLocation, useNavigate, useSearchParams } from "react-router";
 
 function Searchbar() {
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const [searchInputValue, setSearchInputValue] = useState<string>((searchParams.get("s") as string) || "");
   const navigate = useNavigate();
   const serachInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setSearchInputValue("");
+  }, [location.pathname]);
 
   useEffect(() => {
     setSearchInputValue(searchParams.get("s") as string);

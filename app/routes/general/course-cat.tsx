@@ -1,5 +1,5 @@
 import SearchBox from "~/components/Courses/CoursesPage/SearchBox";
-import { getAllCourses, getCookie, getMe, getPreSellCourses } from "~/utils/utils";
+import { getAllCategories, getAllCourses, getCookie, getCourseByCategory, getMe, getPreSellCourses } from "~/utils/utils";
 import MobileSort from "~/components/Courses/CoursesPage/Mobile/MobileSort";
 import DesktopSort from "~/components/Courses/CoursesPage/Desktop/DesktopSort";
 import type { courseType } from "~/types/course.type";
@@ -7,15 +7,18 @@ import CoursesSection from "~/components/Courses/CoursesPage/CoursesSection";
 import type { Route } from "./+types/courses";
 import FilterSwitchs from "~/components/Courses/CoursesPage/Desktop/FilterSwitchs";
 import CategoryFilter from "~/components/Courses/CoursesPage/Desktop/CategoryFilter";
+import FilterDrawer from "~/components/CourseCat/Mobile/FilterDrawer";
+import type { categoryType } from "~/types/category.type";
 
-export async function loader({ request }: Route.LoaderArgs) {
+export async function loader({ request, params }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
   const token = getCookie(cookieHeader, "token");
 
   const userInfos = token ? await getMe(token) : null;
   const userCourses = userInfos?.data?.courses;
 
-  const data = await getAllCourses();
+  const data = await getCourseByCategory(params["cat-name"] as string);
+
   const preSellCourses = await getPreSellCourses();
 
   const url = new URL(request.url);
@@ -25,11 +28,13 @@ export async function loader({ request }: Route.LoaderArgs) {
 
   const sortQuery = searchParams.get("sort");
 
-  const categoryQuery = searchParams.get("category");
-
   const freeQuery = searchParams.get("free-courses");
   const preSellQuery = searchParams.get("presell-courses");
   const registeredQuery = searchParams.get("registered-courses");
+
+  const categories = await getAllCategories();
+
+  const mainCategory: categoryType = categories?.data.find((category: categoryType) => category.name === (params["cat-name"] as string));
 
   let filteredCourses = data?.data?.filter((course: courseType) => course?.name.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || "") || course?.description?.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || ""));
 
@@ -46,11 +51,6 @@ export async function loader({ request }: Route.LoaderArgs) {
     case "mostPopular":
       filteredCourses = filteredCourses.sort((a: courseType, b: courseType) => b.registers - a.registers);
       break;
-  }
-
-  // filter by category
-  if (categoryQuery) {
-    filteredCourses = filteredCourses.filter((course: courseType) => course.categoryID.name === categoryQuery);
   }
 
   if (registeredQuery) {
@@ -71,14 +71,15 @@ export async function loader({ request }: Route.LoaderArgs) {
     });
   }
   if (freeQuery) {
-    filteredCourses = filteredCourses.filter((course: courseType) => course.price === 0);
+    filteredCourses = filteredCourses?.filter((course: courseType) => course.price === 0);
   }
 
-  return { filteredCourses, userInfos };
+  return { filteredCourses, userInfos, mainCategory };
 }
 
 function CourseCat({ loaderData }: Route.ComponentProps) {
   const { filteredCourses }: { filteredCourses: courseType[] } = loaderData;
+  const { mainCategory }: any = loaderData;
   const { userInfos: isUserLogedIn } = loaderData;
 
   return (
@@ -86,7 +87,7 @@ function CourseCat({ loaderData }: Route.ComponentProps) {
       <div className="flex flex-col sm:flex-row gap-y-2 items-center justify-between mb-8 lg:mb-14">
         <div className="flex gap-2.5 items-center">
           <span className="hidden sm:inline-block w-4 h-4 bg-amber-400 rounded-sm"></span>
-          <h2 className="font-MorabaBold text-2xl lg:text-2.5xl text-center">دوره ها</h2>
+          <h2 className="font-MorabaBold text-2xl lg:text-2.5xl text-center">دوره های {mainCategory?.title}</h2>
         </div>
         <span className="sm:text-xl font-DanaMedium text-slate-500">
           <span>{filteredCourses.length}</span> عنوان آموزشی
@@ -98,9 +99,11 @@ function CourseCat({ loaderData }: Route.ComponentProps) {
           <div className="space-y-6">
             <SearchBox />
             <FilterSwitchs isUserLogedIn={isUserLogedIn} />
-            <CategoryFilter />
           </div>
-          <MobileSort />
+          <div className="flex md:hidden items-center gap-6 mb-8">
+            <FilterDrawer isUserLogedIn={isUserLogedIn} />
+            <MobileSort />
+          </div>
         </aside>
         <div className="col-span-full lg:col-span-8 xl:col-span-9 order-1 lg:order-2">
           <DesktopSort />

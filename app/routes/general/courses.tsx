@@ -104,7 +104,7 @@ function Courses({ loaderData }: Route.ComponentProps) {
             <CategoryFilter />
           </div>
           <div className="flex md:hidden items-center gap-6 mb-8">
-            <FilterDrawer />
+            <FilterDrawer isUserLogedIn={isUserLogedIn} />
             <MobileSort />
           </div>
         </aside>
