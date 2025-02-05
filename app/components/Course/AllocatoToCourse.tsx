@@ -19,7 +19,7 @@ function AllocatoToCourse({ course, isUserRegisteredToThisCourse }: { course: si
   return (
     <>
       {isUserRegisteredToThisCourse === true ? (
-        <div className="w-full flex items-center justify-between mt-4 lg:mt-0">
+        <div className="w-full flex items-center justify-center lg:justify-between flex-wrap-reverse mt-4 lg:mt-0 gap-y-4 gap-x-6">
           <div className="font-DanaDemiBold text-lg flex items-center gap-x-1">
             <UserIcon className="size-8" />
             شما دانشجوی دوره هستید

@@ -1,11 +1,11 @@
 import { data, NavLink } from "react-router";
 import SubMenu from "./SubMenu";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getMenus } from "~/utils/utils";
 import type { subMenuType } from "~/types/menus.type";
 
-function DesktopNavbar() {
+const DesktopNavbar=memo(()=> {
   const [isHoverMenu, setIsHoverMenu] = useState<boolean>(false);
 
   const handleShowOverlay = () => {
@@ -44,6 +44,6 @@ function DesktopNavbar() {
       </ul>
     </nav>
   );
-}
+})
 
 export default DesktopNavbar;

@@ -1,16 +1,17 @@
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
-import React, { use, useEffect, useState } from "react";
+import React, { memo, use, useEffect, useState } from "react";
 import { ShoppingBagIcon, UserIcon } from "public/svg/svgs";
 import CartDropdownCard from "./CartDropdownCard";
 import { useLocation, useNavigate } from "react-router";
 import { CartContext } from "~/contexts/CartContext";
 
-function CartDropdown() {
+const CartDropdown=memo(()=> {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const location = useLocation();
   const cartCoursesId = use(CartContext);
 
   const cartCoursesIds = cartCoursesId?.split("; ");
+
 
   if (location.pathname !== "/cart") {
     return (
@@ -29,6 +30,6 @@ function CartDropdown() {
       </Dropdown>
     );
   }
-}
+})
 
 export default CartDropdown;

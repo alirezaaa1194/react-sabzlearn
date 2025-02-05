@@ -1,9 +1,9 @@
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
-import React, { use, useState } from "react";
+import React, { memo, use, useState } from "react";
 import UserProfileDropdownCard from "./UserProfileDropdownCard";
 import { UserIcon } from "public/svg/svgs";
 
-function UserProfileDropdown() {
+const UserProfileDropdown=memo(()=> {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -20,6 +20,6 @@ function UserProfileDropdown() {
       </DropdownMenu>
     </Dropdown>
   );
-}
+})
 
 export default UserProfileDropdown;

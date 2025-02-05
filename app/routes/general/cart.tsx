@@ -59,8 +59,6 @@ function cart({ loaderData }: Route.ComponentProps) {
   const cartCourses: courseType[] = loaderData.cartCourses;
   const token: string | null = loaderData.token;
 
-  console.log(cartCourses);
-
   if (!cartCourses.length) {
     return (
       <main className="container mt-8 md:mt-16">

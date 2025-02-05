@@ -2,8 +2,9 @@ import { ChevronDownMiniIcon } from "public/svg/svgs";
 import { NavLink } from "react-router";
 import SubSubMenu from "./SubSubMenu";
 import type { subMenuType } from "~/types/menus.type";
+import { memo } from "react";
 
-function SubMenu({ subMenu }: { subMenu: subMenuType }) {
+const SubMenu = memo(({ subMenu }: { subMenu: subMenuType }) => {
   return (
     <li className="group">
       <NavLink to={`/course-cat/${subMenu.href.split("/category-info/").join("")}`} className="p-3 flex items-center justify-between group-hover:bg-sky-500/10 group-hover:text-sky-500 border-l-2 border-l-white dark:border-l-darker group-hover:border-l-sky-500 transition-all active:text-sky-500">
@@ -20,6 +21,6 @@ function SubMenu({ subMenu }: { subMenu: subMenuType }) {
       ) : null}
     </li>
   );
-}
+});
 
 export default SubMenu;

@@ -7,6 +7,7 @@ import type { courseType } from "~/types/course.type";
 import { baseUrl } from "~/utils/utils";
 
 function CartCourse({ course }: { course: courseType }) {
+
   const fetcher = useFetcher();
   return (
     <li className="flex items-center justify-between">

@@ -4,6 +4,7 @@ import { useFetcher } from "react-router";
 
 function ThemeBtns() {
   const fetcher = useFetcher();
+
   return (
     <fetcher.Form method="POST" action="/switchTheme">
       <div className="w-full pt-3 border-t border-t-neutral-200 dark:border-t-white/10">

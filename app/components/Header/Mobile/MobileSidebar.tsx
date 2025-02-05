@@ -1,4 +1,4 @@
-import React, { use, useContext, useState } from "react";
+import React, { memo, use, useContext, useMemo, useState } from "react";
 import { Link } from "react-router";
 import ThemeBtns from "./ThemeBtns/ThemeBtns";
 import SidebarMenu from "./SidebarMenu/SidebarMenu";
@@ -10,8 +10,8 @@ type MobileSidebarPropsType = {
   isOpenSideBar: boolean;
 };
 
-function MobileSidebar({ isOpenSideBar }: MobileSidebarPropsType) {
-  const userInfoContext = use(AuthContext) as AuthContextType;
+const MobileSidebar = memo(({ isOpenSideBar }: MobileSidebarPropsType) => {
+  const userInfoContext = useMemo(() => use(AuthContext) as AuthContextType, []);
 
   return (
     <aside className={`h-screen w-64 overflow-y-auto flex flex-col lg:hidden fixed z-50 transition-all ${isOpenSideBar ? "right-0" : "-right-full"} top-0 bg-white dark:bg-darker`}>
@@ -36,6 +36,6 @@ function MobileSidebar({ isOpenSideBar }: MobileSidebarPropsType) {
       </div>
     </aside>
   );
-}
+});
 
 export default MobileSidebar;

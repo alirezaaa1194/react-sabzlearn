@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Link, useFetcher, useNavigate } from "react-router";
 import type { courseType } from "~/types/course.type";
 import { showToast } from "../Notification/Notification";
+import { Tooltip } from "@heroui/react";
 
 function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; userToken: string | null }) {
   const [cartCoursesSumPrice, setCartCoursesSumPrice] = useState(cartCourses.reduce((prev, curr) => prev + curr.price, 0));
@@ -16,25 +17,6 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
   const [offerPercent, setOfferPercent] = useState<number>(0);
 
   const [coursesSumPrice, setCoursesSumPrice] = useState<number>((cartCoursesSumPrice * (100 - cartCourses.length * 2)) / 100);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   const changeOfferInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOfferInputValue(e.target.value);
@@ -186,7 +168,9 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
             {!isValidOfferCode ? (
               <div className="">
                 <div className="relative">
-                  <input type="text" className="w-full h-[60px] pr-3.5 pl-32 text-sm bg-gray-100 dark:bg-dark rounded-xl font-DanaRegular outline-none" placeholder="کد تخفیف را وارد کنید" value={offerInputValue} onChange={changeOfferInputHandler} onKeyUp={keyupOfferInputHandler} />
+                  <Tooltip content={<span className="font-DanaRegular">تخفیف 50 درصدی با کد: sabzlearn.ir 😉</span>} defaultOpen>
+                    <input type="text" className="w-full h-[60px] pr-3.5 pl-32 text-sm bg-gray-100 dark:bg-dark rounded-xl font-DanaRegular outline-none" placeholder="کد تخفیف را وارد کنید" value={offerInputValue} onChange={changeOfferInputHandler} onKeyUp={keyupOfferInputHandler} />
+                  </Tooltip>
                   <Button className="bg-secondary hover:bg-secondary-hover text-white transition-colors rounded-lg absolute left-2.5 top-0 bottom-0 my-auto font-DanaRegular" onClick={validateOfferCode}>
                     اعمال
                   </Button>
