@@ -6,16 +6,35 @@ import type { courseType } from "~/types/course.type";
 import { showToast } from "../Notification/Notification";
 
 function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; userToken: string | null }) {
-  const cartCoursesSumPrice = cartCourses.reduce((prev, curr) => prev + curr.price, 0);
+  const [cartCoursesSumPrice, setCartCoursesSumPrice] = useState(cartCourses.reduce((prev, curr) => prev + curr.price, 0));
 
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
-  const [isOpenOfferBox, setIsOpenOfferBox] = useState<boolean>(true);
+  const [isOpenOfferBox, setIsOpenOfferBox] = useState<boolean>(false);
 
   const [isValidOfferCode, setIsValidOfferCode] = useState<boolean>(false);
   const [offerInputValue, setOfferInputValue] = useState<string>("");
   const [offerPercent, setOfferPercent] = useState<number>(0);
 
   const [coursesSumPrice, setCoursesSumPrice] = useState<number>((cartCoursesSumPrice * (100 - cartCourses.length * 2)) / 100);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const changeOfferInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOfferInputValue(e.target.value);
@@ -106,8 +125,13 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
           <div className="flex items-center justify-between mb-3">
             <span className="font-DanaDemiBold xl:text-lg">مجموع:</span>
             <div className="flex items-center gap-x-1">
+              <span className="font-DanaDemiBold text-xl xl:text-2xl flex items-center gap-1">
+                {
+                  // Math.floor(coursesSumPrice).toLocaleString()
+                  !isValidOfferCode ? (((100 - cartCourses.length * 2) / 100) * cartCoursesSumPrice).toLocaleString() : (((100 - offerPercent) / 100) * cartCoursesSumPrice * ((100 - cartCourses.length * 2) / 100)).toLocaleString()
+                }
+              </span>
               <TomanIcon className="size-6" />
-              <span className="font-DanaDemiBold text-xl xl:text-2xl flex items-center gap-1">{Math.floor(coursesSumPrice).toLocaleString()}</span>
             </div>
           </div>
           <div>

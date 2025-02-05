@@ -1,28 +1,28 @@
-#accrordion * {
+#lesson-page-accrordion * {
   @apply outline-none shadow-none;
 }
 .session-item:last-child {
   @apply !border-none;
 }
-#accrordion div[data-open="true"] {
+#lesson-page-accrordion div[data-open="true"] {
   @apply py-0 border-none;
 }
-#accrordion button {
+#lesson-page-accrordion button {
   @apply bg-gray-100 dark:bg-dark !rounded-lg p-4 h-14 lg:h-[60px];
 }
-#accrordion button[aria-expanded="true"] {
-  @apply bg-slate-500 rounded-b-none;
+#lesson-page-accrordion button[aria-expanded="true"] {
+  @apply bg-slate-500 !rounded-b-none;
 }
-#accrordion button[aria-expanded="true"] div span {
+#lesson-page-accrordion button[aria-expanded="true"] div span {
   @apply text-white;
 }
-#accrordion button[aria-expanded="true"] svg {
+#lesson-page-accrordion button[aria-expanded="true"] svg {
   @apply !-rotate-90 text-white;
 }
-#accrordion section {
+#lesson-page-accrordion section {
   @apply px-[18px];
 }
-.session-item--watching::before {
+#lesson-page-accrordion .session-item--watching::before {
   content: "";
   @apply w-1 h-[68px] bg-green-500 rounded-l-[2px] absolute top-0 bottom-0 my-auto right-[-18px];
 }
