@@ -26,7 +26,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     ?.split("; ")
     .find((row) => row.startsWith("token="))
     ?.split("=")[1];
-  const userInfo = await getMe(token as string);
+    const userInfo = token ? await getMe(token) : null;
 
   const isUserRegisteredToThisCourse = userInfo?.data?.courses.some((userCourse: courseType) => userCourse?._id === course.data._id);
   return { course, isUserRegisteredToThisCourse };

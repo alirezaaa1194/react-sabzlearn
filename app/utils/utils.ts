@@ -140,6 +140,14 @@ export const registerCourse = async (courseId: string, token: string | null) => 
   );
   return res;
 };
+export const getAllCategories = async () => {
+  const res = await apiRequest.get("/category");
+  return res;
+};
+export const getPreSellCourses = async () => {
+  const res = await apiRequest.get("/courses/presell");
+  return res;
+};
 
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

@@ -25,7 +25,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     .find((row) => row.startsWith("token="))
     ?.split("=")[1];
 
-  const userInfo = await getMe(token as string);
+    const userInfo = token ? await getMe(token) : null;
   const session = await getOneSession(params["course-name"], params["lesson-id"], token);
   const course = await getSingleCourse(params["course-name"]);
 

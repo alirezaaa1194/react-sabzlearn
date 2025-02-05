@@ -95,4 +95,9 @@
   .slider-btn {
     width: 500px !important;
   }
+
+
+  .group[data-selected="true"] .group-data-\[selected\=true\]\:text-primary-foreground{
+    @apply !text-secondary
+  }
 }

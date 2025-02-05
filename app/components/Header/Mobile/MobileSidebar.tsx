@@ -11,7 +11,7 @@ type MobileSidebarPropsType = {
 };
 
 const MobileSidebar = memo(({ isOpenSideBar }: MobileSidebarPropsType) => {
-  const userInfoContext = useMemo(() => use(AuthContext) as AuthContextType, []);
+  const userInfoContext =  use(AuthContext) as AuthContextType
 
   return (
     <aside className={`h-screen w-64 overflow-y-auto flex flex-col lg:hidden fixed z-50 transition-all ${isOpenSideBar ? "right-0" : "-right-full"} top-0 bg-white dark:bg-darker`}>

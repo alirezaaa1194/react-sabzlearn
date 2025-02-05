@@ -7,13 +7,10 @@ function Searchbar() {
   const [searchInputValue, setSearchInputValue] = useState<string>((searchParams.get("s") as string) || "");
   const navigate = useNavigate();
   const serachInputRef = useRef<HTMLInputElement>(null);
-  const location = useLocation();
 
   useEffect(() => {
-    if (!searchParams.get("s")) {
-      setSearchInputValue("");
-    }
-  }, [location]);
+    setSearchInputValue(searchParams.get("s") as string);
+  }, [searchParams]);
 
   const searchInputValueChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {

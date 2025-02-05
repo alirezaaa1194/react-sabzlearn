@@ -31,21 +31,20 @@ function DesktopSort() {
         <span className="font-DanaMedium">مرتب سازی بر اساس :</span>
       </div>
       <div className="flex gap-x-5 lg:gap-x-8 h-full items-center">
-        
         <CustomTabs
           key={111}
           aria-label="Options"
           className="h-full"
-          onSelectionChange={(key:any) => {
+          onSelectionChange={(key: any) => {
             searchParams.set("sort", key as string);
             setSearchParams(searchParams,  { replace: true, preventScrollReset: true });
           }}
-          selectedKey={searchParams.get("sort") || "normal"}
+          selectedKey={searchParams.get("sort") || "all"}
         >
-          <Tab key="normal" title="عادی" className="h-full"></Tab>
-          <Tab key="newest" title="جدیدترین" className="h-full"></Tab>
-          <Tab key="oldest" title="قدیمی ترین" className="h-full"></Tab>
-          <Tab key="popular" title="پر نظر ها" className="h-full"></Tab>
+          <Tab key="all" title="همه دوره ها" className="h-full"></Tab>
+          <Tab key="mostCheap" title="ارزان ترین" className="h-full"></Tab>
+          <Tab key="mostExpensive" title="گران ترین" className="h-full"></Tab>
+          <Tab key="mostPopular" title="پر مخاطب ها" className="h-full"></Tab>
         </CustomTabs>
       </div>
     </div>
