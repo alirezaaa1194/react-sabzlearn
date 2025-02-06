@@ -16,8 +16,11 @@ export default [
                 route('cart', 'routes/general/cart.tsx'),
                 
                 route('switchTheme', 'actions/Theme/theme.ts'),
+
                 route('saveCartCourses', 'actions/Cart/saveCartCourses.ts'),
-                route('RemoveCartCourse', 'actions/Cart/RemoveCartCourse.ts'),
+                route('RemoveCartCourse', 'actions/Cart/removeCartCourse.ts'),
+                route('saveOfferCode', 'actions/Cart/saveOfferCode.ts'),
+                route('removOfferCode', 'actions/Cart/removeOfferCode.ts'),
         ]),
         layout('./layouts/auth/AuthLayout.tsx',[
             route('login', 'routes/auth/login.tsx'),

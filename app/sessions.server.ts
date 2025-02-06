@@ -4,6 +4,7 @@ export type SessionType = {
   theme: "light" | "dark";
   token?: string;
   coursesId: FormDataEntryValue | null;
+  offerCode: FormDataEntryValue | null;
 };
 
 const session = createCookieSessionStorage<SessionType>({

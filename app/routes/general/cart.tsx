@@ -22,7 +22,9 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
   const token = getCookie(cookieHeader, "token");
 
-  return { cartCourses, token };
+  const offerCode = currentSession.get("offerCode");
+
+  return { cartCourses, token, offerCode };
 }
 export async function action({ request }: Route.ActionArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -55,15 +57,14 @@ export async function action({ request }: Route.ActionArgs) {
   });
 }
 
-
 export const meta: MetaFunction = () => {
   return [{ title: "سبد خرید - سبزلرن" }];
 };
 
-
 function cart({ loaderData }: Route.ComponentProps) {
   const cartCourses: courseType[] = loaderData.cartCourses;
   const token: string | null = loaderData.token;
+  const offerCode: any | null = loaderData.offerCode;
 
   if (!cartCourses.length) {
     return (
@@ -72,7 +73,6 @@ function cart({ loaderData }: Route.ComponentProps) {
       </main>
     );
   }
-
   return (
     <main className="container mt-8 md:!mt-16">
       <Toaster />
@@ -84,7 +84,7 @@ function cart({ loaderData }: Route.ComponentProps) {
       <section className="grid grid-cols-12 gap-y-5 gap-6 lg:gap-x-7 mt-5">
         <CoursesSection cartCourses={cartCourses} />
         <aside className="col-span-full md:col-span-4 space-y-5 md:space-y-6">
-          <PaySection cartCourses={cartCourses} userToken={token} />
+          <PaySection cartCourses={cartCourses} userToken={token} offerCode={offerCode} />
         </aside>
       </section>
       <SuggestionSlider cartCourses={cartCourses} />

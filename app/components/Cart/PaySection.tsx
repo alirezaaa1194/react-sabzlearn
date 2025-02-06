@@ -1,21 +1,25 @@
 import { Button } from "@heroui/button";
 import { CheckCircleIcon, ChevronDownIcon, CreditCardIcon, TomanIcon } from "public/svg/svgs";
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Link, useFetcher, useNavigate } from "react-router";
 import type { courseType } from "~/types/course.type";
 import { showToast } from "../Notification/Notification";
 import { Checkbox, Tooltip } from "@heroui/react";
 import { AuthContext } from "~/contexts/AuthContext";
 
-function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; userToken: string | null }) {
+function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: courseType[]; userToken: string | null; offerCode: any | null }) {
   const [cartCoursesSumPrice, setCartCoursesSumPrice] = useState(cartCourses.reduce((prev, curr) => prev + curr.price, 0));
 
-  const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
-  const [isOpenOfferBox, setIsOpenOfferBox] = useState<boolean>(false);
+  useEffect(() => {
+    setCartCoursesSumPrice(cartCourses.reduce((prev, curr) => prev + curr.price, 0));
+  }, [cartCourses]);
 
-  const [isValidOfferCode, setIsValidOfferCode] = useState<boolean>(false);
-  const [offerInputValue, setOfferInputValue] = useState<string>("");
-  const [offerPercent, setOfferPercent] = useState<number>(0);
+  const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
+  const [isOpenOfferBox, setIsOpenOfferBox] = useState<boolean>(offerCode ? true : false);
+
+  const [isValidOfferCode, setIsValidOfferCode] = useState<boolean>(offerCode ? true : false);
+  const [offerInputValue, setOfferInputValue] = useState<string>(offerCode || "");
+  const [offerPercent, setOfferPercent] = useState<number>(offerCode ? 50 : 0);
 
   const [coursesSumPrice, setCoursesSumPrice] = useState<number>((cartCoursesSumPrice * (100 - cartCourses.length * 2)) / 100);
 
@@ -30,7 +34,7 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
   };
 
   const validateOfferCode = () => {
-    if (coursesSumPrice > 0) {
+    if (cartCoursesSumPrice > 0) {
       if (offerInputValue === "sabzlearn.ir") {
         setOfferPercent(50);
 
@@ -51,8 +55,26 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
     } else {
       showToast("خطا", "جمع مبالغ سبد خرید نباید 0 باشد", "error");
     }
+
+    fetcher.submit(
+      { offerCode: offerInputValue },
+      {
+        method: "POST",
+        action: "/saveOfferCode",
+      }
+    );
   };
   const fetcher = useFetcher();
+
+  useEffect(() => {
+    if (!cartCoursesSumPrice) {
+      setOfferPercent(0);
+      setIsValidOfferCode(false);
+      setOfferInputValue("");
+
+      fetcher.submit(null, { method: "POST", action: "/removOfferCode" });
+    }
+  }, [cartCoursesSumPrice]);
 
   return (
     <>
@@ -189,6 +211,8 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
                       setIsValidOfferCode(false);
                       setCoursesSumPrice((cartCoursesSumPrice * (100 - cartCourses.length * 2)) / 100);
                       showToast("موفق", "کد تخفیف با موفقیت حذف شد", "success");
+
+                      fetcher.submit(null, { method: "POST", action: "/removOfferCode" });
                     }}
                   >
                     {" "}
