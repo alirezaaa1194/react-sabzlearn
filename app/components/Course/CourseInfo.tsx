@@ -3,6 +3,7 @@ import AllocatoToCourse from "./AllocatoToCourse";
 import { baseUrl } from "~/utils/utils";
 import type { singleCourseType } from "~/types/course.type";
 import { AuthContext } from "~/contexts/AuthContext";
+import TimeStamp from "./TimeStamp/TimeStamp";
 
 function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCourseType; isUserRegisteredToThisCourse: boolean }) {
   const authContext = use(AuthContext);
@@ -13,6 +14,9 @@ function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCo
           <h1 className="font-MorabaBold text-[1.375rem]/8 sm:text-[1.625rem]/10 mb-[18px]">{course.name}</h1>
           <p className="sm:text-lg line-clamp-4 sm:line-clamp-3 font-DanaRegular">{course.description}</p>
         </div>
+
+        <TimeStamp course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
+
         <AllocatoToCourse course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
       </div>
       <div className="w-full lg:w-1/2">

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router";
 import DesktopNavbar from "./Desktop/Navbar/DesktopNavbar";
 import Searchbar from "./Desktop/Searchbar/Searchbar";
 import ThemeBtns from "./Desktop/ThemeBtns/ThemeBtns";
-import CartDropdown from "./Desktop/cart/CartDropdown";
+import CartDropdown from "./cart/CartDropdown";
 import LoginBtn from "./Desktop/userProfile/LoginBtn";
 import MobileSidebar from "./Mobile/MobileSidebar";
 import { use, useContext, useEffect, useState } from "react";

@@ -30,26 +30,28 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
   };
 
   const validateOfferCode = () => {
-    if (offerInputValue === "sabzlearn.ir") {
-      setOfferPercent(50);
+    if (coursesSumPrice > 0) {
+      if (offerInputValue === "sabzlearn.ir") {
+        setOfferPercent(50);
 
-      setCoursesSumPrice((prev) => (prev * (100 - 50)) / 100);
+        setCoursesSumPrice((prev) => (prev * (100 - 50)) / 100);
 
-      setOfferInputValue("");
-      showToast("موفق", "کد تخفیف با موفقیت اعمال شد", "success");
-      setIsValidOfferCode(true);
-    } else {
-      if (offerInputValue === "") {
-        showToast("خطا", "لطفا کد تخفیف را وارد کنید", "error");
+        setOfferInputValue("");
+        showToast("موفق", "کد تخفیف با موفقیت اعمال شد", "success");
+        setIsValidOfferCode(true);
       } else {
-        showToast("خطا", "کد تخفیف معتبر نیست", "error");
+        if (offerInputValue === "") {
+          showToast("خطا", "لطفا کد تخفیف را وارد کنید", "error");
+        } else {
+          showToast("خطا", "کد تخفیف معتبر نیست", "error");
+        }
+        setOfferPercent(0);
+        setIsValidOfferCode(false);
       }
-      setOfferPercent(0);
-      setIsValidOfferCode(false);
+    } else {
+      showToast("خطا", "جمع مبالغ سبد خرید نباید 0 باشد", "error");
     }
   };
-
-  const authContext = use(AuthContext);
   const fetcher = useFetcher();
 
   return (
@@ -124,7 +126,7 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
                   </Link>
                 </div>
                 <Button
-                  onPress ={() => {
+                  onPress={() => {
                     fetcher.submit({ cartCourses }, { method: "POST" });
                   }}
                   className={`btn-primary w-full h-12 font-DanaMedium text-base bg-primary hover:bg-primary-hover transition-colors text-white rounded-lg disabled:opacity-50 disabled:cursor-no-drop disabled:hover:bg-primary disabled:hover:opacity-50`}
@@ -166,7 +168,7 @@ function PaySection({ cartCourses, userToken }: { cartCourses: courseType[]; use
                     <Tooltip content={<span className="font-DanaRegular">تخفیف 50 درصدی با کد: sabzlearn.ir 😉</span>} defaultOpen>
                       <input type="text" className="w-full h-[60px] pr-3.5 pl-32 text-sm bg-gray-100 dark:bg-dark rounded-xl font-DanaRegular outline-none" placeholder="کد تخفیف را وارد کنید" value={offerInputValue} onChange={changeOfferInputHandler} onKeyUp={keyupOfferInputHandler} />
                     </Tooltip>
-                    <Button className="bg-secondary hover:bg-secondary-hover text-white transition-colors rounded-lg absolute left-2.5 top-0 bottom-0 my-auto font-DanaRegular" onPress ={validateOfferCode}>
+                    <Button className="bg-secondary hover:bg-secondary-hover text-white transition-colors rounded-lg absolute left-2.5 top-0 bottom-0 my-auto font-DanaRegular" onPress={validateOfferCode}>
                       اعمال
                     </Button>
                   </div>

@@ -3,13 +3,9 @@ import { AcademicCapIcon, BookOpenIcon, TomanIcon, UserIcon } from "public/svg/s
 import React, { use } from "react";
 import { Link, useFetcher } from "react-router";
 import type { singleCourseType } from "~/types/course.type";
-import * as Spinners from "react-spinners";
-import { Toaster } from "react-hot-toast";
 import { showToast } from "../Notification/Notification";
 import { CartContext } from "~/contexts/CartContext";
 import { Spinner } from "@heroui/react";
-import { AuthContext } from "~/contexts/AuthContext";
-const PulseLoader = Spinners.PulseLoader;
 
 function AllocatoToCourse({ course, isUserRegisteredToThisCourse }: { course: singleCourseType; isUserRegisteredToThisCourse: boolean }) {
   const cartCoursesId = use(CartContext);

@@ -5,7 +5,7 @@ import session from "~/sessions.server";
 import { getAllCourses, getCookie, getMe, registerCourse } from "~/utils/utils";
 import type { courseType } from "~/types/course.type";
 import CoursesSection from "~/components/Cart/CoursesSection";
-import NullMessage from "~/components/Header/Desktop/cart/NullMessage";
+import NullMessage from "~/components/Header/cart/NullMessage";
 import { Toaster } from "react-hot-toast";
 import { redirect, type MetaFunction } from "react-router";
 import SuggestionSlider from "~/components/Cart/SuggestionSlider";
