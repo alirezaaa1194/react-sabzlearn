@@ -25,7 +25,7 @@ function UserPanelLayout() {
       <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
       <div className="w-full md:w-[calc(100%-220px)]">
         <Header isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
-        <main className="p-4 md:p-6">
+        <main className="p-4 md:p-8">
           <Outlet />
         </main>
       </div>

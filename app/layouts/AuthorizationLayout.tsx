@@ -28,7 +28,7 @@ function AuthorizationLayout({ loaderData }: Route.ComponentProps) {
     return (
       <div>
         <CartContext value={coursesId}>
-          <AuthContext value={{ userInfo: data?.data, isUserRegister: !!token }}>
+          <AuthContext value={{ userInfo: data?.data, isUserRegister: !!token, token: token||null }}>
             <Outlet />
           </AuthContext>
         </CartContext>

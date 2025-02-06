@@ -152,6 +152,19 @@ export const getCourseByCategory = async (categoryName: string) => {
   const res = await apiRequest.get(`/courses/category/${categoryName}`);
   return res;
 };
+export const getUserTickets = async (token: string | null) => {
+  const res = await apiRequest.get(`/tickets/user`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
+export const getAllSessions = async () => {
+  const res = await apiRequest.get(`/courses/sessions`);
+  return res;
+};
 
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

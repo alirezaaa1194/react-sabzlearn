@@ -42,15 +42,16 @@ export async function action({ params, request }: Route.ActionArgs) {
     ?.split("=")[1];
 
   const lesson = token ? await getOneSession(params["course-name"], params["lesson-id"], token) : null;
-  const course = await getSingleCourse(params["course-name"]);
-
   if (token) {
     const currentSession = await session.getSession(cookies);
     const savedLessons = (currentSession.get("sessionsId") as string) || "";
     const isSaved = savedLessons?.includes(lesson?.data.session._id);
 
+    const url = new URL(request.url);
+    const sessionIndex=(url.searchParams.get('index'));
+
     if (!isSaved) {
-      let allSavedSessionId = savedLessons ? `${savedLessons}; ${course.data.shortName}, ${lesson?.data.session._id}` : `${course.data.shortName}, ${lesson?.data.session._id}`;
+      let allSavedSessionId = savedLessons ? `${savedLessons}; ${sessionIndex}, ${lesson?.data.session._id}` : `${sessionIndex}, ${lesson?.data.session._id}`;
       currentSession.set("sessionsId", allSavedSessionId);
 
       return data(allSavedSessionId, {
