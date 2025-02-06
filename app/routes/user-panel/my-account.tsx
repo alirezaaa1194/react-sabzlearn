@@ -1,10 +1,11 @@
 import React, { Suspense } from "react";
-import UserActivityDetails from "~/components/user-panel/IndexPage/userActivityDetails";
+import UserActivityDetails from "~/components/user-panel/IndexPage/UserActivityDetails";
 import { getAllCourses, getAllSessions, getCookie, getUserTickets } from "~/utils/utils";
 import type { Route } from "./+types/my-account";
 import session from "~/sessions.server";
 import RecentLessons from "~/components/user-panel/IndexPage/RecentLessons";
 import type { courseSessionType } from "~/types/course.type";
+import RecentTickets from "~/components/user-panel/IndexPage/RecentTickets";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
@@ -29,6 +30,7 @@ function myAccount({ loaderData }: Route.ComponentProps) {
     <div className="flex flex-col gap-6 md:gap-10">
       <UserActivityDetails userTickets={loaderData.userTickets.data} />
       <RecentLessons watchedLessons={loaderData.watchedLessons} watchedSessions={loaderData.watchedSessions} allCourses={loaderData.allCourses.data} />
+      <RecentTickets userTickets={loaderData.userTickets.data} />
     </div>
   );
 }

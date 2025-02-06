@@ -21,7 +21,7 @@ function AllocatoToCourse({ course, isUserRegisteredToThisCourse }: { course: si
             شما دانشجوی دوره هستید
           </div>
           {course.sessions.length ? (
-            <Link to={`/lesson/${course.shortName}/${course?.sessions[0]?._id}`} className="btn-primary flex items-center justify-center gap-x-2.5 px-5 lg:w-56 h-[46px] rounded-lg text-sm lg:text-base font-DanaRegular">
+            <Link to={`/lesson/${course.shortName}/${course?.sessions[0]?._id}?index=1`} className="btn-primary flex items-center justify-center gap-x-2.5 px-5 lg:w-56 h-[46px] rounded-lg text-sm lg:text-base font-DanaRegular">
               <BookOpenIcon className="size-6" />
               <span>مشاهده دوره</span>
             </Link>

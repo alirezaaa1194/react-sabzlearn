@@ -14,11 +14,13 @@ function SessionCard({ session, course, sessionIndex }: { session: sessionType; 
           <PlayCircleSolidIcon className="size-16 md:size-21 absolute inset-0 m-auto text-gray-100" />
         </Link>
       </div>
-      <Link to={`/lesson/${course.shortName}/${session._id}?index=${sessionIndex}`} className="block h-12 md:h-14 text-sm md:text-base line-clamp-2 font-DanaDemiBold">
-        {session.title}
-      </Link>
+      <span className="block h-12 md:h-14 ">
+        <Link to={`/lesson/${course.shortName}/${session._id}?index=${sessionIndex}`} className="text-sm md:text-base line-clamp-2 font-DanaDemiBold">
+          {session.title}
+        </Link>
+      </span>
       <div className="flex items-center justify-between mt-4.5 mb-3 pb-3 border-b border-b-gray-200 dark:border-b-white/10 text-slate-500 dark:text-gray-400 text-xs md:text-sm font-DanaDemiBold">
-        <span>فصل 12</span>
+        <span>فصل 1</span>
         <span>جلسه {sessionIndex}</span>
       </div>
       <span className="block h-8 md:h-12">

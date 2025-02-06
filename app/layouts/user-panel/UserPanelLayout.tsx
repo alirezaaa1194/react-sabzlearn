@@ -23,7 +23,7 @@ function UserPanelLayout() {
     <div className="relative flex">
       <Overlay isOpen={isOpenSidebar} setIsOpen={setIsOpenSidebar} />
       <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
-      <div className="w-full md:w-[calc(100%-220px)]">
+      <div className="w-full md:w-4/5">
         <Header isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
         <main className="p-4 md:p-8">
           <Outlet />
