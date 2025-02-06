@@ -6,9 +6,6 @@ export async function action({ params, request }: Route.ActionArgs) {
   const cookieHeader = request.headers.get("Cookie");
   const currentSession = await session.getSession(cookieHeader);
 
-  console.log(currentSession.get('offerCode'));
-  
-
   currentSession.unset("offerCode");
 
   return data(

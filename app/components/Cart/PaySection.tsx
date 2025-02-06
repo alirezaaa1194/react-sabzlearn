@@ -15,9 +15,9 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
   }, [cartCourses]);
 
   const [acceptedTerms, setAcceptedTerms] = useState<boolean>(false);
-  const [isOpenOfferBox, setIsOpenOfferBox] = useState<boolean>(offerCode ? true : false);
+  const [isOpenOfferBox, setIsOpenOfferBox] = useState<boolean>(offerCode && userToken ? true : false);
 
-  const [isValidOfferCode, setIsValidOfferCode] = useState<boolean>(offerCode ? true : false);
+  const [isValidOfferCode, setIsValidOfferCode] = useState<boolean>(offerCode && userToken ? true : false);
   const [offerInputValue, setOfferInputValue] = useState<string>(offerCode || "");
   const [offerPercent, setOfferPercent] = useState<number>(offerCode ? 50 : 0);
 
@@ -149,7 +149,9 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
                 </div>
                 <Button
                   onPress={() => {
-                    fetcher.submit({ cartCourses }, { method: "POST" });
+                    if (acceptedTerms) {
+                      fetcher.submit({ cartCourses }, { method: "POST" });
+                    }
                   }}
                   className={`btn-primary w-full h-12 font-DanaMedium text-base bg-primary hover:bg-primary-hover transition-colors text-white rounded-lg disabled:opacity-50 disabled:cursor-no-drop disabled:hover:bg-primary disabled:hover:opacity-50`}
                   disabled={!acceptedTerms}

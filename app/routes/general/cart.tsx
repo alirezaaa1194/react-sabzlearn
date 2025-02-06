@@ -49,6 +49,7 @@ export async function action({ request }: Route.ActionArgs) {
   }
 
   currentSession.unset("coursesId");
+  currentSession.unset("offerCode");
 
   return redirect("/", {
     headers: {
