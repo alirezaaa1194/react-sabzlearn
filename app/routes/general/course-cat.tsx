@@ -34,7 +34,7 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 
   const categories = await getAllCategories();
 
-  const mainCategory: categoryType = categories?.data.find((category: categoryType) => category.name === (params["cat-name"] as string));
+  const mainCategory: categoryType = categories?.data.find((category: categoryType) => category?.name === (params["cat-name"] as string));
 
   let filteredCourses = data?.data?.filter((course: courseType) => course?.name.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || "") || course?.description?.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || ""));
 

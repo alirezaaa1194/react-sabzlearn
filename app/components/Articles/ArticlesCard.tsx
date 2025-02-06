@@ -24,7 +24,7 @@ function ArticlesCard({ article }: ArticlesCardPropsType) {
             <p className="text-sm line-clamp-3 text-gray-700 dark:text-gray-400 font-DanaMedium">{article.description}</p>
           </div>
           <div className="flex items-center justify-between  text-slate-500 dark:text-white/70 text-sm pb-4 border-b border-b-neutral-200/70 dark:border-b-white/10">
-            <span className="flex items-center gap-x-0.5 font-DanaRegular">{article.creator.name}</span>
+            <span className="flex items-center gap-x-0.5 font-DanaRegular">{article.creator?.name}</span>
             <span className="flex items-center gap-x-0.5 font-DanaMedium">{moment(article.createdAt, "YYYY/MM/DD").locale("fa").format("YYYY/MM/DD")}</span>
           </div>
         </div>

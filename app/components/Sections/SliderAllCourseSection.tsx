@@ -20,7 +20,7 @@ const SliderAllCourseSection = memo(() => {
   const swiperRef = useRef<any>(null);
 
   return (
-    <section className="container flex flex-col mt-[100px] lg:mt-40">
+    <section className="container flex flex-col mt-[100px] lg:mt-40 relative">
       <LinkSectionHeader
         headerTitle="پرطرفدار ترین دوره ها"
         headerDesc="دوره های محبوب و پروژه محور سبزلرن"
@@ -36,7 +36,7 @@ const SliderAllCourseSection = memo(() => {
           </div>
         }
       />
-      <div className="rounded-xl">
+      <div className="rounded-xl relative z-[2]">
         <Swiper
           breakpoints={{
             0: {
@@ -73,7 +73,7 @@ const SliderAllCourseSection = memo(() => {
           ))}
         </Swiper>
       </div>
-      <div className="flex gap-4 lg:hidden mx-auto mt-7">
+      <div className="flex gap-4 lg:hidden mx-auto mt-7 relative z-[2]">
         <button className="w-[50px] h-[50px] bg-transparent p-0 border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slidePrev()}>
           <ChevronRightIcon className="size-6" />
         </button>
@@ -82,6 +82,7 @@ const SliderAllCourseSection = memo(() => {
           <ChevronLeftIcon className="size-6" />
         </button>
       </div>
+      <div className="w-[300px] h-[300px] absolute top-0 -left-10 z-[1] rounded-full bg-sky-500 blur-[120px] opacity-40 hidden lg:block"></div>
     </section>
   );
 });

@@ -14,7 +14,7 @@ function ArticleBody({ article }: { article: singleArticleType }) {
       <div className="grid sm:flex grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-3 mb-6 text-slate-500 font-DanaMedium text-sm sm:text-base">
         <div className="flex items-center gap-x-1.5">
           <UserIcon className="size-6 sm:size-7" />
-          <span>{article.creator.name}</span>
+          <span>{article.creator?.name}</span>
         </div>
         <div className="flex items-center gap-x-1.5">
           <CalendarIcon className="size-6 sm:size-7" />

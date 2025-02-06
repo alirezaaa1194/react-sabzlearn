@@ -23,7 +23,7 @@ function UserProfileDropdownCard() {
           </Link>
         </div>
         <div className="flex flex-col gap-y-3">
-          <span className="font-DanaDemiBold">{userInfoContext.userInfo.name}</span>
+          <span className="font-DanaDemiBold">{userInfoContext.userInfo?.name}</span>
           <span className="text-sm font-DanaMedium text-green-500">موجودی: 0 تومان</span>
         </div>
       </div>

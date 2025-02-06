@@ -82,8 +82,8 @@ function signup() {
         });
 
         const res2 = await registerHandler({
-          name: res.data.name,
-          username: res.data.name,
+          name: res.data?.name,
+          username: res.data?.name,
           email: res.data.email,
           phone: "09111111111",
           password: "11111111",
@@ -136,8 +136,8 @@ function signup() {
         <form className="flex flex-col items-center gap-5" onSubmit={handleSubmit(onSubmit)}>
           <div className="relative w-full text-start">
             <UserIcon className="absolute left-4 top-3.5 size-5 text-slate-500" />
-            <input type="text" placeholder="نام" {...register("name")} autoFocus className={`w-full px-4 pe-[52px] placeholder:text-slate-500 bg-gray-100 text-slate-500 dark:bg-dark dark:text-white rounded-xl h-12 font-DanaRegular text-sm outline-none border transition-colors ${errors.name ? "border-red-500 focus:border-red-500" : "border-gray-100 dark:border-dark focus:border-neutral-200 dark:focus:border-slate-500"}`} />
-            {errors.name && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.name.message}</span>}
+            <input type="text" placeholder="نام" {...register("name")} autoFocus className={`w-full px-4 pe-[52px] placeholder:text-slate-500 bg-gray-100 text-slate-500 dark:bg-dark dark:text-white rounded-xl h-12 font-DanaRegular text-sm outline-none border transition-colors ${errors?.name ? "border-red-500 focus:border-red-500" : "border-gray-100 dark:border-dark focus:border-neutral-200 dark:focus:border-slate-500"}`} />
+            {errors?.name && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors?.name.message}</span>}
           </div>
           <div className="relative w-full text-start">
             <UserIcon className="absolute left-4 top-3.5 size-5 text-slate-500" />

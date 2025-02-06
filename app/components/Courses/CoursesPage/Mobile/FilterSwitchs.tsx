@@ -125,11 +125,11 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
                     <Checkbox
                       color="secondary"
                       className="text-sm"
-                      isSelected={selectedCategory === category.name ? true : false}
+                      isSelected={selectedCategory === category?.name ? true : false}
                       onValueChange={(isSelected) => {
                         if (isSelected) {
-                          searchParams.set("category", category.name);
-                          setSelectedCategory(category.name);
+                          searchParams.set("category", category?.name);
+                          setSelectedCategory(category?.name);
                         } else {
                           searchParams.delete("category");
                           setSelectedCategory(null);

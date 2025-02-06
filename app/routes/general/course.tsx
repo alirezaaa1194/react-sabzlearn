@@ -29,10 +29,6 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   return { course, isUserRegisteredToThisCourse };
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data }: any) => {
-  return [{ title: `${data?.course?.data.name} - سبزلرن` }];
-};
-
 export async function action({ request, params }: Route.ActionArgs) {
   const formData = await request.formData();
   const commentText: FormDataEntryValue | null = formData.get("commentText");
@@ -48,6 +44,10 @@ export async function action({ request, params }: Route.ActionArgs) {
   return { res };
 }
 
+export const meta: MetaFunction<typeof loader> = ({ data }: any) => {
+  return [{ title: `${data?.course?.data?.name} - سبزلرن` }];
+};
+
 function course({ loaderData }: Route.ComponentProps) {
   const course: singleCourseType = loaderData.course.data;
   const [mounted, setMounted] = useState(false);
@@ -60,7 +60,7 @@ function course({ loaderData }: Route.ComponentProps) {
   return (
     <div className="container pt-8 lg:pt-10 flex flex-col gap-y-8 lg:gap-y-10">
       {mounted && <Toaster />}
-      <Breadcrumb titleName="دوره ها" titleLink="/courses" categoryName={course.categoryID.title.split("برنامه نویسی ").join("")} categoryLink={`/course-cat/${course.categoryID.name}`} dataName={course.name} dataLink={`/course/${course.shortName}`} />
+      <Breadcrumb titleName="دوره ها" titleLink="/courses" categoryName={course.categoryID.title.split("برنامه نویسی ").join("")} categoryLink={`/course-cat/${course.categoryID?.name}`} dataName={course?.name} dataLink={`/course/${course.shortName}`} />
       <CourseInfo course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
 
       <div className="grid grid-cols-12 gap-6 sm:gap-7 lg:mt-10">

@@ -83,8 +83,8 @@ function loign() {
         });
 
         const res2 = await registerHandler({
-          name: res.data.name,
-          username: res.data.name,
+          name: res.data?.name,
+          username: res.data?.name,
           email: res.data.email,
           phone: "09111111111",
           password: "11111111",
@@ -94,7 +94,7 @@ function loign() {
 
         fetcher.submit({ token }, { method: "POST", action: "/auth" });
 
-        console.log("User Info:", res.data.name);
+        console.log("User Info:", res.data?.name);
       }
     },
     onError: (error) => console.log("Login Failed:", error),

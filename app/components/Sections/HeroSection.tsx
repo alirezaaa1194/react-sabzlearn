@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 function HeroSection() {
   return (
-    <section className="container flex flex-col-reverse lg:flex-row items-center justify-between py-12 lg:py-16 gap-8">
+    <section className="container relative flex flex-col-reverse lg:flex-row items-center justify-between py-12 lg:py-16 gap-8">
       <div className="flex gap-y-7 lg:gap-y-14 flex-col items-center lg:items-start">
         <div className="text-center lg:text-right">
           <h1 className="font-MorabaBold text-2xl sm:text-[2.5rem] leading-10">سبزلرن، اولین گام برنامه‌نویس شدن</h1>
@@ -25,6 +25,7 @@ function HeroSection() {
       <div>
         <img src="public/images/hero.svg" alt="" />
       </div>
+      <div className="w-[300px] h-[300px] absolute top-20 left-0 rounded-full bg-sky-500 blur-[120px] opacity-40 hidden lg:block"></div>
     </section>
   );
 }

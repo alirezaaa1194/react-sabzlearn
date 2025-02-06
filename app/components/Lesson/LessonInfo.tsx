@@ -10,7 +10,7 @@ function LessonInfo({ course, session }: { course: singleCourseType; session: co
     <div className="bg-white dark:bg-darker rounded-xl p-[18px] sm:p-5">
       <div className="flex items-center gap-x-2 mb-5 sm:mb-6 relative">
         <span className="absolute -right-6 sm:-right-[26px] block w-1.5 h-[34px] md:h-10 bg-sky-500 rounded-r-sm "></span>
-        <h3 className="font-MorabaBold text-xl md:text-2xl">{course.name}</h3>
+        <h3 className="font-MorabaBold text-xl md:text-2xl">{course?.name}</h3>
       </div>
       <div className="flex pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-b-neutral-200/80 dark:border-b-white/10">
         <div className="inline-flex items-center shrink-0 h-7 bg-sky-50 text-sky-500 dark:bg-sky-500/10 text-sm px-1 ml-2.5 font-DanaDemiBold rounded">{searchParams.get("index")}</div>

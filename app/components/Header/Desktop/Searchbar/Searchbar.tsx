@@ -15,9 +15,11 @@ function Searchbar() {
     }
   }, [location]);
 
-  // useEffect(() => {
-  //   setSearchInputValue(searchParams.get("s") as string);
-  // }, [searchParams]);
+  useEffect(() => {
+    if (location.pathname === "/courses") {
+      setSearchInputValue(searchParams.get("s") as string);
+    }
+  }, [searchParams]);
 
   const searchInputValueChangeHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {

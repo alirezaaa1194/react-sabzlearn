@@ -18,7 +18,7 @@ function UserInfo() {
             <img src="/public/images/user-profile.png" className="w-14 h-14 rounded-full" alt="" />
           </Link>
           <div className="flex flex-col gap-y-1">
-            <span className="text-sm font-DanaMedium truncate">{userInfoContext.userInfo.name}</span>
+            <span className="text-sm font-DanaMedium truncate">{userInfoContext.userInfo?.name}</span>
             <span className="text-xs opacity-80 font-DanaRegular">{persianDate}</span>
           </div>
         </div>

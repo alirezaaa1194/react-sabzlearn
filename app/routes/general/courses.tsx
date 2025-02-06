@@ -52,7 +52,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 
   // filter by category
   if (categoryQuery) {
-    filteredCourses = filteredCourses.filter((course: courseType) => course.categoryID.name === categoryQuery);
+    filteredCourses = filteredCourses.filter((course: courseType) => course.categoryID?.name === categoryQuery);
   }
 
   if (registeredQuery) {
@@ -80,7 +80,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export const meta: MetaFunction = () => {
-  return [{ title: "ذوره ها - سبزلرن" }];
+  return [{ title: "دوره ها - سبزلرن" }];
 };
 
 function Courses({ loaderData }: Route.ComponentProps) {

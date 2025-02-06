@@ -37,12 +37,12 @@ const CategoryFilter=memo(()=> {
           <div key={category._id} className="space-y-[18px]">
             <Checkbox
               color="secondary"
-              isSelected={selectedCategory === category.name ? true : false}
+              isSelected={selectedCategory === category?.name ? true : false}
               onValueChange={(isSelected) => {
                 if (isSelected) {
-                  searchParams.set("category", category.name);
+                  searchParams.set("category", category?.name);
                   setSearchParams(searchParams, { replace: true, preventScrollReset: true });
-                  setSelectedCategory(category.name);
+                  setSelectedCategory(category?.name);
                 } else {
                   searchParams.delete("category");
                   setSearchParams(searchParams, { replace: true, preventScrollReset: true });

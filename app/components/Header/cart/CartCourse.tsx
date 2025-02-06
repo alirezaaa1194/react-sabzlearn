@@ -19,7 +19,7 @@ function CartCourse({ course }: { course: courseType }) {
         </div>
         <div className="flex flex-col gap-1 justify-between">
           <Link to={`/course/${course.shortName}`} className="line-clamp-2 font-DanaMedium text-sm">
-            {course.name}
+            {course?.name}
           </Link>
           <div className="flex items-center gap-x-2 text-slate-500 dark:text-gray-400">
             {course.price > 0 ? (

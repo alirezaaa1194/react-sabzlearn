@@ -61,7 +61,7 @@ function CommentForm() {
             </div>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="font-DanaMedium">{userContext?.userInfo.name}</span>
+            <span className="font-DanaMedium">{userContext?.userInfo?.name}</span>
             <span className="font-DanaLight text-sm text-gray-700 dark:text-gray-400">ثبت نظر جدید</span>
           </div>
         </div>

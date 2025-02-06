@@ -32,7 +32,7 @@ function Question() {
             </div>
           </div>
           <div className="flex flex-col gap-1">
-            <span className="font-DanaMedium">{userInfoContext?.userInfo.name}</span>
+            <span className="font-DanaMedium">{userInfoContext?.userInfo?.name}</span>
             <span className="font-DanaRegular text-sm text-gray-700 dark:text-gray-400" id="qa-to" data-newtxt="پرسش جدید">
               پرسش جدید
             </span>

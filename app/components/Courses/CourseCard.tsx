@@ -16,7 +16,7 @@ const CourseCard=memo(({ course }: CourseCardPropsType)=> {
         <div className="flex flex-col justify-between px-[18px] pb-3 pt-4 gap-8 h-full">
           <div className="flex flex-col">
             <Link to={`/course/${course.shortName}`} className="font-DanaDemiBold line-clamp-2 mb-3">
-              {course.name}
+              {course?.name}
             </Link>
             <p className="text-sm line-clamp-2 text-gray-700 dark:text-gray-400 font-DanaMedium">{course.description}</p>
           </div>

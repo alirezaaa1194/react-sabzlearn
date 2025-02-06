@@ -10,7 +10,7 @@ import SummaryInfo from "~/components/Lesson/SummaryInfo";
 import CourseTopicContainer from "~/components/Lesson/CourseTopic/CourseTopicContainer";
 import CoursePercent from "~/components/Lesson/CoursePercent";
 import DownloadBox from "~/components/Lesson/DownloadBox";
-import { data, redirect, useFetcher } from "react-router";
+import { data, redirect, useFetcher, type MetaFunction } from "react-router";
 import { Toaster } from "react-hot-toast";
 import session from "~/sessions.server";
 
@@ -60,6 +60,13 @@ export async function action({ params, request }: Route.ActionArgs) {
   }
 }
 
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  const { lesson }: any = data;
+  const { course }: any = data;
+
+  return [{ title: `${lesson?.session.title} - ${course?.name} - سبزلرن` }];
+};
+
 function lesson({ loaderData }: Route.ComponentProps) {
   const {
     course,
@@ -78,7 +85,7 @@ function lesson({ loaderData }: Route.ComponentProps) {
   return (
     <main className="container pt-8 lg:pt-10 flex flex-col ">
       <Toaster />
-      <Breadcrumb titleName="دوره ها" titleLink="/courses" categoryName={course.categoryID.title.split("برنامه نویسی ").join("")} categoryLink={`/course-cat/${course.categoryID.name}`} dataName={course.name} dataLink={`/course/${course.shortName}`} />
+      <Breadcrumb titleName="دوره ها" titleLink="/courses" categoryName={course.categoryID.title.split("برنامه نویسی ").join("")} categoryLink={`/course-cat/${course.categoryID?.name}`} dataName={course?.name} dataLink={`/course/${course.shortName}`} />
       <video
         controls
         src={`/public/testVideo.mp4`}

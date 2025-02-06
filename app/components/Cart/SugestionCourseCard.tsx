@@ -17,13 +17,13 @@ function SugestionCourseCard({ course }: { course: courseType }) {
       {/* Course Banner */}
       <div className="relative group">
         <Link to={`/course/${course.shortName}`} className="block w-full h-full" title="آموزش ساخت ربات تلگرام با PHP">
-          <img className="block w-full h-full object-cover rounded-xl" src={`${baseUrl}/courses/covers/${course.cover}`} alt={course.name} />
+          <img className="block w-full h-full object-cover rounded-xl" src={`${baseUrl}/courses/covers/${course.cover}`} alt={course?.name} />
         </Link>
       </div>
       {/* Course Title & Description */}
       <div className="px-3 my-4 flex-grow">
         <h4 className="font-DanaDemiBold line-clamp-2 h-14">
-          <Link to={`/course/${course.shortName}`}>{course.name}</Link>
+          <Link to={`/course/${course.shortName}`}>{course?.name}</Link>
         </h4>
       </div>
       {/* Course Footer */}
