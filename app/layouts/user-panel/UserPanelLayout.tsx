@@ -1,7 +1,10 @@
-import React from "react";
+import React, { use, useState } from "react";
 import { Outlet, redirect } from "react-router";
 import { getCookie } from "~/utils/utils";
 import type { Route } from "./+types/UserPanelLayout";
+import Sidebar from "~/components/user-panel/Sidebar/Sidebar";
+import Header from "~/components/user-panel/Header/Header";
+import Overlay from "~/components/Overlay/Overlay";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
@@ -10,14 +13,22 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   if (!token) {
     return redirect("/");
   }
-
   return token;
 };
 
 function UserPanelLayout() {
+  const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
+
   return (
-    <div>
-      <Outlet />
+    <div className="relative flex">
+      <Overlay isOpen={isOpenSidebar} setIsOpen={setIsOpenSidebar} />
+      <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
+      <div className="w-full md:w-[calc(100%-220px)]">
+        <Header isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
+        <main className="p-4 md:p-6">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

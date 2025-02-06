@@ -24,7 +24,7 @@ function CartDropdownCard() {
       {/* header */}
       <div className="px-5 py-4 bg-sky-50 dark:bg-sky-500/10 text-sky-500 rounded-t-lg flex items-center justify-between">
         <span className="font-DanaDemiBold">سبد خرید من</span>
-        <span className="font-DanaDemiBold text-slate-500">{cartCoursesId !== "" ? cartCoursesIds?.length : 0} دوره</span>
+        <span className="font-DanaDemiBold text-slate-500">{cartCoursesId ? cartCoursesIds?.length : 0} دوره</span>
       </div>
 
       {/* body */}
