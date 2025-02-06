@@ -29,7 +29,7 @@ function SessionCard({ session, course, sessionIndex }: { session: sessionType; 
         </Link>
       </span>
       <div className="flex items-center gap-x-3">
-        <div className="w-24 md:w-28 text-xs md:text-sm text-green-500 shrink-0">
+        <div className="w-24 md:w-28 text-xs md:text-sm text-green-500 shrink-0 font-DanaRegular">
           <span className="font-DanaDemiBold">57% </span>
           مشاهده دوره
         </div>
