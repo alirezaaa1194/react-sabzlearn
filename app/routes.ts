@@ -35,6 +35,7 @@ export default [
             route('my-account/courses', 'routes/user-panel/courses.tsx'),
             route('my-account/tickets', 'routes/user-panel/tickets.tsx'),
             route('my-account/add-ticket', 'routes/user-panel/add-ticket.tsx'),
+            route('my-account/view-ticket/:ticketId', 'routes/user-panel/view-ticket.tsx'),
             route('my-account/edit-account', 'routes/user-panel/edit-account.tsx'),
         ]),
     ])
