@@ -10,7 +10,7 @@ import LogoutBtn from "./LogoutBtn";
 
 function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSidebar: boolean; setIsOpenSidebar: (param: boolean) => void }) {
   return (
-    <aside className={`w-67 md:w-1/5 h-svh fixed md:sticky top-0 !z-[100000000] transition-all ${isOpenSidebar ? "right-0 opacity-100 visible" : "-right-full opacity-0 invisible"} md:right-0 md:opacity-100 md:visible overflow-y-auto bg-white dark:bg-darker px-6 py-[18px] flex flex-col items-center justify-between`}>
+    <aside className={`w-67 md:w-1/5 h-svh fixed md:sticky top-0 !z-[100000000] md:!z-[1] transition-all ${isOpenSidebar ? "right-0 opacity-100 visible" : "-right-full opacity-0 invisible"} md:right-0 md:opacity-100 md:visible overflow-y-auto bg-white dark:bg-darker px-6 py-[18px] flex flex-col items-center justify-between`}>
       <div className="w-full flex flex-col">
         <div className="w-full flex md:hidden items-center justify-between pb-8">
           <Link to="/">

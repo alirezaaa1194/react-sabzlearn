@@ -1,5 +1,5 @@
 import moment from "jalali-moment";
-import { CheckCircleIcon, XCircleIcon } from "public/svg/svgs";
+import { CheckCircleIcon, InformationCircleIcon, XCircleIcon } from "public/svg/svgs";
 import React from "react";
 import { Link } from "react-router";
 import type { ticketType } from "~/types/ticket.type";
@@ -13,7 +13,7 @@ function TicketBox({ ticket }: { ticket: ticketType }) {
       <div className="flex items-center justify-between lg:justify-start gap-x-3 md:gap-x-5 w-full lg:w-auto text-slate-500 dark:text-gray-400 text-xs md:text-base">
         <span className="select-none">{ticket?.departmentID}</span>
         <span className="select-none mr-auto lg:mr-0">{moment(ticket.createdAt, "YYYY/MM/DD").locale("fa").format("YYYY/MM/DD")}</span>
-        {ticket.isAnswer ? <CheckCircleIcon className="size-5 md:size-6 text-green-500" /> : <XCircleIcon className="size-5 md:size-6 text-red-500" />}
+        {ticket.isAnswer ? <CheckCircleIcon className="size-5 md:size-6 text-green-500" /> : <InformationCircleIcon className="size-5 md:size-6 text-amber-400" />}
       </div>
     </div>
   );

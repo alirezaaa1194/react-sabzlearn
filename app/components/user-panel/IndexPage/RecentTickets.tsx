@@ -5,8 +5,6 @@ import NullMessage from "../NullMessage";
 import type { ticketType } from "~/types/ticket.type";
 
 function RecentTickets({ userTickets }: { userTickets: ticketType[] }) {
-  console.log(userTickets);
-
   return (
     <div>
       <SectionHeader title="تیکت های اخیر" linkTitle="مشاهده همه" linkAdress="/my-account/tickets" />
