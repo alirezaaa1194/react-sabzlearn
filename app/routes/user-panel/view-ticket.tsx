@@ -3,6 +3,7 @@ import type { Route } from "./+types/view-ticket";
 import { getCookie, getTicketAnswer, getUserTickets } from "~/utils/utils";
 import { CheckCircleIcon, InformationCircleIcon } from "public/svg/svgs";
 import moment from "jalali-moment";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -18,6 +19,10 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   return { ticketFullInfo, ticketAnswer };
 }
 
+export const meta: MetaFunction<typeof loader> = ({ data }: any) => {
+  return [{ title: `تیکت #${data?.ticketFullInfo?._id?.substr(0, 4)} - پنل کاربری - سبزلرن` }];
+};
+
 function viewTicket({ loaderData }: Route.ComponentProps) {
   const ticket = loaderData.ticketFullInfo;
   const ticketAnswer = loaderData.ticketAnswer.data;
@@ -27,7 +32,7 @@ function viewTicket({ loaderData }: Route.ComponentProps) {
       <div className="bg-white dark:bg-darker p-5 rounded">
         <div className="flex items-center justify-between gap-3 flex-wrap mb-6 pb-6 border-b border-b-neutral-200 dark:border-b-white/10">
           <span className="sm:text-lg font-DanaDemiBold">
-            #{ticket._id.substr(0, 4)} {ticket.title}
+            #{ticket?._id?.substr(0, 4)} {ticket.title}
           </span>
           {ticket.answer ? (
             <div className="flex items-center gap-x-1.5 text-base text-green-500 shrink-0 mr-auto">

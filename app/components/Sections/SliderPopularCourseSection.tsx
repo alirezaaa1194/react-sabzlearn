@@ -83,7 +83,6 @@ const SliderPopularCourseSection = memo(() => {
         </button>
       </div>
       <div className="w-[300px] h-[300px] absolute top-0 -right-10 z-[1] rounded-full bg-amber-500 blur-[120px] opacity-40 hidden lg:block"></div>
-
     </section>
   );
 });

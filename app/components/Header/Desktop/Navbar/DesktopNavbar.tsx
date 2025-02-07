@@ -1,11 +1,12 @@
 import { data, NavLink } from "react-router";
 import SubMenu from "./SubMenu";
-import { memo, useState } from "react";
+import { memo, use, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getMenus } from "~/utils/utils";
 import type { subMenuType } from "~/types/menus.type";
+import { AuthContext } from "~/contexts/AuthContext";
 
-const DesktopNavbar=memo(()=> {
+const DesktopNavbar = memo(() => {
   const [isHoverMenu, setIsHoverMenu] = useState<boolean>(false);
 
   const handleShowOverlay = () => {
@@ -16,6 +17,9 @@ const DesktopNavbar=memo(()=> {
   };
 
   const { data: menus } = useQuery({ queryKey: ["menus"], queryFn: getMenus });
+
+  const authContext = use(AuthContext);
+  const userInfo = authContext?.userInfo!;
 
   return (
     <nav>
@@ -41,9 +45,16 @@ const DesktopNavbar=memo(()=> {
             مقالات
           </NavLink>
         </li>
+        {userInfo?.role === "ADMIN" ? (
+          <li>
+            <NavLink to="/my-account" className="active:text-primary">
+              پنل مدیریت
+            </NavLink>
+          </li>
+        ) : null}
       </ul>
     </nav>
   );
-})
+});
 
 export default DesktopNavbar;

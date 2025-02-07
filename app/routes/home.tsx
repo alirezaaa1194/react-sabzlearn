@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 
 function home() {
   return (
-    <main className="overflow-x-hidden">
+    <>
       <HeroSection />
       <AllCoursesSection />
       <RoadmapSection />
@@ -25,7 +25,7 @@ function home() {
       <ArticlesSection />
       <PopularCourseSection />
       <AboutSection />
-    </main>
+    </>
   );
 }
 

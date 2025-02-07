@@ -4,6 +4,7 @@ import { baseUrl } from "~/utils/utils";
 import type { singleCourseType } from "~/types/course.type";
 import { AuthContext } from "~/contexts/AuthContext";
 import TimeStamp from "./TimeStamp/TimeStamp";
+import LessionPlyr from "../Lesson/LessionPlyr";
 
 function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCourseType; isUserRegisteredToThisCourse: boolean }) {
   const authContext = use(AuthContext);
@@ -20,8 +21,13 @@ function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCo
         <AllocatoToCourse course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
       </div>
       <div className="w-full lg:w-1/2">
-        {authContext?.isUserRegister ? <video poster={`${baseUrl}/courses/covers/${course?.cover}`} src={`${baseUrl}/courses/covers/${course.sessions[0]?.video}`} className="w-full h-full rounded-xl" controls></video> : <img src={`${baseUrl}/courses/covers/${course.cover}`} alt={`${course.shortName}-cover`} className="w-full h-full rounded-xl" />}
-        {/* <video src={`${baseUrl}/courses/covers/b36e8afba55d2275896e1fbda77ec47f7981e20c230f3470f8678b2fc6160515.mp4`} className="w-full h-full rounded-xl" controls></video> */}
+        {isUserRegisteredToThisCourse ? (
+          <div className="w-full h-full rounded-xl overflow-hidden">
+            <LessionPlyr video={course.sessions[0]?.video} poster={course?.cover} />
+          </div>
+        ) : (
+          <img src={`${baseUrl}/courses/covers/${course.cover}`} alt={`${course.shortName}-cover`} className="w-full h-full rounded-xl" />
+        )}
       </div>
     </div>
   );

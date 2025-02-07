@@ -83,8 +83,7 @@ function CommentForm() {
           </Button>
           <Button
             type="submit"
-            onPress ={(e) => {
-              e.preventDefault();
+            onPress ={() => {
               if (!commentFormInputValue.trim()) {
                 showToast("خطا", "لطفا متن دیدگاه را وارد کنید!", "error");
               } else {

@@ -179,13 +179,20 @@ export const saveTicket = async (ticketInfo: any, token: string | null) => {
   return res;
 };
 export const getTicketAnswer = async (ticketId: string, token: string | null) => {
-  const res = await apiRequest.get(`/tickets/answer/${ticketId}`,{
-    headers:{
-      Authorization:`Bearer ${token}`
-    }
+  const res = await apiRequest.get(`/tickets/answer/${ticketId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   return res;
 };
-
+export const updateUserInfo = async (userNewInfo: any, token: string | null) => {
+  const res = await apiRequest.put(`/users`, userNewInfo, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

@@ -13,6 +13,7 @@ import DownloadBox from "~/components/Lesson/DownloadBox";
 import { data, redirect, useFetcher, type MetaFunction } from "react-router";
 import { Toaster } from "react-hot-toast";
 import session from "~/sessions.server";
+import LessionPlyr from "~/components/Lesson/LessionPlyr";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookies = request.headers.get("Cookie");
@@ -48,7 +49,7 @@ export async function action({ params, request }: Route.ActionArgs) {
     const isSaved = savedLessons?.includes(lesson?.data.session._id);
 
     const url = new URL(request.url);
-    const sessionIndex=(url.searchParams.get('index'));
+    const sessionIndex = url.searchParams.get("index");
 
     if (!isSaved) {
       let allSavedSessionId = savedLessons ? `${savedLessons}; ${sessionIndex}, ${lesson?.data.session._id}` : `${sessionIndex}, ${lesson?.data.session._id}`;
@@ -83,11 +84,12 @@ function lesson({ loaderData }: Route.ComponentProps) {
   } = loaderData;
 
   const fetcher = useFetcher();
+
   return (
     <main className="container pt-8 lg:pt-10 flex flex-col ">
       <Toaster />
       <Breadcrumb titleName="دوره ها" titleLink="/courses" categoryName={course.categoryID.title.split("برنامه نویسی ").join("")} categoryLink={`/course-cat/${course.categoryID?.name}`} dataName={course?.name} dataLink={`/course/${course.shortName}`} />
-      <video
+      {/* <video
         controls
         src={`/public/testVideo.mp4`}
         className="w-full rounded-lg mt-8 sm:mt-10"
@@ -95,7 +97,19 @@ function lesson({ loaderData }: Route.ComponentProps) {
         onPlay={() => {
           fetcher.submit(null, { method: "POST" });
         }}
-      />
+      /> */}
+      {/* <video
+        controls
+        src={`${baseUrl}/courses/covers/${lesson.session.video}`}
+        className="w-full rounded-lg mt-8 sm:mt-10"
+        poster={`${baseUrl}/courses/covers/${course.cover}`}
+        onPlay={() => {
+          fetcher.submit(null, { method: "POST" });
+        }}
+      /> */}
+      <div className="w-full rounded-lg mt-8 sm:mt-10 overflow-hidden">
+        <LessionPlyr video={lesson.session.video} poster={course.cover} />
+      </div>
 
       {/* <img className="w-full rounded-lg mt-8 sm:mt-10" src={`${baseUrl}/courses/covers/${course.cover}`} alt={lesson.session.title} /> */}
 

@@ -4,7 +4,7 @@ import TicketForm from "~/components/user-panel/TicketPage/TicketForm";
 import type { Route } from "./+types/add-ticket";
 import { getCookie, getDepartments, saveTicket } from "~/utils/utils";
 import { Toaster } from "react-hot-toast";
-import { redirect } from "react-router";
+import { redirect, type MetaFunction } from "react-router";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const departments = await getDepartments();
@@ -34,12 +34,15 @@ export async function action({ params, request }: Route.ActionArgs) {
   try {
     await saveTicket(newTicketInfo, token);
 
-    return redirect('/my-account/tickets')
+    return redirect("/my-account/tickets");
   } catch {
     return { success: false };
   }
 }
 
+export const meta:MetaFunction=()=> {
+  return [{ title: "ارسال تیکت - پنل کاربری - سبزلرن" }];
+}
 function addTicket({ loaderData }: Route.ComponentProps) {
   const departments = loaderData.departments.data;
   return (

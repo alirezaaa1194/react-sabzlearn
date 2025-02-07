@@ -6,6 +6,7 @@ import session from "~/sessions.server";
 import RecentLessons from "~/components/user-panel/IndexPage/RecentLessons";
 import type { courseSessionType } from "~/types/course.type";
 import RecentTickets from "~/components/user-panel/IndexPage/RecentTickets";
+import type { MetaFunction } from "react-router";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
@@ -24,6 +25,10 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 
   return { watchedLessons, userTickets, watchedSessions, allCourses };
 };
+
+export const meta:MetaFunction=()=> {
+  return [{ title: "پیشخوان - پنل کاربری - سبزلرن" }];
+}
 
 function myAccount({ loaderData }: Route.ComponentProps) {
   return (

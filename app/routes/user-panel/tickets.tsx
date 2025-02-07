@@ -7,6 +7,8 @@ import NullMessage from "~/components/user-panel/NullMessage";
 import type { ticketType } from "~/types/ticket.type";
 import TicketBox from "~/components/user-panel/TicketPage/TicketBox";
 import SortSelect from "~/components/user-panel/TicketPage/SortSelect";
+import { Toaster } from "react-hot-toast";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -15,6 +17,10 @@ export async function loader({ request }: Route.LoaderArgs) {
   const userTickets = await getUserTickets(token);
 
   return { token, userTickets };
+}
+
+export const meta:MetaFunction=()=> {
+  return [{ title: "تیکت ها - پنل کاربری - سبزلرن" }];
 }
 
 function tickets({ loaderData }: Route.ComponentProps) {
@@ -58,6 +64,7 @@ function tickets({ loaderData }: Route.ComponentProps) {
   }, [sortValue, userTickets]);
   return (
     <section>
+      <Toaster />
       <TicketsStatistics userTickets={userTickets} />
       <div className="flex flex-col mt-6 md:mt-10">
         <SectionHeader title={`تیکت های من (${userTickets?.length})`} elem={<SortSelect setSortValue={setSortValue} />} />

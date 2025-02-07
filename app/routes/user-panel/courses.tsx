@@ -1,13 +1,18 @@
 import React, { use } from "react";
+import type { MetaFunction } from "react-router";
 import CourseCard from "~/components/user-panel/CoursesPage/CourseCard";
 import NullMessage from "~/components/user-panel/NullMessage";
 import SectionHeader from "~/components/user-panel/SectionHeader";
 import { AuthContext } from "~/contexts/AuthContext";
 import type { courseType } from "~/types/course.type";
 
+
+export const meta:MetaFunction=()=> {
+  return [{ title: "دوره های خریداری شده - پنل کاربری - سبزلرن" }];
+}
+
 function courses() {
   const userInfos = use(AuthContext)!;
-
   const userCourses = userInfos.userInfo.courses;
 
   return (

@@ -4,6 +4,8 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { useFetcher } from "react-router";
 import * as Spinners from "react-spinners";
+import { useEffect } from "react";
+import { showToast } from "~/components/Notification/Notification";
 const PulseLoader = Spinners.PulseLoader;
 
 function TicketForm({ departments }: any) {
@@ -35,6 +37,12 @@ function TicketForm({ departments }: any) {
 
     fetcher.submit(formData, { method: "POST" });
   };
+
+  useEffect(() => {
+    if (fetcher?.data?.success === false) {
+      showToast("خطا", "خطای غیر منتظره رخ داده است", "error");
+    }
+  }, [fetcher.data]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="block space-y-4.5 md:space-y-5 md:pr-5 font-DanaRegular">

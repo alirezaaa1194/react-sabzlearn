@@ -2,16 +2,22 @@ import { ChatBubbleLeftRightIcon, FolderOpenIcon, HomeIcon, PowerIcon, UserIcon 
 import React, { use } from "react";
 import { Link, useFetcher } from "react-router";
 import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
-import type { userType } from "~/types/user.type";
 import * as Spinners from "react-spinners";
-import { Button, ButtonGroup } from "@heroui/button";
-import { showToast } from "~/components/Notification/Notification";
+import { Button } from "@heroui/button";
+import { useQuery } from "@tanstack/react-query";
+import { getUserTickets } from "~/utils/utils";
 const PulseLoader = Spinners.PulseLoader;
 
 function UserProfileDropdownCard() {
   const userInfoContext = use(AuthContext) as AuthContextType;
-
   const fetcher = useFetcher();
+
+  const { data: userTickets } = useQuery({
+    queryKey: ["user-tickets"],
+    queryFn: () => getUserTickets(userInfoContext.token),
+  });
+
+  const isHaveUnAnsweredTicket = userTickets?.data.some((ticket: any) => !ticket.answer);
 
   return (
     <div className="w-[278px] bg-white dark:bg-darker p-5 pb-[14px] rounded-lg flex flex-col">
@@ -42,9 +48,12 @@ function UserProfileDropdownCard() {
           </Link>
         </li>
         <li>
-          <Link to="/my-account/tickets" className="flex items-center gap-x-2.5 h-12 px-2.5 rounded-xl hover:text-white hover:bg-green-500 transition-colors">
-            <ChatBubbleLeftRightIcon className="size-6" />
-            تیکت های من
+          <Link to="/my-account/tickets" className="flex items-center justify-between h-12 px-2.5 rounded-xl hover:text-white hover:bg-green-500 transition-colors">
+            <span className="flex items-center gap-x-2.5">
+              <ChatBubbleLeftRightIcon className="size-6" />
+              تیکت های من
+            </span>
+            {isHaveUnAnsweredTicket ? <span className="block size-2 rounded-full bg-amber-400"></span> : null}
           </Link>
         </li>
         <li>
