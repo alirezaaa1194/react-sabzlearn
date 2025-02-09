@@ -12,11 +12,12 @@ import { Skeleton } from "@heroui/skeleton";
 function QuestionItem({ question, session }: { question: any; session: courseSessionType }) {
   const authContext = use(AuthContext);
 
-  const { data: questionAnswer, isLoading } = useQuery({
-    queryKey: ["ticket-answer", question._id],
-    queryFn: () => getTicketAnswer(question._id, authContext?.token as string),
-  });
-
+  const { data: questionAnswer, isLoading } =
+    question.answer &&
+    useQuery({
+      queryKey: ["ticket-answer", question._id],
+      queryFn: () => getTicketAnswer(question._id, authContext?.token as string),
+    });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
