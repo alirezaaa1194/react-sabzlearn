@@ -29,8 +29,8 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
   const isUserRegisteredToThisCourse = userInfo?.data?.courses.some((userCourse: courseType) => userCourse?._id === course?.data._id);
 
-  const userTickets = await getUserTickets(token as string);
-  const supportTickets = userTickets?.data.filter((ticket: any) => ticket.departmentID === "پشتیبانی");
+  const userTickets = token ? await getUserTickets(token as string) : null;
+  const supportTickets = token ? userTickets?.data.filter((ticket: any) => ticket.departmentID === "پشتیبانی") : null;
 
   if (!isUserRegisteredToThisCourse) {
     return redirect(`/course/${course?.data.shortName}`);
