@@ -1,5 +1,5 @@
 import type { Route } from "./+types/lesson";
-import { baseUrl, getMe, getOneSession, getSingleCourse } from "~/utils/utils";
+import { baseUrl, getMe, getOneSession, getSingleCourse, getUserTickets } from "~/utils/utils";
 
 import { type courseSessionType, type courseType, type singleCourseType } from "~/types/course.type";
 import Breadcrumb from "~/components/Breadcrumb/Breadcrumb";
@@ -14,6 +14,7 @@ import { data, redirect, useFetcher, type MetaFunction } from "react-router";
 import { Toaster } from "react-hot-toast";
 import session from "~/sessions.server";
 import LessionPlyr from "~/components/Lesson/LessionPlyr";
+import { useEffect, useState } from "react";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookies = request.headers.get("Cookie");
@@ -28,11 +29,14 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
   const isUserRegisteredToThisCourse = userInfo?.data?.courses.some((userCourse: courseType) => userCourse?._id === course?.data._id);
 
+  const userTickets = await getUserTickets(token as string);
+  const supportTickets = userTickets?.data.filter((ticket: any) => ticket.departmentID === "پشتیبانی");
+
   if (!isUserRegisteredToThisCourse) {
     return redirect(`/course/${course?.data.shortName}`);
   }
 
-  return { lesson: lesson?.data, course: course?.data, isUserRegisteredToThisCourse };
+  return { lesson: lesson?.data, course: course?.data, isUserRegisteredToThisCourse, supportTickets };
 }
 
 export async function action({ params, request }: Route.ActionArgs) {
@@ -83,30 +87,16 @@ function lesson({ loaderData }: Route.ComponentProps) {
     isUserRegisteredToThisCourse: boolean;
   } = loaderData;
 
-  const fetcher = useFetcher();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <main className="container pt-8 lg:pt-10 flex flex-col ">
-      <Toaster />
+      {mounted && <Toaster />}
       <Breadcrumb titleName="دوره ها" titleLink="/courses" categoryName={course.categoryID.title.split("برنامه نویسی ").join("")} categoryLink={`/course-cat/${course.categoryID?.name}`} dataName={course?.name} dataLink={`/course/${course.shortName}`} />
-      {/* <video
-        controls
-        src={`/public/testVideo.mp4`}
-        className="w-full rounded-lg mt-8 sm:mt-10"
-        poster={`${baseUrl}/courses/covers/${course.cover}`}
-        onPlay={() => {
-          fetcher.submit(null, { method: "POST" });
-        }}
-      /> */}
-      {/* <video
-        controls
-        src={`${baseUrl}/courses/covers/${lesson.session.video}`}
-        className="w-full rounded-lg mt-8 sm:mt-10"
-        poster={`${baseUrl}/courses/covers/${course.cover}`}
-        onPlay={() => {
-          fetcher.submit(null, { method: "POST" });
-        }}
-      /> */}
       <div className="w-full rounded-lg mt-8 sm:mt-10 overflow-hidden">
         <LessionPlyr video={lesson.session.video} poster={course.cover} />
       </div>
@@ -114,26 +104,25 @@ function lesson({ loaderData }: Route.ComponentProps) {
       {/* <img className="w-full rounded-lg mt-8 sm:mt-10" src={`${baseUrl}/courses/covers/${course.cover}`} alt={lesson.session.title} /> */}
 
       <div className="block md:hidden mt-6">
-        <LessonInfo course={course} session={lesson.session} />
+        <LessonInfo course={course} session={lesson.session} videoSrc={`${baseUrl}/courses/covers/${lesson.session.video}`} />
       </div>
 
       <div className="grid grid-cols-12 gap-6 sm:gap-7 lg:mt-10">
         <div className="col-span-12 lg:col-span-8 order-2 lg:order-1">
           <div className="hidden md:block">
-            <LessonInfo course={course} session={lesson.session} />
+            <LessonInfo course={course} session={lesson.session} videoSrc={`${baseUrl}/courses/covers/${lesson.session.video}`} />
           </div>
-          <Question />
+          <Question questions={loaderData.supportTickets} session={lesson.session} />
         </div>
         <aside className="col-span-12 lg:col-span-4 space-y-8 order-1 lg:order-2">
           <CourseTopicContainer course={course} session={lesson.session} />
-
           <SummaryInfo course={course} sessions={lesson.sessions} />
 
           <CoursePercent />
 
           <TeacherInfo course={course} />
 
-          <DownloadBox />
+          <DownloadBox videoSrc={`${baseUrl}/courses/covers/${lesson.session.video}`} />
         </aside>
       </div>
     </main>

@@ -4,6 +4,7 @@ import { getCookie, getTicketAnswer, getUserTickets } from "~/utils/utils";
 import { CheckCircleIcon, InformationCircleIcon } from "public/svg/svgs";
 import moment from "jalali-moment";
 import type { MetaFunction } from "react-router";
+import parse from "html-react-parser";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -48,7 +49,7 @@ function viewTicket({ loaderData }: Route.ComponentProps) {
         </div>
         <div className="space-y-6 md:space-y-8 mb-16 md:mb-25">
           <div className="w-full lg:w-1/2 bg-gray-100 dark:bg-dark p-4 rounded">
-            <p className="text-sm md:text-base font-DanaMedium">{ticket.body}</p>
+            <p className="text-sm md:text-base font-DanaMedium">{parse(ticket.body)}</p>
             <div className="flex items-center justify-between text-sm text-slate-500 dark:text-gray-400 mt-2.5 pt-2.5 sm:mt-4 sm:pt-4 border-t border-t-neutral-200 dark:border-t-white/10">
               <span className="font-DanaRegular">{moment(ticket.createdAt, "YYYY/MM/DD").locale("fa").format("YYYY/MM/DD")}</span>
             </div>
@@ -60,7 +61,7 @@ function viewTicket({ loaderData }: Route.ComponentProps) {
                 <div className="flex items-center gap-x-1.5 mb-2 md:mb-4 text-sm sm:text-base font-DanaMedium">
                   <div className="size-2 rounded-full bg-green-500"></div>| مدیریت
                 </div>
-                <p className="text-sm md:text-base font-DanaMedium">{ticketAnswer.answer}</p>
+                <p className="text-sm md:text-base font-DanaMedium">{parse(ticketAnswer.answer)}</p>
                 <div className="flex items-center justify-between text-sm text-white dark:text-gray-400 mt-2.5 pt-2.5 sm:mt-4 sm:pt-4 border-t border-t-white/10">
                   <span className="font-DanaRegular">{moment(ticket.createdAt, "YYYY/MM/DD").locale("fa").format("YYYY/MM/DD")}</span>
                 </div>

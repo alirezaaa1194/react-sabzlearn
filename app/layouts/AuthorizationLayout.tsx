@@ -6,6 +6,7 @@ import type { Route } from "./+types/AuthorizationLayout";
 import { useQuery } from "@tanstack/react-query";
 import { CartContext } from "~/contexts/CartContext";
 import session from "~/sessions.server";
+import ProgressBar from "~/components/Progressbar/Progressbar";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
@@ -28,7 +29,8 @@ function AuthorizationLayout({ loaderData }: Route.ComponentProps) {
     return (
       <div>
         <CartContext value={coursesId}>
-          <AuthContext value={{ userInfo: data?.data, isUserRegister: !!token, token: token||null }}>
+          <AuthContext value={{ userInfo: data?.data, isUserRegister: !!token, token: token || null }}>
+            <ProgressBar />
             <Outlet />
           </AuthContext>
         </CartContext>
@@ -38,6 +40,7 @@ function AuthorizationLayout({ loaderData }: Route.ComponentProps) {
     return (
       <>
         <CartContext value={coursesId}>
+          <ProgressBar />
           <Outlet />
         </CartContext>
       </>

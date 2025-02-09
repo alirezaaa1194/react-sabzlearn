@@ -8,17 +8,14 @@ export const action = async ({ request }: Route.ActionArgs) => {
   const cookieHeader = request.headers.get("Cookie");
   const currentSession = await session.getSession(cookieHeader);
 
-  // گرفتن تم فعلی از کوکی
   const currentTheme = currentSession.get("theme") as themeType;
 
-  // تصمیم‌گیری برای تم بعدی
   const nextTheme = currentTheme === "dark" ? "light" : "dark";
 
-  // ذخیره تم جدید در کوکی
   currentSession.set("theme", nextTheme);
 
   return data(
-    { theme: nextTheme }, // ارسال تم جدید به کلاینت
+    { theme: nextTheme },
     {
       headers: { "Set-Cookie": await session.commitSession(currentSession) },
     }

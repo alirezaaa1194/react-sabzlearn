@@ -1,4 +1,5 @@
 // import { MoonIcon, SunIcon } from "public/svg/svgs";
+import { Spinner } from "@heroui/react";
 import { ComputerIcon, MoonIcon, SunIcon } from "public/svg/svgs";
 import React from "react";
 import { useFetcher } from "react-router";
@@ -14,8 +15,14 @@ function ThemeBtns({ className }: { className?: string }) {
         fetcher.submit(null, { method: "POST", action: "/switchTheme" });
       }}
     >
-      <MoonIcon className="size-6 block dark:hidden" />
-      <SunIcon className="size-6 hidden dark:block" />
+      {fetcher.state === "loading" ? (
+        <Spinner size="sm" />
+      ) : (
+        <>
+          <MoonIcon className="size-6 block dark:hidden" />
+          <SunIcon className="size-6 hidden dark:block" />
+        </>
+      )}
     </button>
   );
 }

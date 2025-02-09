@@ -1,12 +1,11 @@
 import moment from "jalali-moment";
 import { CheckMiniIcon } from "public/svg/svgs";
 import React from "react";
-import type { courseCommentAnswerType } from "~/types/course.type";
+import parse from "html-react-parser";
 
-function Reply({ answerContent }: { answerContent: courseCommentAnswerType }) {
-  
+function QuestionAnswer({ answer, date }: { answer: any; date: any }) {
   return (
-    <div className="mt-4 space-y-4">
+    <div>
       <div className="p-[18px] md:p-5 bg-gray-200 dark:bg-darker rounded-lg">
         <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-white/40 dark:border-white/10">
           <div className="flex items-center gap-x-3.5">
@@ -18,17 +17,16 @@ function Reply({ answerContent }: { answerContent: courseCommentAnswerType }) {
             </div>
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-x-1">
-                <span className="inline-block max-w-40 truncate font-DanaRegular">{answerContent?.creator?.name}</span>
-                <strong className="font-DanaDemiBold">| {answerContent?.creator.role==='ADMIN'?'مدیریت':'مدرس'}</strong>
+                <strong className="font-DanaDemiBold">پشتیبان</strong>
               </div>
-              <span className="font-DanaRegular text-sm text-gray-700 dark:text-gray-400">{moment(answerContent?.createdAt, "YYYY/MM/DD")?.locale("fa")?.format("YYYY/MM/DD")}</span>
+              <span className="font-DanaRegular text-sm text-gray-700 dark:text-gray-400">{moment(date, "YYYY/MM/DD")?.locale("fa")?.format("YYYY/MM/DD")}</span>
             </div>
           </div>
         </div>
-        <p className="font-DanaRegular text-sm sm:text-base break-words">{answerContent?.body}</p>
+        <p className="font-DanaRegular text-sm sm:text-base break-words">{parse(answer?.answer)}</p>
       </div>
     </div>
   );
 }
 
-export default Reply;
+export default QuestionAnswer;

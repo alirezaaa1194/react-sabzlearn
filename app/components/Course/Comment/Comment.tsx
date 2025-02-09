@@ -33,7 +33,7 @@ function Comment({ comment, isUserRegisteredToThisCourse }: { comment: courseCom
           </div>
         </div>
       </div>
-      <p className="font-DanaLight text-sm sm:text-base break-words">{comment.body}</p>
+      <p className="font-DanaRegular text-sm sm:text-base break-words">{comment.body}</p>
       {/* <!-- Replies --> */}
       {comment.answerContent ? <Reply answerContent={comment.answerContent} /> : ""}
     </div>

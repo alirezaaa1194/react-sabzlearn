@@ -21,6 +21,7 @@ export default [
                 route('RemoveCartCourse', 'actions/Cart/removeCartCourse.ts'),
                 route('saveOfferCode', 'actions/Cart/saveOfferCode.ts'),
                 route('removOfferCode', 'actions/Cart/removeOfferCode.ts'),
+                route('sendQuestion', 'actions/SendQuestion/SendQuestion.ts'),
         ]),
         layout('./layouts/auth/AuthLayout.tsx',[
             route('login', 'routes/auth/login.tsx'),

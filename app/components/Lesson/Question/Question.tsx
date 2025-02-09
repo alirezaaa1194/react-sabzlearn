@@ -1,8 +1,12 @@
 import { ChatBubbleOvalLeftEllipsisFillIcon, ExclamationTriangleIcon, UserMiniIcon } from "public/svg/svgs";
 import React, { use } from "react";
 import { AuthContext } from "~/contexts/AuthContext";
+import Editor from "./Editor/Editor";
+import { Button } from "@heroui/button";
+import QuestionList from "./QuestionList/QuestionList";
+import type { courseSessionType } from "~/types/course.type";
 
-function Question() {
+function Question({questions, session}:{questions:any, session:courseSessionType}) {
   const userInfoContext = use(AuthContext);
   return (
     <div className="bg-white dark:bg-darker rounded-xl p-[18px] sm:p-5 mt-0 lg:mt-8" id="question-section">
@@ -24,7 +28,7 @@ function Question() {
         <div className="dark:text-gray-400 font-DanaRegular">از مدرسین و پشتیبانان انتظارات منطقی و مرتبط با خدمات دریافتی خود داشته باشید. حل مشکلات خارج از مباحث و پروژه های دوره در حیطه وظایف پشتیبانان/مدرسین نیست. اگر نیاز به مشاوره دارید میتوانید از طریق تیکت ها به واحد مشاوره پیام دهید</div>
       </div>
 
-      <div className="mb-8 sm:mb-10">
+      <div className="">
         <div className="flex gap-x-3.5 mb-3">
           <div className="flex-center p-1.5 border border-gray-100 dark:border-dark rounded-full">
             <div className="flex items-center justify-center w-11 sm:w-12 h-11 sm:h-12 bg-gray-100 dark:bg-dark rounded-full">
@@ -43,9 +47,8 @@ function Question() {
           <p className="text-sm md:font-DanaMedium">لطفا قبل از ثبت پرسش بالاتر بخش قوانین ایجاد سوال را مطالعه کنید.</p>
         </div>
 
-        <div className="space-y-[18px] sm:space-y-5">
-          <p className="text-zinc-700 dark:text-white font-DanaRegular leading-7 mt-3.5">هنوز برای این جلسه سوالی نپرسیده‌اید!</p>
-        </div>
+        <Editor session={session} />
+        <QuestionList questions={questions} session={session} />
       </div>
     </div>
   );

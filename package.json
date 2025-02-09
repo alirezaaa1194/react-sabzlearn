@@ -11,6 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-react": "^9.4.0",
     "@heroui/accordion": "^2.2.8",
     "@heroui/button": "^2.2.10",
     "@heroui/checkbox": "^2.3.9",
