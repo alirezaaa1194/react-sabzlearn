@@ -7,11 +7,12 @@ import { getTicketAnswer } from "~/utils/utils";
 import { AuthContext } from "~/contexts/AuthContext";
 import type { courseSessionType } from "~/types/course.type";
 import parse from "html-react-parser";
+import { Skeleton } from "@heroui/skeleton";
 
 function QuestionItem({ question, session }: { question: any; session: courseSessionType }) {
   const authContext = use(AuthContext);
 
-  const { data: questionAnswer } = useQuery({
+  const { data: questionAnswer, isLoading } = useQuery({
     queryKey: ["ticket-answer", question._id],
     queryFn: () => getTicketAnswer(question._id, authContext?.token as string),
   });
@@ -51,7 +52,7 @@ function QuestionItem({ question, session }: { question: any; session: courseSes
       </div>
       <div className="flex flex-col gap-4">
         <p className="font-DanaRegular text-sm sm:text-base break-words">{mounted && parse(question.body)}</p>
-        {question.answer ? <QuestionAnswer answer={questionAnswer?.data} date={question.createdAt} /> : null}
+        {isLoading ? <Skeleton className="w-full h-32 rounded-lg" /> : question.answer ? <QuestionAnswer answer={questionAnswer?.data} date={question.createdAt} /> : null}
       </div>
     </div>
   );

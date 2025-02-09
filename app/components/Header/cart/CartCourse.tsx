@@ -36,9 +36,9 @@ function CartCourse({ course }: { course: courseType }) {
       <button
         onClick={() => {
           fetcher.submit({ courseId: course._id }, { method: "POST", action: "/RemoveCartCourse" });
-          // if (fetcher.state !== "loading") {
-          //   showToast("موفق", "از سبد خرید شما حذف شد", "success");
-          // }
+          if (fetcher.state !== "loading") {
+            showToast("موفق", "از سبد خرید شما حذف شد", "success");
+          }
         }}
       >
         {fetcher.state === "loading" ? <Spinner size="sm" /> : <TrashIcon className="size-4 transition-colors text-gray-400 hover:text-red-500" />}

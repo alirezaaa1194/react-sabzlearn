@@ -2,6 +2,8 @@ import moment from "jalali-moment";
 import { CheckMiniIcon } from "public/svg/svgs";
 import React from "react";
 import type { courseCommentAnswerType } from "~/types/course.type";
+import parse from "html-react-parser";
+
 
 function Reply({ answerContent }: { answerContent: courseCommentAnswerType }) {
   
@@ -25,7 +27,7 @@ function Reply({ answerContent }: { answerContent: courseCommentAnswerType }) {
             </div>
           </div>
         </div>
-        <p className="font-DanaRegular text-sm sm:text-base break-words">{answerContent?.body}</p>
+        <p className="font-DanaRegular text-sm sm:text-base break-words">{parse(answerContent?.body)}</p>
       </div>
     </div>
   );

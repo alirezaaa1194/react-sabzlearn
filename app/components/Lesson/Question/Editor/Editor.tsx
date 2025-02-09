@@ -39,6 +39,10 @@ export default function Editor({ session }: { session: courseSessionType }) {
 
     return {
       DecoupledEditor,
+      extraPlugins : 'autogrow',
+autoGrow_minHeight : 250,
+autoGrow_maxHeight : 600,
+
       editorConfig: {
         toolbar: {
           items: ["bold", "|", "specialCharacters", "link", "codeBlock", "|", "alignment"],

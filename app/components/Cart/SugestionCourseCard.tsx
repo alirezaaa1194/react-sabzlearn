@@ -71,7 +71,7 @@ function SugestionCourseCard({ course }: { course: courseType }) {
             }
           }}
         >
-          {fetcher.state === "loading" ? <Spinner size="md" color="white" /> : "افزودن به سبد خرید"}
+          {fetcher.state === "loading" ? <Spinner size="md" color="primary" /> : "افزودن به سبد خرید"}
         </Button>
       </div>
     </div>

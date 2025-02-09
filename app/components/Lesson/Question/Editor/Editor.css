@@ -1,29 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
 @media print {
   body {
-    margin: 0 !important;
+    @apply m-0 !important;
   }
 }
 
 .main-container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  @apply w-full mx-auto;
 }
+
 .ck-content {
-  line-height: 1.6;
-  word-break: break-word;
+  @apply leading-6 break-words;
 }
 
 .editor-container_document-editor .editor-container__toolbar {
-  display: flex;
-  position: relative;
+  @apply flex relative;
 }
 
 .editor-container_document-editor .editor-container__toolbar > .ck.ck-toolbar {
-  flex-grow: 1;
-  @apply bg-gray-100 dark:bg-dark border-none shadow-none rounded-t-xl;
+  @apply flex-grow bg-gray-100 dark:bg-dark border-none shadow-none rounded-t-xl;
 }
 
 .editor-container_document-editor .editor-container__toolbar > .ck.ck-toolbar button {
@@ -31,21 +25,21 @@
 }
 
 .editor-container_document-editor .editor-container__editor {
-  width: 100%;
-  height: 100%;
-  @apply rounded-b-xl overflow-hidden;
+  @apply w-full h-full rounded-b-xl overflow-hidden;
 }
 
 .editor-container_document-editor .editor-container__editor .ck.ck-editor__editable {
-  flex: 1 1 auto;
-  @apply text-gray-900 dark:text-white bg-gray-100 dark:bg-dark h-60 font-DanaMedium border border-transparent focus:border-gray-200 dark:focus:border-gray-600 shadow-none rounded-t-none rounded-b-xl transition-colors;
+  @apply flex-1 text-gray-900 dark:text-white bg-gray-100 dark:bg-dark min-h-60 font-DanaMedium border border-transparent focus:border-gray-200 dark:focus:border-gray-600 shadow-none rounded-none rounded-b-xl transition-colors;
 }
+
 .ck-powered-by {
-  display: none !important;
+  @apply hidden !important;
 }
+
 .ck-toolbar__separator {
   @apply !bg-transparent !border-transparent;
 }
+
 .ck .ck-placeholder:before,
 .ck.ck-placeholder:before {
   @apply text-gray-600 dark:text-gray-400 font-DanaRegular;
@@ -56,11 +50,12 @@
 .ck-dropdown__panel ul {
   @apply bg-gray-100 dark:bg-darker !border-none !p-0 !m-0 !outline-none !h-fit;
 }
+
 .ck-dropdown__panel li,
 .ck-dropdown__panel li button {
-  @apply bg-gray-100 dark:bg-darker !border-none !outline-none !h-fit !rounded-none dark:hover:!bg-dark dark:hover:!text-gray-400;
+  @apply bg-gray-100 dark:bg-darker !border-none !outline-none !h-fit !rounded-none dark:hover:bg-dark dark:hover:text-gray-400;
 }
 
 .ck-dropdown__panel svg {
-  @apply !text-gray-400;
+  @apply text-gray-400;
 }

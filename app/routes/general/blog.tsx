@@ -20,7 +20,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }: any) => {
 };
 
 function blog({ loaderData }: Route.ComponentProps) {
-  const { data: article } = loaderData.data;
+  const { data: article } = (loaderData.data);
 
   return (
     <main className="container pt-8 lg:pt-10 flex flex-col">

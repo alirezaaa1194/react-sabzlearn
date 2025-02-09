@@ -10,7 +10,7 @@ import SummaryInfo from "~/components/Lesson/SummaryInfo";
 import CourseTopicContainer from "~/components/Lesson/CourseTopic/CourseTopicContainer";
 import CoursePercent from "~/components/Lesson/CoursePercent";
 import DownloadBox from "~/components/Lesson/DownloadBox";
-import { data, redirect, useFetcher, type MetaFunction } from "react-router";
+import { data, redirect, useFetcher, useLocation, type MetaFunction } from "react-router";
 import { Toaster } from "react-hot-toast";
 import session from "~/sessions.server";
 import LessionPlyr from "~/components/Lesson/LessionPlyr";
@@ -88,10 +88,16 @@ function lesson({ loaderData }: Route.ComponentProps) {
   } = loaderData;
 
   const [mounted, setMounted] = useState(false);
+  const location = useLocation();
+  const fetcher = useFetcher();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    fetcher.submit(null, { method: "POST" });
+  }, [location]);
 
   return (
     <main className="container pt-8 lg:pt-10 flex flex-col ">

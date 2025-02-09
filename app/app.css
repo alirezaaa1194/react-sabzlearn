@@ -96,8 +96,11 @@
     width: 500px !important;
   }
 
-
-  .group[data-selected="true"] .group-data-\[selected\=true\]\:text-primary-foreground{
-    @apply !text-secondary
+  .group[data-selected="true"] .group-data-\[selected\=true\]\:text-primary-foreground {
+    @apply !text-secondary;
+  }
+  .go4109123758,
+  #_rht_toaster {
+    @apply !z-[999999999];
   }
 }

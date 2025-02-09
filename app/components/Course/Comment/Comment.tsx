@@ -1,10 +1,9 @@
-import React from "react";
-import { Accordion, AccordionItem, Button } from "@heroui/react";
-import { AcademicCapFillIcon, AcademicCapMiniIcon, ArrowLeftCircleMiniIcon, ArrowUturnLeftIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightFillIcon, CheckMiniIcon, ChevronDownIcon, ExclamationTriangleIcon, PlayCircleIcon, SparklesIcon, UserMiniIcon } from "public/svg/svgs";
-import { Link } from "react-router";
 import Reply from "./Reply";
-import type { courseCommentType, singleCourseType } from "~/types/course.type";
+import type { courseCommentType } from "~/types/course.type";
 import moment from "jalali-moment";
+import { AcademicCapMiniIcon } from "public/svg/svgs";
+import parse from "html-react-parser";
+
 
 function Comment({ comment, isUserRegisteredToThisCourse }: { comment: courseCommentType; isUserRegisteredToThisCourse: boolean }) {
   return (
@@ -33,7 +32,7 @@ function Comment({ comment, isUserRegisteredToThisCourse }: { comment: courseCom
           </div>
         </div>
       </div>
-      <p className="font-DanaRegular text-sm sm:text-base break-words">{comment.body}</p>
+      <p className="font-DanaRegular text-sm sm:text-base break-words">{parse(comment.body)}</p>
       {/* <!-- Replies --> */}
       {comment.answerContent ? <Reply answerContent={comment.answerContent} /> : ""}
     </div>

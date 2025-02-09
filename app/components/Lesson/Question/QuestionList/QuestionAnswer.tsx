@@ -23,7 +23,7 @@ function QuestionAnswer({ answer, date }: { answer: any; date: any }) {
             </div>
           </div>
         </div>
-        <p className="font-DanaRegular text-sm sm:text-base break-words">{parse(answer?.answer)}</p>
+        <p className="font-DanaRegular text-sm sm:text-base break-words">{parse(String(answer?.answer))}</p>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ const ProgressBar = () => {
 
     if (navigation.state === "loading") {
       setIsLoading(true);
-      setProgress(10); // شروع از ۱۰٪ برای جلوگیری از ثابت موندن
+      setProgress(10);
 
       interval = setInterval(() => {
         setProgress((prev) => {
@@ -31,9 +31,9 @@ const ProgressBar = () => {
   }, [navigation.state]);
 
   return (
-    <div className="fixed top-0 left-0 z-![999999999999999999] w-full h-1 bg-transparent">
+    <div className="fixed top-0 left-0 !z-[1000000000] w-full h-1 bg-transparent">
       <div
-        className="h-full bg-primary transition-all duration-200"
+        className="h-full bg-green-500 shadow-md shadow-green-500 transition-all duration-200 rounded-sm"
         style={{
           width: `${progress}%`,
           opacity: isLoading ? 1 : 0,

@@ -18,8 +18,9 @@ function QuestionList({ questions, session }: { questions: any; session: courseS
       {questions?.length ? (
         <>
           {questions.slice(0, (currentPage + 1) * 5).map((ticket: any) => {
-            return <QuestionItem question={ticket} session={session} />;
+            return <QuestionItem key={ticket._id} question={ticket} session={session} />;
           })}
+         
           {(currentPage + 1) * 5 < questions?.length ? (
             <Button className="mt-5 mx-auto h-10 px-3 rounded-lg text-primary bg-transparent border border-primary transition-colors hover:bg-[#1eb35b1a] font-DanaRegular" onPress={paginationHandler}>
               مشاهده بیشتر
