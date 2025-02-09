@@ -80,7 +80,7 @@ autoGrow_maxHeight : 600,
         editorRef.current.setData("");
       }
     } else {
-      showToast("هشدار", "لطفا متن را وارد کنید.", "error");
+      showToast("خطا", "لطفا متن را وارد کنید.", "error");
     }
   };
 
