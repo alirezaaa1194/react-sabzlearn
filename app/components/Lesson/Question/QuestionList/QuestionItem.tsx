@@ -52,7 +52,7 @@ function QuestionItem({ question, session }: { question: any; session: courseSes
         {question.answer ? <CheckCircleIcon className="size-7 text-green-500" /> : <InformationCircleIcon className="size-7 text-amber-400" />}
       </div>
       <div className="flex flex-col gap-4">
-        <p className="font-DanaRegular text-sm sm:text-base break-words">{mounted && parse(question.body)}</p>
+        {mounted ? <p className="font-DanaRegular text-sm sm:text-base break-words">{parse(question.body)}</p> : <Skeleton className="w-full h-32 rounded-lg" />}
         {isLoading ? <Skeleton className="w-full h-32 rounded-lg" /> : question.answer ? <QuestionAnswer answer={questionAnswer?.data} date={question.createdAt} /> : null}
       </div>
     </div>

@@ -4,6 +4,7 @@ import "./CourseDesc.css";
 import { Button } from "@heroui/button";
 import type { singleCourseType } from "~/types/course.type";
 import { baseUrl } from "~/utils/utils";
+import parse from 'html-react-parser'
 
 function CourseDesc({ course }: { course: singleCourseType }) {
   const [isOpenDesc, setIsOpenDesc] = useState<boolean>(false);
@@ -30,7 +31,8 @@ function CourseDesc({ course }: { course: singleCourseType }) {
       <div className="relative overflow-hidden">
         <div id="course-desc-container" className={`${isOpenDesc ? "h-fit" : "max-h-[800px]"} font-DanaRegular text-[#374151] dark:text-[#d1d5db] space-y-6`}>
           <img src={`${baseUrl}/courses/covers/${course.cover}`} alt={course?.name} />
-          {course.description}
+          {parse(course.description)}
+          
         </div>
         {containerHeight > 800 ? <>{!isOpenDesc ? <div className="absolute bottom-0 right-0 left-0 h-[160px] bg-gradient-to-t from-white dark:from-darker from-0% via-white/[55%] dark:via-darker/[55%] via-70% to-white/0 dark:to-darker/0 to-100%"></div> : ""}</> : ""}
       </div>

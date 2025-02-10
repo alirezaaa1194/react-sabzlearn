@@ -34,6 +34,11 @@
     src: url("../fonts/Morabba/woff2/Morabba-Bold.woff2");
   }
 
+  @font-face {
+    font-family: lalezar;
+    src: url("../fonts/Lalezar/Lalezar-Regular.ttf");
+  }
+
   :root {
     @apply bg-gray-100;
   }
@@ -103,4 +108,5 @@
   #_rht_toaster {
     @apply !z-[999999999];
   }
+
 }

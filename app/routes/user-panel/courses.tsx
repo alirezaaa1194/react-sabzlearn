@@ -6,10 +6,9 @@ import SectionHeader from "~/components/user-panel/SectionHeader";
 import { AuthContext } from "~/contexts/AuthContext";
 import type { courseType } from "~/types/course.type";
 
-
-export const meta:MetaFunction=()=> {
+export const meta: MetaFunction = () => {
   return [{ title: "دوره های خریداری شده - پنل کاربری - سبزلرن" }];
-}
+};
 
 function courses() {
   const userInfos = use(AuthContext)!;
@@ -25,7 +24,7 @@ function courses() {
           ))}
         </div>
       ) : (
-        <NullMessage title="هنوز  در دوره ای ثبت نام نکرده اید"/>
+        <NullMessage title="هنوز  در دوره ای ثبت نام نکرده اید" />
       )}
     </section>
   );

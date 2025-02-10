@@ -41,5 +41,14 @@ export default [
             route('my-account/edit-account', 'routes/user-panel/edit-account.tsx'),
         ]),
     ])
+]),
+
+
+layout('./layouts/admin-panel/AdminLayout.tsx',[
+    route('admin-panel','routes/admin-panel/Dashboard.tsx'),
+    route('admin-panel/courses','routes/admin-panel/Courses.tsx'),
+    route('AddCourse','actions/Admin-Panel/Courses/AddCourse.ts'),
+    route('RemoveCourse','actions/Admin-Panel/Courses/RemoveCourse.ts'),
 ])
+
 ] satisfies RouteConfig;

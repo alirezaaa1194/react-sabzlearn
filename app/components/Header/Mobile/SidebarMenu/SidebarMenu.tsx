@@ -24,7 +24,7 @@ function SidebarMenu() {
       {userInfo?.role === "ADMIN" ? (
         <li className="flex flex-col items-center justify-between gap-y-2.5 mb-2.5">
           <div className="flex items-center justify-between h-8 w-full">
-            <NavLink to="/my-account">پنل مدیریت</NavLink>
+            <NavLink to="/admin-panel">پنل مدیریت</NavLink>
           </div>
         </li>
       ) : null}

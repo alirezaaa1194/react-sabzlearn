@@ -4,7 +4,7 @@ import type { Config } from "tailwindcss";
 export default {
   content: [
     "./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/@heroui/theme/dist/components/(accordion|button|checkbox|dropdown|skeleton|toggle|divider|ripple|spinner|form|menu|popover).js"
+    "./node_modules/@heroui/theme/dist/components/(accordion|button|checkbox|dropdown|input|modal|pagination|radio|select|skeleton|toggle|table|popover|divider|ripple|spinner|form|menu|listbox|scroll-shadow|spacer).js"
   ],
   darkMode: "class",
   theme: {
@@ -17,6 +17,7 @@ export default {
         MorabaLight: "MorabaLight",
         MorabaMedium: "MorabaMedium",
         MorabaBold: "MorabaBold",
+        lalezar: "lalezar",
       },
       colors: {
         darker: "#242a38",
@@ -26,6 +27,10 @@ export default {
         secondary: "#0a97d4",
         "secondary-hover": "#127bbb",
         "red-500": "#db2e34",
+
+        "white-50": "#f0f0f0",
+        "primary-blue": "#471aaa",
+        "blue-hover": "#391588",
       },
       height: {
         13: "52px",
@@ -44,6 +49,9 @@ export default {
       },
       padding: {
         67: "268px",
+      },
+      boxShadow: {
+        "primary-shadow": "0px 8px 24px rgba(149, 157,165, .2)",
       },
     },
   },

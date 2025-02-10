@@ -194,5 +194,35 @@ export const updateUserInfo = async (userNewInfo: any, token: string | null) => 
   });
   return res;
 };
+
+export const getAllUsers = async (token: string) => {
+  const res = await apiRequest.get("/users", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
+export const saveNewCourse = async (token: string, formData: any) => {
+  const res = await apiRequest.post("/courses", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res;
+};
+export const removeCourse = async (courseId: string, token: string) => {
+  const res = apiRequest.delete(`/courses/${courseId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res;
+};
+
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

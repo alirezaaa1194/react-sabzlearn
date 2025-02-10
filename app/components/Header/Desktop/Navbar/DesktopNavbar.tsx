@@ -47,7 +47,7 @@ const DesktopNavbar = memo(() => {
         </li>
         {userInfo?.role === "ADMIN" ? (
           <li>
-            <NavLink to="/my-account" className="active:text-primary">
+            <NavLink to="/admin-panel" className="active:text-primary">
               پنل مدیریت
             </NavLink>
           </li>
