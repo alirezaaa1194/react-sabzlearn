@@ -40,7 +40,12 @@ export async function action({ request }: Route.ActionArgs) {
 
     await Promise.all(
       splitedCoursesId.map((courseId) => {
-        const isUserHaveThisCourse = userCourses.some((course: courseType) => course._id === courseId);
+        const isUserHaveThisCourse = userCourses.some((course: courseType) => {
+          if (course?._id) {
+            return course?._id === courseId;
+          }
+        });
+
         if (!isUserHaveThisCourse) {
           return registerCourse(courseId, token);
         }

@@ -214,6 +214,16 @@ export const saveNewCourse = async (token: string, formData: any) => {
 
   return res;
 };
+export const saveNewSesson = async (token: string, formData: any, courseId: string) => {
+  const res = await apiRequest.post(`/courses/${courseId}/sessions`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res;
+};
 export const removeCourse = async (courseId: string, token: string) => {
   const res = apiRequest.delete(`/courses/${courseId}`, {
     headers: {
@@ -223,6 +233,67 @@ export const removeCourse = async (courseId: string, token: string) => {
 
   return res;
 };
+export const removeLesson = async (lessonId: string, token: string) => {
+  const res = apiRequest.delete(`/courses/sessions/${lessonId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
+  return res;
+};
+
+export const getAllComments = async () => {
+  const res = await apiRequest.get("/comments");
+  return res;
+};
+
+export const acceptComment = async (token: string, commentId: string) => {
+  const res = await apiRequest.put(
+    `/comments/accept/${commentId}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res;
+};
+export const rejectComment = async (token: string, commentId: string) => {
+  const res = await apiRequest.put(
+    `/comments/reject/${commentId}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res;
+};
+
+export const deleteComment = async (token: string, commentId: string) => {
+  const res = await apiRequest.delete(`/comments/${commentId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+export const answerToComment = async (token: string, commentId: string, answerBody: string) => {
+  const res = await apiRequest.post(
+    `comments/answer/${commentId}`,
+    {
+      body: answerBody,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res;
+};
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

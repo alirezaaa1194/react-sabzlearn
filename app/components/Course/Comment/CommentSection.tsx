@@ -27,7 +27,7 @@ function CommentSection({ course }: { course: singleCourseType }) {
       {course.comments.length ? (
         <div className="flex flex-col items-center w-full">
           <div className="space-y-[18px] sm:space-y-5 w-full">
-            {course.comments.slice(0, (currentPage + 1) * 10).map((comment: courseCommentType) => {
+            {[...course.comments].reverse().slice(0, (currentPage + 1) * 10).map((comment: courseCommentType) => {
               return <Comment key={comment._id} comment={comment} isUserRegisteredToThisCourse={course.isUserRegisteredToThisCourse} />;
             })}
           </div>

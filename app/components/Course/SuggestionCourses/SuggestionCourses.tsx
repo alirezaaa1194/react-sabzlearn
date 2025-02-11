@@ -11,7 +11,8 @@ function SuggestionCourses({ course }: { course: singleCourseType }) {
     queryFn: getAllCourses,
   });
 
-  const suggestionCourses: courseType[] = allCourses?.data.filter((allCourse: courseType) => allCourse.categoryID._id === course.categoryID._id && allCourse._id !== course._id);
+  const suggestionCourses: courseType[] = allCourses?.data.filter((allCourse: courseType) => allCourse.categoryID._id === course.categoryID._id && allCourse._id !== course._id);  
+  const sortedSuggestionCourses = [...suggestionCourses].sort((a: courseType, b: courseType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));
 
   return (
     <div className="hidden lg:block bg-white dark:bg-darker rounded-xl p-[18px] sm:p-5 mt-8">
@@ -20,7 +21,7 @@ function SuggestionCourses({ course }: { course: singleCourseType }) {
         <SparklesIcon className="hidden md:inline-block text-amber-400 w-10 h-10" />
         <div className="font-MorabaBold text-xl md:text-2xl">دوره های مرتبط</div>
       </div>
-      <div className="space-y-4 md:space-y-5">{suggestionCourses.length ? suggestionCourses.slice(suggestionCourses.length - 5).map((suggestionCourse: courseType) => <SuggestionCourseBox key={suggestionCourse._id} suggestionCourse={suggestionCourse} />) : <h3 className="font-DanaMedium text-center">دوره ای وجود ندارد.</h3>}</div>
+      <div className="space-y-4 md:space-y-5">{sortedSuggestionCourses.length ? sortedSuggestionCourses.slice(0, 5).map((suggestionCourse: courseType) => <SuggestionCourseBox key={suggestionCourse._id} suggestionCourse={suggestionCourse} />) : <h3 className="font-DanaMedium text-center">دوره ای وجود ندارد.</h3>}</div>
     </div>
   );
 }

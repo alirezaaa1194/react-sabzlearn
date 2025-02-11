@@ -1,0 +1,62 @@
+export type commentType = {
+  _id: string;
+  body: string;
+  course: string;
+  creator: {
+    _id: string;
+    username: string;
+    email: string;
+    name: string;
+    role: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+    profile: string;
+    phone: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  answer: number;
+  isAnswer: number;
+  score: number;
+  answerContent: null | {
+    _id: string;
+    body: string;
+    course: {
+      _id: string;
+      name: string;
+      description: string;
+      cover: string;
+      shortName: string;
+      categoryID: string;
+      creator: string;
+      createdAt: string;
+      updatedAt: string;
+      __v: number;
+      isComplete: number;
+      support: string;
+      price: number;
+      status: string;
+    };
+    creator: {
+      _id: string;
+      username: string;
+      email: string;
+      name: string;
+      role: string;
+      createdAt: string;
+      updatedAt: string;
+      __v: number;
+      profile: string;
+      phone: string;
+    };
+    answer: number;
+    isAnswer: number;
+    mainCommendID: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+    score: 5;
+  };
+};

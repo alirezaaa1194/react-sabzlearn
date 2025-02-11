@@ -35,7 +35,7 @@ function AddCourseForm({ categories }: { categories: categoryType[] }) {
           if (!value || !value[0]) return true;
           return ["image/jpeg", "image/png", "image/gif"].includes(value[0].type);
         })
-        .required("asas"),
+        .required("لطفا تصویر دوره را وارد کنید"),
       status: yup.string().required("لطفاً وضعیت دوره را انتخاب کنید"),
     })
     .required();
@@ -113,7 +113,7 @@ function AddCourseForm({ categories }: { categories: categoryType[] }) {
                 label="دسته بندی دوره"
                 placeholder="دسته بندی مورد نظر را انتخاب کنید"
                 isInvalid={!!error}
-                errorMessage={error?.message}
+                errorMessage={<span className="font-DanaMedium text-sm">{error?.message}</span>}
               >
                 {categories.map((category) => (
                   <SelectItem key={category._id}>{category.title}</SelectItem>
@@ -128,13 +128,13 @@ function AddCourseForm({ categories }: { categories: categoryType[] }) {
             name="status"
             control={methods.control}
             render={({ field, fieldState: { error } }) => (
-              <RadioGroup {...field} color="secondary" label="وضعیت دوره" className="w-full md:w-1/3" classNames={{ label: "text-white font-lalezar text-lg after:hidden" }} isInvalid={!!error} errorMessage={error?.message}>
+              <RadioGroup {...field} color="secondary" label="وضعیت دوره" className="w-full md:w-1/3" classNames={{ label: "text-white font-lalezar text-lg after:hidden" }} isInvalid={!!error} errorMessage={<span className="font-DanaMedium text-sm">{error?.message}</span>}>
                 <div className="flex gap-7">
                   <Radio className="font-DanaMedium text-sm" value="presell">
                     پیش فروش
                   </Radio>
                   <Radio className="font-DanaMedium text-sm" value="start">
-                    درحال برگزاری
+                    درحال ضبط
                   </Radio>
                 </div>
               </RadioGroup>
@@ -143,7 +143,7 @@ function AddCourseForm({ categories }: { categories: categoryType[] }) {
         </div>
 
         <Button type="submit" className="bg-secondary hover:bg-secondary-hover transition-colors rounded-lg text-white font-DanaMedium text-base w-full md:w-fit md:px-10 md:col-span-2 ms-auto mt-5">
-          {fetcher.state === "loading" ? <Spinner color="white" size="md" /> : "افزودن دوره"}
+          {fetcher.state === "loading" ? <Spinner color="white" size="sm" /> : "افزودن دوره"}
         </Button>
       </form>
     </FormProvider>

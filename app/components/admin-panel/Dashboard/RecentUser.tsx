@@ -19,7 +19,7 @@ export default function RecentUser({ users }: { users: userType[] }) {
         <TableColumn align="center">نقش</TableColumn>
       </TableHeader>
       <TableBody>
-        {users.slice(users.length - 10, users.length).map((user) => (
+        {[...users.slice(users.length - 10, users.length)].reverse().map((user) => (
           <TableRow key={user._id}>
             <TableCell>{user._id}</TableCell>
             <TableCell>{user.username}</TableCell>
