@@ -117,7 +117,7 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
           </div>
           {isOpenCategoryBox ? (
             <ul className="flex flex-col gap-y-[14px]">
-              {allCategories?.data.map((category: categoryType) => {
+              {[...allCategories?.data].reverse().map((category: categoryType) => {
                 const categoryCourseLength = allCourses?.data.filter((course: courseType) => course?.categoryID._id === category._id);
 
                 return (

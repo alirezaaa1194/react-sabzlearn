@@ -3,7 +3,7 @@ import { MagnifyingGlassIcon } from "public/svg/svgs";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
-function CustomInput({ name, label, placeholder }: any) {
+function CustomInput({ name, label, placeholder, defaultValue }: any) {
   const { control } = useFormContext();
 
   return (
@@ -17,6 +17,7 @@ function CustomInput({ name, label, placeholder }: any) {
             inputWrapper: `bg-dark hover:!bg-white/10 text-white font-DanaMedium focus:!bg-dark rounded-md border border-transparent`,
             label: "text-white font-lalezar text-lg",
           }}
+          defaultValue={defaultValue || ""}
           label={label}
           labelPlacement="outside"
           placeholder={placeholder}

@@ -17,9 +17,14 @@ function AccountForm() {
 
   const fetcher = useFetcher();
 
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+
   const schema = yup
     .object({
       name: yup.string().min(3, "نام باید حداقل ۳ کاراکتر باشد").max(20, "نام نباید بیشتر از 20 کاراکتر باشد").required("لطفاً نام را وارد کنید"),
+      username: yup.string().min(3, "نام کاربری باید حداقل ۳ کاراکتر باشد").max(20, "نام کاربری نباید بیشتر از 20 کاراکتر باشد").required("لطفاً نام کاربری را وارد کنید"),
+      email: yup.string().email('لطفا ایمل را صحیح وارد کنید').required("لطفاً نام را وارد کنید"),
+      phone: yup.string().matches(phoneRegExp, 'لطفا شماره تلفن را صحیح وارد کنید'),
       password: yup.string().min(8, "رمز عبور باید حداقل ۸ کاراکتر باشد").required("رمز عبور الزامی است"),
     })
     .required();
@@ -34,9 +39,9 @@ function AccountForm() {
   const onSubmit = (data: any) => {
     const formData = new FormData();
     formData.append("name", data.name);
-    formData.append("username", userInfo?.username!);
-    formData.append("email", userInfo?.email!);
-    formData.append("phone", userInfo?.phone!);
+    formData.append("username", data?.username!);
+    formData.append("email", data?.email!);
+    formData.append("phone", data?.phone!);
     formData.append("password", data.password);
 
     fetcher.submit(formData, { method: "POST", action: "/my-account/edit-account" });
@@ -64,23 +69,26 @@ function AccountForm() {
         <div>
           <label className="inline-block font-DanaMedium text-sm mb-3 cursor-text">نام کاربری</label>
           <div className="relative">
-            <input type="text" defaultValue={userInfo?.username} className="outline-none font-DanaRegular border border-transparent w-full placeholder:text-slate-500 dark:placeholder:text-gray-400 text-gray-900 dark:text-white bg-white dark:bg-darker text-sm py-3.5 pr-3.5 pl-13 rounded opacity-60" disabled />
+            <input {...register("username")} type="text" defaultValue={userInfo?.username} className={`outline-none font-DanaRegular border border-transparent w-full placeholder:text-slate-500 dark:placeholder:text-gray-400 text-gray-900 dark:text-white bg-white dark:bg-darker text-sm py-3.5 pr-3.5 pl-13 rounded ${errors.username && "!border-red-500"}`} />
             <UserCircleIcon className="absolute left-3.5 top-0 bottom-0 my-auto size-6 text-slate-500 dark:text-gray-400" />
           </div>
+          {errors.username && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.username?.message}</span>}
         </div>
         <div>
           <label className="inline-block font-DanaMedium text-sm mb-3 cursor-text">ایمیل</label>
           <div className="relative">
-            <input type="email" defaultValue={userInfo?.email} className="outline-none font-DanaRegular border border-transparent w-full placeholder:text-slate-500 dark:placeholder:text-gray-400 text-gray-900 dark:text-white bg-white dark:bg-darker text-sm py-3.5 pr-3.5 pl-13 rounded opacity-60" disabled />
+            <input {...register("email")} type="email" defaultValue={userInfo?.email} className={`outline-none font-DanaRegular border border-transparent w-full placeholder:text-slate-500 dark:placeholder:text-gray-400 text-gray-900 dark:text-white bg-white dark:bg-darker text-sm py-3.5 pr-3.5 pl-13 rounded ${errors.email && "!border-red-500"}`} />
             <EnvelopeIcon className="absolute left-3.5 top-0 bottom-0 my-auto size-6 text-slate-500 dark:text-gray-400" />
           </div>
+          {errors.email && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.email?.message}</span>}
         </div>
         <div>
           <label className="inline-block font-DanaMedium text-sm mb-3 cursor-text">شماره تلفن</label>
           <div className="relative">
-            <input type="text" defaultValue={userInfo?.phone} className="outline-none font-DanaRegular border border-transparent w-full placeholder:text-slate-500 dark:placeholder:text-gray-400 text-gray-900 dark:text-white bg-white dark:bg-darker text-sm py-3.5 pr-3.5 pl-13 rounded opacity-60" disabled />
+            <input {...register("phone")} type="text" defaultValue={userInfo?.phone} className={`outline-none font-DanaRegular border border-transparent w-full placeholder:text-slate-500 dark:placeholder:text-gray-400 text-gray-900 dark:text-white bg-white dark:bg-darker text-sm py-3.5 pr-3.5 pl-13 rounded ${errors.phone && "!border-red-500"}`} />
             <DeviceTabletIcon className="absolute left-3.5 top-0 bottom-0 my-auto size-6 text-slate-500 dark:text-gray-400" />
           </div>
+          {errors.phone && <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.phone?.message}</span>}
         </div>
         <div>
           <label className="inline-block font-DanaMedium text-sm mb-3 cursor-text">رمز عبور جدید</label>

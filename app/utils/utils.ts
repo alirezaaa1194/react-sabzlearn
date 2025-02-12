@@ -369,5 +369,36 @@ export const editCategory = async (token: string, categoryId: string, newInfo: s
   return res;
 };
 
+export const saveNewArticle = async (token: string, formData: any) => {
+  const res = await apiRequest.post("/articles", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res;
+};
+
+export const draftNewArticle = async (token: string, formData: any) => {
+  const res = await apiRequest.post("/articles/draft", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res;
+};
+export const removeArticle = async (articleId: string, token: string) => {
+  const res = apiRequest.delete(`/articles/${articleId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res;
+};
+
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

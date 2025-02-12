@@ -45,8 +45,8 @@ function CategoryEditBtn({ category }: { category: categoryType }) {
         onClose={() => setIsOpenEditModal(false)}
         desc={
           <div className="flex flex-col gap-3">
-            <Input classNames={{ label: "font-DanaRegiular" }} name="new-title" placeholder="عنوان جدید دسته بندی را وارد کنید" label="عنوان جدید" labelPlacement="outside" value={categoryNewTitleInputValue} onValueChange={setCategoryNewTitleInputValue} />
             <Input classNames={{ label: "font-DanaRegiular" }} name="new-name" placeholder="نام جدید دسته بندی را وارد کنید" label="نام جدید" labelPlacement="outside" value={categoryNewNameInputValue} onValueChange={setCategoryNewNameInputValue} />
+            <Input classNames={{ label: "font-DanaRegiular" }} name="new-title" placeholder="عنوان جدید دسته بندی را وارد کنید" label="عنوان جدید" labelPlacement="outside" value={categoryNewTitleInputValue} onValueChange={setCategoryNewTitleInputValue} />
           </div>
         }
         title={`آیا از ویرایش دسته بندی اطمینان دارید؟`}

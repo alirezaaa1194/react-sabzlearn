@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Outlet, redirect } from "react-router";
+import React, { useEffect, useState } from "react";
+import { Outlet, redirect, useLocation } from "react-router";
 import { AuthContext } from "~/contexts/AuthContext";
 import type { Route } from "./+types/AdminLayout";
 import { getCookie, getMe } from "~/utils/utils";
@@ -28,6 +28,12 @@ function AdminLayout({ loaderData }: Route.ComponentProps) {
   const userInfo: userType = loaderData?.userInfo?.data as userType;
 
   const [isOpenSidebar, setIsOpenSidebar] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsOpenSidebar(false);
+  }, [location]);
 
   return (
     <AuthContext value={{ userInfo, token, isUserRegister: !!token }}>

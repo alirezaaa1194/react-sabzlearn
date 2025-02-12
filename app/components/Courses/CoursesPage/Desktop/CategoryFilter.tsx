@@ -33,7 +33,7 @@ const CategoryFilter=memo(()=> {
       </div>
 
       <div className={`flex flex-col gap-y-[18px] ${isOpenCategoryBox ? "h-fit" : "h-0 overflow-hidden"}`}>
-        {allCategories?.data.map((category: categoryType) => (
+        {[...allCategories?.data].reverse().map((category: categoryType) => (
           <div key={category._id} className="space-y-[18px]">
             <Checkbox
               color="secondary"

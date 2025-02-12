@@ -36,7 +36,9 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 
   const mainCategory: categoryType = categories?.data.find((category: categoryType) => category?.name === (params["cat-name"] as string));
 
-  let filteredCourses = data?.data?.filter((course: courseType) => course?.name.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || "") || course?.description?.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || ""));
+  let filteredCourses = [...data?.data]?.sort((a: courseType, b: courseType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));
+  filteredCourses = filteredCourses.filter((course: courseType) => course?.name.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || "") || course?.description?.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || ""));
+
 
   switch (sortQuery) {
     case "all":
@@ -78,9 +80,8 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  
   const { mainCategory }: any = data;
-  const { filteredCourses }:any = data;
+  const { filteredCourses }: any = data;
 
   return [{ title: `"آموزش ${mainCategory.title}" با +${filteredCourses.length} دوره آموزشی {از صفر تا استخدام}` }];
 };

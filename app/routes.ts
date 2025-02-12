@@ -53,6 +53,7 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('admin-panel/menus','routes/admin-panel/Menus.tsx'),
     route('admin-panel/blog','routes/admin-panel/Blog.tsx'),
     route('admin-panel/categories','routes/admin-panel/Categories.tsx'),
+    route('admin-panel/blog/:articleShortId','routes/admin-panel/DraftArticle.tsx'),
     
     route('AddCourse','actions/Admin-Panel/Courses/AddCourse.ts'),
     route('RemoveCourse','actions/Admin-Panel/Courses/RemoveCourse.ts'),
@@ -73,6 +74,10 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('AddCategory','actions/Admin-Panel/Categories/AddCategory.ts'),
     route('RemoveCategory','actions/Admin-Panel/Categories/RemoveCategory.ts'),
     route('EditCategory','actions/Admin-Panel/Categories/EditCategory.ts'),
+
+    route('AddArticle','actions/Admin-Panel/Blog/AddArticle.ts'),
+    route('DraftArticle','actions/Admin-Panel/Blog/DraftArticle.ts'),
+    route('RemoveArticle','actions/Admin-Panel/Blog/RemoveArticle.ts'),
 ])
 
 ] satisfies RouteConfig;

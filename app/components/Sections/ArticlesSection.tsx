@@ -8,10 +8,12 @@ import ArticlesCard from "../Articles/ArticlesCard";
 import type { articleCreatorType, articleType } from "~/types/article.type";
 
 function ArticlesSection() {
-  const { data: articles } = useQuery({
+  const { data } = useQuery({
     queryKey: ["articles"],
     queryFn: getAllArticles,
   });
+
+  const articles = data?.data?.filter((article: articleType) => article.publish);
 
   return (
     <section className="container flex flex-col mt-[100px] lg:mt-40">
@@ -26,7 +28,7 @@ function ArticlesSection() {
         }
       />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
-        {articles?.data.slice(0, 4)?.map((article: articleType) => (
+        {articles?.slice(0, 4)?.map((article: articleType) => (
           <ArticlesCard key={article._id} article={article} />
         ))}
       </div>

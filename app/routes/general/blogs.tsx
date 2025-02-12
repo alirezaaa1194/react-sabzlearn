@@ -14,7 +14,8 @@ export async function loader({ request }: Route.LoaderArgs) {
   const searchParams = url.searchParams;
   const searchQuery = searchParams.get("blog_search");
   const sortQuery = searchParams.get("sort");
-  let filteredArticles = data?.data?.filter((article: articleType) => article?.title.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || "") || article?.body?.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || ""));
+  let filteredArticles = data?.data?.filter((article: articleType) => article.publish);
+  filteredArticles = filteredArticles?.filter((article: articleType) => article?.title.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || "") || article?.body?.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || ""));
 
   switch (sortQuery) {
     case "normal":
@@ -34,11 +35,9 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { filteredArticles };
 }
 
-
 export const meta: MetaFunction = () => {
   return [{ title: "وبلاگ - سبزلرن" }];
 };
-
 
 function blogs({ loaderData }: Route.ComponentProps) {
   const { filteredArticles }: { filteredArticles: articleType[] } = loaderData;
