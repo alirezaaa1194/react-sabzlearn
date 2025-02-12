@@ -1,5 +1,5 @@
 import React from "react";
-import { AcademicCapIcon, BellIcon, ChatBubbleBottomCenterTextIcon, CloseIcon, HomeIcon, LogoIcon, ShoppingBagIcon, VideoCameraIcon } from "public/svg/svgs";
+import { AcademicCapIcon, BellIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightIcon, CloseIcon, HomeIcon, LogoIcon, ShoppingBagIcon, VideoCameraIcon } from "public/svg/svgs";
 import { Link, NavLink } from "react-router";
 
 export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSidebar: boolean; setIsOpenSidebar: (param: boolean) => void }) {
@@ -37,6 +37,12 @@ export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSid
           <NavLink to="/admin-panel/comments" className="sidebar__link text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent">
             <ChatBubbleBottomCenterTextIcon className="size-7" />
             <span className="text-xl">کامنت ها</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin-panel/tickets" className="sidebar__link text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent">
+            <ChatBubbleLeftRightIcon className="size-7" />
+            <span className="text-xl">تیکت ها</span>
           </NavLink>
         </li>
       </ul>

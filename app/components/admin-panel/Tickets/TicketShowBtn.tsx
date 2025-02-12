@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import CustomModal from "../Modals/CustomModal";
 import { Button } from "@heroui/button";
 import type { commentType } from "~/types/comment.type";
+import type { ticketType } from "~/types/ticket.type";
+import parse from "html-react-parser";
 
-function CommentShowBtn({ comment }: { comment: commentType }) {
+function TicketShowBtn({ ticket }: { ticket: ticketType }) {
   const [isOpenInfoModal, setIsOpenInfoModal] = useState<boolean>(false);
 
   return (
@@ -13,8 +15,8 @@ function CommentShowBtn({ comment }: { comment: commentType }) {
         onClose={() => setIsOpenInfoModal(false)}
         desc={
           <>
-            <p>{comment.creator.name}:</p>
-            {comment?.body}
+            <p>{ticket.user}:</p>
+            {parse(ticket?.body)}
           </>
         }
       />
@@ -32,4 +34,4 @@ function CommentShowBtn({ comment }: { comment: commentType }) {
   );
 }
 
-export default CommentShowBtn;
+export default TicketShowBtn;

@@ -49,17 +49,19 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('admin-panel/courses','routes/admin-panel/Courses.tsx'),
     route('admin-panel/lessons','routes/admin-panel/Lessons.tsx'),
     route('admin-panel/comments','routes/admin-panel/Comments.tsx'),
-
+    route('admin-panel/tickets','routes/admin-panel/Tickets.tsx'),
+    
     route('AddCourse','actions/Admin-Panel/Courses/AddCourse.ts'),
     route('RemoveCourse','actions/Admin-Panel/Courses/RemoveCourse.ts'),
-
+    
     route('AddLesson','actions/Admin-Panel/Lessons/AddLesson.ts'),
     route('RemoveLesson','actions/Admin-Panel/Lessons/RemoveLesson.ts'),
-
+    
     route('AcceptComment','actions/Admin-Panel/Comments/AcceptComment.ts'),
     route('RejectComment','actions/Admin-Panel/Comments/RejectComment.ts'),
     route('DeleteComment','actions/Admin-Panel/Comments/DeleteComment.ts'),
     route('AnswerComment','actions/Admin-Panel/Comments/AnswerComment.ts'),
+    route('AnswerTicket','actions/Admin-Panel/Tickets/AnswerTicket.ts'),
 ])
 
 ] satisfies RouteConfig;

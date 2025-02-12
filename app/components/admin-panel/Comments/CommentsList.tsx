@@ -12,9 +12,9 @@ import CommentAnswerBtn from "./CommentAnswerBtn";
 
 export const columns = [
   { name: "شناسه", uid: "_id", sortable: false },
-  { name: "ارسال کننده", uid: "creatorName", sortable: true },
+  { name: "ارسال کننده", uid: "creatorName", sortable: false },
   { name: "دوره", uid: "courseName", sortable: false },
-  { name: "تاریخ ثبت", uid: "createdAt", sortable: false },
+  { name: "تاریخ ثبت", uid: "createdAt", sortable: true },
   { name: "مشاهده", uid: "show" },
   { name: "پاسخ", uid: "answer" },
   { name: "تایید/رد", uid: "accept/reject" },

@@ -283,8 +283,33 @@ export const deleteComment = async (token: string, commentId: string) => {
 };
 export const answerToComment = async (token: string, commentId: string, answerBody: string) => {
   const res = await apiRequest.post(
-    `comments/answer/${commentId}`,
+    `/comments/answer/${commentId}`,
     {
+      body: answerBody,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res;
+};
+
+export const getAllTickets = async (token: string) => {
+  const res = await apiRequest.get("/tickets", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
+export const answerToTicket = async (token: string, ticketId: string, answerBody: string) => {
+  const res = await apiRequest.post(
+    `/tickets/answer`,
+    {
+      ticketID: ticketId,
       body: answerBody,
     },
     {

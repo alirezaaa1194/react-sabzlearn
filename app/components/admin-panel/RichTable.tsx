@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Button, DropdownTrigger, Dropdown, DropdownMenu, DropdownItem, Chip, Pagination } from "@heroui/react";
 import { ChevronDownIcon, MagnifyingGlassIcon } from "public/svg/svgs";
 
-export default function RichTable({ columns, statusOptions, INITIAL_VISIBLE_COLUMNS, renderCell, data, searchKey, dataTitle }: any) {
+export default function RichTable({ columns, statusOptions, INITIAL_VISIBLE_COLUMNS, renderCell, data, searchKey, dataTitle, filterKey, filterTitle }: any) {
   function capitalize(s: any) {
     return s ? s.charAt(0).toUpperCase() + s.slice(1).toLowerCase() : "";
   }
@@ -27,7 +27,7 @@ export default function RichTable({ columns, statusOptions, INITIAL_VISIBLE_COLU
       filtereddata = filtereddata.filter((data) => data[searchKey].toLowerCase().includes(filterValue.toLowerCase()));
     }
     if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
-      filtereddata = filtereddata.filter((data) => Array.from(statusFilter).includes(data.status));
+      filtereddata = filtereddata.filter((data) => Array.from(statusFilter).includes(data[filterKey]));
     }
 
     return filtereddata;
@@ -96,7 +96,7 @@ export default function RichTable({ columns, statusOptions, INITIAL_VISIBLE_COLU
               <Dropdown shouldBlockScroll={false}>
                 <DropdownTrigger className="hidden sm:flex font-DanaMedium">
                   <Button endContent={<ChevronDownIcon className="size-5" />} variant="flat">
-                    وضعیت
+                    {filterTitle || "وضعیت"}
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu className="font-DanaMedium" disallowEmptySelection aria-label="Table Columns" closeOnSelect={false} selectedKeys={statusFilter} onSelectionChange={(key: any) => setStatusFilter(key)} selectionMode="multiple">
