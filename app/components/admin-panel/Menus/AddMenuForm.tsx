@@ -12,7 +12,7 @@ function AddMenuForm({ menus }: { menus: subMenuType[] }) {
 
   const schema = yup
     .object({
-      title: yup.string().min(3, "عنوان منو باید حداقل ۳ کاراکتر باشد").max(25, "عنوام منو نباید بیشتر از 20 کاراکتر باشد").required("لطفاً عنوان منو را وارد کنید"),
+      title: yup.string().min(3, "عنوان منو باید حداقل ۳ کاراکتر باشد").max(25, "عنوان منو نباید بیشتر از 20 کاراکتر باشد").required("لطفاً عنوان منو را وارد کنید"),
       path: yup.string().min(3, "مسیر منو باید حداقل ۳ کاراکتر باشد").max(20, "مسیر منو نباید بیشتر از 30 کاراکتر باشد").required("لطفاً مسیر منو را وارد کنید"),
 
       parentId: yup.string(),
@@ -54,7 +54,7 @@ function AddMenuForm({ menus }: { menus: subMenuType[] }) {
           <CustomInput name="title" label="عنوان منو" placeholder="لطفا عنوان منو را وارد کنید" />
         </div>
         <div className="col-span-1 flex flex-col">
-          <CustomInput name="path" label="مسیر منو" placeholder="لطفا مسر منو را وارد کنید" />
+          <CustomInput name="path" label="مسیر منو" placeholder="لطفا مسیر منو را وارد کنید" />
         </div>
 
         <div className="flex flex-col md:flex-row items-center gap-6 col-span-1 md:col-span-2">

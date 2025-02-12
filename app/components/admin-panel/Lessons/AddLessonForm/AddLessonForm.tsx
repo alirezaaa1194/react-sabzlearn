@@ -1,16 +1,12 @@
 import { Badge, Button, input, Input, Radio, RadioGroup, Select, SelectItem, Spinner, spinner } from "@heroui/react";
-import { MagnifyingGlassIcon } from "public/svg/svgs";
-import React, { useEffect, useRef } from "react";
-import Editor from "~/components/admin-panel/Courses/AddCourseForm/Editor/Editor";
 import * as yup from "yup";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import CustomInput from "./CustomInput";
-import FileInput from "./FileInput";
-import type { categoryType } from "~/types/category.type";
 import { useFetcher } from "react-router";
 import { showToast } from "~/components/Notification/Notification";
 import type { courseType } from "~/types/course.type";
+import CustomInput from "../../Courses/AddCourseForm/CustomInput";
+import FileInput from "../../Courses/AddCourseForm/FileInput";
 
 function AddLessonForm({ courses }: { courses: courseType[] }) {
   const fetcher = useFetcher();

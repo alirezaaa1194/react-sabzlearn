@@ -343,6 +343,31 @@ export const deleteMenu = async (token: string, menuId: string) => {
   });
   return res;
 };
+export const saveNewCategory = async (token: string, data: any) => {
+  const res = await apiRequest.post("/category", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
+export const deleteCategory = async (token: string, categoryId: string) => {
+  const res = await apiRequest.delete(`/category/${categoryId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+export const editCategory = async (token: string, categoryId: string, newInfo: string) => {
+  const res = await apiRequest.put(`/category/${categoryId}`, newInfo, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
 
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

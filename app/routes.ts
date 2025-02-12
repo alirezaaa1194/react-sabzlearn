@@ -51,20 +51,28 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('admin-panel/comments','routes/admin-panel/Comments.tsx'),
     route('admin-panel/tickets','routes/admin-panel/Tickets.tsx'),
     route('admin-panel/menus','routes/admin-panel/Menus.tsx'),
+    route('admin-panel/blog','routes/admin-panel/Blog.tsx'),
+    route('admin-panel/categories','routes/admin-panel/Categories.tsx'),
     
     route('AddCourse','actions/Admin-Panel/Courses/AddCourse.ts'),
     route('RemoveCourse','actions/Admin-Panel/Courses/RemoveCourse.ts'),
     
     route('AddLesson','actions/Admin-Panel/Lessons/AddLesson.ts'),
     route('RemoveLesson','actions/Admin-Panel/Lessons/RemoveLesson.ts'),
-    
+
     route('AcceptComment','actions/Admin-Panel/Comments/AcceptComment.ts'),
     route('RejectComment','actions/Admin-Panel/Comments/RejectComment.ts'),
     route('DeleteComment','actions/Admin-Panel/Comments/DeleteComment.ts'),
     route('AnswerComment','actions/Admin-Panel/Comments/AnswerComment.ts'),
+
     route('AnswerTicket','actions/Admin-Panel/Tickets/AnswerTicket.ts'),
+
     route('AddMenu','actions/Admin-Panel/Menus/AddMenu.ts'),
     route('RemoveMenu','actions/Admin-Panel/Menus/RemoveMenu.ts'),
+
+    route('AddCategory','actions/Admin-Panel/Categories/AddCategory.ts'),
+    route('RemoveCategory','actions/Admin-Panel/Categories/RemoveCategory.ts'),
+    route('EditCategory','actions/Admin-Panel/Categories/EditCategory.ts'),
 ])
 
 ] satisfies RouteConfig;
