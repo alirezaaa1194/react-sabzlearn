@@ -66,7 +66,7 @@ export default function CoursesList({ courses }: { courses: courseType[] }) {
   }, []);
   return (
     <>
-      <RichTable columns={columns} statusOptions={statusOptions} INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS} data={courses} renderCell={renderCell} searchKey="name" dataTitle="دوره" />
+      <RichTable columns={columns} statusOptions={statusOptions} filterKey="status" INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS} data={courses} renderCell={renderCell} searchKey="name" dataTitle="دوره" />
     </>
   );
 }

@@ -50,6 +50,7 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('admin-panel/lessons','routes/admin-panel/Lessons.tsx'),
     route('admin-panel/comments','routes/admin-panel/Comments.tsx'),
     route('admin-panel/tickets','routes/admin-panel/Tickets.tsx'),
+    route('admin-panel/menus','routes/admin-panel/Menus.tsx'),
     
     route('AddCourse','actions/Admin-Panel/Courses/AddCourse.ts'),
     route('RemoveCourse','actions/Admin-Panel/Courses/RemoveCourse.ts'),
@@ -62,6 +63,8 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('DeleteComment','actions/Admin-Panel/Comments/DeleteComment.ts'),
     route('AnswerComment','actions/Admin-Panel/Comments/AnswerComment.ts'),
     route('AnswerTicket','actions/Admin-Panel/Tickets/AnswerTicket.ts'),
+    route('AddMenu','actions/Admin-Panel/Menus/AddMenu.ts'),
+    route('RemoveMenu','actions/Admin-Panel/Menus/RemoveMenu.ts'),
 ])
 
 ] satisfies RouteConfig;

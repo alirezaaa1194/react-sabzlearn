@@ -16,10 +16,13 @@ const DesktopNavbar = memo(() => {
     setIsHoverMenu(false);
   };
 
-  const { data: menus } = useQuery({ queryKey: ["menus"], queryFn: getMenus });
+  const { data } = useQuery({ queryKey: ["menus"], queryFn: getMenus });
 
   const authContext = use(AuthContext);
   const userInfo = authContext?.userInfo!;
+
+const menus=[...data?.data].sort((a: subMenuType, b: subMenuType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any))
+
 
   return (
     <nav>
@@ -29,7 +32,7 @@ const DesktopNavbar = memo(() => {
           <span className="cursor-pointer group-hover/sub-menu:text-sky-500">دوره های آموزشی</span>
           <div className="absolute pt-[38px] right-0 invisible opacity-0 group-hover/sub-menu:visible group-hover/sub-menu:opacity-100">
             <ul className="bg-white dark:bg-darker w-44 text-sm transition-all relative">
-              {menus?.data.map((subMenu: subMenuType) => {
+              {menus?.map((subMenu: subMenuType) => {
                 return <SubMenu key={subMenu._id} subMenu={subMenu} />;
               })}
             </ul>

@@ -320,5 +320,29 @@ export const answerToTicket = async (token: string, ticketId: string, answerBody
   );
   return res;
 };
+
+export const getAllPAdminMenus = async () => {
+  const res = await apiRequest.get("/menus/all");
+  return res;
+};
+
+export const saveNewMenu = async (token: string, data: any) => {
+  const res = await apiRequest.post("/menus", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
+export const deleteMenu = async (token: string, menuId: string) => {
+  const res = await apiRequest.delete(`/menus/${menuId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

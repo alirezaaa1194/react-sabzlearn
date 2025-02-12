@@ -13,11 +13,12 @@ function SidebarMenu() {
 
   const [mainMenu, setMainMenu] = useState<string>("");
 
-  const { data: menus } = useQuery({ queryKey: ["menus"], queryFn: getMenus });
+  const { data } = useQuery({ queryKey: ["menus"], queryFn: getMenus });
+  const menus = [...data?.data].sort((a: subMenuType, b: subMenuType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));
 
   return (
     <ul className="flex flex-col gap-x-1 font-DanaRegular text-sm">
-      {menus?.data.map((subMenu: subMenuType) => (
+      {menus?.map((subMenu: subMenuType) => (
         <SidebarSubMenu key={subMenu._id} subMenu={subMenu} mainMenu={mainMenu} setMainMenu={setMainMenu} />
       ))}
 
