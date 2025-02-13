@@ -2,9 +2,6 @@ import { useCallback, useState } from "react";
 import { Button, Chip } from "@heroui/react";
 import { CheckCircleIcon, TomanIcon } from "public/svg/svgs";
 import { useFetcher, useNavigate } from "react-router";
-import { showToast } from "~/components/Notification/Notification";
-import { Toaster } from "react-hot-toast";
-import CustomModal from "../Modals/CustomModal";
 import RichTable from "../RichTable";
 import type { articleType } from "~/types/article.type";
 import ArticleDeleteBtn from "./ArticleDeleteBtn";
@@ -19,15 +16,6 @@ export const columns = [
   { name: "حذف", uid: "delete" },
 ];
 
-// export const statusOptions = [
-//   { name: "منتشر شده", uid: "start" },
-//   { name: "", uid: "presell" },
-// ];
-
-// const statusColorMap: any = {
-//   start: "success",
-//   presell: "warning",
-// };
 
 const INITIAL_VISIBLE_COLUMNS = ["_id", "title", "shortName", "creator", "publish", "draft", "delete"];
 

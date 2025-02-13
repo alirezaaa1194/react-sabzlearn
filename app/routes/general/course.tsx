@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import type { Route } from "./+types/course";
-import { getMe, getSingleCourse, saveComment } from "~/utils/utils";
+import { getMe, getRelatedCourse, getSingleCourse, saveComment } from "~/utils/utils";
 import type { courseType, singleCourseType } from "~/types/course.type";
 import Breadcrumb from "~/components/Breadcrumb/Breadcrumb";
 import CourseInfo from "~/components/Course/CourseInfo";
@@ -25,8 +25,10 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     ?.split("=")[1];
   const userInfo = token ? await getMe(token) : null;
 
+  const relatedCourse = await getRelatedCourse(course?.data?.shortName);
+
   const isUserRegisteredToThisCourse = userInfo?.data?.courses.some((userCourse: courseType) => userCourse?._id === course.data._id);
-  return { course, isUserRegisteredToThisCourse };
+  return { course,relatedCourse, isUserRegisteredToThisCourse };
 }
 
 export async function action({ request, params }: Route.ActionArgs) {
@@ -68,7 +70,7 @@ function course({ loaderData }: Route.ComponentProps) {
           <SummaryInfos course={course} />
           <CourseDesc course={course} />
           <CourseTopic course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
-          <SuggestionCourses course={course} />
+          <SuggestionCourses relatedCourses={loaderData.relatedCourse.data} />
 
           <CommentSection course={course} />
         </div>

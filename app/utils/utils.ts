@@ -70,6 +70,10 @@ export const getSingleCourse = async (courseName: string) => {
   const data = await apiRequest.get(`/courses/${courseName}`);
   return data;
 };
+export const getRelatedCourse = async (courseShortName: string) => {
+  const data = await apiRequest.get(`/courses/related/${courseShortName}`);
+  return data;
+};
 
 export const courseTimeHandler = (sessions: courseSessionType[]) => {
   if (sessions.length) {
@@ -204,6 +208,15 @@ export const getAllUsers = async (token: string) => {
   return res;
 };
 
+export const getAdminPanelIndexInfo = async (token: string) => {
+  const res = await apiRequest.get("infos/p-admin", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
 export const saveNewCourse = async (token: string, formData: any) => {
   const res = await apiRequest.post("/courses", formData, {
     headers: {
@@ -214,6 +227,18 @@ export const saveNewCourse = async (token: string, formData: any) => {
 
   return res;
 };
+
+export const editCourse = async (token: string, formData: any, courseId: string) => {
+  const res = await apiRequest.put(`/courses/${courseId}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res;
+};
+
 export const saveNewSesson = async (token: string, formData: any, courseId: string) => {
   const res = await apiRequest.post(`/courses/${courseId}/sessions`, formData, {
     headers: {

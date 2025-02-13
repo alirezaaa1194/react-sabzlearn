@@ -38,7 +38,7 @@ function RecentLessons({ watchedLessons, watchedSessions, allCourses }: any) {
             dir="rtl"
             className="mySwiper rounded-xl"
           >
-            {watchedSessions?.slice(0, 10)?.map((session: sessionType) => {
+            {[...watchedSessions?.slice(0, 10)].reverse()?.map((session: sessionType) => {
               const mainCourse = allCourses?.find((course: courseType) => course._id === session.course?._id);
               const sessionIndex = watchedLessons?.find((sessionInfo: any) => sessionInfo?.split(", ")[1] === session._id).split(", ")[0];
               return (

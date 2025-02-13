@@ -25,8 +25,8 @@ function Comment({ comment, isUserRegisteredToThisCourse }: { comment: courseCom
 
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-x-1">
-              <span className="inline-block max-w-40 truncate font-DanaRegular">{comment.creator?.name}</span>
-              <strong className="font-DanaDemiBold">| {comment.creator.role === "ADMIN" ? "مدیریت" : isUserRegisteredToThisCourse ? "دانشجو" : "کاربر"}</strong>
+              <span className="inline-block max-w-40 truncate font-DanaRegular">{comment?.creator?.name}</span>
+              <strong className="font-DanaDemiBold">| {comment.creator?.role === "ADMIN" ? "مدیریت" : isUserRegisteredToThisCourse ? "دانشجو" : "کاربر"}</strong>
             </div>
             <span className="font-DanaRegular text-sm text-gray-700 dark:text-gray-400">{moment(comment.createdAt, "YYYY/MM/DD").locale("fa").format("YYYY/MM/DD")}</span>
           </div>

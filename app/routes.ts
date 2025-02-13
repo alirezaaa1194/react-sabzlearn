@@ -56,9 +56,11 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('admin-panel/blog/:articleShortId','routes/admin-panel/DraftArticle.tsx'),
     route('admin-panel/users','routes/admin-panel/Users.tsx'),
     route('admin-panel/edituser/:userId','routes/admin-panel/EditUser.tsx'),
+    route('admin-panel/editcourse/:courseShortName','routes/admin-panel/EditCourse.tsx'),
     
     route('AddCourse','actions/Admin-Panel/Courses/AddCourse.ts'),
     route('RemoveCourse','actions/Admin-Panel/Courses/RemoveCourse.ts'),
+    route('EditCourse','actions/Admin-Panel/Courses/EditCourse.ts'),
     
     route('AddLesson','actions/Admin-Panel/Lessons/AddLesson.ts'),
     route('RemoveLesson','actions/Admin-Panel/Lessons/RemoveLesson.ts'),

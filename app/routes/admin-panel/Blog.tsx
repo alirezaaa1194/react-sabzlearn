@@ -12,7 +12,6 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 }
 
 function Blog({ loaderData }: Route.ComponentProps) {
-  
   return (
     <div className="md:p-5 flex flex-col gap-5 md:gap-10">
       <div className="flex flex-col gap-10 p-5 bg-darker rounded-md">
@@ -23,7 +22,7 @@ function Blog({ loaderData }: Route.ComponentProps) {
       </div>
       <div className="flex flex-col gap-10 p-5 bg-darker rounded-md">
         <span className="text-xl font-lalezar text-white">
-          لیست <span className="text-secondary">مقاله ها</span>
+          لیست <span className="text-secondary">مقالات</span>
         </span>
         <ArticleList article={loaderData?.allArticles?.data} />
       </div>

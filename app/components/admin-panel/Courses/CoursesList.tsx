@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import { Button, Chip } from "@heroui/react";
 import type { courseType } from "~/types/course.type";
 import { TomanIcon } from "public/svg/svgs";
-import { useFetcher } from "react-router";
+import { useFetcher, useNavigate } from "react-router";
 import { showToast } from "~/components/Notification/Notification";
 import { Toaster } from "react-hot-toast";
 import CustomModal from "../Modals/CustomModal";
@@ -17,6 +17,7 @@ export const columns = [
   { name: "روش پشتیبانی", uid: "support" },
   { name: "دسته بندی", uid: "categoryTitle" },
   { name: "وضعیت", uid: "status", sortable: false },
+  { name: "ویرایش", uid: "edit" },
   { name: "حذف", uid: "action" },
 ];
 
@@ -29,9 +30,10 @@ const statusColorMap: any = {
   presell: "warning",
 };
 
-const INITIAL_VISIBLE_COLUMNS = ["_id", "name", "price", "registers", "support", "categoryTitle", "status", "action"];
+const INITIAL_VISIBLE_COLUMNS = ["_id", "name", "price", "registers", "support", "categoryTitle", "status", "edit", "action"];
 
 export default function CoursesList({ courses }: { courses: courseType[] }) {
+  const navigate = useNavigate();
   const renderCell = useCallback((course: courseType, columnKey: keyof {}) => {
     const cellValue = course[columnKey];
 
@@ -57,6 +59,18 @@ export default function CoursesList({ courses }: { courses: courseType[] }) {
           <Chip className="capitalize" color={statusColorMap[course.status]} size="sm" variant="flat">
             {cellValue === "start" ? "درحال ضبط" : "پیش فروش"}
           </Chip>
+        );
+      case "edit":
+        return (
+          <Button
+            color="secondary"
+            size="sm"
+            onPress={() => {
+              navigate(`/admin-panel/editcourse/${course.shortName}`);
+            }}
+          >
+            ویرایش
+          </Button>
         );
       case "action":
         return <CourseDeleteBtn course={course} />;
