@@ -1,5 +1,5 @@
 import React from "react";
-import { AcademicCapIcon, BarsIcon, BellIcon, BookOpenIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightIcon, CloseIcon, FunnelIcon, HomeIcon, LogoIcon, ShoppingBagIcon, VideoCameraIcon } from "public/svg/svgs";
+import { AcademicCapIcon, BarsIcon, BellIcon, BookOpenIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightIcon, CloseIcon, FunnelIcon, HomeIcon, LogoIcon, ShoppingBagIcon, UsersIcon, VideoCameraIcon } from "public/svg/svgs";
 import { Link, NavLink } from "react-router";
 
 export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSidebar: boolean; setIsOpenSidebar: (param: boolean) => void }) {
@@ -61,6 +61,12 @@ export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSid
           <NavLink to="/admin-panel/categories" className="sidebar__link text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent">
             <FunnelIcon className="size-7" />
             <span className="text-xl">دسته بندی ها</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin-panel/users" className="sidebar__link text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent">
+            <UsersIcon className="size-7" />
+            <span className="text-xl">کاربران</span>
           </NavLink>
         </li>
       </ul>

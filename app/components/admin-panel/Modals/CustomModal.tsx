@@ -5,7 +5,7 @@ import type React from "react";
 type CustomModalType = {
   isOpen: boolean;
   onClose: () => void;
-  title?: string;
+  title?: string | React.ReactNode;
   desc?:React.ReactNode;
   action?: () => void;
 };

@@ -54,6 +54,8 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('admin-panel/blog','routes/admin-panel/Blog.tsx'),
     route('admin-panel/categories','routes/admin-panel/Categories.tsx'),
     route('admin-panel/blog/:articleShortId','routes/admin-panel/DraftArticle.tsx'),
+    route('admin-panel/users','routes/admin-panel/Users.tsx'),
+    route('admin-panel/edituser/:userId','routes/admin-panel/EditUser.tsx'),
     
     route('AddCourse','actions/Admin-Panel/Courses/AddCourse.ts'),
     route('RemoveCourse','actions/Admin-Panel/Courses/RemoveCourse.ts'),
@@ -78,6 +80,13 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('AddArticle','actions/Admin-Panel/Blog/AddArticle.ts'),
     route('DraftArticle','actions/Admin-Panel/Blog/DraftArticle.ts'),
     route('RemoveArticle','actions/Admin-Panel/Blog/RemoveArticle.ts'),
+
+    route('ChangeUserRole','actions/Admin-Panel/Users/ChangeUserRole.ts'),
+    route('RemoveUser','actions/Admin-Panel/Users/RemoveUser.ts'),
+    route('BanUser','actions/Admin-Panel/Users/BanUser.ts'),
+    route('RegisterUser','actions/Admin-Panel/Users/RegisterUser.ts'),
+    route('EditUser','actions/Admin-Panel/Users/EditUser.ts'),
+
 ])
 
 ] satisfies RouteConfig;

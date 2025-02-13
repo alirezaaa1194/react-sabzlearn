@@ -4,6 +4,7 @@ import type { Route } from "./+types/Dashboard";
 import { getAllCourses, getAllSessions, getAllUsers, getCookie } from "~/utils/utils";
 import Chart from "~/components/admin-panel/Dashboard/Chart";
 import RecentUser from "~/components/admin-panel/Dashboard/RecentUser";
+import type { userType } from "~/types/user.type";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -17,6 +18,8 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 function Dashboard({ loaderData }: Route.ComponentProps) {
+  const users = [...loaderData?.allUsers?.data]?.sort((a: userType, b: userType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));
+
   return (
     <div className="flex flex-col md:p-5 gap-5 md:gap-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -47,7 +50,7 @@ function Dashboard({ loaderData }: Route.ComponentProps) {
         <span className="text-white font-lalezar text-xl">
           افراد <span className="text-secondary">اخیرا</span> ثبت نام شده
         </span>
-        <RecentUser users={loaderData?.allUsers?.data} />
+        <RecentUser users={users} />
       </div>
     </div>
   );

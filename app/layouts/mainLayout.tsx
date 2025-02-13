@@ -31,7 +31,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 
   await queryClient.prefetchQuery({
     queryKey: ["getme"],
-    queryFn: () => getMe(token),
+    queryFn: () => (token ? getMe(token) : null),
   });
 
   await queryClient.prefetchQuery({
@@ -40,7 +40,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   });
   await queryClient.prefetchQuery({
     queryKey: ["user-tickets"],
-    queryFn: () => getUserTickets(token),
+    queryFn: () => (token ? getUserTickets(token) : null),
   });
 
   return { dehydratedState: dehydrate(queryClient) };

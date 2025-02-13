@@ -87,6 +87,7 @@ function DraftArticleForm({ article, categories }: { article: singleArticleType;
   methods.setValue("shortName", article.shortName);
   methods.setValue("description", article.description);
   methods.setValue("category", article.categoryID._id);
+  
   useEffect(() => {
     setTimeout(() => {
       if (editorRef.current) {

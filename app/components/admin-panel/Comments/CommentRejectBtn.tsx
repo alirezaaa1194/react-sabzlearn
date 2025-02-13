@@ -31,7 +31,7 @@ function CommentRejectBtn({ comment }: { comment: commentType }) {
         className="text-black transition-colors font-DanaMedium"
         size="sm"
       >
-        {fetcher.state === "loading" ? <Spinner color="white" size="sm" /> : "رد"}
+        {fetcher.state === "loading" ? <Spinner color="current" size="sm" /> : "رد"}
       </Button>
     </>
   );

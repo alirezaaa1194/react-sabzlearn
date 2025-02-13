@@ -400,5 +400,45 @@ export const removeArticle = async (articleId: string, token: string) => {
   return res;
 };
 
+export const changeUserRole = async (token: string, userNewRoleInfo: string) => {
+  const res = await apiRequest.put(`/users/role`, userNewRoleInfo, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
+export const removeUser = async (token: string, userId: string) => {
+  const res = await apiRequest.delete(`/users/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
+export const banUser = async (token: string, userId: string) => {
+  const res = await apiRequest.put(
+    `/users/ban/${userId}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return res;
+};
+
+export const updateUserInfoByAdmin = async (userNewInfo: any, userId: string, token: string | null) => {
+  const res = await apiRequest.put(`/users/${userId}`, userNewInfo, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";
