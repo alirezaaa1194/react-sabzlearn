@@ -1,5 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon, RocketLaunchIcon } from "public/svg/svgs";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SugestionCourseCard from "./SugestionCourseCard";
@@ -13,6 +13,9 @@ import NullMessage from "../NullMessage/NullMessage";
 
 function SuggestionSlider({ cartCourses }: { cartCourses: courseType[] }) {
   const swiperRef = useRef<any>(null);
+
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
   const { data: allCourses } = useQuery({
     queryKey: ["courses"],
@@ -42,12 +45,12 @@ function SuggestionSlider({ cartCourses }: { cartCourses: courseType[] }) {
         </div>
 
         <div className="flex items-center gap-2">
-          <button onClick={() => swiperRef.current?.slidePrev()}>
+          <button disabled={isBeginning} className={`${isBeginning ? "opacity-50" : "opacity-100"} transition-colors`} onClick={() => swiperRef.current?.slidePrev()}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-9 text-white">
               <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
           </button>
-          <button onClick={() => swiperRef.current?.slideNext()}>
+          <button disabled={isEnd} className={`${isEnd ? "opacity-50" : "opacity-100"} transition-colors`} onClick={() => swiperRef.current?.slideNext()}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-9 text-white">
               <path strokeLinecap="round" strokeLinejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
@@ -83,6 +86,10 @@ function SuggestionSlider({ cartCourses }: { cartCourses: courseType[] }) {
           autoplay={true}
           dir="rtl"
           className="mySwiper rounded-xl w-full"
+          onSlideChange={(swiper) => {
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          }}
         >
           {suggestionCourses?.map((suggestionCourse: courseType) => (
             <SwiperSlide key={suggestionCourse._id}>

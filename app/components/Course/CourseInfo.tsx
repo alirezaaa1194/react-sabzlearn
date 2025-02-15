@@ -5,7 +5,7 @@ import type { singleCourseType } from "~/types/course.type";
 import { AuthContext } from "~/contexts/AuthContext";
 import TimeStamp from "./TimeStamp/TimeStamp";
 import LessionPlyr from "../Lesson/LessionPlyr";
-import parse from 'html-react-parser'
+import parse from "html-react-parser";
 
 function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCourseType; isUserRegisteredToThisCourse: boolean }) {
   const authContext = use(AuthContext);
@@ -17,7 +17,7 @@ function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCo
           <p className="sm:text-lg line-clamp-4 sm:line-clamp-3 font-DanaRegular">{parse(course?.description)}</p>
         </div>
 
-        <TimeStamp course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
+        {(course.price > 0 || course.discount) && !isUserRegisteredToThisCourse ? <TimeStamp discount={!course.price ? 100 : course.discount} /> : null}
 
         <AllocatoToCourse course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
       </div>

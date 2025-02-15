@@ -36,7 +36,7 @@ function CommentAnswerBtn({ comment }: { comment: commentType }) {
         action={commentAnswerHandler}
         desc={
           <div className="flex flex-col gap-2">
-            <p>{comment.creator.name}:</p> {comment?.body} <textarea value={answerInputValue} onChange={(e) => setAnswerInputValue(e.target.value)} placeholder="پاسخ کامنت را وارد کنید..." className="w-full bg-darker border-none outline-none rounded-md p-2" rows={10}></textarea>{" "}
+            <p>{comment.creator ?comment.creator.name:null}:</p> {comment?.body} <textarea value={answerInputValue} onChange={(e) => setAnswerInputValue(e.target.value)} placeholder="پاسخ کامنت را وارد کنید..." className="w-full bg-darker border-none outline-none rounded-md p-2" rows={10}></textarea>{" "}
           </div>
         }
       />

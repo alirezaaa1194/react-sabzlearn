@@ -1,5 +1,5 @@
 import React from "react";
-import { AcademicCapIcon, BarsIcon, BellIcon, BookOpenIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightIcon, CloseIcon, FunnelIcon, HomeIcon, LogoIcon, ShoppingBagIcon, UsersIcon, VideoCameraIcon } from "public/svg/svgs";
+import { AcademicCapIcon, BarsIcon, BellIcon, BookOpenIcon, CalendarDaysIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightIcon, CloseIcon, CurrencyDollarIcon, FunnelIcon, HomeIcon, LogoIcon, ShoppingBagIcon, UsersIcon, VideoCameraIcon } from "public/svg/svgs";
 import { Link, NavLink, useLocation } from "react-router";
 
 export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSidebar: boolean; setIsOpenSidebar: (param: boolean) => void }) {
@@ -23,7 +23,7 @@ export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSid
           </NavLink>
         </li>
         <li>
-          <NavLink to="/admin-panel/courses" className={ ({ isActive }) => (isActive || location.pathname.includes('admin-panel/courses')||location.pathname.includes('admin-panel/editcourse'))?`text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent border-l-4 border-l-secondary bg-gradient-to-r from-white/10 to-transparent`:'text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent'}>
+          <NavLink to="/admin-panel/courses" className={({ isActive }) => (isActive || location.pathname.includes("admin-panel/courses") || location.pathname.includes("admin-panel/editcourse") ? `text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent border-l-4 border-l-secondary bg-gradient-to-r from-white/10 to-transparent` : "text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent")}>
             <AcademicCapIcon className="size-7" />
             <span className="text-xl">دوره ها</span>
           </NavLink>
@@ -53,7 +53,7 @@ export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSid
           </NavLink>
         </li>
         <li>
-          <NavLink to="/admin-panel/blog" className={ ({ isActive }) => (isActive || location.pathname.includes('admin-panel/blog'))?`text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent border-l-4 border-l-secondary bg-gradient-to-r from-white/10 to-transparent`:'text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent'}>
+          <NavLink to="/admin-panel/blog" className={({ isActive }) => (isActive || location.pathname.includes("admin-panel/blog") ? `text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent border-l-4 border-l-secondary bg-gradient-to-r from-white/10 to-transparent` : "text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent")}>
             <BookOpenIcon className="size-7" />
             <span className="text-xl">مقالات</span>
           </NavLink>
@@ -65,9 +65,21 @@ export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSid
           </NavLink>
         </li>
         <li>
-          <NavLink to="/admin-panel/users" className={ ({ isActive }) => (isActive || location.pathname.includes('admin-panel/users')||location.pathname.includes('admin-panel/edituser'))?`text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent border-l-4 border-l-secondary bg-gradient-to-r from-white/10 to-transparent`:'text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent'}>
+          <NavLink to="/admin-panel/users" className={({ isActive }) => (isActive || location.pathname.includes("admin-panel/users") || location.pathname.includes("admin-panel/edituser") ? `text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent border-l-4 border-l-secondary bg-gradient-to-r from-white/10 to-transparent` : "text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent")}>
             <UsersIcon className="size-7" />
             <span className="text-xl">کاربران</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin-panel/campaign" className="text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent">
+            <CalendarDaysIcon className="size-7" />
+            <span className="text-xl">جشنواره ها</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin-panel/offs" className="text-white flex items-center gap-2 p-[15px] hover:bg-gradient-to-r hover:from-white/10 hover:to-transparent active:border-l-4 active:border-l-secondary active:bg-gradient-to-r active:from-white/10 active:to-transparent">
+            <CurrencyDollarIcon className="size-7" />
+            <span className="text-xl">تخفیفات</span>
           </NavLink>
         </li>
       </ul>

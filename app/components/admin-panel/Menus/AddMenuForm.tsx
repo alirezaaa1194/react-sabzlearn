@@ -57,14 +57,14 @@ function AddMenuForm({ menus }: { menus: subMenuType[] }) {
           <CustomInput name="path" label="مسیر منو" placeholder="لطفا مسیر منو را وارد کنید" />
         </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-6 col-span-1 md:col-span-2">
+        <div className="col-span-1 flex flex-col">
           <Controller
             name="parentId"
             control={methods.control}
             render={({ field, fieldState: { error } }) => (
               <Select
                 {...field}
-                className="w-full md:w-1/3"
+                className="w-full"
                 classNames={{
                   trigger: "bg-dark hover:!bg-white/10 text-white font-DanaMedium focus:!bg-dark rounded-md",
                   label: "text-white font-lalezar text-lg",

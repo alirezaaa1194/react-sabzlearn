@@ -16,7 +16,7 @@ function SugestionCourseCard({ course }: { course: courseType }) {
     <div className="course flex flex-col bg-white dark:bg-darker rounded-xl h-100">
       {/* Course Banner */}
       <div className="relative group">
-        <Link to={`/course/${course.shortName}`} className="block w-full h-full" title="آموزش ساخت ربات تلگرام با PHP">
+        <Link to={`/course/${course.shortName}`} className="block w-full h-full" title={course.name}>
           <img className="block w-full h-full object-cover rounded-xl" src={`${baseUrl}/courses/covers/${course.cover}`} alt={course?.name} />
         </Link>
       </div>
@@ -45,24 +45,42 @@ function SugestionCourseCard({ course }: { course: courseType }) {
             {course.registers}{" "}
           </span>
           <div className="flex items-center gap-x-2.5">
-            {/* Price */}
-            <div className="flex flex-col">
-              <span className="text-green-500 font-DanaDemiBold text-lg flex items-center gap-1">
-                {course.price > 0 ? (
-                  <>
-                    {course.price.toLocaleString()}
-                    <TomanIcon className="size-5" />
-                  </>
+            {course.price ? (
+              <>
+                {course.discount ? (
+                  <div className="flex items-center gap-x-2.5">
+                    <div className="text-sm font-DanaMedium rounded bg-green-500 text-white p-1 h-6 box-content flex items-center justify-center">{course.discount}%</div>
+                    <div className="flex flex-col gap-1">
+                      <span className="font-DanaMedium text-sm text-slate-500 dark:text-white/70 -mb-1.5 line-through">{course.price.toLocaleString()}</span>
+                      {course.discount === 100 ? (
+                        <span className="font-DanaDemiBold text-lg text-green-500">رایگان!</span>
+                      ) : (
+                        <span className="font-DanaDemiBold text-lg text-green-500 flex items-center gap-1">
+                          {(((100 - course.discount) / 100) * course.price).toLocaleString()} <TomanIcon className="size-6" />
+                        </span>
+                      )}
+                    </div>
+                  </div>
                 ) : (
-                  "رایگان"
+                  <span className="flex items-center gap-1 text-lg font-DanaDemiBold text-green-500">
+                    {course.price.toLocaleString()}
+                    <TomanIcon className="size-6" />
+                  </span>
                 )}
-              </span>
-            </div>
+              </>
+            ) : (
+              <div className="flex items-center gap-x-2.5">
+                <div className="text-sm font-DanaMedium rounded bg-green-500 text-white p-1 h-6 box-content flex items-center justify-center">100%</div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-DanaDemiBold text-lg text-green-500">رایگان!</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <Button
           className="btn-primary--outline w-full mt-5 bg-transparent text-primary font-DanaMedium rounded-lg"
-          onPress ={() => {
+          onPress={() => {
             if (!cartCoursesId?.includes(course._id)) {
               fetcher.submit({ courseId: course._id }, { method: "POST", action: "/saveCartCourses" });
               showToast("موفق", "به سبد خرید شما اضافه شد", "success");

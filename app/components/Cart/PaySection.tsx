@@ -5,10 +5,11 @@ import { Link, useFetcher, useNavigate } from "react-router";
 import type { courseType } from "~/types/course.type";
 import { showToast } from "../Notification/Notification";
 import { Checkbox, Tooltip } from "@heroui/react";
-import { AuthContext } from "~/contexts/AuthContext";
+import { apiRequest } from "~/Services/Axios/config";
 
 function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: courseType[]; userToken: string | null; offerCode: any | null }) {
   const [cartCoursesSumPrice, setCartCoursesSumPrice] = useState(cartCourses.reduce((prev, curr) => prev + curr.price, 0));
+  const cartCoursesSumPriceWithOff = cartCourses.reduce((prev, curr) => prev + ((100 - ((curr?.discount as number) || Number(offerCode?.percent) || 0)) / 100) * curr.price, 0);
 
   useEffect(() => {
     setCartCoursesSumPrice(cartCourses.reduce((prev, curr) => prev + curr.price, 0));
@@ -19,9 +20,14 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
 
   const [isValidOfferCode, setIsValidOfferCode] = useState<boolean>(offerCode && userToken ? true : false);
   const [offerInputValue, setOfferInputValue] = useState<string>(offerCode || "");
-  const [offerPercent, setOfferPercent] = useState<number>(offerCode ? 50 : 0);
 
-  const [coursesSumPrice, setCoursesSumPrice] = useState<number>((cartCoursesSumPrice * (100 - cartCourses.length * 2)) / 100);
+  // calculate
+  const percent1 = Math.round(100 - (cartCoursesSumPriceWithOff * 100) / cartCoursesSumPrice);
+
+  const step1Price = (percent1 * cartCoursesSumPrice) / 100;
+
+  const step2Price = step1Price < cartCoursesSumPrice && Math.round((cartCourses.length * 2 * (step1Price || cartCoursesSumPrice)) / 100) + step1Price <= cartCoursesSumPrice ? Math.round((cartCourses.length * 2 * (step1Price || cartCoursesSumPrice)) / 100) : 0;
+  const mainPrice = cartCoursesSumPrice - (step1Price + step2Price);
 
   const changeOfferInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOfferInputValue(e.target.value);
@@ -33,42 +39,57 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
     }
   };
 
-  const validateOfferCode = () => {
-    if (cartCoursesSumPrice > 0) {
-      if (offerInputValue === "sabzlearn.ir") {
-        setOfferPercent(50);
+  const validateOfferCode = async () => {
+    if (offerInputValue) {
+      if (mainPrice) {
+        try {
+          const responses = await Promise.allSettled(
+            cartCourses.map((cartCourse) =>
+              apiRequest.post(
+                `/offs/${offerInputValue}`,
+                { course: cartCourse._id },
+                {
+                  headers: {
+                    Authorization: `Bearer ${userToken}`,
+                  },
+                }
+              )
+            )
+          );
 
-        setCoursesSumPrice((prev) => (prev * (100 - 50)) / 100);
+          const successOffs = responses.find((res) => res.status === "fulfilled");
 
-        setOfferInputValue("");
-        showToast("موفق", "کد تخفیف با موفقیت اعمال شد", "success");
-        setIsValidOfferCode(true);
+          if (successOffs) {
+            fetcher.submit(
+              {
+                offerCode: JSON.stringify({
+                  course: successOffs.value.data.course,
+                  percent: successOffs.value.data.percent,
+                }),
+              },
+              {
+                method: "POST",
+                action: "/saveOfferCode",
+              }
+            );
+            showToast("موفق", "کد تخفیف با موفقیت اعمال شد", "success");
+            setIsValidOfferCode(true);
+          } else {
+            showToast("خطا", "کد تخفیف معتبر نیست", "error");
+            setIsValidOfferCode(false);
+          }
+        } catch (res) {}
       } else {
-        if (offerInputValue === "") {
-          showToast("خطا", "لطفا کد تخفیف را وارد کنید", "error");
-        } else {
-          showToast("خطا", "کد تخفیف معتبر نیست", "error");
-        }
-        setOfferPercent(0);
-        setIsValidOfferCode(false);
+        showToast("خطا", "جمع مبالغ سبد خرید نباید 0 باشد", "error");
       }
     } else {
-      showToast("خطا", "جمع مبالغ سبد خرید نباید 0 باشد", "error");
+      showToast("خطا", "لطفا کد تخفیف را وارد کنید", "error");
     }
-
-    fetcher.submit(
-      { offerCode: offerInputValue },
-      {
-        method: "POST",
-        action: "/saveOfferCode",
-      }
-    );
   };
   const fetcher = useFetcher();
 
   useEffect(() => {
     if (!cartCoursesSumPrice) {
-      setOfferPercent(0);
       setIsValidOfferCode(false);
       setOfferInputValue("");
 
@@ -101,8 +122,8 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
                   <span className="font-DanaMedium">تخفیف</span>
                   <div className="flex items-center gap-x-1">
                     <div>
-                      <span className="text-sm font-DanaRegular">({offerPercent}%) </span>
-                      <span className="font-DanaDemiBold">{((offerPercent / 100) * cartCoursesSumPrice).toLocaleString()}</span>
+                      <span className="text-sm font-DanaRegular">({percent1}%) </span>
+                      <span className="font-DanaDemiBold">{step1Price.toLocaleString()}</span>
                     </div>
                     <TomanIcon className="size-6" />
                   </div>
@@ -112,7 +133,7 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
                   <div className="flex items-center gap-x-1">
                     <div>
                       <span className="text-sm font-DanaRegular">({cartCourses.length * 2}%) </span>
-                      <span className="font-DanaDemiBold">{!isValidOfferCode ? (((cartCourses.length * 2) / 100) * cartCoursesSumPrice).toLocaleString() : (((cartCourses.length * 2) / 100) * (offerPercent / 100) * cartCoursesSumPrice).toLocaleString()}</span>
+                      <span className="font-DanaDemiBold">{step2Price.toLocaleString()}</span>
                     </div>
                     <TomanIcon className="size-6" />
                   </div>
@@ -133,7 +154,7 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
           <div className="flex items-center justify-between mb-3">
             <span className="font-DanaDemiBold xl:text-lg">مجموع:</span>
             <div className="flex items-center gap-x-1">
-              <span className="font-DanaDemiBold text-xl xl:text-2xl flex items-center gap-1">{userToken ? <>{!isValidOfferCode ? (((100 - cartCourses.length * 2) / 100) * cartCoursesSumPrice).toLocaleString() : (((100 - offerPercent) / 100) * cartCoursesSumPrice * ((100 - cartCourses.length * 2) / 100)).toLocaleString()}</> : cartCoursesSumPrice.toLocaleString()}</span>
+              <span className="font-DanaDemiBold text-xl xl:text-2xl flex items-center gap-1">{mainPrice.toLocaleString()}</span>
               <TomanIcon className="size-6" />
             </div>
           </div>
@@ -189,9 +210,7 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
               <div className="">
                 {userToken ? (
                   <div className="relative">
-                    <Tooltip content={<span className="font-DanaRegular">تخفیف 50 درصدی با کد: sabzlearn.ir 😉</span>} defaultOpen>
-                      <input type="text" className="w-full h-[60px] pr-3.5 pl-32 text-sm bg-gray-100 dark:bg-dark rounded-xl font-DanaRegular outline-none" placeholder="کد تخفیف را وارد کنید" value={offerInputValue} onChange={changeOfferInputHandler} onKeyUp={keyupOfferInputHandler} />
-                    </Tooltip>
+                    <input type="text" className="w-full h-[60px] pr-3.5 pl-32 text-sm bg-gray-100 dark:bg-dark rounded-xl font-DanaRegular outline-none" placeholder="کد تخفیف را وارد کنید" value={offerInputValue} onChange={changeOfferInputHandler} onKeyUp={keyupOfferInputHandler} />
                     <Button className="bg-secondary hover:bg-secondary-hover text-white transition-colors rounded-lg absolute left-2.5 top-0 bottom-0 my-auto font-DanaRegular" onPress={validateOfferCode}>
                       اعمال
                     </Button>
@@ -208,10 +227,8 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
                   <span
                     className="underline cursor-pointer text-rose-500"
                     onClick={() => {
-                      setOfferPercent(0);
                       setOfferInputValue("");
                       setIsValidOfferCode(false);
-                      setCoursesSumPrice((cartCoursesSumPrice * (100 - cartCourses.length * 2)) / 100);
                       showToast("موفق", "کد تخفیف با موفقیت حذف شد", "success");
 
                       fetcher.submit(null, { method: "POST", action: "/removOfferCode" });

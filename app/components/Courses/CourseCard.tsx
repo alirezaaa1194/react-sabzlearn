@@ -3,11 +3,11 @@ import React, { memo } from "react";
 import { Link } from "react-router";
 import type { courseType } from "~/types/course.type";
 import { baseUrl } from "~/utils/utils";
-import parse from 'html-react-parser'
+import parse from "html-react-parser";
 
 type CourseCardPropsType = { course: courseType };
 
-const CourseCard=memo(({ course }: CourseCardPropsType)=> {
+const CourseCard = memo(({ course }: CourseCardPropsType) => {
   return (
     <div className="flex flex-col rounded-xl bg-white dark:bg-darker">
       <Link to={`/course/${course.shortName}`}>
@@ -33,18 +33,43 @@ const CourseCard=memo(({ course }: CourseCardPropsType)=> {
           </div>
         </div>
 
-        {course.price > 0 ? (
-          <div className="flex justify-between px-[18px] pb-3">
-            <span className="flex items-center gap-x-0.5 text-slate-500 dark:text-white/70 text-sm font-DanaMedium">
-              <UsersIcon className="size-6" />
-              {course.registers}
-            </span>
+        {course.price ? (
+          <>
+            {course.discount ? (
+              <div className="flex justify-between px-[18px] pb-3">
+                <span className="self-end flex items-center gap-x-0.5 text-slate-500 dark:text-white/70 text-sm font-DanaMedium">
+                  <UsersIcon className="size-6" />
+                  {course.registers}
+                </span>
 
-            <span className="flex items-center gap-1 text-lg font-DanaDemiBold text-green-500">
-              {course.price.toLocaleString()}
-              <TomanIcon className="size-6" />
-            </span>
-          </div>
+                <div className="flex items-center gap-x-2.5">
+                  <div className="text-sm font-DanaMedium rounded bg-green-500 text-white p-1 h-6 box-content flex items-center justify-center">{course.discount}%</div>
+                  <div className="flex flex-col gap-1">
+                    <span className="font-DanaMedium text-sm text-slate-500 dark:text-white/70 -mb-1.5 line-through">{course.price.toLocaleString()}</span>
+                    {course.discount === 100 ? (
+                      <span className="font-DanaDemiBold text-lg text-green-500">رایگان!</span>
+                    ) : (
+                      <span className="font-DanaDemiBold text-lg text-green-500 flex items-center gap-1">
+                        {(((100 - course.discount) / 100) * course.price).toLocaleString()} <TomanIcon className="size-6" />
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="flex justify-between px-[18px] pb-3">
+                <span className="flex items-center gap-x-0.5 text-slate-500 dark:text-white/70 text-sm font-DanaMedium">
+                  <UsersIcon className="size-6" />
+                  {course.registers}
+                </span>
+
+                <span className="flex items-center gap-1 text-lg font-DanaDemiBold text-green-500">
+                  {course.price.toLocaleString()}
+                  <TomanIcon className="size-6" />
+                </span>
+              </div>
+            )}
+          </>
         ) : (
           <div className="flex justify-between px-[18px] pb-3">
             <span className="self-end flex items-center gap-x-0.5 text-slate-500 dark:text-white/70 text-sm font-DanaMedium">
@@ -53,51 +78,16 @@ const CourseCard=memo(({ course }: CourseCardPropsType)=> {
             </span>
 
             <div className="flex items-center gap-x-2.5">
-              <span className="text-sm font-DanaMedium rounded bg-green-500 text-white p-1 py-2">100%</span>
+              <div className="text-sm font-DanaMedium rounded bg-green-500 text-white p-1 h-6 box-content flex items-center justify-center">100%</div>
               <div className="flex flex-col gap-1">
-                {/* <span className="font-DanaMedium text-sm text-slate-500 dark:text-white/70 -mb-1.5 line-through"></span> */}
                 <span className="font-DanaDemiBold text-lg text-green-500">رایگان!</span>
               </div>
             </div>
           </div>
         )}
-
-        {/* model2: */}
-        {/* <div className="flex justify-between px-[18px] pb-3">
-        <span className="self-end flex items-center gap-x-0.5 text-slate-500 dark:text-white/70 text-sm font-DanaMedium">
-          <UsersIcon className="size-6" />
-          5654
-        </span>
-
-        <div className="flex items-center gap-x-2.5">
-          <span className="text-sm font-DanaMedium rounded bg-green-500 text-white p-1 py-2">100%</span>
-          <div className="flex flex-col gap-1">
-            <span className="font-DanaMedium text-sm text-slate-500 dark:text-white/70 -mb-1.5 line-through">150,000</span>
-            <span className="font-DanaDemiBold text-lg text-green-500">رایگان!</span>
-          </div>
-        </div>
-      </div> */}
-
-        {/* model3: */}
-        {/* <div className="flex justify-between px-[18px] pb-3">
-        <span className="self-end flex items-center gap-x-0.5 text-slate-500 dark:text-white/70 text-sm font-DanaMedium">
-          <UsersIcon className="size-6" />
-          5654
-        </span>
-
-        <div className="flex items-center gap-x-2.5">
-          <span className="text-sm font-DanaMedium rounded bg-green-500 text-white p-1 py-2">50%</span>
-          <div className="flex flex-col gap-1">
-            <span className="font-DanaMedium text-sm text-slate-500 dark:text-white/70 -mb-1.5 line-through">150,000</span>
-            <span className="font-DanaDemiBold text-lg text-green-500 flex items-center gap-1">
-              320,000 <TomanIcon className="size-6" />
-            </span>
-          </div>
-        </div>
-      </div> */}
       </div>
     </div>
   );
-})
+});
 
 export default CourseCard;

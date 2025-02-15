@@ -24,6 +24,7 @@ export type courseType = {
   __v: number;
   registers: number;
   courseAverageScore: number;
+  discount?: number;
 };
 
 //////////////////////////////////////////////////////////
@@ -98,4 +99,5 @@ export type singleCourseType = {
   sessions: courseSessionType[];
   comments: courseCommentType[];
   isUserRegisteredToThisCourse: boolean;
+  discount?: number;
 };

@@ -465,5 +465,48 @@ export const updateUserInfoByAdmin = async (userNewInfo: any, userId: string, to
   return res;
 };
 
+export const doCampaign = async (token: string, discount: any) => {
+  const res = await apiRequest.post(
+    "/offs/all",
+    { discount },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  return res;
+};
+
+export const getAllOffs = async (token: string) => {
+  const res = await apiRequest.get("/offs", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res;
+};
+
+export const removeOffs = async (token: string, offId: string) => {
+  const res = await apiRequest.delete(`/offs/${offId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res;
+};
+export const addOff = async (token: string, offInfo: any) => {
+  const res = await apiRequest.post("/offs", offInfo, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return res;
+};
+
+
 export const baseUrl = "http://127.0.0.1:4000";
 export const baseRoute = "http://localhost:5173";

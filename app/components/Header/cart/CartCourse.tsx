@@ -7,7 +7,6 @@ import type { courseType } from "~/types/course.type";
 import { baseUrl } from "~/utils/utils";
 
 function CartCourse({ course }: { course: courseType }) {
-
   const fetcher = useFetcher();
   return (
     <li className="flex items-center justify-between">
@@ -23,12 +22,29 @@ function CartCourse({ course }: { course: courseType }) {
           </Link>
           <div className="flex items-center gap-x-2 text-slate-500 dark:text-gray-400">
             {course.price > 0 ? (
-              <span className="font-DanaMedium text-sm flex gap-x-1 items-center">
-                {course.price.toLocaleString()}
-                <TomanIcon className="size-4" />
-              </span>
+              <>
+                {course.discount ? (
+                  <div className="flex items-center gap-2">
+                    <span className="font-DanaDemiBold text-sm line-through">{course.price.toLocaleString()}</span>
+                    <span className="font-DanaMedium text-sm flex gap-x-1 items-center">
+                      {((100 - course.discount) * course.price) / 100 ? (
+                        <>
+                          {(((100 - course.discount) * course.price) / 100).toLocaleString()} <TomanIcon className="size-4" />
+                        </>
+                      ) : (
+                        "رایگان!"
+                      )}
+                    </span>
+                  </div>
+                ) : (
+                  <span className="font-DanaMedium text-sm flex gap-x-1 items-center">
+                    {course.price.toLocaleString()}
+                    <TomanIcon className="size-4" />
+                  </span>
+                )}
+              </>
             ) : (
-              <span className="font-DanaMedium text-sm">رایگان</span>
+              <span className="font-DanaMedium text-sm">رایگان!</span>
             )}
           </div>
         </div>

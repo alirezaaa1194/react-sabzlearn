@@ -57,6 +57,8 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('admin-panel/users','routes/admin-panel/Users.tsx'),
     route('admin-panel/edituser/:userId','routes/admin-panel/EditUser.tsx'),
     route('admin-panel/editcourse/:courseShortName','routes/admin-panel/EditCourse.tsx'),
+    route('admin-panel/campaign','routes/admin-panel/Campaign.tsx'),
+    route('admin-panel/offs','routes/admin-panel/Offs.tsx'),
     
     route('AddCourse','actions/Admin-Panel/Courses/AddCourse.ts'),
     route('RemoveCourse','actions/Admin-Panel/Courses/RemoveCourse.ts'),
@@ -88,6 +90,9 @@ layout('./layouts/admin-panel/AdminLayout.tsx',[
     route('BanUser','actions/Admin-Panel/Users/BanUser.ts'),
     route('RegisterUser','actions/Admin-Panel/Users/RegisterUser.ts'),
     route('EditUser','actions/Admin-Panel/Users/EditUser.ts'),
+
+    route('RemoveOff','actions/Admin-Panel/Offs/RemoveOff.ts'),
+    route('AddOff','actions/Admin-Panel/Offs/AddOff.ts'),
 
 ])
 

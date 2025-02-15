@@ -35,7 +35,7 @@ function CommentsList({ comments }: { comments: commentType[] }) {
         );
 
       case "creatorName":
-        return <span className="md:truncate md:line-clamp-1">{comment.creator.name}</span>;
+        return <span className="md:truncate md:line-clamp-1">{comment?.creator? comment?.creator?.name:null}</span>;
 
       case "courseName":
         return <span className="md:truncate md:line-clamp-1">{comment.course}</span>;

@@ -13,7 +13,7 @@ function CommentShowBtn({ comment }: { comment: commentType }) {
         onClose={() => setIsOpenInfoModal(false)}
         desc={
           <>
-            <p>{comment.creator.name}:</p>
+            <p>{comment.creator?comment.creator.name:null}:</p>
             {comment?.body}
           </>
         }

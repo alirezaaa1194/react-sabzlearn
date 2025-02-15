@@ -16,8 +16,10 @@ function CartDropdownCard() {
     queryFn: getAllCourses,
   });
   const cartCourses = allCourses?.data.filter((course: courseType) => cartCoursesIds?.includes(course._id));
-  
+
   const coursesSumPrice = cartCourses.reduce((prev: number, curr: courseType) => prev + curr.price, 0);
+
+  const cartCoursesSumPriceWithOff = cartCourses.reduce((prev: any, curr: any) => prev + ((100 - ((curr?.discount as number) || 0)) / 100) * curr.price, 0);
 
   return (
     <div className="w-80 sm:w-[362px] h-fit bg-white dark:bg-darker rounded-lg flex flex-col">
@@ -48,13 +50,12 @@ function CartDropdownCard() {
               <span className="font-DanaMedium">مبلغ قابل پرداخت:</span>
               {coursesSumPrice > 0 ? (
                 <span className="text-lg font-DanaDemiBold flex items-center gap-1">
-                  {coursesSumPrice.toLocaleString()}
+                  {cartCoursesSumPriceWithOff.toLocaleString()}
                   <TomanIcon className="size-5" />
                 </span>
               ) : (
                 <span className="text-lg font-DanaDemiBold flex">رایگان</span>
               )}
-  
             </div>
             <Link to="/cart" className="btn-primary w-full flex items-center justify-center h-12 rounded-lg font-DanaMedium">
               مشاهده سبد خرید

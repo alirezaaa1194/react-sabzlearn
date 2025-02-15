@@ -14,7 +14,7 @@ function CoursesSection({ cartCourses }: { cartCourses: courseType[] }) {
           </div>
         </div>
         <div className="bg-white dark:bg-darker py-5 px-4 md:px-6 sm:divide-y divide-neutral-200 dark:divide-white/10 space-y-7 sm:space-y-4 sm:child:pt-4 first-child:pt-0">
-          {cartCourses.map((cartCourse) => (
+          {[...cartCourses].reverse().map((cartCourse) => (
             <CourseBox key={cartCourse._id} cartCourse={cartCourse} />
           ))}
         </div>

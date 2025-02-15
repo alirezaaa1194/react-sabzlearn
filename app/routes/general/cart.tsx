@@ -18,11 +18,29 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const splitedCoursesId = coursesId?.split("; ");
 
   const allCourses = await getAllCourses();
-  const cartCourses = allCourses.data.filter((course: courseType) => splitedCoursesId?.includes(course._id)).reverse();
+  let cartCourses = allCourses.data.filter((course: courseType) => splitedCoursesId?.includes(course._id)).reverse();
 
   const token = getCookie(cookieHeader, "token");
 
-  const offerCode = currentSession.get("offerCode");
+  let offerCode = currentSession.get("offerCode") as any;
+
+  if (offerCode) {
+    offerCode = JSON.parse(currentSession.get("offerCode") as string);
+    cartCourses = cartCourses.map((course: courseType) => {
+      if (course._id === offerCode?.course) {
+        if (course.discount) {
+          const coursePriceByOffer = ((100 - course.discount) * course.price) / 100;
+
+          const coursePriceByOfferCode = (offerCode?.percent / 100) * coursePriceByOffer;
+          const mainCourseDiscount = (coursePriceByOfferCode * 100) / course.price;
+          (course.discount as number) += Number(mainCourseDiscount);
+        } else {
+          (course.discount as number) = Number(offerCode?.percent);
+        }
+      }
+      return course;
+    });
+  }
 
   return { cartCourses, token, offerCode };
 }
@@ -68,9 +86,9 @@ export const meta: MetaFunction = () => {
 };
 
 function cart({ loaderData }: Route.ComponentProps) {
-  const cartCourses: courseType[] = loaderData.cartCourses;
+  const cartCourses = loaderData.cartCourses;
   const token: string | null = loaderData.token;
-  const offerCode: any | null = loaderData.offerCode;
+  const offerCode: any | null = loaderData?.offerCode;
 
   if (!cartCourses.length) {
     return (

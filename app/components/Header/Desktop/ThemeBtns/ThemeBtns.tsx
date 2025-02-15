@@ -10,19 +10,13 @@ function ThemeBtns({ className }: { className?: string }) {
   return (
     <button
       type="submit"
-      className={`w-13 h-13 rounded-full hidden lg:flex items-center justify-center bg-gray-100 text-slate-500 dark:bg-white/5 dark:text-white ${className}`}
+      className={`w-13 h-13 rounded-full hidden lg:flex items-center justify-center bg-gray-100 text-slate-500 dark:bg-white/5 dark:text-white ${className} ${fetcher.state === "loading" ? "-rotate-180 duration-100" : ""}`}
       onClick={() => {
         fetcher.submit(null, { method: "POST", action: "/switchTheme" });
       }}
     >
-      {fetcher.state === "loading" ? (
-        <Spinner size="sm" />
-      ) : (
-        <>
-          <MoonIcon className="size-6 block dark:hidden" />
-          <SunIcon className="size-6 hidden dark:block" />
-        </>
-      )}
+      <MoonIcon className={`size-6 block dark:hidden`} />
+      <SunIcon className="size-6 hidden dark:block" />
     </button>
   );
 }
