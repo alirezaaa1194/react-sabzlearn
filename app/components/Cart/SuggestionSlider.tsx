@@ -1,5 +1,5 @@
 import { ChevronLeftIcon, ChevronRightIcon, RocketLaunchIcon } from "public/svg/svgs";
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SugestionCourseCard from "./SugestionCourseCard";
@@ -11,7 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllCourses } from "~/utils/utils";
 import NullMessage from "../NullMessage/NullMessage";
 
-function SuggestionSlider({ cartCourses }: { cartCourses: courseType[] }) {
+const SuggestionSlider = memo(({ cartCourses }: { cartCourses: courseType[] }) => {
   const swiperRef = useRef<any>(null);
 
   const [isBeginning, setIsBeginning] = useState(true);
@@ -100,6 +100,6 @@ function SuggestionSlider({ cartCourses }: { cartCourses: courseType[] }) {
       </div>
     </div>
   );
-}
+});
 
 export default SuggestionSlider;

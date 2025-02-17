@@ -9,7 +9,7 @@ import { baseUrl } from "~/utils/utils";
 function SuggestionArticleBox({ suggestionArticle }: { suggestionArticle: articleType }) {
   return (
     <div className="flex items-center gap-x-4 bg-gray-100 dark:bg-dark p-3.5 rounded-lg">
-      <img src={`${baseUrl}/courses/covers/${suggestionArticle.cover}`} className="h-20 rounded-xl" alt="همه چیز درباره رشته هوش مصنوعی" />
+      <img src={`${baseUrl}/courses/covers/${suggestionArticle.cover}`} className="h-20 rounded-xl aspect-video" alt={suggestionArticle.title} />
       <div>
         <Link to={`/blog/${suggestionArticle.shortName}`} className="font-DanaMedium line-clamp-1">
           {suggestionArticle.title}

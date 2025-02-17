@@ -1,9 +1,9 @@
 import { CheckCircleSolidIcon, CheckMiniIcon, GiftIcon, ShoppingBagIcon, TomanIcon, TrashIcon, XCircleMiniIcon } from "public/svg/svgs";
-import React from "react";
+import React, { memo } from "react";
 import type { courseType } from "~/types/course.type";
 import CourseBox from "./CourseBox";
 
-function CoursesSection({ cartCourses }: { cartCourses: courseType[] }) {
+const CoursesSection = memo(({ cartCourses }: { cartCourses: courseType[] }) => {
   return (
     <section className="col-span-full md:col-span-8 space-y-5 md:space-y-8">
       <div className="rounded-xl overflow-hidden">
@@ -80,6 +80,6 @@ function CoursesSection({ cartCourses }: { cartCourses: courseType[] }) {
       </div>
     </section>
   );
-}
+});
 
 export default CoursesSection;

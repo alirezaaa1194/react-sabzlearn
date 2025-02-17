@@ -17,7 +17,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const userInfo: { data: userType } | { data: null } = token ? await getMe(token) : { data: null };
 
   const allComments = await getAllComments();
-  const allTickets = token ? await getAllTickets(token) : { data: null };
+  const allTickets = token && userInfo?.data?.role === "ADMIN" ? await getAllTickets(token as string) : { data: null };
 
   if (!token || userInfo?.data?.role !== "ADMIN") {
     return redirect("/");

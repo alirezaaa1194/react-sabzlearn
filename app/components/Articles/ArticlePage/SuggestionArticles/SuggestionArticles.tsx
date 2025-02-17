@@ -11,7 +11,8 @@ function SuggestionArticles({ article }: { article: singleArticleType }) {
     queryFn: getAllArticles,
   });
 
-  const suggestionArticles: articleType[] = allArticles?.data.filter((allArticle: singleArticleType) => allArticle.categoryID._id === article.categoryID._id && allArticle._id !== article._id);
+  let suggestionArticles: articleType[] = allArticles?.data.filter((allArticle: articleType) => allArticle.categoryID === article.categoryID._id && allArticle._id !== article._id);
+  suggestionArticles = suggestionArticles.sort((a: articleType, b: articleType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));
 
   return (
     <div className="bg-white dark:bg-darker rounded-xl p-[18px] sm:p-5 mt-8">
@@ -22,7 +23,7 @@ function SuggestionArticles({ article }: { article: singleArticleType }) {
       </div>
       {suggestionArticles.length ? (
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-          {suggestionArticles.slice(suggestionArticles.length - 5).map((suggestionArticle: articleType) => (
+          {suggestionArticles.slice(0, 4).map((suggestionArticle: articleType) => (
             <SuggestionArticleBox key={suggestionArticle._id} suggestionArticle={suggestionArticle} />
           ))}
         </div>
