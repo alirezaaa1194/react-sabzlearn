@@ -54,7 +54,7 @@ function blogs({ loaderData }: Route.ComponentProps) {
         </span>
       </div>
 
-      <section className="grid grid-cols-12 gap-y-5 md:gap-x-7">
+      <section className="grid grid-cols-12 gap-y-8 md:gap-x-7">
         <aside className="col-span-full lg:col-span-4 xl:col-span-3 lg:sticky top-6 space-y-6">
           <div className="space-y-6">
             <SearchBox queryKey="blog_search" title="مقالات" />

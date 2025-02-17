@@ -20,7 +20,7 @@ function MobileSort() {
     <>
       {isOpenSortBox && createPortal(<Overlay isOpen={isOpenSortBox} setIsOpen={setIsOpenSortBox} />, document?.body)}
 
-      <Button onPress={() => setIsOpenSortBox(true)} className="flex w-full md:hidden items-center !mb-8 dark:text-white dark:bg-darker rounded-lg h-[42px]">
+      <Button onPress={() => setIsOpenSortBox(true)} className="flex w-full md:hidden items-center !mb-0 bg-white dark:text-white dark:bg-darker rounded-lg h-[42px]">
         <div className="button btn btn-white w-full flex items-center justify-center gap-2.5 font-DanaRegular text-sm">
           <ArrowsUpDownIcon className="w-6 h-6 shrink-0" />
           <span className="active_sort_title">{searchParams.get("sort") === "normal" ? "عادی" : searchParams.get("sort") === "newest" ? "جدیدترین" : searchParams.get("sort") === "oldest" ? "قدیمی ترین" : searchParams.get("sort") === "popular" ? "پرنظر ها" : "عادی"}</span>
@@ -36,20 +36,20 @@ function MobileSort() {
         </div>
 
         <div className="bg-white dark:bg-darker w-full flex flex-col px-5">
-          <Button onPress={() => changeSortHandler("normal")} className={`px-0 flex items-center justify-between h-[68px] w-full bg-transparent text-white active:text-primary font-DanaMedium text-base rounded-none outline-none border-b border-b-gray-100 dark:border-b-dark ${searchParams.get("sort") === "normal" || searchParams.get("sort") === "" || searchParams.get("sort") === null ? "active" : ""}`}>
+          <Button onPress={() => changeSortHandler("normal")} className={`px-0 flex items-center justify-between h-[68px] w-full bg-transparent text-gray-900 dark:text-gray-100 active:text-primary dark:active:text-primary font-DanaMedium text-base rounded-none outline-none border-b border-b-gray-100 dark:border-b-dark ${searchParams.get("sort") === "normal" || searchParams.get("sort") === "" || searchParams.get("sort") === null ? "active" : ""}`}>
             <span className="">عادی</span>
             <CheckCircleIcon className={`size-6 text-primary ${searchParams.get("sort") === "normal" || searchParams.get("sort") === "" || searchParams.get("sort") === null ? "block" : "hidden"}`} />
           </Button>
 
-          <Button onPress={() => changeSortHandler("newest")} className={`px-0 flex items-center justify-between h-[68px] w-full bg-transparent text-white active:text-primary font-DanaMedium text-base rounded-none outline-none border-b border-b-gray-100 dark:border-b-dark ${searchParams.get("sort") === "newest" ? "active" : ""}`}>
+          <Button onPress={() => changeSortHandler("newest")} className={`px-0 flex items-center justify-between h-[68px] w-full bg-transparent text-gray-900 dark:text-gray-100 active:text-primary dark:active:text-primary font-DanaMedium text-base rounded-none outline-none border-b border-b-gray-100 dark:border-b-dark ${searchParams.get("sort") === "newest" ? "active" : ""}`}>
             <span className="">جدیدترین</span>
             <CheckCircleIcon className={`size-6 text-primary ${searchParams.get("sort") === "newest" ? "block" : "hidden"}`} />
           </Button>
-          <Button onPress={() => changeSortHandler("oldest")} className={`px-0 flex items-center justify-between h-[68px] w-full bg-transparent text-white active:text-primary font-DanaMedium text-base rounded-none outline-none border-b border-b-gray-100 dark:border-b-dark ${searchParams.get("sort") === "oldest" ? "active" : ""}`}>
+          <Button onPress={() => changeSortHandler("oldest")} className={`px-0 flex items-center justify-between h-[68px] w-full bg-transparent text-gray-900 dark:text-gray-100 active:text-primary dark:active:text-primary font-DanaMedium text-base rounded-none outline-none border-b border-b-gray-100 dark:border-b-dark ${searchParams.get("sort") === "oldest" ? "active" : ""}`}>
             <span className="">قدیمی ترین</span>
             <CheckCircleIcon className={`size-6 text-primary ${searchParams.get("sort") === "oldest" ? "block" : "hidden"}`} />
           </Button>
-          <Button onPress={() => changeSortHandler("popular")} className={`px-0 flex items-center justify-between h-[68px] w-full bg-transparent text-white active:text-primary font-DanaMedium text-base rounded-none outline-none border-none ${searchParams.get("sort") === "popular" ? "active" : ""}`}>
+          <Button onPress={() => changeSortHandler("popular")} className={`px-0 flex items-center justify-between h-[68px] w-full bg-transparent text-gray-900 dark:text-gray-100 active:text-primary dark:active:text-primary font-DanaMedium text-base rounded-none outline-none border-b border-b-gray-100 dark:border-b-dark ${searchParams.get("sort") === "popular" ? "active" : ""}`}>
             <span className="">پر نظرها</span>
             <CheckCircleIcon className={`size-6 text-primary ${searchParams.get("sort") === "popular" ? "block" : "hidden"}`} />
           </Button>

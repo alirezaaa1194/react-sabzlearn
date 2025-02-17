@@ -3,13 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "react-router build",
     "dev": "react-router dev",
+    "build": "react-router build",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "serve": "vite preview --port 8000"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^9.4.0",

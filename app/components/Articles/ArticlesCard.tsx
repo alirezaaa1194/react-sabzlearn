@@ -21,7 +21,7 @@ function ArticlesCard({ article }: ArticlesCardPropsType) {
             <Link to={`/blog/${article.shortName}`} className="font-DanaDemiBold line-clamp-2 mb-3">
               {article.title}
             </Link>
-            <p className="text-sm line-clamp-3 text-gray-700 dark:text-gray-400 font-DanaMedium">{article.description}</p>
+            <p className="text-sm line-clamp-3 text-gray-700 dark:text-gray-400 font-DanaMedium">{article.description.trim()}</p>
           </div>
           <div className="flex items-center justify-between  text-slate-500 dark:text-white/70 text-sm pb-4 border-b border-b-neutral-200/70 dark:border-b-white/10">
             <span className="flex items-center gap-x-0.5 font-DanaRegular">{article.creator?.name}</span>

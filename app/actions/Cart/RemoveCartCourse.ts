@@ -1,6 +1,6 @@
 import session from "~/sessions.server";
 import { data } from "react-router";
-import type { Route } from "./+types/saveCartCourses";
+import type { Route } from "./+types/RemoveCartCourse";
 
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();

@@ -9,10 +9,6 @@ export default defineConfig({
       plugins: [tailwindcss],
     },
   },
-
-  preview: {
-    port: 8000
-  },
   
   plugins: [reactRouter(), tsconfigPaths()],
 });

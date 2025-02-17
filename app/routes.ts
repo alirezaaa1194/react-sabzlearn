@@ -19,7 +19,7 @@ export default [
                 route('switchTheme', 'actions/Theme/theme.ts'),
 
                 route('saveCartCourses', 'actions/Cart/saveCartCourses.ts'),
-                route('RemoveCartCourse', 'actions/Cart/removeCartCourse.ts'),
+                route('RemoveCartCourse', 'actions/Cart/RemoveCartCourse.ts'),
                 route('saveOfferCode', 'actions/Cart/saveOfferCode.ts'),
                 route('removOfferCode', 'actions/Cart/removeOfferCode.ts'),
                 route('sendQuestion', 'actions/SendQuestion/SendQuestion.ts'),
