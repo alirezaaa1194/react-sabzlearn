@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Button } from "@heroui/button";
 import { ChevronDownIcon } from "public/svg/svgs";
+import NullMessage from "~/components/NullMessage/NullMessage";
 
 function CommentSection({ course }: { course: singleCourseType }) {
   const [currentPage, setCurrentPage] = useState<number>(0);
@@ -27,9 +28,12 @@ function CommentSection({ course }: { course: singleCourseType }) {
       {course.comments.length ? (
         <div className="flex flex-col items-center w-full">
           <div className="space-y-[18px] sm:space-y-5 w-full">
-            {[...course.comments].reverse().slice(0, (currentPage + 1) * 10).map((comment: courseCommentType) => {
-              return <Comment key={comment._id} comment={comment} isUserRegisteredToThisCourse={course.isUserRegisteredToThisCourse} />;
-            })}
+            {[...course.comments]
+              .reverse()
+              .slice(0, (currentPage + 1) * 10)
+              .map((comment: courseCommentType) => {
+                return <Comment key={comment._id} comment={comment} isUserRegisteredToThisCourse={course.isUserRegisteredToThisCourse} />;
+              })}
           </div>
 
           {(currentPage + 1) * 10 < course.comments?.length ? (
@@ -42,7 +46,7 @@ function CommentSection({ course }: { course: singleCourseType }) {
           )}
         </div>
       ) : (
-        <h3 className="font-DanaMedium text-center">کامنتی وجود ندارد.</h3>
+        <NullMessage title="کامنتی وجود ندارد." />
       )}
     </div>
   );

@@ -1,7 +1,5 @@
 import { Button } from "@heroui/button";
 import { ArrowDownTrayMiniIcon } from "public/svg/svgs";
-import React from "react";
-import { baseRoute } from "~/utils/utils";
 
 function DownloadBox({videoSrc}:{videoSrc:string}) {
   return (
