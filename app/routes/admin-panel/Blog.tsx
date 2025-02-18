@@ -3,12 +3,16 @@ import type { Route } from "./+types/Blog";
 import { getAllArticles, getAllCategories } from "~/utils/utils";
 import AddArticleForm from "~/components/admin-panel/Blog/AddArticleForm/AddArticleForm";
 import ArticleList from "~/components/admin-panel/Blog/ArticlesList";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const allArticles = await getAllArticles();
   const allCategories = await getAllCategories();
 
   return { allArticles, allCategories };
+}
+export const meta:MetaFunction=()=> {
+  return [{ title: "مقالات - پنل مدیریت - سبزلرن" }];
 }
 
 function Blog({ loaderData }: Route.ComponentProps) {

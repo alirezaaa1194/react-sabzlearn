@@ -1,8 +1,7 @@
-import React, { memo, use, useContext, useMemo, useState } from "react";
+import React, { memo, use } from "react";
 import { Link } from "react-router";
 import ThemeBtns from "./ThemeBtns/ThemeBtns";
 import SidebarMenu from "./SidebarMenu/SidebarMenu";
-import type { userType } from "~/types/user.type";
 import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
 import UserInfo from "./SidebarMenu/UserInfo";
 

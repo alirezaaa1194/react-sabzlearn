@@ -3,11 +3,17 @@ import type { Route } from "./+types/Categories";
 import { getAllCategories } from "~/utils/utils";
 import AddCategoryForm from "~/components/admin-panel/Categories/AddCategoryForm";
 import CategoriesList from "~/components/admin-panel/Categories/CategoriesList";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const allCategories = await getAllCategories();
 
   return { allCategories };
+}
+
+
+export const meta:MetaFunction=()=> {
+  return [{ title: "دسته بندی ها - پنل مدیریت - سبزلرن" }];
 }
 
 function Categories({ loaderData }: Route.ComponentProps) {

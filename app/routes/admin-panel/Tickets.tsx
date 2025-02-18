@@ -3,15 +3,20 @@ import type { Route } from "./+types/Comments";
 import { getAllTickets, getCookie, getDepartments } from "~/utils/utils";
 import TicketsList from "~/components/admin-panel/Tickets/TicketsList";
 import type { ticketType } from "~/types/ticket.type";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
   const token = getCookie(cookieHeader, "token");
-  const allTickets = await getAllTickets(token as string);
+  const allTickets = await getAllTickets(token as string)
 
   const allDepartment = await getDepartments();
 
   return { allTickets, allDepartment };
+}
+
+export const meta:MetaFunction=()=> {
+  return [{ title: "تیکت ها - پنل مدیریت - سبزلرن" }];
 }
 
 function Comments({ loaderData }: Route.ComponentProps) {

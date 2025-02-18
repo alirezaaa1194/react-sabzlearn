@@ -36,7 +36,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     return redirect(`/course/${course?.data.shortName}`);
   }
 
-  return { lesson: lesson?.data, course: course?.data, isUserRegisteredToThisCourse, supportTickets };
+  return { lesson: lesson?.data, course: course?.data, supportTickets };
 }
 
 export async function action({ params, request }: Route.ActionArgs) {
@@ -77,14 +77,12 @@ function lesson({ loaderData }: Route.ComponentProps) {
   const {
     course,
     lesson,
-    isUserRegisteredToThisCourse,
   }: {
     course: singleCourseType;
     lesson: {
       session: courseSessionType;
       sessions: courseSessionType[];
     };
-    isUserRegisteredToThisCourse: boolean;
   } = loaderData;
 
   const [mounted, setMounted] = useState(false);

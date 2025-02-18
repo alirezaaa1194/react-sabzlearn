@@ -3,6 +3,7 @@ import { getAllCourses, getAllOffs, getCookie } from "~/utils/utils";
 import type { Route } from "./+types/Offs";
 import OffsList from "~/components/admin-panel/Offs/OffsList";
 import AddOffCodeForm from "~/components/admin-panel/Offs/AddOffCodeForm";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -11,6 +12,10 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const allOffs = await getAllOffs(token as string);
   const allCourses = await getAllCourses();
   return { allCourses, allOffs };
+}
+
+export const meta:MetaFunction=()=> {
+  return [{ title: "تخفیفات - پنل مدیریت - سبزلرن" }];
 }
 
 function Offs({ loaderData }: Route.ComponentProps) {

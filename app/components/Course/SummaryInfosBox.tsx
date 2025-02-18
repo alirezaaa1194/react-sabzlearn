@@ -1,4 +1,3 @@
-import { InformationCircleIcon } from "public/svg/svgs";
 import React from "react";
 
 type SummaryInfosBoxPropsType = {

@@ -4,6 +4,7 @@ import { doCampaign, getAllCourses, getCookie } from "~/utils/utils";
 import type { courseType } from "~/types/course.type";
 import AddCampaignForm from "~/components/admin-panel/Campaign/AddCampaignForm";
 import DiscountList from "~/components/admin-panel/Campaign/DiscountList";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const allCourses = await getAllCourses();
@@ -28,6 +29,10 @@ export async function action({ params, request }: Route.ActionArgs) {
   } catch {
     return { success: false };
   }
+}
+
+export const meta:MetaFunction=()=> {
+  return [{ title: "جشنواره ها - پنل مدیریت - سبزلرن" }];
 }
 
 function Campaign({ loaderData }: Route.ComponentProps) {

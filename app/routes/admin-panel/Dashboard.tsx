@@ -1,10 +1,9 @@
-import { AcademicCapMiniIcon, Squares2x2Icon, UsersIcon, VideoCameraIcon } from "public/svg/svgs";
+import { AcademicCapMiniIcon, UsersIcon, VideoCameraIcon } from "public/svg/svgs";
 import React from "react";
 import type { Route } from "./+types/Dashboard";
-import { getAdminPanelIndexInfo, getAllCourses, getAllSessions, getAllUsers, getCookie } from "~/utils/utils";
-import Chart from "~/components/admin-panel/Dashboard/Chart";
+import { getAdminPanelIndexInfo, getCookie } from "~/utils/utils";
 import RecentUser from "~/components/admin-panel/Dashboard/RecentUser";
-import type { userType } from "~/types/user.type";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -13,6 +12,9 @@ export async function loader({ request }: Route.LoaderArgs) {
   const AdminPanelInfo = await getAdminPanelIndexInfo(token as string);
 
   return { AdminPanelInfo };
+}
+export const meta:MetaFunction=()=> {
+  return [{ title: "صفحه اصلی - پنل مدیریت - سبزلرن" }];
 }
 
 function Dashboard({ loaderData }: Route.ComponentProps) {
@@ -43,7 +45,6 @@ function Dashboard({ loaderData }: Route.ComponentProps) {
           <VideoCameraIcon className="size-10 text-secondary" />
         </div>
       </div>
-      {/* <Chart  /> */}
       <div className="flex flex-col gap-2 p-4 rounded-md bg-darker">
         <span className="text-white font-lalezar text-xl">
           افراد <span className="text-secondary">اخیرا</span> ثبت نام شده

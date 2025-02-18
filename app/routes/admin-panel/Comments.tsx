@@ -3,11 +3,15 @@ import type { Route } from "./+types/Comments";
 import { getAllComments } from "~/utils/utils";
 import CommentsList from "~/components/admin-panel/Comments/CommentsList";
 import type { commentType } from "~/types/comment.type";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const allComments = await getAllComments();
 
   return { allComments };
+}
+export const meta:MetaFunction=()=> {
+  return [{ title: "کامنت ها - پنل مدیریت - سبزلرن" }];
 }
 
 function Comments({ loaderData }: Route.ComponentProps) {

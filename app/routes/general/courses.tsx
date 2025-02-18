@@ -1,4 +1,4 @@
-import { getAllCourses, getCookie, getMe, getPreSellCourses } from "~/utils/utils";
+import { getAllCourses, getCookie, getMe } from "~/utils/utils";
 import MobileSort from "~/components/Courses/CoursesPage/Mobile/MobileSort";
 import DesktopSort from "~/components/Courses/CoursesPage/Desktop/DesktopSort";
 import type { courseType } from "~/types/course.type";
@@ -18,7 +18,6 @@ export async function loader({ request }: Route.LoaderArgs) {
   const userCourses = userInfos?.data?.courses;
 
   const data = await getAllCourses();
-  const preSellCourses = await getPreSellCourses();
 
   const url = new URL(request.url);
   const searchParams = url.searchParams;
@@ -65,12 +64,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   }
 
   if (preSellQuery) {
-    filteredCourses = filteredCourses.filter((course: courseType) => {
-      const isPreselCourse = preSellCourses?.data?.some((userCourse: courseType) => userCourse._id === course._id);
-      if (isPreselCourse) {
-        return course;
-      }
-    });
+    filteredCourses = filteredCourses.filter((course: courseType) => course.status === "presell");
   }
   if (freeQuery) {
     filteredCourses = filteredCourses.filter((course: courseType) => course.price === 0);
@@ -85,8 +79,8 @@ export const meta: MetaFunction = () => {
 
 function Courses({ loaderData }: Route.ComponentProps) {
   const { filteredCourses }: { filteredCourses: courseType[] } = loaderData;
-
   const { userInfos: isUserLogedIn } = loaderData;
+
   return (
     <main className="container mt-8 sm:mt-10">
       <div className="flex flex-col sm:flex-row gap-y-2 items-center justify-between mb-8 lg:mb-14">

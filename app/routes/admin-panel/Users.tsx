@@ -4,6 +4,7 @@ import UsersList from "~/components/admin-panel/Users/UsersList";
 import type { Route } from "./+types/Users";
 import { getAllUsers, getCookie } from "~/utils/utils";
 import type { userType } from "~/types/user.type";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -11,6 +12,10 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const users = await getAllUsers(token as string);
 
   return { users };
+}
+
+export const meta:MetaFunction=()=> {
+  return [{ title: "کاربران - پنل مدیریت - سبزلرن" }];
 }
 
 function Users({ loaderData }: Route.ComponentProps) {

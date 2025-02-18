@@ -2,6 +2,7 @@ import AddCourseForm from "~/components/admin-panel/Courses/AddCourseForm/AddCou
 import CoursesList from "~/components/admin-panel/Courses/CoursesList";
 import type { Route } from "./+types/Courses";
 import { getAllCategories, getAllCourses, getCookie, saveNewCourse } from "~/utils/utils";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const allCategories = await getAllCategories();
@@ -9,6 +10,10 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
   return { allCategories, allCourses };
 }
+
+export const meta: MetaFunction = () => {
+  return [{ title: "دوره ها - پنل مدیریت - سبزلرن" }];
+};
 
 function Courses({ loaderData }: Route.ComponentProps) {
   return (

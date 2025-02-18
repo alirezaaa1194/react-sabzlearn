@@ -1,4 +1,4 @@
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, user } from "@heroui/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@heroui/react";
 import type { userType } from "~/types/user.type";
 
 export default function RecentUser({ users }: { users: userType[] }) {
@@ -19,7 +19,7 @@ export default function RecentUser({ users }: { users: userType[] }) {
         <TableColumn align="center">نقش</TableColumn>
       </TableHeader>
       <TableBody>
-        {[...users.slice(0, 10)].map((user) => (
+        {[...users].slice(0, 10).map((user) => (
           <TableRow key={user._id}>
             <TableCell>{user._id}</TableCell>
             <TableCell>{user.username}</TableCell>

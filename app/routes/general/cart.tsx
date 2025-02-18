@@ -5,12 +5,12 @@ import session from "~/sessions.server";
 import { getAllCourses, getCookie, getMe, registerCourse } from "~/utils/utils";
 import type { courseType } from "~/types/course.type";
 import CoursesSection from "~/components/Cart/CoursesSection";
-import NullMessage from "~/components/Header/cart/NullMessage";
 import { Toaster } from "react-hot-toast";
 import { redirect, type MetaFunction } from "react-router";
+import NullMessage from "~/components/Cart/NullMessage";
 import SuggestionSlider from "~/components/Cart/SuggestionSlider";
 
-export async function loader({ params, request }: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
   const currentSession = await session.getSession(cookieHeader);
   const coursesId = currentSession.data.coursesId as string;

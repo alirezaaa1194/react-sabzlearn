@@ -1,13 +1,7 @@
 import { Button } from "@heroui/button";
-import { Checkbox } from "@heroui/checkbox";
 import { Switch } from "@heroui/switch";
-import { useQuery } from "@tanstack/react-query";
-import { ChevronDownIcon } from "public/svg/svgs";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-import type { categoryType } from "~/types/category.type";
-import type { courseType } from "~/types/course.type";
-import { getAllCategories, getAllCourses } from "~/utils/utils";
 
 function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, setIsOpenFilterDrawer }: { isUserLogedIn: boolean; removeAllFilter: boolean; setRemoveAllFilter: (param: boolean) => void; setIsOpenFilterDrawer: (param: boolean) => void }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -94,7 +88,7 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
       <div className="p-5">
         <Button
           className="w-full h-[42px] rounded-lg bg-primary transition-colors hover:bg-primary-hover text-white font-DanaMedium"
-          onPress ={() => {
+          onPress={() => {
             setSearchParams(searchParams, { replace: true, preventScrollReset: true });
             setIsOpenFilterDrawer(false);
           }}

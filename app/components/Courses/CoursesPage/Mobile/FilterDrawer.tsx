@@ -1,9 +1,7 @@
 import { Button } from "@heroui/button";
-import { Switch } from "@heroui/switch";
-import { ArrowsUpDownIcon, FunnelIcon, TrashIcon, XCircleIcon } from "public/svg/svgs";
+import { FunnelIcon, TrashIcon, XCircleIcon } from "public/svg/svgs";
 import React, { memo, useState } from "react";
 import FilterSwitch from "./FilterSwitchs";
-import { useSearchParams } from "react-router";
 
 const FilterDrawer = memo(({ isUserLogedIn }: any) => {
   const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState<boolean>(false);

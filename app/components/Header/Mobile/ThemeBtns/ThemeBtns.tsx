@@ -1,4 +1,3 @@
-import { Spinner } from "@heroui/react";
 import { MoonIcon, SunIcon } from "public/svg/svgs";
 import React from "react";
 import { useFetcher } from "react-router";

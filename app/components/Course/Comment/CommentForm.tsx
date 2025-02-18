@@ -1,7 +1,7 @@
 import React, { use, useEffect, useRef, useState } from "react";
-import { Accordion, AccordionItem, Button } from "@heroui/react";
-import { AcademicCapFillIcon, AcademicCapMiniIcon, ArrowLeftCircleMiniIcon, ArrowUturnLeftIcon, ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightFillIcon, CheckMiniIcon, ChevronDownIcon, ExclamationTriangleIcon, PlayCircleIcon, SparklesIcon, UserMiniIcon } from "public/svg/svgs";
-import { Link, useFetcher, type FetcherWithComponents } from "react-router";
+import { Button } from "@heroui/react";
+import { ChatBubbleBottomCenterTextIcon, ChatBubbleLeftRightFillIcon, ExclamationTriangleIcon, UserMiniIcon } from "public/svg/svgs";
+import { useFetcher } from "react-router";
 import { AuthContext } from "~/contexts/AuthContext";
 import * as Spinners from "react-spinners";
 import { showToast } from "~/components/Notification/Notification";
@@ -74,7 +74,7 @@ function CommentForm() {
         <div className="flex gap-x-4 justify-end mt-[18px] sm:mt-6 mb-10">
           <Button
             className="flex-grow sm:grow-0 sm:w-36 h-[46px] rounded-lg font-DanaMedium text-base text-primary bg-transparent btn-primary--outline"
-            onPress ={() => {
+            onPress={() => {
               setIsOpenCommentForm(false);
               setCommentFormInputValue("");
             }}
@@ -83,7 +83,7 @@ function CommentForm() {
           </Button>
           <Button
             type="submit"
-            onPress ={() => {
+            onPress={() => {
               if (!commentFormInputValue.trim()) {
                 showToast("خطا", "لطفا متن دیدگاه را وارد کنید!", "error");
               } else {

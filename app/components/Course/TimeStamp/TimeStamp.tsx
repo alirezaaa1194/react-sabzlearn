@@ -1,6 +1,5 @@
 import React from "react";
 import useTimeStamp from "~/hooks/useTimeStamp";
-import type { singleCourseType } from "~/types/course.type";
 
 function TimeStamp({ discount }: { discount: number | undefined }) {
   const [dayStamp, hourStamp, minStamp, secStamp] = useTimeStamp();

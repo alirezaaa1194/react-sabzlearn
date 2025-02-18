@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import RichTable from "../RichTable";
 import type { categoryType } from "~/types/category.type";
 import moment from "jalali-moment";

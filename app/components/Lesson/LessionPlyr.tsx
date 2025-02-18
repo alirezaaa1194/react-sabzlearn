@@ -1,4 +1,4 @@
-import React, { memo, Suspense, useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Skeleton } from "@heroui/skeleton";
 
 const Plyr = React.lazy(() => import("plyr-react"));

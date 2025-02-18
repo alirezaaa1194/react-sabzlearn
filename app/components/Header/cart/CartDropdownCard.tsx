@@ -1,4 +1,4 @@
-import { TomanIcon, TrashIcon } from "public/svg/svgs";
+import { TomanIcon } from "public/svg/svgs";
 import React, { use } from "react";
 import { Link } from "react-router";
 import CartCourse from "./CartCourse";

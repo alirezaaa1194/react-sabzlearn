@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllocatoToCourse from "./AllocatoToCourse";
 import { baseUrl } from "~/utils/utils";
 import type { singleCourseType } from "~/types/course.type";

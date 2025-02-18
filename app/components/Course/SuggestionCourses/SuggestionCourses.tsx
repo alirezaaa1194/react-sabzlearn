@@ -1,7 +1,7 @@
 import { SparklesIcon } from "public/svg/svgs";
 import React from "react";
 import SuggestionCourseBox from "./SuggestionCourseBox";
-import type { courseType, singleCourseType } from "~/types/course.type";
+import type { courseType } from "~/types/course.type";
 import NullMessage from "~/components/NullMessage/NullMessage";
 
 function SuggestionCourses({ relatedCourses }: { relatedCourses: courseType[] }) {

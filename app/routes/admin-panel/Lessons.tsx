@@ -5,12 +5,16 @@ import LessonsList from "~/components/admin-panel/Lessons/LessonsList";
 import type { Route } from "./+types/Lessons";
 import AddLessonForm from "~/components/admin-panel/Lessons/AddLessonForm/AddLessonForm";
 import type { sessionType } from "~/types/session.type";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const allCourses = await getAllCourses();
   const allSessions = await getAllSessions();
 
   return { allSessions, allCourses };
+}
+export const meta:MetaFunction=()=> {
+  return [{ title: "جلسات - پنل مدیریت - سبزلرن" }];
 }
 
 function Lessons({ loaderData }: Route.ComponentProps) {

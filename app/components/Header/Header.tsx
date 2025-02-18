@@ -6,11 +6,10 @@ import ThemeBtns from "./Desktop/ThemeBtns/ThemeBtns";
 import CartDropdown from "./cart/CartDropdown";
 import LoginBtn from "./Desktop/userProfile/LoginBtn";
 import MobileSidebar from "./Mobile/MobileSidebar";
-import { use, useContext, useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Overlay from "../Overlay/Overlay";
 import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
 import UserProfileDropdown from "./Desktop/userProfile/UserProfileDropdown";
-import type { userType } from "~/types/user.type";
 
 function Header() {
   const [isOpenSideBar, setIsOpenSideBar] = useState<boolean>(false);

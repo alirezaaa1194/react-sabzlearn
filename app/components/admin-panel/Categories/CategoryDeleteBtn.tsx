@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import CustomModal from "../Modals/CustomModal";
 import { Toaster } from "react-hot-toast";
 import { useFetcher } from "react-router";
-import type { sessionType } from "~/types/session.type";
 import { showToast } from "~/components/Notification/Notification";
 import { Button } from "@heroui/button";
 import { Spinner } from "@heroui/react";

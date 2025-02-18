@@ -4,11 +4,16 @@ import { getAllPAdminMenus, getMenus } from "~/utils/utils";
 import AddMenuForm from "~/components/admin-panel/Menus/AddMenuForm";
 import MenusList from "~/components/admin-panel/Menus/MenusList";
 import type { subMenuType } from "~/types/menus.type";
+import type { MetaFunction } from "react-router";
 export async function loader({ params, request }: Route.LoaderArgs) {
   const menus = await getMenus();
   const allMenus = await getAllPAdminMenus();
 
   return { allMenus, menus };
+}
+
+export const meta:MetaFunction=()=> {
+  return [{ title: "منو ها - پنل مدیریت - سبزلرن" }];
 }
 
 function Menus({ loaderData }: Route.ComponentProps) {

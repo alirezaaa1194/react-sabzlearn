@@ -3,6 +3,7 @@ import EditUserForm from "~/components/admin-panel/Users/AddUserForm/EditUserFor
 import type { Route } from "./+types/EditUser";
 import { getAllUsers, getCookie } from "~/utils/utils";
 import type { userType } from "~/types/user.type";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -13,6 +14,11 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
   return { mainUser };
 }
+
+
+export const meta: MetaFunction<typeof loader> = ({ data }: any) => {
+  return [{ title: `ویرایش کاربر - ${data.mainUser.name} - پنل مدیریت - سبزلرن` }];
+};
 
 function EditUser({ loaderData }: Route.ComponentProps) {
     

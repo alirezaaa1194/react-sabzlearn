@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import PageNullMessage from "~/components/NullMessage/PageNullMessage";
-import type { articleType } from "~/types/article.type";
 import CourseCard from "../CourseCard";
 import type { courseType } from "~/types/course.type";
 import { Button } from "@heroui/button";

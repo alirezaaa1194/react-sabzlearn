@@ -1,6 +1,5 @@
-import { Button } from "@heroui/button";
 import moment from "jalali-moment";
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import type { commentType } from "~/types/comment.type";
 import RichTable from "../RichTable";
 import { Chip } from "@heroui/react";

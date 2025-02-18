@@ -1,5 +1,5 @@
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
-import React, { memo, use, useState } from "react";
+import React, { memo, useState } from "react";
 import UserProfileDropdownCard from "./UserProfileDropdownCard";
 import { UserIcon } from "public/svg/svgs";
 

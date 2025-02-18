@@ -147,10 +147,6 @@ export const getAllCategories = async () => {
   const res = await apiRequest.get("/category");
   return res;
 };
-export const getPreSellCourses = async () => {
-  const res = await apiRequest.get("/courses/presell");
-  return res;
-};
 
 export const getCourseByCategory = async (categoryName: string) => {
   const res = await apiRequest.get(`/courses/category/${categoryName}`);

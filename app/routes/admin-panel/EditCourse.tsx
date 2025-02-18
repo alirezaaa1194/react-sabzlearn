@@ -2,6 +2,7 @@ import React from "react";
 import EditCourseForm from "~/components/admin-panel/Courses/AddCourseForm/EditCourseForm";
 import type { Route } from "./+types/EditCourse";
 import { getAllCategories, getSingleCourse } from "~/utils/utils";
+import type { MetaFunction } from "react-router";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const course = await getSingleCourse(params.courseShortName);
@@ -9,6 +10,13 @@ export async function loader({ params }: Route.LoaderArgs) {
 
   return { course, categories };
 }
+
+
+
+export const meta: MetaFunction<typeof loader> = ({ data }: any) => {
+  return [{ title: `ویرایش دوره - ${data.course.data.name} - پنل مدیریت - سبزلرن` }];
+};
+
 
 function EditCourse({ loaderData }: Route.ComponentProps) {
 

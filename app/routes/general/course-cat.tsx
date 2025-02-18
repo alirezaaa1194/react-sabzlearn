@@ -1,4 +1,4 @@
-import { getAllCategories, getCookie, getCourseByCategory, getMe, getPreSellCourses } from "~/utils/utils";
+import { getAllCategories, getCookie, getCourseByCategory, getMe } from "~/utils/utils";
 import MobileSort from "~/components/Courses/CoursesPage/Mobile/MobileSort";
 import DesktopSort from "~/components/Courses/CoursesPage/Desktop/DesktopSort";
 import type { courseType } from "~/types/course.type";
@@ -18,9 +18,7 @@ export async function loader({ request, params }: Route.LoaderArgs) {
   const userCourses = userInfos?.data?.courses;
 
   const data = await getCourseByCategory(params["cat-name"] as string);
-
-  const preSellCourses = await getPreSellCourses();
-
+  
   const url = new URL(request.url);
   const searchParams = url.searchParams;
 
@@ -38,7 +36,6 @@ export async function loader({ request, params }: Route.LoaderArgs) {
 
   let filteredCourses = [...data?.data]?.sort((a: courseType, b: courseType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));
   filteredCourses = filteredCourses.filter((course: courseType) => course?.name.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || "") || course?.description?.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || ""));
-
 
   switch (sortQuery) {
     case "all":
@@ -65,12 +62,7 @@ export async function loader({ request, params }: Route.LoaderArgs) {
   }
 
   if (preSellQuery) {
-    filteredCourses = filteredCourses.filter((course: courseType) => {
-      const isPreselCourse = preSellCourses?.data?.some((userCourse: courseType) => userCourse._id === course._id);
-      if (isPreselCourse) {
-        return course;
-      }
-    });
+    filteredCourses = filteredCourses.filter((course: courseType) => course.status === "presell");
   }
   if (freeQuery) {
     filteredCourses = filteredCourses?.filter((course: courseType) => course.price === 0);

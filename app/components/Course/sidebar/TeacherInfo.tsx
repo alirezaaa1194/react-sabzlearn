@@ -1,4 +1,3 @@
-import { Button } from "@heroui/button";
 import { ArrowLeftCircleIcon } from "public/svg/svgs";
 import React from "react";
 import type { singleCourseType } from "~/types/course.type";

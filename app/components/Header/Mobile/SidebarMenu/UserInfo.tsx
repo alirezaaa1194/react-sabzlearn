@@ -3,7 +3,6 @@ import { ChevronLeftMiniIcon } from "public/svg/svgs";
 import React, { use } from "react";
 import { Link } from "react-router";
 import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
-import type { userType } from "~/types/user.type";
 
 function UserInfo() {
   const userInfoContext = use(AuthContext) as AuthContextType;
