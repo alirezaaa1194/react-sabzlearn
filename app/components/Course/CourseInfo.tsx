@@ -39,7 +39,7 @@ function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCo
           )}
         </div>
 
-        {(course.price > 0 || course?.discount) && !isUserRegisteredToThisCourse ? <TimeStamp discount={!course.price ? 100 : course?.discount} /> : null}
+        {((course.price > 0 && course?.discount) || !course.price) && !isUserRegisteredToThisCourse ? <TimeStamp discount={!course.price ? 100 : course?.discount} /> : null}
 
         <AllocatoToCourse course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
       </div>

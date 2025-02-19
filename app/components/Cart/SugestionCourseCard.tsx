@@ -56,14 +56,14 @@ function SugestionCourseCard({ course }: { course: courseType }) {
                         <span className="font-DanaDemiBold text-lg text-green-500">رایگان!</span>
                       ) : (
                         <span className="font-DanaDemiBold text-lg text-green-500 flex items-center gap-1">
-                          {(((100 - course?.discount) / 100) * course.price).toLocaleString()} <TomanIcon className="size-6" />
+                          {(+(((100 - course?.discount) / 100) * course.price).toFixed()).toLocaleString()} <TomanIcon className="size-6" />
                         </span>
                       )}
                     </div>
                   </div>
                 ) : (
                   <span className="flex items-center gap-1 text-lg font-DanaDemiBold text-green-500">
-                    {course.price.toLocaleString()}
+                    {(+course.price.toFixed()).toLocaleString()}
                     <TomanIcon className="size-6" />
                   </span>
                 )}

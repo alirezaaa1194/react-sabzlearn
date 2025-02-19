@@ -11,9 +11,20 @@ function CourseBox({ cartCourse }: { cartCourse: courseType }) {
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between xs:px-8 sm:px-0 last:pt-4">
       <div className="flex flex-col sm:flex-row sm:items-center gap-y-3 gap-x-5 relative">
-        <button onClick={() => fetcher.submit({ courseId: cartCourse._id }, { method: "POST", action: "/RemoveCartCourse" })} className="sm:hidden absolute right-3 top-2 flex-center size-10">
-          <XCircleMiniIcon className="size-5 transition-colors text-white hover:text-red-500" />
-        </button>
+        {fetcher.state === "loading" ? (
+          <Spinner color="white" size="sm" className="absolute right-3 top-2" />
+        ) : (
+          <button
+            onClick={() => {
+              fetcher.submit({ courseId: cartCourse._id }, { method: "POST", action: "/RemoveCartCourse" });
+
+              showToast("موفق", "از سبد خرید شما حذف شد", "success");
+            }}
+            className="sm:hidden absolute right-3 top-2 flex-center size-10"
+          >
+            <XCircleMiniIcon className="size-5 transition-colors text-white hover:text-red-500" />
+          </button>
+        )}
 
         <Link to={`/course/${cartCourse.shortName}`} className="md:hidden lg:block mx-auto">
           <img className="rounded-xl sm:rounded-xl w-full xs:w-[280px] sm:w-[156px]" src={`${baseUrl}/courses/covers/${cartCourse.cover}`} alt={cartCourse?.name} />
@@ -35,12 +46,18 @@ function CourseBox({ cartCourse }: { cartCourse: courseType }) {
                   <span className="flex flex-col gap-2">
                     <span className="font-DanaMedium text-sm text-slate-500 dark:text-white/70 -mb-1.5 line-through">{cartCourse.price.toLocaleString()}</span>
                     <span className="flex items-center gap-1">
-                      {((100 - (cartCourse?.discount as number)) / 100) * cartCourse?.price?<>{(((100 - (cartCourse?.discount as number)) / 100) * cartCourse?.price).toLocaleString()} <TomanIcon className="size-6" /></>:"رایگان!"}
+                      {((100 - (cartCourse?.discount as number)) / 100) * cartCourse?.price ? (
+                        <>
+                          {(+(((100 - (cartCourse?.discount as number)) / 100) * cartCourse?.price).toFixed()).toLocaleString()} <TomanIcon className="size-6" />
+                        </>
+                      ) : (
+                        "رایگان!"
+                      )}
                     </span>
                   </span>
                 ) : (
                   <>
-                    {cartCourse.price.toLocaleString()} <TomanIcon className="size-7" />
+                    {(+cartCourse.price.toFixed()).toLocaleString()} <TomanIcon className="size-7" />
                   </>
                 )}
               </>

@@ -13,6 +13,8 @@ export async function loader({ params }: Route.LoaderArgs) {
 }
 
 function GeneralLayout({ loaderData }: Route.ComponentProps) {
+  console.log(loaderData.coursesDiscount);
+  
   return (
     <div>
       <HeroUIProvider>

@@ -5,6 +5,8 @@ import type { courseType } from "~/types/course.type";
 import { useFetcher } from "react-router";
 import { Button } from "@heroui/button";
 import { apiRequest } from "~/Services/Axios/config";
+import * as Spinners from "react-spinners";
+const PulseLoader = Spinners.PulseLoader;
 
 function OfferSection({ cartCourses, userToken, offerCode, mainPrice, cartCoursesSumPrice }: { cartCourses: courseType[]; userToken: string | null; offerCode: any | null; mainPrice: number; cartCoursesSumPrice: number }) {
   const [isOpenOfferBox, setIsOpenOfferBox] = useState<boolean>(offerCode && userToken ? true : false);
@@ -102,7 +104,7 @@ function OfferSection({ cartCourses, userToken, offerCode, mainPrice, cartCourse
                 <div className="relative">
                   <input type="text" className="w-full h-[60px] pr-3.5 pl-32 text-sm bg-gray-100 dark:bg-dark rounded-xl font-DanaRegular outline-none" placeholder="کد تخفیف را وارد کنید" value={offerInputValue} onChange={changeOfferInputHandler} onKeyUp={keyupOfferInputHandler} />
                   <Button className="bg-secondary hover:bg-secondary-hover text-white transition-colors rounded-lg absolute left-2.5 top-0 bottom-0 my-auto font-DanaRegular" onPress={validateOfferCode}>
-                    اعمال
+                    {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={10} /> : "اعمال"}
                   </Button>
                 </div>
               ) : (

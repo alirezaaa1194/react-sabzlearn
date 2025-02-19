@@ -10,7 +10,6 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
   const [cartCoursesSumPrice, setCartCoursesSumPrice] = useState(cartCourses.reduce((prev, curr) => prev + curr.price, 0));
   const cartCoursesSumPriceWithOff = cartCourses.reduce((prev, curr) => prev + ((100 - ((curr?.discount as number) || Number(offerCode?.percent) || 0)) / 100) * curr.price, 0);
 
-
   useEffect(() => {
     setCartCoursesSumPrice(cartCourses.reduce((prev, curr) => prev + curr.price, 0));
   }, [cartCourses]);
@@ -20,12 +19,11 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
 
   const notFreeCourses = cartCourses.filter((course) => course.price);
 
-  const percent1 = Math.round(100 - (cartCoursesSumPriceWithOff * 100) / cartCoursesSumPrice) || 0
-  
+  const percent1 = Math.round(100 - (cartCoursesSumPriceWithOff * 100) / cartCoursesSumPrice) || 0;
 
   const step1Price = (percent1 * cartCoursesSumPrice) / 100;
 
-  const step2Price = step1Price < cartCoursesSumPrice && Math.round((notFreeCourses.length * 2 * (step1Price || cartCoursesSumPrice)) / 100) + step1Price <= cartCoursesSumPrice ? Math.round((notFreeCourses.length * 2 * (cartCoursesSumPrice -step1Price )) / 100) : 0;
+  const step2Price = step1Price < cartCoursesSumPrice && Math.round((notFreeCourses.length * 2 * (step1Price || cartCoursesSumPrice)) / 100) + step1Price <= cartCoursesSumPrice ? Math.round((notFreeCourses.length * 2 * (cartCoursesSumPrice - step1Price)) / 100) : 0;
   const mainPrice = cartCoursesSumPrice - (step1Price + step2Price);
 
   const fetcher = useFetcher();
@@ -56,7 +54,7 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
                   <div className="flex items-center gap-x-1">
                     <div>
                       <span className="text-sm font-DanaRegular">({percent1}%) </span>
-                      <span className="font-DanaDemiBold">{step1Price.toLocaleString()}</span>
+                      <span className="font-DanaDemiBold">{(+step1Price.toFixed()).toLocaleString()}</span>
                     </div>
                     <TomanIcon className="size-6" />
                   </div>
@@ -66,7 +64,7 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
                   <div className="flex items-center gap-x-1">
                     <div>
                       <span className="text-sm font-DanaRegular">({notFreeCourses.length * 2}%) </span>
-                      <span className="font-DanaDemiBold">{step2Price.toLocaleString()}</span>
+                      <span className="font-DanaDemiBold">{(+step2Price.toFixed()).toLocaleString()}</span>
                     </div>
                     <TomanIcon className="size-6" />
                   </div>
@@ -87,7 +85,7 @@ function PaySection({ cartCourses, userToken, offerCode }: { cartCourses: course
           <div className="flex items-center justify-between mb-3">
             <span className="font-DanaDemiBold xl:text-lg">مجموع:</span>
             <div className="flex items-center gap-x-1">
-              <span className="font-DanaDemiBold text-xl xl:text-2xl flex items-center gap-1">{mainPrice.toLocaleString()}</span>
+              <span className="font-DanaDemiBold text-xl xl:text-2xl flex items-center gap-1">{(+mainPrice.toFixed()).toLocaleString()}</span>
               <TomanIcon className="size-6" />
             </div>
           </div>
