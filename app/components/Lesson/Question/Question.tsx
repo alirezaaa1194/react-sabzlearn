@@ -7,6 +7,8 @@ import QuestionList from "./QuestionList/QuestionList";
 import type { courseSessionType } from "~/types/course.type";
 
 function Question({questions, session}:{questions:any, session:courseSessionType}) {
+  console.log(questions);
+  
   const userInfoContext = use(AuthContext);
   return (
     <div className="bg-white dark:bg-darker rounded-xl p-[18px] sm:p-5 mt-0 lg:mt-8" id="question-section">

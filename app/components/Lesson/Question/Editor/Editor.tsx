@@ -66,8 +66,8 @@ export default function Editor({ session }: { session: courseSessionType }) {
   const saveQuestionHandler = async (questionBody: string) => {
     if (questionBody) {
       const formData = new FormData();
-      formData.append("departmentID", "67a538b31087370b4d8efc40");
-      formData.append("departmentSubID", "67a538f31087370b4d8efc48");
+      formData.append("departmentID", "67b5e840f0441746a5f724de");
+      formData.append("departmentSubID", "67b5e877f0441746a5f724e4");
       formData.append("title", `پرسش جلسه ${session?.title}`);
       formData.append("priority", "3");
       formData.append("body", questionBody);

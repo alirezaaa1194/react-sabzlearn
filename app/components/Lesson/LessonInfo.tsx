@@ -17,7 +17,7 @@ function LessonInfo({ course, session, videoSrc }: { course: singleCourseType; s
         <h4 className="font-DanaMedium sm:text-lg">{session.title}</h4>
       </div>
       <div className="flex justify-between gap-3.5 flex-wrap">
-        <a href="#question-section" className="w-full sm:w-36">
+        <a href="#question-section" className="w-full sm:w-36 hidden lg:block">
           <Button className="w-full sm:w-36 h-13 lg:h-[46px] rounded-lg flex items-center justify-center text-base font-DanaRegular bg-gray-100 dark:bg-dark">سوال دارم!</Button>
         </a>
         <div className="flex gap-y-3.5 gap-x-4 justify-end flex-grow flex-wrap">
