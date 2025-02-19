@@ -23,7 +23,7 @@ function HeroSection() {
         </div>
       </div>
       <div className="relative z-[2]">
-        <img src="public/images/hero.svg" alt="" />
+        <img src="/images/hero.svg" alt="" />
       </div>
       <div className="w-[300px] h-[300px] absolute top-20 left-0 z-[1] rounded-full bg-sky-500 blur-[120px] opacity-40 hidden lg:block"></div>
     </section>
