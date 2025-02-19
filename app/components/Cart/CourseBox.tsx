@@ -31,7 +31,7 @@ function CourseBox({ cartCourse }: { cartCourse: courseType }) {
           <span className="text-green-500 font-DanaDemiBold text-lg flex items-center gap-1">
             {cartCourse.price > 0 ? (
               <>
-                {cartCourse.discount ? (
+                {cartCourse?.discount ? (
                   <span className="flex flex-col gap-2">
                     <span className="font-DanaMedium text-sm text-slate-500 dark:text-white/70 -mb-1.5 line-through">{cartCourse.price.toLocaleString()}</span>
                     <span className="flex items-center gap-1">

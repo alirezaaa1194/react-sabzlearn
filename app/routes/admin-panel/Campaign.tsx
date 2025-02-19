@@ -9,10 +9,10 @@ import type { MetaFunction } from "react-router";
 export async function loader({ params }: Route.LoaderArgs) {
   const allCourses = await getAllCourses();
 
-  const isHaveDiscount = allCourses.data.some((course: courseType) => course.discount);
+  const isHaveDiscount = allCourses.data.some((course: courseType) => course?.discount);
 
   if (isHaveDiscount) {
-    return { discount: allCourses.data[0].discount };
+    return { discount: allCourses.data[0]?.discount };
   }
   return { discount: null };
 }
@@ -38,12 +38,12 @@ export const meta:MetaFunction=()=> {
 function Campaign({ loaderData }: Route.ComponentProps) {
   return (
     <div className="md:p-5 flex flex-col gap-5 md:gap-10">
-      {loaderData.discount ? (
+      {loaderData?.discount ? (
         <div className="flex flex-col gap-10 p-5 bg-darker rounded-md">
           <span className="text-xl font-lalezar text-white">
             لیست <span className="text-secondary">جشنواره ها</span>
           </span>
-          <DiscountList discount={loaderData.discount} />
+          <DiscountList discount={loaderData?.discount} />
         </div>
       ) : (
         <div className="flex flex-col gap-10 p-5 bg-darker rounded-md">

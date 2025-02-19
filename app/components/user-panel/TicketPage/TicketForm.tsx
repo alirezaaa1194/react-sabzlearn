@@ -30,7 +30,7 @@ function TicketForm({ departments }: any) {
 
     const formData = new FormData();
     formData.append("departmentID", mainDepartment._id);
-    formData.append("departmentSubID", "67a538f31087370b4d8efc48");
+    formData.append("departmentSubID", "67b5e877f0441746a5f724e4");
     formData.append("title", data.subject);
     formData.append("priority", "3");
     formData.append("body", data.body);

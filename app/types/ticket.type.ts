@@ -1,7 +1,14 @@
 export type ticketType = {
   _id: string;
-  departmentID: string;
-  departmentSubID: string;
+  departmentID: {
+    _id: string;
+    title: string;
+    value: string;
+  };
+  departmentSubID: {
+    _id: string;
+    title: string;
+  };
   priority: number;
   title: string;
   body: string;

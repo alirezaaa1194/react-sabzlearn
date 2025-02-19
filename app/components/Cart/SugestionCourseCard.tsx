@@ -47,16 +47,16 @@ function SugestionCourseCard({ course }: { course: courseType }) {
           <div className="flex items-center gap-x-2.5">
             {course.price ? (
               <>
-                {course.discount ? (
+                {course?.discount ? (
                   <div className="flex items-center gap-x-2.5">
-                    <div className="text-sm font-DanaMedium rounded bg-green-500 text-white p-1 h-6 box-content flex items-center justify-center">{course.discount}%</div>
+                    <div className="text-sm font-DanaMedium rounded bg-green-500 text-white p-1 h-6 box-content flex items-center justify-center">{course?.discount}%</div>
                     <div className="flex flex-col gap-1">
                       <span className="font-DanaMedium text-sm text-slate-500 dark:text-white/70 -mb-1.5 line-through">{course.price.toLocaleString()}</span>
-                      {course.discount === 100 ? (
+                      {course?.discount === 100 ? (
                         <span className="font-DanaDemiBold text-lg text-green-500">رایگان!</span>
                       ) : (
                         <span className="font-DanaDemiBold text-lg text-green-500 flex items-center gap-1">
-                          {(((100 - course.discount) / 100) * course.price).toLocaleString()} <TomanIcon className="size-6" />
+                          {(((100 - course?.discount) / 100) * course.price).toLocaleString()} <TomanIcon className="size-6" />
                         </span>
                       )}
                     </div>

@@ -504,5 +504,6 @@ export const addOff = async (token: string, offInfo: any) => {
 };
 
 
-export const baseUrl = "http://127.0.0.1:4000";
+// export const baseUrl = "http://127.0.0.1:4000";
+export const baseUrl = "https://react-sabzlearn.liara.run";
 export const baseRoute = "http://localhost:5173";

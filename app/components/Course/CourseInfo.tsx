@@ -39,17 +39,17 @@ function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCo
           )}
         </div>
 
-        {(course.price > 0 || course.discount) && !isUserRegisteredToThisCourse ? <TimeStamp discount={!course.price ? 100 : course.discount} /> : null}
+        {(course.price > 0 || course?.discount) && !isUserRegisteredToThisCourse ? <TimeStamp discount={!course.price ? 100 : course?.discount} /> : null}
 
         <AllocatoToCourse course={course} isUserRegisteredToThisCourse={isUserRegisteredToThisCourse} />
       </div>
       <div className="w-full lg:w-1/2">
         {isUserRegisteredToThisCourse && course.sessions.length ? (
-          <div className="w-full h-full rounded-xl overflow-hidden">
+          <div className="w-full h-full rounded-xl overflow-hidden aspect-video">
             <LessionPlyr video={course.sessions[0]?.video} poster={course?.cover} />
           </div>
         ) : (
-          <img src={`${baseUrl}/courses/covers/${course.cover}`} alt={`${course.shortName}-cover`} className="w-full h-full rounded-xl" />
+          <img src={`${baseUrl}/courses/covers/${course.cover}`} alt={`${course.shortName}-cover`} className="w-full h-full rounded-xl aspect-video" />
         )}
       </div>
     </div>

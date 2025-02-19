@@ -28,8 +28,8 @@ export async function loader({ request }: Route.LoaderArgs) {
     offerCode = JSON.parse(currentSession.get("offerCode") as string);
     cartCourses = cartCourses.map((course: courseType) => {
       if (course._id === offerCode?.course) {
-        if (course.discount) {
-          const coursePriceByOffer = ((100 - course.discount) * course.price) / 100;
+        if (course?.discount) {
+          const coursePriceByOffer = ((100 - course?.discount) * course.price) / 100;
 
           const coursePriceByOfferCode = (offerCode?.percent / 100) * coursePriceByOffer;
           const mainCourseDiscount = (coursePriceByOfferCode * 100) / course.price;

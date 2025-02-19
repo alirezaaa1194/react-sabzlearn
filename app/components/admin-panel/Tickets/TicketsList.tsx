@@ -48,7 +48,7 @@ function TicketsList({ ticktes, departments }: { ticktes: ticketType[]; departme
         return <span className="md:truncate md:line-clamp-1">{moment(ticket.createdAt, "YYYY/MM/DD").locale("fa").format("YYYY/MM/DD")}</span>;
 
       case "departmentID":
-        return <span className="md:truncate md:line-clamp-1">{ticket.departmentID}</span>;
+        return <span className="md:truncate md:line-clamp-1">{ticket?.departmentID?.title}</span>;
 
       case "show":
         return <TicketShowBtn ticket={ticket} />;

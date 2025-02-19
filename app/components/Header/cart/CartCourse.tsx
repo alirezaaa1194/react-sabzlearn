@@ -23,13 +23,13 @@ function CartCourse({ course }: { course: courseType }) {
           <div className="flex items-center gap-x-2 text-slate-500 dark:text-gray-400">
             {course.price > 0 ? (
               <>
-                {course.discount ? (
+                {course?.discount ? (
                   <div className="flex items-center gap-2">
                     <span className="font-DanaDemiBold text-sm line-through">{course.price.toLocaleString()}</span>
                     <span className="font-DanaMedium text-sm flex gap-x-1 items-center">
-                      {((100 - course.discount) * course.price) / 100 ? (
+                      {((100 - course?.discount) * course.price) / 100 ? (
                         <>
-                          {(((100 - course.discount) * course.price) / 100).toLocaleString()} <TomanIcon className="size-4" />
+                          {(((100 - course?.discount) * course.price) / 100).toLocaleString()} <TomanIcon className="size-4" />
                         </>
                       ) : (
                         "رایگان!"
