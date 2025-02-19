@@ -138,7 +138,7 @@ function loign() {
             </Button>
 
             <Button className="w-2/12 h-12 bg-slate-200 hover:bg-slate-300 hover:transition-colors" onClick={login as unknown as MouseEventHandler<HTMLButtonElement>}>
-              <img src="public/images/Google_Icon2.webp" alt="google-logo" />
+              <img src="/images/Google_Icon2.webp" alt="google-logo" />
             </Button>
           </div>
         </form>
