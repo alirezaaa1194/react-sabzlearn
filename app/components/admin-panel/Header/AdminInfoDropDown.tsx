@@ -10,7 +10,7 @@ function AdminInfoDropDown() {
   const fetcher = useFetcher();
   return (
     <div className="flex items-center gap-4">
-      <img src="/public/images/user-profile.png" className="w-[50px] h-[50px] rounded-full" alt="profile" />
+      <img src="/images/user-profile.png" className="w-[50px] h-[50px] rounded-full" alt="profile" />
       <div className="flex flex-col gap-1">
         <Dropdown placement="bottom-end">
           <DropdownTrigger>

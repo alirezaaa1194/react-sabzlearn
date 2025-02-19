@@ -66,7 +66,7 @@ function Footer() {
             <div className=""></div>
           </div>
           <div>
-            <img src="/public/images/enamad.png" alt="" />
+            <img src="/images/enamad.png" alt="" />
           </div>
         </div>
         {/* footer bottom section */}

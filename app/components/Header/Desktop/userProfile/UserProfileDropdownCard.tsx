@@ -25,7 +25,7 @@ function UserProfileDropdownCard() {
       <div className="flex items-center pb-5 gap-x-3.5  border-b border-b-neutral-200 dark:border-b-white/5">
         <div className="w-14 h-14 rounded-full flex items-center justify-center">
           <Link to="/my-account">
-            <img src="/public/images/user-profile.png" className="rounded-full" alt="" />
+            <img src="/images/user-profile.png" className="rounded-full" alt="" />
           </Link>
         </div>
         <div className="flex flex-col gap-y-3">

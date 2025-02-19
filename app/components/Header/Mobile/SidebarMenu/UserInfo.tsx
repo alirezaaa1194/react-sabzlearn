@@ -14,7 +14,7 @@ function UserInfo() {
       <div className="flex items-center justify-between py-3.5 px-4 bg-gray-100 dark:bg-dark">
         <div className="flex items-center gap-x-2.5">
           <Link to="/my-account">
-            <img src="/public/images/user-profile.png" className="w-14 h-14 rounded-full" alt="" />
+            <img src="/images/user-profile.png" className="w-14 h-14 rounded-full" alt="" />
           </Link>
           <div className="flex flex-col gap-y-1">
             <span className="text-sm font-DanaMedium truncate">{userInfoContext.userInfo?.name}</span>

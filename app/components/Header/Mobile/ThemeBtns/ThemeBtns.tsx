@@ -1,3 +1,4 @@
+import { Spinner } from "@heroui/react";
 import { MoonIcon, SunIcon } from "public/svg/svgs";
 import React from "react";
 import { useFetcher } from "react-router";
@@ -16,8 +17,14 @@ function ThemeBtns() {
           });
         }}
       >
-        <MoonIcon className={`size-6 block dark:hidden ${fetcher.state === "loading" ? "-rotate-180 duration-100" : ""}`} />
-        <SunIcon className={`size-6 hidden dark:block ${fetcher.state === "loading" ? "-rotate-180 duration-100" : ""}`} />
+        {fetcher.state === "loading" ? (
+          <Spinner size="sm" />
+        ) : (
+          <>
+            <MoonIcon className="size-6 block dark:hidden" />
+            <SunIcon className="size-6 hidden dark:block" />
+          </>
+        )}
         <span className="hidden dark:block">تم روشن</span>
         <span className="block dark:hidden">تم تاریک</span>
       </button>

@@ -16,7 +16,7 @@ function Reply({ answerContent }: { answerContent: courseCommentAnswerType }) {
               <div className="absolute -top-0.5 -right-0.5 flex items-center justify-center w-5 h-5 bg-sky-500 rounded-full">
                 <CheckMiniIcon className="text-white size-3.5" />
               </div>
-              <img src="/public/images/user-profile.png" className="w-12 h-12 block object-cover rounded-full" />
+              <img src="/images/user-profile.png" className="w-12 h-12 block object-cover rounded-full" />
             </div>
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-x-1">

@@ -50,7 +50,7 @@ function Header() {
       </div>
       {/* mobile sidebar */}
       <Overlay isOpen={isOpenSideBar} setIsOpen={setIsOpenSideBar} />
-      {/* <MobileSidebar isOpenSideBar={isOpenSideBar} /> */}
+      <MobileSidebar isOpenSideBar={isOpenSideBar} />
     </header>
   );
 }
