@@ -1,6 +1,3 @@
-import React, { use } from "react";
-import { AuthContext } from "~/contexts/AuthContext";
-import type { userType } from "~/types/user.type";
 import Userinfo from "./Userinfo";
 import Menu from "./Menu";
 import { Link } from "react-router";

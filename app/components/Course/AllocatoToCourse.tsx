@@ -59,9 +59,9 @@ function AllocatoToCourse({ course, isUserRegisteredToThisCourse }: { course: si
                 <>
                   {course?.discount ? (
                     <div className="flex items-center gap-x-2.5">
-                      <span className="text-slate-500 dark:text-white/70 text-xl line-through">{course.price.toLocaleString()}</span>
+                      <span className="text-slate-500 dark:text-white/70 text-xl line-through">{(+course.price.toFixed()).toLocaleString()}</span>
                       {
-                        ((100 - course?.discount) * course.price) / 100?<>{(((100 - course?.discount) * course.price) / 100).toLocaleString()} <TomanIcon className="size-7" /></>:"رایگان!"
+                        ((100 - course?.discount) * course.price) / 100?<>{(+(((100 - course?.discount) * course.price) / 100).toFixed()).toLocaleString()} <TomanIcon className="size-7" /></>:"رایگان!"
                       }
                     </div>
                   ) : (

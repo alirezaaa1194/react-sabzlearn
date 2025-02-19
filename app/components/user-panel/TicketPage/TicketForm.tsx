@@ -45,8 +45,8 @@ function TicketForm({ departments }: any) {
   }, [fetcher.data]);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="block space-y-4.5 md:space-y-5 md:pr-5 font-DanaRegular">
-      <div className="flex flex-wrap sm:flex-nowrap gap-4.5 md:gap-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="block space-y-[18px] md:space-y-5 md:pr-5 font-DanaRegular">
+      <div className="flex flex-wrap sm:flex-nowrap gap-[18px] md:gap-5">
         <div className="flex flex-col w-full outline-none sm:w-1/2 lg:w-2/3">
           <input type="text" {...register("subject")} className={`w-full outline-none placeholder:text-slate-500 dark:placeholder:text-gray-400 text-gray-900 dark:text-white bg-white dark:bg-darker text-sm p-3.5 rounded border border-transparent ${errors.subject && "!border-red-500"}`} placeholder="موضوع تیکت:" />
           <span className="inline-block text-red-500 font-DanaMedium text-sm mt-2 mb-0 mr-4 transition-colors">{errors.subject && errors.subject?.message}</span>

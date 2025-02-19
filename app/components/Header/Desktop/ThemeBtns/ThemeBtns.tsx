@@ -9,7 +9,7 @@ function ThemeBtns({ className }: { className?: string }) {
   return (
     <button
       type="submit"
-      className="w-13 h-13 rounded-full hidden lg:flex items-center justify-center bg-gray-100 text-slate-500 dark:bg-white/5 dark:text-white ${className}"
+      className={`w-13 h-13 rounded-full hidden lg:flex items-center justify-center bg-gray-100 text-slate-500 dark:bg-white/5 dark:text-white ${className}`}
       onClick={() => {
         fetcher.submit(null, { method: "POST", action: "/switchTheme" });
       }}

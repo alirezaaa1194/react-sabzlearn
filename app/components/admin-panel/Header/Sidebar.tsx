@@ -10,7 +10,7 @@ export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSid
         <Link to="/">
           <LogoIcon />
         </Link>
-        <h2 className="text-white text-lg lg:text-2xl">پنل مدیریت</h2>
+        <h2 className="text-white text-2xl">پنل مدیریت</h2>
         <button className="text-white flex justify-end lg:hidden" onClick={() => setIsOpenSidebar(false)}>
           <CloseIcon className="size-6" />
         </button>
