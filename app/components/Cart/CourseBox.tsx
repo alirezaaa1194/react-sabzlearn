@@ -9,10 +9,10 @@ import { showToast } from "../Notification/Notification";
 function CourseBox({ cartCourse }: { cartCourse: courseType }) {
   const fetcher = useFetcher();
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between xs:px-8 sm:px-0 last:pt-4">
+    <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between xs:px-8 sm:px-0 pt-4 first:pt-0">
       <div className="flex flex-col sm:flex-row sm:items-center gap-y-3 gap-x-5 relative">
         {fetcher.state === "loading" ? (
-          <Spinner color="white" size="sm" className="absolute right-3 top-2" />
+          <Spinner color="danger" size="sm" className="absolute right-3 top-2" />
         ) : (
           <button
             onClick={() => {
