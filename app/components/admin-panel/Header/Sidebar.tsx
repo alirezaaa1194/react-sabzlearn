@@ -5,7 +5,7 @@ import { Link, NavLink, useLocation } from "react-router";
 export default function Sidebar({ isOpenSidebar, setIsOpenSidebar }: { isOpenSidebar: boolean; setIsOpenSidebar: (param: boolean) => void }) {
   const location = useLocation();
   return (
-    <aside className={`w-67 md:!w-1/5 fixed md:!sticky z-50 !top-0 !h-screen overflow-y-auto flex flex-col bg-darker font-lalezar transition-all -right-full md:!right-0 md:opacity-100 md:visible ${isOpenSidebar ? "right-0 opacity-100 visible" : "-right-full opacity-0 invisible"}`}>
+    <aside className={`w-64 md:!w-1/5 fixed md:!sticky z-50 !top-0 !h-screen overflow-y-auto flex flex-col bg-darker font-lalezar transition-all -right-full md:!right-0 md:opacity-100 md:visible ${isOpenSidebar ? "right-0 opacity-100 visible" : "-right-full opacity-0 invisible"}`}>
       <div className="flex items-center justify-between md:justify-start md:gap-x-2 p-[15px] border-b border-b-white/10 h-[90px]">
         <Link to="/">
           <LogoIcon />

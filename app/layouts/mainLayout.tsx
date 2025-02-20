@@ -17,6 +17,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   await queryClient.prefetchQuery({
     queryKey: ["courses"],
     queryFn: getAllCourses,
+    staleTime: 1000000000,
   });
 
   await queryClient.prefetchQuery({

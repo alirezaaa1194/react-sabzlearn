@@ -101,12 +101,12 @@ function OfferSection({ cartCourses, userToken, offerCode, mainPrice, cartCourse
           {!isValidOfferCode ? (
             <div className="">
               {userToken ? (
-                <div className="relative">
+                <fetcher.Form className="relative">
                   <input type="text" className="w-full h-[60px] pr-3.5 pl-32 text-sm bg-gray-100 dark:bg-dark rounded-xl font-DanaRegular outline-none" placeholder="کد تخفیف را وارد کنید" value={offerInputValue} onChange={changeOfferInputHandler} onKeyUp={keyupOfferInputHandler} />
-                  <Button className="bg-secondary hover:bg-secondary-hover text-white transition-colors rounded-lg absolute left-2.5 top-0 bottom-0 my-auto font-DanaRegular" onPress={validateOfferCode}>
+                  <Button type="submit" className="bg-secondary hover:bg-secondary-hover text-white transition-colors rounded-lg absolute left-2.5 top-0 bottom-0 my-auto font-DanaRegular" onPress={validateOfferCode}>
                     {fetcher.state === "loading" ? <PulseLoader color="#fff" className="mx-auto" size={10} /> : "اعمال"}
                   </Button>
-                </div>
+                </fetcher.Form>
               ) : (
                 <span className="font-DanaRegular">برای وارد کردن کد تخفیف اول وارد شدید</span>
               )}

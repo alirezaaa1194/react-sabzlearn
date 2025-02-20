@@ -1,7 +1,8 @@
+import { Button } from "@heroui/button";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import { BellIcon, ChevronDownIcon } from "public/svg/svgs";
 import React from "react";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import type { commentType } from "~/types/comment.type";
 import type { ticketType } from "~/types/ticket.type";
 
@@ -9,6 +10,7 @@ function NotificationDropDown({ comments, tickets }: { comments: commentType[]; 
   const dontAnsweredComments = [...comments].filter((comment) => !comment.answer || !comment.answerContent);
   const dontAnsweredTickets = [...tickets].filter((comment) => !comment.answer);
 
+  const navigate = useNavigate();
   return (
     <Dropdown placement="bottom-start">
       <DropdownTrigger>
@@ -21,13 +23,17 @@ function NotificationDropDown({ comments, tickets }: { comments: commentType[]; 
       <DropdownMenu aria-label="Static Actions">
         {dontAnsweredComments.length ? (
           <DropdownItem key="comments" className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
-            <Link to="/admin-panel/comments">{dontAnsweredComments.length} کامنت جدید دارید</Link>
+            <Button onPress={() => navigate("/admin-panel/comments")} className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium bg-transparent p-0">
+              {dontAnsweredComments.length} کامنت جدید دارید
+            </Button>
           </DropdownItem>
         ) : null}
 
         {dontAnsweredTickets.length ? (
           <DropdownItem key="tickets" className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
-            <Link to="/admin-panel/tickets">{dontAnsweredTickets.length} تیکت جدید دارید</Link>
+            <Button onPress={() => navigate("/admin-panel/tickets")} className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium bg-transparent p-0">
+              {dontAnsweredTickets.length} تیکت جدید دارید
+            </Button>
           </DropdownItem>
         ) : null}
 

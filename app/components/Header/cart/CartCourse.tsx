@@ -1,4 +1,4 @@
-import { Spinner } from "@heroui/react";
+import { Button, Spinner } from "@heroui/react";
 import { TomanIcon, TrashIcon } from "public/svg/svgs";
 import React from "react";
 import { Link, useFetcher } from "react-router";
@@ -13,7 +13,7 @@ function CartCourse({ course }: { course: courseType }) {
       <div className="flex items-center gap-x-3">
         <div className="h-15 w-[106px]">
           <Link to={`/course/${course.shortName}`} className="inline-block h-15 w-[106px]">
-            <img src={`${baseUrl}/courses/covers/${course.cover}`} className="h-15 w-[106px] aspect-video rounded-lg" alt="" />
+            <img src={`${baseUrl}/courses/covers/${course.cover}`} className="h-15 w-[106px] aspect-video rounded-lg" alt={course.name} />
           </Link>
         </div>
         <div className="flex flex-col gap-1 justify-between">
@@ -49,7 +49,7 @@ function CartCourse({ course }: { course: courseType }) {
           </div>
         </div>
       </div>
-      <button
+      <button className="w-fit"
         onClick={() => {
           fetcher.submit({ courseId: course._id }, { method: "POST", action: "/RemoveCartCourse" });
           if (fetcher.state !== "loading") {

@@ -14,6 +14,15 @@ export async function action({ request }: Route.ActionArgs) {
   let filteredCoursesId = splitedCoursesId.filter((ids: string) => ids !== mainCourseId).join("; ");
   currentSession.set("coursesId", filteredCoursesId);
 
+  let offerCode = currentSession.get("offerCode") as string;
+  if (offerCode) {
+    offerCode = JSON.parse(offerCode)
+
+    if (offerCode?.course === mainCourseId) {
+      currentSession.unset("offerCode");
+    }
+  }
+
   return data(
     { currentSession },
     {

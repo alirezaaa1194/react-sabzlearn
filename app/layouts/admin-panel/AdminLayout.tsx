@@ -10,7 +10,7 @@ import Overlay from "~/components/Overlay/Overlay";
 import ProgressBar from "~/components/Progressbar/Progressbar";
 import { Toaster } from "react-hot-toast";
 
-export async function loader({ params, request }: Route.LoaderArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
   const token = getCookie(cookieHeader, "token");
 
@@ -45,7 +45,7 @@ function AdminLayout({ loaderData }: Route.ComponentProps) {
       <div className="flex dark">
         <Overlay isOpen={isOpenSidebar} setIsOpen={setIsOpenSidebar} />
         <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
-        <div className={`flex flex-col w-full md:w-4/5 transition-all md:translate-x-0 ${isOpenSidebar ? "-translate-x-[268px]" : "translate-x-0"}`}>
+        <div className={`flex flex-col w-full md:w-4/5 transition-all md:translate-x-0 ${isOpenSidebar ? "-translate-x-[256px]" : "translate-x-0"}`}>
           <Header isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} comments={loaderData.allComments.data} tickets={loaderData.allTickets.data} />
           <main className="container py-4 sm:py-2.5 bg-gray-900 h-full text-white">
             <Outlet />

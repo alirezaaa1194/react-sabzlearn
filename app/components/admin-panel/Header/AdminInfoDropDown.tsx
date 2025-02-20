@@ -2,12 +2,13 @@ import { Button } from "@heroui/button";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import { ChevronDownIcon } from "public/svg/svgs";
 import React, { use } from "react";
-import { Link, useFetcher } from "react-router";
+import { useFetcher, useNavigate } from "react-router";
 import { AuthContext } from "~/contexts/AuthContext";
 
 function AdminInfoDropDown() {
   const authContext = use(AuthContext);
   const fetcher = useFetcher();
+  const navigate = useNavigate();
   return (
     <div className="flex items-center gap-4">
       <img src="/images/user-profile.png" className="w-[50px] h-[50px] rounded-full" alt="profile" />
@@ -21,10 +22,15 @@ function AdminInfoDropDown() {
           </DropdownTrigger>
           <DropdownMenu aria-label="Static Actions">
             <DropdownItem key="edit-account" className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
-              <Link to="/">بازدید سایت</Link>
+              <Button onPress={() => navigate("/")} 
+              
+              className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium bg-transparent p-0"
+               >بازدید سایت</Button>
             </DropdownItem>
-            <DropdownItem key="edit-account" className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
-              <Link to={`admin-panel/edituser/${authContext?.userInfo._id}`}>ویرایش حساب</Link>
+            <DropdownItem key="edit-account" closeOnSelect={false} className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
+              <Button onPress={() => navigate(`admin-panel/edituser/${authContext?.userInfo._id}`)} 
+              className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium bg-transparent p-0"
+               >ویرایش حساب</Button>
             </DropdownItem>
             <DropdownItem key="logout" className="p-0">
               <Button

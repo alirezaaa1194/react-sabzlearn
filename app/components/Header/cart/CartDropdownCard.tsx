@@ -1,11 +1,12 @@
 import { TomanIcon } from "public/svg/svgs";
 import React, { use } from "react";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import CartCourse from "./CartCourse";
 import { CartContext } from "~/contexts/CartContext";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCourses } from "~/utils/utils";
 import type { courseType } from "~/types/course.type";
+import { Button } from "@heroui/button";
 
 function CartDropdownCard() {
   const cartCoursesId = use(CartContext);
@@ -14,6 +15,7 @@ function CartDropdownCard() {
   const { data: allCourses } = useQuery({
     queryKey: ["courses"],
     queryFn: getAllCourses,
+    staleTime:1000000000
   });
   const cartCourses = allCourses?.data.filter((course: courseType) => cartCoursesIds?.includes(course._id));
 
@@ -21,6 +23,7 @@ function CartDropdownCard() {
 
   const cartCoursesSumPriceWithOff = cartCourses.reduce((prev: any, curr: any) => prev + ((100 - ((curr?.discount as number) || 0)) / 100) * curr.price, 0);
 
+  const navigate = useNavigate();
   return (
     <div className="w-80 sm:w-[362px] h-fit bg-white dark:bg-darker rounded-lg flex flex-col">
       {/* header */}
@@ -57,9 +60,9 @@ function CartDropdownCard() {
                 <span className="text-lg font-DanaDemiBold flex">رایگان</span>
               )}
             </div>
-            <Link to="/cart" className="btn-primary w-full flex items-center justify-center h-12 rounded-lg font-DanaMedium">
+            <Button onPress={() => navigate("/cart")} className="bg-primary hover:bg-primary-hover hover:transition-colors text-white w-full flex items-center justify-center h-12 rounded-lg font-DanaMedium">
               مشاهده سبد خرید
-            </Link>
+            </Button>
           </div>
         </div>
       ) : (

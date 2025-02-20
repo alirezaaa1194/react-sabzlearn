@@ -3,7 +3,7 @@ import React, { memo, useState } from "react";
 import UserProfileDropdownCard from "./UserProfileDropdownCard";
 import { UserIcon } from "public/svg/svgs";
 
-const UserProfileDropdown=memo(()=> {
+const UserProfileDropdown=()=> {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -20,6 +20,6 @@ const UserProfileDropdown=memo(()=> {
       </DropdownMenu>
     </Dropdown>
   );
-})
+}
 
 export default UserProfileDropdown;

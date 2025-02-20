@@ -25,7 +25,7 @@ function ArticleBody({ article }: { article: singleArticleType }) {
           <span>12</span>
         </div>
       </div>
-      <img src={`${baseUrl}/courses/covers/${article.cover}`} className="w-full max-h-[500px] object-cover rounded-xl" alt={article.title} />
+      <img src={`${baseUrl}/courses/covers/${article.cover}`} loading="lazy" className="w-full max-h-[500px] object-cover rounded-xl" alt={article.title} />
       <div className="blog-body">{parse(article.body)}</div>
     </div>
   );

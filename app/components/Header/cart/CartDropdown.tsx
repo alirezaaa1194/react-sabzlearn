@@ -5,7 +5,7 @@ import CartDropdownCard from "./CartDropdownCard";
 import { useLocation } from "react-router";
 import { CartContext } from "~/contexts/CartContext";
 
-const CartDropdown = memo(() => {
+const CartDropdown = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const location = useLocation();
   const cartCoursesId = use(CartContext);
@@ -31,6 +31,6 @@ const CartDropdown = memo(() => {
       </DropdownMenu>
     </Dropdown>
   );
-});
+};
 
 export default CartDropdown;
