@@ -9,7 +9,7 @@ function QuestionAnswer({ answer, date }: { answer: any; date: any }) {
       <div className="p-[18px] md:p-5 bg-gray-200 dark:bg-darker rounded-lg">
         <div className="flex items-center justify-between pb-4 mb-4 border-b border-b-white/40 dark:border-white/10">
           <div className="flex items-center gap-x-3.5">
-            <div className="border-sky-500 sm:flex-center w-15 h-15 border rounded-full relative p-1">
+            <div className="border-sky-500 hidden sm:flex items-center justify-center w-15 h-15 border rounded-full relative p-1">
               <div className="absolute -top-0.5 -right-0.5 flex items-center justify-center w-5 h-5 bg-sky-500 rounded-full">
                 <CheckMiniIcon className="text-white size-3.5" />
               </div>
