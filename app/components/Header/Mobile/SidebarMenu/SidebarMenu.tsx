@@ -21,6 +21,16 @@ function SidebarMenu() {
       {menus?.map((subMenu: subMenuType) => (
         <SidebarSubMenu key={subMenu._id} subMenu={subMenu} mainMenu={mainMenu} setMainMenu={setMainMenu} />
       ))}
+        <li className="flex flex-col items-center justify-between gap-y-2.5 mb-2.5">
+          <div className="flex items-center justify-between h-8 w-full">
+            <NavLink to="/courses" className="active:text-primary">همه دوره ها</NavLink>
+          </div>
+        </li>
+        <li className="flex flex-col items-center justify-between gap-y-2.5 mb-2.5">
+          <div className="flex items-center justify-between h-8 w-full">
+            <NavLink to="/blogs" className="active:text-primary">مقالات</NavLink>
+          </div>
+        </li>
 
       {userInfo?.role === "ADMIN" ? (
         <li className="flex flex-col items-center justify-between gap-y-2.5 mb-2.5">
