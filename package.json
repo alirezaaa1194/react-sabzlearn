@@ -18,7 +18,7 @@
     "@heroui/modal": "^2.2.8",
     "@heroui/pagination": "^2.2.9",
     "@heroui/radio": "^2.3.9",
-    "@heroui/react": "2.6",
+    "@heroui/react": "^2.7.2",
     "@heroui/select": "^2.4.10",
     "@heroui/skeleton": "^2.2.6",
     "@heroui/switch": "^2.2.9",
