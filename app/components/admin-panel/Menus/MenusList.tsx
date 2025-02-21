@@ -17,10 +17,10 @@ export default function MenusList({ allMenus }: { allMenus: any }) {
 
     switch (columnKey) {
       case "title":
-        return <span className="md:truncate md:line-clamp-1">{menu.title}</span>;
+        return <span className="md:truncate md:line-clamp-1">{menu?.title}</span>;
 
       case "href":
-        return <span className="md:truncate md:line-clamp-1">{menu.href}</span>;
+        return <span className="md:truncate md:line-clamp-1">{menu?.href}</span>;
 
       case "parentId":
         return <span className="md:truncate md:line-clamp-1">{menu?.parent?.title || "-"}</span>;

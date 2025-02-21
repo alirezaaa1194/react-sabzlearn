@@ -75,7 +75,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   const { mainCategory }: any = data;
   const { filteredCourses }: any = data;
 
-  return [{ title: `"آموزش ${mainCategory.title}" با +${filteredCourses.length} دوره آموزشی {از صفر تا استخدام}` }];
+  return [{ title: `${mainCategory.title} - سبزلرن` }];
 };
 
 function CourseCat({ loaderData }: Route.ComponentProps) {

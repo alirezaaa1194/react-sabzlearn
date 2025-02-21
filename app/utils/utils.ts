@@ -2,12 +2,8 @@ import { apiRequest } from "~/Services/Axios/config";
 import type { courseSessionType } from "~/types/course.type";
 
 export function getMenus() {
-  try {
-    const data = apiRequest.get("/menus");
-    return data;
-  } catch {
-    return { data: [] };
-  }
+  const res = apiRequest.get("/menus");
+  return res;
 }
 
 export function getAllCourses() {
@@ -367,8 +363,14 @@ export const answerToTicket = async (token: string, ticketId: string, answerBody
 };
 
 export const getAllPAdminMenus = async () => {
-  const res = await apiRequest.get("/menus/all");
-  return res;
+  try {
+    const res = await apiRequest.get("/menus/all");
+    return res;
+  } catch {
+    return {
+      data: [],
+    };
+  }
 };
 
 export const saveNewMenu = async (token: string, data: any) => {

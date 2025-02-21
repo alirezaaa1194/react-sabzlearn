@@ -31,10 +31,10 @@ function CoursesSection({ filteredCourses }: { filteredCourses: courseType[] }) 
             })}
           </div>
           {(currentPage + 1) * 12 < filteredCourses?.length ? (
-            <Button className="mt-5 mx-auto h-10 px-3 rounded-lg text-primary bg-transparent border border-primary transition-colors hover:bg-[#1eb35b1a] font-DanaRegular" onPress={paginationHandler}>
+            <button className="flex items-center gap-1 mt-5 mx-auto h-10 px-3 rounded-lg text-primary bg-transparent border border-primary transition-colors hover:bg-[#1eb35b1a] font-DanaRegular" onClick={paginationHandler}>
               مشاهده بیشتر
               <ChevronDownIcon className="size-5" />
-            </Button>
+            </button>
           ) : (
             ""
           )}

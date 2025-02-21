@@ -48,7 +48,7 @@ export default function OffsList({ courses, offs }: { courses: courseType[]; off
   }, []);
   return (
     <>
-      <RichTable columns={columns} statusOptions={[]} filterKey="status" INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS} data={offs} renderCell={renderCell} searchKey="code" dataTitle="کدهای نخفیف" />
+      <RichTable columns={columns} statusOptions={[]} filterKey="status" INITIAL_VISIBLE_COLUMNS={INITIAL_VISIBLE_COLUMNS} data={offs} renderCell={renderCell} searchKey="code" dataTitle="کدهای تخفیف" />
     </>
   );
 }

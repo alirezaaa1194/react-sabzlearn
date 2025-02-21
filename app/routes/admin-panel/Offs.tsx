@@ -9,14 +9,20 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const cookieHeader = request.headers.get("Cookie");
   const token = getCookie(cookieHeader, "token");
 
-  const allOffs = await getAllOffs(token as string);
-  const allCourses = await getAllCourses();
-  return { allCourses, allOffs };
+  try {
+    const allOffs = await getAllOffs(token as string);
+    const allCourses = await getAllCourses();
+    return { allCourses, allOffs };
+  } catch {
+    const allOffs = { data: [] };
+    const allCourses = await getAllCourses();
+    return { allCourses, allOffs };
+  }
 }
 
-export const meta:MetaFunction=()=> {
+export const meta: MetaFunction = () => {
   return [{ title: "تخفیفات - پنل مدیریت - سبزلرن" }];
-}
+};
 
 function Offs({ loaderData }: Route.ComponentProps) {
   const offs = [...loaderData.allOffs.data].sort((a: any, b: any) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));

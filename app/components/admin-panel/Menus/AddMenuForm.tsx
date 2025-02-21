@@ -13,9 +13,9 @@ function AddMenuForm({ menus }: { menus: subMenuType[] }) {
   const schema = yup
     .object({
       title: yup.string().min(3, "عنوان منو باید حداقل ۳ کاراکتر باشد").max(25, "عنوان منو نباید بیشتر از 20 کاراکتر باشد").required("لطفاً عنوان منو را وارد کنید"),
-      path: yup.string().min(3, "مسیر منو باید حداقل ۳ کاراکتر باشد").max(20, "مسیر منو نباید بیشتر از 30 کاراکتر باشد").required("لطفاً مسیر منو را وارد کنید"),
+      path: yup.string().min(3, "مسیر منو باید حداقل ۳ کاراکتر باشد").max(50, "مسیر منو نباید بیشتر از 50 کاراکتر باشد").required("لطفاً مسیر منو را وارد کنید"),
 
-      parentId: yup.string(),
+      parentId: yup.string()
     })
     .required();
 
@@ -26,7 +26,7 @@ function AddMenuForm({ menus }: { menus: subMenuType[] }) {
     methods.reset({
       title: "",
       path: "",
-      parentId: "",
+      parentId: undefined,
     });
   };
 
@@ -42,7 +42,7 @@ function AddMenuForm({ menus }: { menus: subMenuType[] }) {
     if (fetcher?.data?.success === false) {
       showToast("خطا", "خطای غیر منتظره رخ داده است", "error");
     } else {
-      showToast("موفق", "دوره با موفقیت افزوده شد", "success");
+      showToast("موفق", `${methods.watch("parentId") ? "زیر منو" : "منو"} با موفقیت افزوده شد`, "success");
       handleReset();
     }
   };

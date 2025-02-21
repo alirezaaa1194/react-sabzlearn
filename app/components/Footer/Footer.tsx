@@ -49,18 +49,17 @@ function Footer() {
             <div className="flex flex-col">
               <span className="inline-block sm:text-2xl font-DanaDemiBold mb-3 sm:mb-4">دوره های پرطرفدار</span>
               <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-gray-700 dark:text-gray-400 font-DanaRegular">
-                <Link to="/">آموزش پایتون</Link>
-                <Link to="/">آموزش Html</Link>
-                <Link to="/">آموزش Css</Link>
-                <Link to="/">پروژه های خلاقانه با Html و Css</Link>
+                <Link to="/course/python">آموزش پایتون</Link>
+                <Link to="/course/html-tutorial">آموزش Html</Link>
+                <Link to="/course/css-tutorial">آموزش Css</Link>
               </div>
             </div>
             <div className="flex flex-col">
               <span className="inline-block sm:text-2xl font-DanaDemiBold mb-3 sm:mb-4">دسترسی سریع</span>
               <div className="flex flex-col items-start gap-y-3 sm:gap-y-4 text-sm sm:text-base text-gray-700 dark:text-gray-400 font-DanaRegular">
-                <Link to="/">قوانین و مقررات</Link>
-                <Link to="/">ارسال تیکت</Link>
-                <Link to="/">همه دوره ها</Link>
+                <Link to="/terms-conditions">قوانین و مقررات</Link>
+                <Link to="/my-account/add-ticket">ارسال تیکت</Link>
+                <Link to="/courses">همه دوره ها</Link>
               </div>
             </div>
             <div className=""></div>

@@ -16,13 +16,14 @@ const DesktopNavbar = memo(() => {
     setIsHoverMenu(false);
   };
 
-  const { data } = useQuery({ queryKey: ["menus"], queryFn: getMenus });
+  const { data } = useQuery({ queryKey: ["menus"], queryFn: getMenus, staleTime: 100000000000 }) || {};
 
   const authContext = use(AuthContext);
   const userInfo = authContext?.userInfo!;
 
-const menus=[...data?.data].sort((a: subMenuType, b: subMenuType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any))
+  const menusResponss = data?.data ?? [];
 
+  const menus = [...menusResponss].sort((a: subMenuType, b: subMenuType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));
 
   return (
     <nav>

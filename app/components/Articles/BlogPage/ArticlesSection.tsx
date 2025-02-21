@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { startTransition, useEffect, useState } from "react";
 import ArticlesCard from "../ArticlesCard";
 import PageNullMessage from "~/components/NullMessage/PageNullMessage";
 import type { articleType } from "~/types/article.type";
@@ -14,6 +14,7 @@ function ArticlesSection({ filteredArticles }: { filteredArticles: articleType[]
       setCurrentPage((prev) => prev + 1);
     }
   };
+
 
   const location = useLocation();
 
@@ -32,16 +33,16 @@ function ArticlesSection({ filteredArticles }: { filteredArticles: articleType[]
           </div>
 
           {(currentPage + 1) * 12 < filteredArticles?.length ? (
-            <Button className="mt-5 mx-auto h-10 px-3 rounded-lg text-primary bg-transparent border border-primary transition-colors hover:bg-[#1eb35b1a] font-DanaRegular" onPress={paginationHandler}>
+            <button className="flex items-center gap-1 mt-5 mx-auto h-10 px-3 rounded-lg text-primary bg-transparent border border-primary transition-colors hover:bg-[#1eb35b1a] font-DanaRegular" onClick={paginationHandler}>
               مشاهده بیشتر
               <ChevronDownIcon className="size-5" />
-            </Button>
+            </button>
           ) : (
             ""
           )}
         </div>
       ) : (
-        <PageNullMessage title="متاسفانه مقاله ای پیدا نشد" />
+        <PageNullMessage title="متاسفانه مقاله ای مطابق با جستجوی شما پیدا نشد ):" />
       )}
     </>
   );

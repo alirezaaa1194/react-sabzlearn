@@ -19,7 +19,7 @@ function courses() {
       <SectionHeader title={`دوره های من (${userCourses?.length})`} />
       {userCourses?.length ? (
         <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:pr-5">
-          {userCourses.map((course: courseType) => (
+          {[...userCourses].reverse().map((course: courseType) => (
             <CourseCard course={course} />
           ))}
         </div>
