@@ -1,20 +1,13 @@
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
-import React, { memo, use, useEffect, useState } from "react";
+import React, { use, useState } from "react";
 import { ShoppingBagIcon } from "public/svg/svgs";
 import CartDropdownCard from "./CartDropdownCard";
-import { useLocation } from "react-router";
 import { CartContext } from "~/contexts/CartContext";
 
 const CartDropdown = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const location = useLocation();
   const cartCoursesId = use(CartContext);
-
   const cartCoursesIds = cartCoursesId?.split("; ");
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
 
   return (
     <Dropdown backdrop="blur" isOpen={isOpen} onOpenChange={setIsOpen} onClose={() => setIsOpen(false)} placement="bottom-start" offset={23} className={`p-0 bg-transparent`}>
@@ -24,7 +17,7 @@ const CartDropdown = () => {
           <ShoppingBagIcon className="size-6" />
         </button>
       </DropdownTrigger>
-      <DropdownMenu closeOnSelect={false} aria-label="Static Actions" variant="faded" className="p-0 m-0 border-none bg-transparent rounded-lg">
+      <DropdownMenu closeOnSelect={true} aria-label="Static Actions" variant="faded" className="p-0 m-0 border-none bg-transparent rounded-lg">
         <DropdownItem key="new2" className="p-0 m-0 border-none bg-transparent cursor-default">
           <CartDropdownCard />
         </DropdownItem>

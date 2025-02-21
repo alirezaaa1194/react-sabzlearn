@@ -20,17 +20,16 @@ function AdminInfoDropDown() {
               <ChevronDownIcon className="size-4" />
             </button>
           </DropdownTrigger>
-          <DropdownMenu aria-label="Static Actions">
+          <DropdownMenu aria-label="Static Actions" closeOnSelect={true}>
             <DropdownItem key="edit-account" className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
-              <Button onPress={() => navigate("/")} 
-              
-              className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium bg-transparent p-0"
-               >بازدید سایت</Button>
+              <Button onPress={() => navigate("/")} className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium bg-transparent p-0">
+                بازدید سایت
+              </Button>
             </DropdownItem>
-            <DropdownItem key="edit-account" closeOnSelect={false} className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
-              <Button onPress={() => navigate(`admin-panel/edituser/${authContext?.userInfo._id}`)} 
-              className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium bg-transparent p-0"
-               >ویرایش حساب</Button>
+            <DropdownItem key="edit-account" className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
+              <Button onPress={() => navigate(`admin-panel/edituser/${authContext?.userInfo._id}`)} className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium bg-transparent p-0">
+                ویرایش حساب
+              </Button>
             </DropdownItem>
             <DropdownItem key="logout" className="p-0">
               <Button

@@ -20,7 +20,7 @@ function NotificationDropDown({ comments, tickets }: { comments: commentType[]; 
         </button>
       </DropdownTrigger>
 
-      <DropdownMenu aria-label="Static Actions">
+      <DropdownMenu aria-label="Static Actions" closeOnSelect={true}>
         {dontAnsweredComments.length ? (
           <DropdownItem key="comments" className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
             <Button onPress={() => navigate("/admin-panel/comments")} className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium bg-transparent p-0">
@@ -39,7 +39,7 @@ function NotificationDropDown({ comments, tickets }: { comments: commentType[]; 
 
         {!dontAnsweredComments.length && !dontAnsweredTickets.length ? (
           <DropdownItem key="tickets" className="w-full flex items-center justify-start gap-x-2.5 h-8 px-2.5 rounded-lg font-DanaMedium">
-            <p className="text-white block w-full text-center">هیچ پیغامی وجود ندارد!</p>
+            <p className="text-slate-500 dark:text-gray-400  block w-full text-center">هیچ پیغامی وجود ندارد!</p>
           </DropdownItem>
         ) : null}
       </DropdownMenu>

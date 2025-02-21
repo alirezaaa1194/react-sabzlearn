@@ -11,7 +11,7 @@ function MobileSort() {
 
   const changeSortHandler = (value: string) => {
     searchParams.set("sort", value);
-    setSearchParams(searchParams,  { replace: true, preventScrollReset: true });
+    setSearchParams(searchParams, { replace: true });
 
     setIsOpenSortBox(false);
   };

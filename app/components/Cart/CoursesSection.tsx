@@ -1,9 +1,9 @@
-import { CheckCircleSolidIcon, CheckMiniIcon, GiftIcon, ShoppingBagIcon, TomanIcon, TrashIcon, XCircleMiniIcon } from "public/svg/svgs";
+import { CheckCircleSolidIcon, CheckMiniIcon, GiftIcon, ShoppingBagIcon, TomanIcon } from "public/svg/svgs";
 import React, { memo } from "react";
 import type { courseType } from "~/types/course.type";
 import CourseBox from "./CourseBox";
 
-const CoursesSection = memo(({ cartCourses }: { cartCourses: courseType[] }) => {
+const CoursesSection = memo(({ cartCourses }: { cartCourses: courseType[]; }) => {
   return (
     <section className="col-span-full md:col-span-8 space-y-5 md:space-y-8">
       <div className="rounded-xl overflow-hidden">
@@ -14,7 +14,7 @@ const CoursesSection = memo(({ cartCourses }: { cartCourses: courseType[] }) => 
           </div>
         </div>
         <div className="bg-white dark:bg-darker py-5 px-4 md:px-6 sm:divide-y divide-neutral-200 dark:divide-white/10 space-y-7 sm:space-y-4 sm:child:pt-4 first-child:pt-0">
-          {[...cartCourses].reverse().map((cartCourse) => (
+          {[...cartCourses].map((cartCourse) => (
             <CourseBox key={cartCourse._id} cartCourse={cartCourse} />
           ))}
         </div>

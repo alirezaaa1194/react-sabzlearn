@@ -10,19 +10,19 @@ function TimeStamp({ discount }: { discount: number | undefined }) {
       <div className="flex items-center gap-3 lg:gap-5">
         <div className="font-DanaLight flex items-center gap-1">
           <span className="font-DanaDemiBold text-base lg:text-2xl">{dayStamp}</span>
-          <span className="text-sm lg:text-xl">روز</span>
+          <span className="text-sm lg:text-lg">روز</span>
         </div>
         <div className="font-DanaLight flex items-center gap-1 border-r ps-3">
           <span className="font-DanaDemiBold text-base lg:text-2xl">{hourStamp}</span>
-          <span className="text-sm lg:text-xl">ساعت</span>
+          <span className="text-sm lg:text-lg">ساعت</span>
         </div>
         <div className="font-DanaLight flex items-center gap-1 border-r ps-3">
           <span className="font-DanaDemiBold text-base lg:text-2xl">{minStamp}</span>
-          <span className="text-sm lg:text-xl">دقیقه</span>
+          <span className="text-sm lg:text-lg">دقیقه</span>
         </div>
         <div className="font-DanaLight flex items-center w-16 lg:w-20 border-r ps-3">
           <span className="font-DanaDemiBold text-base lg:text-2xl text-red-500 inline-block w-12">{secStamp}</span>
-          <span className="text-sm lg:text-xl">ثانیه</span>
+          <span className="text-sm lg:text-lg">ثانیه</span>
         </div>
       </div>
     </div>

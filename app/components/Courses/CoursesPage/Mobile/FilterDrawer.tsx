@@ -15,7 +15,7 @@ const FilterDrawer = memo(({ isUserLogedIn }: any) => {
           <span>فیلتر</span>
         </div>
       </Button>
-      <div className={`fixed top-0 right-0 z-[10000000000] w-svw h-svh bg-white dark:bg-darker  flex flex-col lg:hidden transition-all ${isOpenFilterDrawer ? "visible opacity-100" : "invisible opacity-0"}`}>
+      <div className={`fixed top-0 right-0 z-[10000000000] w-screen h-screen bg-white dark:bg-darker  flex flex-col lg:hidden transition-all ${isOpenFilterDrawer ? "visible opacity-100" : "invisible opacity-0"}`}>
         <div className="flex items-center justify-between h-16 px-5 bg-gray-100 dark:bg-dark">
           <div className="flex items-center gap-2">
             <button className="flex items-center justify-center" onClick={() => setIsOpenFilterDrawer(false)}>

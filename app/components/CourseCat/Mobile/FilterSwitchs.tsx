@@ -89,7 +89,7 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
         <Button
           className="w-full h-[42px] rounded-lg bg-primary transition-colors hover:bg-primary-hover text-white font-DanaMedium"
           onPress={() => {
-            setSearchParams(searchParams, { replace: true, preventScrollReset: true });
+            setSearchParams(searchParams, { replace: true });
             setIsOpenFilterDrawer(false);
           }}
         >
