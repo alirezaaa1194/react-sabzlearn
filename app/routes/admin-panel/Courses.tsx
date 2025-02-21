@@ -6,7 +6,7 @@ import type { MetaFunction } from "react-router";
 import type { categoryType } from "~/types/category.type";
 
 export async function loader({ params, request }: Route.LoaderArgs) {
-  let allCategories = await getAllCategories();
+  const allCategories = await getAllCategories();
   const allCourses = await getAllCourses();
 
   const sortedCategories = [...allCategories.data].sort((a: categoryType, b: categoryType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any)) as any
