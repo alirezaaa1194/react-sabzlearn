@@ -11,7 +11,7 @@ function TimeStamp({ discount }: { discount: number }) {
       <div className="container flex flex-col lg:flex-row items-center justify-between gap-y-5">
         <div className="flex flex-col lg:flex-row items-center gap-y-3">
           <BellAlertIcon className="hidden lg:inline-block size-7 lg:ml-2" />
-          <h6 className="font-DanaDemiBold text-sm sm:text-base text-center lg:text-right">{discount} درصد تخفیف روی تمام دوره ها 😊</h6>
+          <h6 className="font-DanaDemiBold text-sm sm:text-base text-center lg:text-right">پیشنهاد شگفت‌انگیز سبزلرن: {discount} درصد تخفیف روی تمام دوره ها 😊</h6>
           <Link to="/courses" className="bg-white text-red-500 lg:mr-4 shrink-0 font-DanaRegular text-sm h-10 px-3 rounded-lg flex items-center gap-2">
             مشاهده دوره ها <ArrowLeftMiniIcon className="size-5" />
           </Link>
