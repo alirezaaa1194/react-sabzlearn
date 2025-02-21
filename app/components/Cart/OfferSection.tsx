@@ -9,7 +9,6 @@ import * as Spinners from "react-spinners";
 const PulseLoader = Spinners.PulseLoader;
 
 function OfferSection({ cartCourses, userToken, offerCode, mainPrice, cartCoursesSumPrice }: { cartCourses: courseType[]; userToken: string | null; offerCode: any | null; mainPrice: number; cartCoursesSumPrice: number }) {
-  
   const [isOpenOfferBox, setIsOpenOfferBox] = useState<boolean>(offerCode && userToken ? true : false);
 
   const [isValidOfferCode, setIsValidOfferCode] = useState<boolean>(offerCode && userToken ? true : false);

@@ -6,17 +6,8 @@ import type { courseType } from "~/types/course.type";
 import { baseUrl } from "~/utils/utils";
 import { showToast } from "../Notification/Notification";
 
-function CourseBox({ cartCourse }: { cartCourse: courseType; }) {
+function CourseBox({ cartCourse }: { cartCourse: courseType }) {
   const fetcher = useFetcher();
-
-  const removeCourseFromCartHandler = () => {
-    fetcher.submit({ courseId: cartCourse._id }, { method: "POST", action: "/RemoveCartCourse" });
-
-    if (fetcher.state !== "loading") {
-      showToast("موفق", "از سبد خرید شما حذف شد", "success");
-    }
-  };
-
   return (
     <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-between xs:px-8 sm:px-0 pt-4 first:pt-0">
       <div className="flex flex-col sm:flex-row sm:items-center gap-y-3 gap-x-5 relative">
@@ -24,7 +15,11 @@ function CourseBox({ cartCourse }: { cartCourse: courseType; }) {
           <Spinner color="danger" size="sm" className="absolute right-3 top-2" />
         ) : (
           <button
-            onClick={removeCourseFromCartHandler}
+            onClick={() => {
+              fetcher.submit({ courseId: cartCourse._id }, { method: "POST", action: "/RemoveCartCourse" });
+
+              showToast("موفق", "از سبد خرید شما حذف شد", "success");
+            }}
             className="sm:hidden absolute right-3 top-2 flex-center size-10"
           >
             <XCircleMiniIcon className="size-5 transition-colors text-white hover:text-red-500" />
@@ -71,7 +66,15 @@ function CourseBox({ cartCourse }: { cartCourse: courseType; }) {
             )}
           </span>
         </div>
-        <button onClick={removeCourseFromCartHandler} className="hidden sm:flex items-center justify-center size-6 group">
+        <button
+          onClick={() => {
+            fetcher.submit({ courseId: cartCourse._id }, { method: "POST", action: "/RemoveCartCourse" });
+            if (fetcher.state !== "loading") {
+              showToast("موفق", "از سبد خرید شما حذف شد", "success");
+            }
+          }}
+          className="hidden sm:flex items-center justify-center size-6 group"
+        >
           {fetcher.state === "loading" ? <Spinner size="sm" /> : <TrashIcon className="size-4 text-neutral-300 dark:text-gray-400 group-hover:text-red-500 transition-colors" />}
         </button>
       </div>
