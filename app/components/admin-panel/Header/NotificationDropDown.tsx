@@ -12,7 +12,7 @@ function NotificationDropDown({ comments, tickets }: { comments: commentType[]; 
 
   const navigate = useNavigate();
   return (
-    <Dropdown placement="bottom-start">
+    <Dropdown placement="bottom-start" shouldBlockScroll={false}>
       <DropdownTrigger>
         <button className="size-11 flex items-center justify-center bg-white/5 text-white rounded-xl relative">
           {dontAnsweredComments.length || dontAnsweredTickets.length ? <span className="font-DanaRegular flex items-center justify-center absolute -top-1 -right-1 text-[13px] size-5 rounded-full bg-amber-500 text-white">{dontAnsweredComments.length + dontAnsweredTickets.length}</span> : null}

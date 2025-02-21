@@ -13,7 +13,7 @@ function AdminInfoDropDown() {
     <div className="flex items-center gap-4">
       <img src="/images/user-profile.png" className="w-[50px] h-[50px] rounded-full" alt="profile" />
       <div className="flex flex-col gap-1">
-        <Dropdown placement="bottom-end">
+        <Dropdown placement="bottom-end" shouldBlockScroll={false}>
           <DropdownTrigger>
             <button className="text-base text-white flex items-center gap-2">
               {authContext?.userInfo.name}
