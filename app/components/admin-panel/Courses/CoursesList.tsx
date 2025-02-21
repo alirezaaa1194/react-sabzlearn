@@ -52,7 +52,7 @@ export default function CoursesList({ courses }: { courses: courseType[] }) {
       case "support":
         return <span className="md:truncate md:line-clamp-1">{course.support}</span>;
       case "categoryTitle":
-        return <span className="md:line-clamp-1">{course.categoryID.title}</span>;
+        return <span className="md:line-clamp-1">{course?.categoryID?.title}</span>;
 
       case "status":
         return (

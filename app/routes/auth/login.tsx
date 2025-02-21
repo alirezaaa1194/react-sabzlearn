@@ -94,7 +94,7 @@ function loign() {
 
         fetcher.submit({ token }, { method: "POST", action: "/auth" });
 
-        console.log("User Info:", res.data?.name);
+        
       }
     },
     onError: (error) => console.log("Login Failed:", error),

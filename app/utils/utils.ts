@@ -2,13 +2,21 @@ import { apiRequest } from "~/Services/Axios/config";
 import type { courseSessionType } from "~/types/course.type";
 
 export function getMenus() {
-  const data = apiRequest.get("/menus");
-  return data;
+  try {
+    const data = apiRequest.get("/menus");
+    return data;
+  } catch {
+    return { data: [] };
+  }
 }
 
 export function getAllCourses() {
-  const data = apiRequest.get("/courses");
-  return data;
+  try {
+    const data = apiRequest.get("/courses");
+    return data;
+  } catch {
+    return { data: [] };
+  }
 }
 
 export function getPopularCourses() {
@@ -17,8 +25,12 @@ export function getPopularCourses() {
 }
 
 export async function getAllArticles() {
-  const res = await apiRequest.get("/articles");
-  return res;
+  try {
+    const res = await apiRequest.get("/articles");
+    return res;
+  } catch {
+    return { data: [] };
+  }
 }
 
 export type registerFuncPropsType = {
@@ -144,8 +156,12 @@ export const registerCourse = async (courseId: string, token: string | null) => 
   return res;
 };
 export const getAllCategories = async () => {
-  const res = await apiRequest.get("/category");
-  return res;
+  try {
+    const res = await apiRequest.get("/category");
+    return res;
+  } catch {
+    return { data: [] };
+  }
 };
 
 export const getCourseByCategory = async (categoryName: string) => {
@@ -162,8 +178,12 @@ export const getUserTickets = async (token: string | null) => {
 };
 
 export const getAllSessions = async () => {
-  const res = await apiRequest.get(`/courses/sessions`);
-  return res;
+  try {
+    const res = await apiRequest.get(`/courses/sessions`);
+    return res;
+  } catch {
+    return { data: [] };
+  }
 };
 export const getDepartments = async () => {
   const res = await apiRequest.get(`/tickets/departments`);
@@ -265,8 +285,12 @@ export const removeLesson = async (lessonId: string, token: string) => {
 };
 
 export const getAllComments = async () => {
-  const res = await apiRequest.get("/comments");
-  return res;
+  try {
+    const res = await apiRequest.get("/comments");
+    return res;
+  } catch {
+    return { data: [] };
+  }
 };
 
 export const acceptComment = async (token: string, commentId: string) => {
@@ -502,7 +526,6 @@ export const addOff = async (token: string, offInfo: any) => {
 
   return res;
 };
-
 
 // export const baseUrl = "http://127.0.0.1:4000";
 // export const baseRoute = "http://localhost:5173";

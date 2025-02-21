@@ -18,7 +18,7 @@ export const columns = [
 const INITIAL_VISIBLE_COLUMNS = ["_id", "title", "creatorName", "createdAt", "show", "answer"];
 
 function TicketsList({ ticktes }: { ticktes: ticketType[] }) {
-  console.log(ticktes);
+
 
   const renderCell = useCallback((ticket: ticketType, columnKey: keyof {}) => {
     const cellValue = ticket[columnKey];

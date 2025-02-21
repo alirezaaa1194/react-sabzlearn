@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import type { ticketType } from "~/types/ticket.type";
 
 function TicketBox({ ticket }: { ticket: ticketType }) {
-  console.log(ticket);
+  
   
   return (
     <div className="flex items-start lg:items-center justify-between flex-col lg:flex-row gap-y-4 bg-white dark:bg-darker p-2.5 md:py-5 md:px-6 rounded font-DanaRegular">

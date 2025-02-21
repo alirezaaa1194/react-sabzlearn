@@ -1,10 +1,4 @@
-import { useCallback, useState } from "react";
-import { Button, Chip } from "@heroui/react";
-import { TomanIcon } from "public/svg/svgs";
-import { useFetcher } from "react-router";
-import { showToast } from "~/components/Notification/Notification";
-import { Toaster } from "react-hot-toast";
-import CustomModal from "../Modals/CustomModal";
+import { useCallback } from "react";
 import RichTable from "../RichTable";
 import type { sessionType } from "~/types/session.type";
 import LessonDeleteBtn from "./LessonDeleteBtn";
@@ -25,18 +19,18 @@ export default function LessonsList({ lessons }: { lessons: sessionType[] }) {
 
     switch (columnKey) {
       case "title":
-        return <span className="md:truncate md:line-clamp-1">{lesson.title}</span>;
+        return <span className="md:truncate md:line-clamp-1">{lesson?.title}</span>;
       case "courseName":
-        return <span className="md:truncate md:line-clamp-1">{lesson.course.name}</span>;
+        return <span className="md:truncate md:line-clamp-1">{lesson?.course?.name}</span>;
 
       case "price":
         return (
           <span className="flex flex-col items-center gap-1">
-            <span className="md:truncate md:line-clamp-1">{lesson.free ? "رایگان" : "نقدی"}</span>
+            <span className="md:truncate md:line-clamp-1">{lesson?.free ? "رایگان" : "نقدی"}</span>
           </span>
         );
       case "time":
-        return <span className="md:truncate md:line-clamp-1">{lesson.time}</span>;
+        return <span className="md:truncate md:line-clamp-1">{lesson?.time}</span>;
       case "action":
         return <LessonDeleteBtn lesson={lesson} />;
       default:

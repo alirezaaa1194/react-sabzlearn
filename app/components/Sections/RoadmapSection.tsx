@@ -18,7 +18,7 @@ function RoadmapSection() {
           </Link>
         </div>
         <div className="py-5 bg-gradient-to-r from-[#30C5E4] to-[#28E55D] overflow-hidden rounded-xl">
-          <Link to="/course-cat/security/" className="flex flex-col justify-center items-center h-full" title="امنیت">
+          <Link to="/course-cat/security" className="flex flex-col justify-center items-center h-full" title="امنیت">
             <svg className="sm:w-12 w-10 sm:h-12" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clipPath="url(#clip0_135_44863)">
                 <mask id="mask0_135_44863" style={{ maskType: "luminance" }} maskUnits="userSpaceOnUse" x={0} y={0} width={48} height={48}>

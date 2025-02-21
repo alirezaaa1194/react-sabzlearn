@@ -7,7 +7,7 @@ import QuestionList from "./QuestionList/QuestionList";
 import type { courseSessionType } from "~/types/course.type";
 
 function Question({questions, session}:{questions:any, session:courseSessionType}) {
-  console.log(questions);
+  
   
   const userInfoContext = use(AuthContext);
   return (

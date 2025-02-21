@@ -41,7 +41,7 @@ function ArticlesSection({ filteredArticles }: { filteredArticles: articleType[]
           )}
         </div>
       ) : (
-        <PageNullMessage title="متاسفانه دوره ای پیدا نشد" />
+        <PageNullMessage title="متاسفانه مقاله ای پیدا نشد" />
       )}
     </>
   );
