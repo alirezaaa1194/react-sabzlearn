@@ -17,7 +17,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 };
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { cookieTheme } = useRouteLoaderData("root");
+  const { cookieTheme } = useRouteLoaderData("root") || {};
   const [themeState, setThemeState] = useState((prev: "light" | "dark") => (!prev ? cookieTheme : prev));
 
   return (
