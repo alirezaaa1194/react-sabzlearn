@@ -20,7 +20,7 @@ function SidebarSubMenu({ subMenu, mainMenu, setMainMenu }: SidebarSubMenuPropsT
   }, [mainMenu]);
 
   return (
-    <li className="flex flex-col items-center justify-between gap-y-2.5 mb-2.5">
+    <li className="flex flex-col items-center justify-between gap-y-2.5">
       <div className="flex items-center justify-between h-8 w-full">
         <NavLink to={`/course-cat/${subMenu.href.split("/category-info/").join("")}`} className={mainMenu === subMenu._id && isOpen ? "text-primary" : ""}>
           {subMenu.title}

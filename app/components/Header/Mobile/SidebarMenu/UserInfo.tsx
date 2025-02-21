@@ -28,14 +28,14 @@ function UserInfo() {
       <div className="px-6 pt-5">
         <div className="flex flex-col border-b border-b-neutral-200 dark:border-b-white/10">
           <p className="text-sm font-DanaMedium text-green-500 h-6 mb-2.5">دسترسی سریع</p>
-          <ul className="flex flex-col gap-x-1 font-DanaRegular text-sm">
-            <li className="flex flex-col items-center justify-between gap-y-2.5 mb-2.5 h-8">
+          <ul className="flex flex-col gap-x-1 font-DanaRegular text-sm gap-y-1">
+            <li className="flex flex-col items-center justify-between h-8">
               <Link to="/my-account/courses" className="w-full flex items-center justify-between">
                 <span>دوره های من</span>
                 <ChevronLeftMiniIcon className="size-5" />
               </Link>
             </li>
-            <li className="flex flex-col items-center justify-between gap-y-2.5 mb-2.5 h-8">
+            <li className="flex flex-col items-center justify-between h-8">
               <Link to="/my-account/tickets" className="w-full flex items-center justify-between">
                 <span>تیکت های من</span>
                 <ChevronLeftMiniIcon className="size-5" />
