@@ -45,7 +45,7 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
             />
           </li>
           <li className="w-full flex items-center justify-between box-content h-7 py-5 border-b border-b-gray-100 dark:border-b-dark">
-            <span className="font-DanaMedium">در حال پیش فروش</span>
+            <span className="font-DanaMedium">در حال درحال ضبط</span>
             <Switch
               color="secondary"
               isSelected={presellCourses}

@@ -9,7 +9,7 @@ function SummaryInfo({ course, sessions }: { course: singleCourseType; sessions:
       <div className="flex flex-col gap-y-1.5 items-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darker rounded-lg">
         <InformationCircleIcon className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5" />
         <span className="block font-DanaDemiBold text-sm sm:text-base mb-0.5 sm:mb-0">وضعیت دوره</span>
-        <span className="text-gray-700 dark:text-gray-400 text-sm font-DanaMedium">{course.status === "start" ? "درحال ضبط" : "تکمیل شده"}</span>
+        <span className="text-gray-700 dark:text-gray-400 text-sm font-DanaMedium">{course.status === "start" ? "تکمیل شده" : "تکمیل شده"}</span>
       </div>
       <div className="flex flex-col gap-y-1.5 items-center pb-3.5 sm:pb-2.5 pt-4 sm:3.5 bg-white dark:bg-darker rounded-lg">
         <ClockIcon className="w-10 h-10 text-green-500 mb-2.5 sm:mb-1.5" />

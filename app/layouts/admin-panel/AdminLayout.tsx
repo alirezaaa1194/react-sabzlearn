@@ -26,6 +26,10 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { token, userInfo, allComments, allTickets };
 }
 
+export function shouldRevalidate() {
+  return false;
+}
+
 function AdminLayout({ loaderData }: Route.ComponentProps) {
   const token = loaderData.token;
   const userInfo: userType = loaderData?.userInfo?.data as userType;

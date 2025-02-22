@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { use } from "react";
 import { AuthContext } from "~/contexts/AuthContext";
-import { getUserTickets } from "~/utils/utils";
-import SectionHeader from "../SectionHeader";
 
 function UserActivityDetails({ userTickets }: any) {
   const userInfos = use(AuthContext);

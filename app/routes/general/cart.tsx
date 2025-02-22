@@ -42,7 +42,7 @@ export async function loader({ request }: Route.LoaderArgs) {
     });
   }
 
-  return { cartCourses, token, offerCode };
+  return {allCourses, cartCourses, token, offerCode };
 }
 export async function action({ request }: Route.ActionArgs) {
   const cookieHeader = request.headers.get("Cookie");
@@ -111,7 +111,7 @@ function cart({ loaderData }: Route.ComponentProps) {
           <PaySection cartCourses={cartCourses} userToken={token} offerCode={offerCode} />
         </aside>
       </section>
-      <SuggestionSlider cartCourses={cartCourses} />
+      <SuggestionSlider allCourses={loaderData.allCourses.data} cartCourses={cartCourses} />
     </main>
   );
 }

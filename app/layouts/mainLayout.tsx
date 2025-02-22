@@ -15,32 +15,12 @@ export async function loader({ request }: Route.LoaderArgs) {
     staleTime: 6000 * 1000,
   });
 
-  // await queryClient.prefetchQuery({
-  //   queryKey: ["courses"],
-  //   queryFn: getAllCourses,
-  //   staleTime: 1000000000,
-  // });
+  await queryClient.prefetchQuery({
+    queryKey: ["getme"],
+    queryFn: () => (token ? getMe(token) : null),
+    staleTime: 6000 * 1000,
+  });
 
-  // await queryClient.prefetchQuery({
-  //   queryKey: ["popular-courses"],
-  //   queryFn: getPopularCourses,
-  // });
-
-  // await queryClient.prefetchQuery({
-  //   queryKey: ["articles"],
-  //   queryFn: getAllArticles,
-  // });
-
-  // await queryClient.prefetchQuery({
-  //   queryKey: ["getme"],
-  //   queryFn: () => (token ? getMe(token) : null),
-  //   staleTime: 6000 * 1000,
-  // });
-
-  // await queryClient.prefetchQuery({
-  //   queryKey: ["categories"],
-  //   queryFn: getAllCategories,
-  // });
   await queryClient.prefetchQuery({
     queryKey: ["user-tickets"],
     queryFn: () => (token ? getUserTickets(token) : null),

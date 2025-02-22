@@ -1,7 +1,7 @@
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import React, { lazy, memo, useState } from "react";
-// import UserProfileDropdownCard from "./UserProfileDropdownCard";
-const UserProfileDropdownCard = lazy(() => import("./UserProfileDropdownCard"));
+import UserProfileDropdownCard from "./UserProfileDropdownCard";
+// const UserProfileDropdownCard = lazy(() => import("./UserProfileDropdownCard"));
 import { UserIcon } from "public/svg/svgs";
 
 const UserProfileDropdown = ({fetcher}:any) => {

@@ -8,7 +8,7 @@ import { BriefcaseIcon, CalendarDaysIcon, ClockIcon, InformationCircleIcon, User
 function SummaryInfos({ course }: { course: singleCourseType }) {
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-      <SummaryInfosBox title="وضعیت دوره" desc={course.status === "start" ? "درحال ضبط" : "پیش فروش"} icon={<InformationCircleIcon className="w-10 h-10 sm:w-11 sm:h-11 text-green-500" />} />
+      <SummaryInfosBox title="وضعیت دوره" desc={course.status === "start" ? "تکمیل شده" : "درحال ضبط"} icon={<InformationCircleIcon className="w-10 h-10 sm:w-11 sm:h-11 text-green-500" />} />
       <SummaryInfosBox title="مدت زمان دوره" desc={`${courseTimeHandler(course.sessions)}`} icon={<ClockIcon className="w-10 h-10 sm:w-11 sm:h-11 text-green-500" />} />
       <SummaryInfosBox title="آخرین بروزرسانی" desc={moment(course.updatedAt, "YYYY/MM/DD").locale("fa").format("YYYY/MM/DD")} icon={<CalendarDaysIcon className="w-10 h-10 sm:w-11 sm:h-11 text-green-500" />} />
       <SummaryInfosBox title="روش پشتیبانی" desc={course.support} icon={<UsersIcon className="w-10 h-10 sm:w-11 sm:h-11 text-green-500" />} />

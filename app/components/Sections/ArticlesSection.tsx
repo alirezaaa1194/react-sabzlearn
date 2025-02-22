@@ -5,10 +5,11 @@ import LinkSectionHeader from "./LinkSectionHeader";
 import { Link } from "react-router";
 import { ArrowUpLeftMiniIcon } from "public/svg/svgs";
 import ArticlesCard from "../Articles/ArticlesCard";
-import type { articleCreatorType, articleType } from "~/types/article.type";
+import type { articleType } from "~/types/article.type";
+import ArticleCardSkeleton from "../Articles/ArticleCardSkeleton";
 
 function ArticlesSection() {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["articles"],
     queryFn: getAllArticles,
   });
@@ -28,9 +29,20 @@ function ArticlesSection() {
         }
       />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
-        {articles?.slice(0, 4)?.map((article: articleType) => (
-          <ArticlesCard key={article._id} article={article} />
-        ))}
+        {isLoading ? (
+          <>
+            <ArticleCardSkeleton />
+            <ArticleCardSkeleton />
+            <ArticleCardSkeleton />
+            <ArticleCardSkeleton />
+          </>
+        ) : (
+          <>
+            {articles?.slice(0, 4)?.map((article: articleType) => (
+              <ArticlesCard key={article._id} article={article} />
+            ))}
+          </>
+        )}
       </div>
     </section>
   );

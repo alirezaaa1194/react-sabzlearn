@@ -149,10 +149,10 @@ function EditCourseForm({ course, categories }: { course: singleCourseType; cate
               <RadioGroup {...field} color="secondary" label="وضعیت دوره" className="w-full md:w-1/3" classNames={{ label: "text-white font-lalezar text-lg after:hidden" }} isInvalid={!!error} errorMessage={<span className="font-DanaMedium text-sm">{error?.message}</span>}>
                 <div className="flex gap-7">
                   <Radio className="font-DanaMedium text-sm" value="presell">
-                    پیش فروش
+                    درحال ضبط
                   </Radio>
                   <Radio className="font-DanaMedium text-sm" value="start">
-                    درحال ضبط
+                    تکمیل شده
                   </Radio>
                 </div>
               </RadioGroup>

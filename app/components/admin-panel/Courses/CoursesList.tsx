@@ -22,8 +22,8 @@ export const columns = [
 ];
 
 export const statusOptions = [
-  { name: "درحال ضبط", uid: "start" },
-  { name: "پیش فروش", uid: "presell" },
+  { name: "تکمیل شده", uid: "start" },
+  { name: "درحال ضبط", uid: "presell" },
 ];
 const statusColorMap: any = {
   start: "success",
@@ -57,7 +57,7 @@ export default function CoursesList({ courses }: { courses: courseType[] }) {
       case "status":
         return (
           <Chip className="capitalize" color={statusColorMap[course.status]} size="sm" variant="flat">
-            {cellValue === "start" ? "درحال ضبط" : "پیش فروش"}
+            {cellValue === "start" ? "تکمیل شده" : "درحال ضبط"}
           </Chip>
         );
       case "edit":

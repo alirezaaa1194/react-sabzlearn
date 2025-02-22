@@ -14,6 +14,10 @@ export async function loader({ params }: Route.LoaderArgs) {
   return { allCourses, coursesDiscount };
 }
 
+export function shouldRevalidate() {
+  return false;
+}
+
 function GeneralLayout({ loaderData }: Route.ComponentProps) {
   const courses = loaderData.allCourses.data;
   return (

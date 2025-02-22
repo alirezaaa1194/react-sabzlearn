@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon, RocketLaunchIcon } from "public/svg/svgs";
+import { RocketLaunchIcon } from "public/svg/svgs";
 import React, { memo, useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,23 +7,16 @@ import SugestionCourseCard from "./SugestionCourseCard";
 import "swiper/css";
 import "swiper/css/pagination";
 import type { courseType } from "~/types/course.type";
-import { useQuery } from "@tanstack/react-query";
-import { getAllCourses } from "~/utils/utils";
 import NullMessage from "../NullMessage/NullMessage";
 
-const SuggestionSlider = memo(({ cartCourses }: { cartCourses: courseType[] }) => {
+const SuggestionSlider = memo(({ allCourses, cartCourses }: { allCourses: courseType[]; cartCourses: courseType[] }) => {
   const swiperRef = useRef<any>(null);
 
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
 
-  const { data: allCourses } = useQuery({
-    queryKey: ["courses"],
-    queryFn: getAllCourses,
-  });
-
   const mainCourseInCart = cartCourses[0];
-  const suggestionCourses: courseType[] = allCourses?.data.filter((course: courseType) => {
+  const suggestionCourses: courseType[] = allCourses?.filter((course: courseType) => {
     const isInCart = cartCourses.some((cartCourse) => cartCourse._id === course._id);
     return !isInCart && course.categoryID._id === mainCourseInCart.categoryID._id;
   });

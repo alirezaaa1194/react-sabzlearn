@@ -1,8 +1,8 @@
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import React, { lazy, memo, use, useEffect, useState } from "react";
 import { ShoppingBagIcon } from "public/svg/svgs";
-// import CartDropdownCard from "./CartDropdownCard";
-const CartDropdownCard = lazy(() => import("./CartDropdownCard"));
+import CartDropdownCard from "./CartDropdownCard";
+// const CartDropdownCard = lazy(() => import("./CartDropdownCard"));
 import { useLocation } from "react-router";
 import { CartContext } from "~/contexts/CartContext";
 import type { courseType } from "~/types/course.type";

@@ -33,7 +33,7 @@ const FilterSwitchs = memo(({ isUserLogedIn }: any) => {
       </div>
       <div className="h-17 bg-white dark:bg-darker rounded-lg p-5 hidden md:block mt-6">
         <div className="flex items-center justify-between">
-          <span className="font-DanaDemiBold">در حال پیش فروش</span>
+          <span className="font-DanaDemiBold">در حال درحال ضبط</span>
           <Switch
             aria-label="Automatic updates"
             color="secondary"
