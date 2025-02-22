@@ -1,5 +1,4 @@
 import React from "react";
-import type { Route } from "./+types/blogs";
 import { getSingleArticle } from "~/utils/utils";
 import type { singleArticleType } from "~/types/article.type";
 import Breadcrumb from "~/components/Breadcrumb/Breadcrumb";
@@ -9,6 +8,7 @@ import "../../components/Articles/ArticlePage/ArticlePage.css";
 import SuggestionArticles from "~/components/Articles/ArticlePage/SuggestionArticles/SuggestionArticles";
 import ArticleBody from "~/components/Articles/ArticlePage/ArticleBody";
 import type { MetaFunction } from "react-router";
+import type { Route } from "./+types/blog";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const data: { data: singleArticleType } = await getSingleArticle(params["blog-name"] as string);
