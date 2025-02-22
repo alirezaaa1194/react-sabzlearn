@@ -16,7 +16,7 @@ const DesktopNavbar = memo(() => {
     setIsHoverMenu(false);
   };
 
-  const { data } = useQuery({ queryKey: ["menus"], queryFn: getMenus, staleTime: 100000000000 }) || {};
+  const { data } = useQuery({ queryKey: ["menus"], queryFn: getMenus, staleTime: 6000 * 1000 }) || {};
 
   const authContext = use(AuthContext);
   const userInfo = authContext?.userInfo!;

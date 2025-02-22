@@ -1,4 +1,4 @@
-import { getAllCourses, getCookie, getMe } from "~/utils/utils";
+import { getAllCategories, getAllCourses, getCookie, getMe } from "~/utils/utils";
 import MobileSort from "~/components/Courses/CoursesPage/Mobile/MobileSort";
 import DesktopSort from "~/components/Courses/CoursesPage/Desktop/DesktopSort";
 import type { courseType } from "~/types/course.type";
@@ -17,7 +17,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const userInfos = token ? await getMe(token) : null;
   const userCourses = userInfos?.data?.courses;
 
-  const data = await getAllCourses();
+  const courses = await getAllCourses();
 
   const url = new URL(request.url);
   const searchParams = url.searchParams;
@@ -32,7 +32,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const preSellQuery = searchParams.get("presell-courses");
   const registeredQuery = searchParams.get("registered-courses");
 
-  let filteredCourses = data?.data?.filter((course: courseType) => course?.name.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || "") || course?.description?.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || ""));
+  let filteredCourses = courses?.data?.filter((course: courseType) => course?.name.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || "") || course?.description?.toLocaleLowerCase()?.includes((searchQuery as string)?.toLocaleLowerCase() || ""));
 
   switch (sortQuery) {
     case "all":
@@ -70,7 +70,9 @@ export async function loader({ request }: Route.LoaderArgs) {
     filteredCourses = filteredCourses.filter((course: courseType) => course.price === 0);
   }
 
-  return { filteredCourses, userInfos };
+  const categories = await getAllCategories();
+
+  return { courses, filteredCourses, userInfos, categories };
 }
 
 export const meta: MetaFunction = () => {
@@ -98,10 +100,10 @@ function Courses({ loaderData }: Route.ComponentProps) {
           <div className="space-y-6">
             <SearchBox queryKey="s" title="دوره ها" />
             <FilterSwitchs isUserLogedIn={isUserLogedIn} />
-            <CategoryFilter />
+            <CategoryFilter categories={loaderData.categories.data} />
           </div>
           <div className="flex md:hidden items-center gap-6 mb-8">
-            <FilterDrawer isUserLogedIn={isUserLogedIn} />
+            <FilterDrawer isUserLogedIn={isUserLogedIn} courses={loaderData.courses.data} categories={loaderData.categories.data} />
             <MobileSort />
           </div>
         </aside>

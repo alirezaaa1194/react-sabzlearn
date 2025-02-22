@@ -28,7 +28,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const relatedCourse = await getRelatedCourse(course?.data?.shortName);
 
   const isUserRegisteredToThisCourse = userInfo?.data?.courses.some((userCourse: courseType) => userCourse?._id === course.data._id);
-  return { course,relatedCourse, isUserRegisteredToThisCourse };
+  return { course, relatedCourse, isUserRegisteredToThisCourse };
 }
 
 export async function action({ request, params }: Route.ActionArgs) {

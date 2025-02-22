@@ -3,7 +3,7 @@ import { FunnelIcon, TrashIcon, XCircleIcon } from "public/svg/svgs";
 import React, { memo, useState } from "react";
 import FilterSwitch from "./FilterSwitchs";
 
-const FilterDrawer = memo(({ isUserLogedIn }: any) => {
+const FilterDrawer = memo(({ isUserLogedIn, courses, categories }: any) => {
   const [isOpenFilterDrawer, setIsOpenFilterDrawer] = useState<boolean>(false);
   const [removeAllFilter, setRemoveAllFilter] = useState<boolean>(false);
 
@@ -28,7 +28,7 @@ const FilterDrawer = memo(({ isUserLogedIn }: any) => {
             <TrashIcon className="size-6" />
           </button>
         </div>
-        <FilterSwitch isUserLogedIn={isUserLogedIn} removeAllFilter={removeAllFilter} setRemoveAllFilter={setRemoveAllFilter} setIsOpenFilterDrawer={setIsOpenFilterDrawer} />
+        <FilterSwitch courses={courses} categories={categories} isUserLogedIn={isUserLogedIn} removeAllFilter={removeAllFilter} setRemoveAllFilter={setRemoveAllFilter} setIsOpenFilterDrawer={setIsOpenFilterDrawer} />
       </div>
     </>
   );

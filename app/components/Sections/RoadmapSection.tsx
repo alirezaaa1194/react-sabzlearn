@@ -1,7 +1,13 @@
+import type { courseType } from "~/types/course.type";
 import LinkSectionHeader from "./LinkSectionHeader";
 import { Link } from "react-router";
 
-function RoadmapSection() {
+function RoadmapSection({ courses }: { courses: courseType[] }) {
+  const frontendCourses = courses.filter((course) => course.categoryID.name === "frontend");
+  const securityCourses = courses.filter((course) => course.categoryID.name === "security");
+  const pythonCourses = courses.filter((course) => course.categoryID.name === "python");
+  const softSkillsCourses = courses.filter((course) => course.categoryID.name === "soft-skills");
+
   return (
     <section className="container pt-[100px] lg:pt-40">
       <LinkSectionHeader headerTitle="نقشــه راه ها" headerDesc="نقشه های راه برای شروع اصولی یادگیری" />
@@ -13,7 +19,7 @@ function RoadmapSection() {
             </svg>
             <div className="text-center text-white mt-3 sm:mt-4">
               <h3 className="font-DanaDemiBold sm:text-lg mb-0 sm:mb-1">فرانت اند</h3>
-              <span className="inline-block font-DanaMedium text-sm sm:text-base">30 دوره</span>
+              <span className="inline-block font-DanaMedium text-sm sm:text-base">{frontendCourses.length} دوره</span>
             </div>
           </Link>
         </div>
@@ -44,7 +50,7 @@ function RoadmapSection() {
             </svg>{" "}
             <div className="text-center text-white mt-3 sm:mt-4">
               <h3 className="font-DanaDemiBold sm:text-lg mb-0 sm:mb-1">امنیت</h3>
-              <span className="inline-block font-DanaMedium text-sm sm:text-base">9 دوره</span>
+              <span className="inline-block font-DanaMedium text-sm sm:text-base">{securityCourses.length} دوره</span>
             </div>
           </Link>
         </div>
@@ -64,7 +70,7 @@ function RoadmapSection() {
             </svg>
             <div className="text-center text-white mt-3 sm:mt-4">
               <h3 className="font-DanaDemiBold sm:text-lg mb-0 sm:mb-1">پایتون</h3>
-              <span className="inline-block font-DanaMedium text-sm sm:text-base">6 دوره</span>
+              <span className="inline-block font-DanaMedium text-sm sm:text-base">{pythonCourses.length} دوره</span>
             </div>
           </Link>
         </div>
@@ -87,7 +93,7 @@ function RoadmapSection() {
             </svg>{" "}
             <div className="text-center text-white mt-3 sm:mt-4">
               <h3 className="font-DanaDemiBold sm:text-lg mb-0 sm:mb-1">مهارت های نرم</h3>
-              <span className="inline-block font-DanaMedium text-sm sm:text-base">7 دوره</span>
+              <span className="inline-block font-DanaMedium text-sm sm:text-base">{softSkillsCourses.length} دوره</span>
             </div>
           </Link>
         </div>

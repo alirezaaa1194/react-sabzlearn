@@ -1,17 +1,18 @@
+import { lazy, use, useEffect, useState } from "react";
 import { BarsIcon, LogoIcon } from "public/svg/svgs";
-import { Link, useLocation } from "react-router";
+import { Link, useFetcher, useLocation } from "react-router";
 import DesktopNavbar from "./Desktop/Navbar/DesktopNavbar";
 import Searchbar from "./Desktop/Searchbar/Searchbar";
 import ThemeBtns from "./Desktop/ThemeBtns/ThemeBtns";
 import CartDropdown from "./cart/CartDropdown";
 import LoginBtn from "./Desktop/userProfile/LoginBtn";
 import MobileSidebar from "./Mobile/MobileSidebar";
-import { use, useEffect, useState } from "react";
 import Overlay from "../Overlay/Overlay";
 import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
 import UserProfileDropdown from "./Desktop/userProfile/UserProfileDropdown";
+import type { courseType } from "~/types/course.type";
 
-function Header() {
+function Header({ courses }: { courses: courseType[] }) {
   const [isOpenSideBar, setIsOpenSideBar] = useState<boolean>(false);
   const location = useLocation();
 
@@ -20,6 +21,7 @@ function Header() {
   const handleOpenAndCloseSidebar = () => {
     setIsOpenSideBar((prev) => !prev);
   };
+  const fetcher = useFetcher();
 
   useEffect(() => {
     setIsOpenSideBar(false);
@@ -43,9 +45,9 @@ function Header() {
         <div className="flex items-center gap-x-5">
           <Searchbar />
           <ThemeBtns />
-          <CartDropdown />
+          <CartDropdown courses={courses} fetcher={fetcher} />
 
-          {userInfoContext?.isUserRegister ? <UserProfileDropdown /> : <LoginBtn />}
+          {userInfoContext?.isUserRegister ? <UserProfileDropdown fetcher={fetcher} /> : <LoginBtn />}
         </div>
       </div>
       {/* mobile sidebar */}

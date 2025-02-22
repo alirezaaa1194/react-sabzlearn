@@ -24,6 +24,7 @@ function AuthorizationLayout({ loaderData }: Route.ComponentProps) {
     const { data } = useQuery({
       queryKey: ["getme"],
       queryFn: () => getMe(token),
+      staleTime: 6000 * 1000,
     });
 
     return (

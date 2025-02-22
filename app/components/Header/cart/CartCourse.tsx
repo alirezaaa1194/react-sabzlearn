@@ -1,13 +1,12 @@
 import { Button, Spinner } from "@heroui/react";
 import { TomanIcon, TrashIcon } from "public/svg/svgs";
 import React from "react";
-import { Link, useFetcher } from "react-router";
+import { Link } from "react-router";
 import { showToast } from "~/components/Notification/Notification";
 import type { courseType } from "~/types/course.type";
 import { baseUrl } from "~/utils/utils";
 
-function CartCourse({ course }: { course: courseType }) {
-  const fetcher = useFetcher();
+function CartCourse({ course, fetcher }: { course: courseType, fetcher:any }) {
   return (
     <li className="flex items-center justify-between">
       <div className="flex items-center gap-x-3">

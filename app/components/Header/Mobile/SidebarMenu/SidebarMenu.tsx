@@ -13,7 +13,7 @@ function SidebarMenu() {
 
   const [mainMenu, setMainMenu] = useState<string>("");
 
-  const { data } = useQuery({ queryKey: ["menus"], queryFn: getMenus, staleTime: 100000000000 }) || {};
+  const { data } = useQuery({ queryKey: ["menus"], queryFn: getMenus, staleTime: 6000*1000 }) || {};
   const menusResponss = data?.data ?? [];
 
   const menus = [...menusResponss].sort((a: subMenuType, b: subMenuType) => (new Date(b.createdAt) as any) - (new Date(a.createdAt) as any));

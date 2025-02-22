@@ -7,9 +7,8 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 import type { categoryType } from "~/types/category.type";
 import type { courseType } from "~/types/course.type";
-import { getAllCategories, getAllCourses } from "~/utils/utils";
 
-function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, setIsOpenFilterDrawer }: { isUserLogedIn: boolean; removeAllFilter: boolean; setRemoveAllFilter: (param: boolean) => void; setIsOpenFilterDrawer: (param: boolean) => void }) {
+function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, setIsOpenFilterDrawer, courses, categories }: { isUserLogedIn: boolean; removeAllFilter: boolean; setRemoveAllFilter: (param: boolean) => void; setIsOpenFilterDrawer: (param: boolean) => void; courses: courseType[]; categories: categoryType[] }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [freeCourses, setFreeCourses] = useState<boolean>(searchParams.get("free-courses") ? true : false);
@@ -17,18 +16,7 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
   const [registeredCourses, setRegisteredCourses] = useState<boolean>(searchParams.get("registered-courses") ? true : false);
 
   const [isOpenCategoryBox, setIsOpenCategoryBox] = useState<boolean>(true);
-
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  const { data: allCategories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getAllCategories,
-  });
-
-  const { data: allCourses } = useQuery({
-    queryKey: ["courses"],
-    queryFn: getAllCourses,
-  });
 
   useEffect(() => {
     setSelectedCategory(searchParams.get("category"));
@@ -117,8 +105,8 @@ function FilterSwitchs({ isUserLogedIn, removeAllFilter, setRemoveAllFilter, set
           </div>
           {isOpenCategoryBox ? (
             <ul className="flex flex-col gap-y-[14px]">
-              {[...allCategories?.data].reverse().map((category: categoryType) => {
-                const categoryCourseLength = allCourses?.data.filter((course: courseType) => course?.categoryID?._id === category?._id);
+              {[...categories].reverse().map((category: categoryType) => {
+                const categoryCourseLength = courses?.filter((course: courseType) => course?.categoryID?._id === category?._id);
 
                 return (
                   <li key={category._id} className="flex items-center justify-between font-DanaMedium">

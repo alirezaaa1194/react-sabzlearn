@@ -2,19 +2,19 @@ import { ChatBubbleLeftRightIcon, FolderOpenIcon, HomeIcon, PowerIcon, UserIcon 
 import React, { use } from "react";
 import { Link, useFetcher } from "react-router";
 import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
-import * as Spinners from "react-spinners";
 import { Button } from "@heroui/button";
 import { useQuery } from "@tanstack/react-query";
 import { getUserTickets } from "~/utils/utils";
+import * as Spinners from "react-spinners";
 const PulseLoader = Spinners.PulseLoader;
 
-function UserProfileDropdownCard() {
+function UserProfileDropdownCard({fetcher}:any) {
   const userInfoContext = use(AuthContext) as AuthContextType;
-  const fetcher = useFetcher();
 
   const { data: userTickets } = useQuery({
     queryKey: ["user-tickets"],
     queryFn: () => getUserTickets(userInfoContext.token),
+    staleTime: 6000 * 1000,
   });
 
   const isHaveUnAnsweredTicket = userTickets?.data.some((ticket: any) => !ticket.answer);

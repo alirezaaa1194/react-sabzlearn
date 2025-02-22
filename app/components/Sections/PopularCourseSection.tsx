@@ -2,16 +2,10 @@ import React from "react";
 import LinkSectionHeader from "./LinkSectionHeader";
 import { Link } from "react-router";
 import { ArrowUpLeftMiniIcon } from "public/svg/svgs";
-import { getPopularCourses } from "~/utils/utils";
-import { useQuery } from "@tanstack/react-query";
 import CourseCard from "../Courses/CourseCard";
 import type { courseType } from "~/types/course.type";
 
-function PopularCourseSection() {
-  const { data: popularCourses } = useQuery({
-    queryKey: ["popular-courses"],
-    queryFn: getPopularCourses,
-  });
+function PopularCourseSection({ popularCourses }: { popularCourses: courseType[] }) {
   return (
     <section className="container flex flex-col mt-[100px] lg:mt-40">
       <LinkSectionHeader
@@ -25,7 +19,7 @@ function PopularCourseSection() {
         }
       />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
-        {popularCourses?.data.slice(0, 8)?.map((course: courseType) => (
+        {popularCourses?.slice(0, 8)?.map((course: courseType) => (
           <CourseCard key={course._id} course={course} />
         ))}
       </div>

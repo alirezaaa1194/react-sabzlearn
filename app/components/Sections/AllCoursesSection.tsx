@@ -3,16 +3,9 @@ import CourseCard from "../Courses/CourseCard";
 import LinkSectionHeader from "./LinkSectionHeader";
 import { ArrowUpLeftMiniIcon } from "public/svg/svgs";
 import { Link } from "react-router";
-import { getAllCourses } from "~/utils/utils";
-import { useQuery } from "@tanstack/react-query";
 import type { courseType } from "~/types/course.type";
 
-function AllCoursesSection() {
-  const { data: courses } = useQuery({
-    queryKey: ["courses"],
-    queryFn: getAllCourses,
-  });  
-
+function AllCoursesSection({ courses }: { courses: courseType[] }) {
   return (
     <section className="container flex flex-col mt-9 lg:mt-20">
       <LinkSectionHeader
@@ -26,7 +19,7 @@ function AllCoursesSection() {
         }
       />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
-        {courses?.data.slice(0, 12)?.map((course: courseType) => (
+        {courses.slice(0, 12)?.map((course: courseType) => (
           <CourseCard key={course._id} course={course} />
         ))}
       </div>

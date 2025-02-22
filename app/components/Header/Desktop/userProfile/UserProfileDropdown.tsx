@@ -1,9 +1,10 @@
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
-import React, { memo, useState } from "react";
-import UserProfileDropdownCard from "./UserProfileDropdownCard";
+import React, { lazy, memo, useState } from "react";
+// import UserProfileDropdownCard from "./UserProfileDropdownCard";
+const UserProfileDropdownCard = lazy(() => import("./UserProfileDropdownCard"));
 import { UserIcon } from "public/svg/svgs";
 
-const UserProfileDropdown=()=> {
+const UserProfileDropdown = ({fetcher}:any) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
@@ -15,11 +16,11 @@ const UserProfileDropdown=()=> {
       </DropdownTrigger>
       <DropdownMenu closeOnSelect={false} aria-label="Static Actions" variant="faded" className="p-0 m-0 border-none bg-transparent rounded-lg">
         <DropdownItem key="new2" className="p-0 m-0 border-none bg-transparent cursor-default">
-          <UserProfileDropdownCard />
+          <UserProfileDropdownCard fetcher={fetcher} />
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );
-}
+};
 
 export default UserProfileDropdown;

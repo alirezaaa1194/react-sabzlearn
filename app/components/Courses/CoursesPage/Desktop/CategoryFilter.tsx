@@ -1,20 +1,13 @@
 import { ChevronDownIcon, FolderOpenIcon } from "public/svg/svgs";
 import { Checkbox } from "@heroui/checkbox";
 import React, { memo, useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getAllCategories } from "~/utils/utils";
 import type { categoryType } from "~/types/category.type";
 import { useSearchParams } from "react-router";
 
-const CategoryFilter=memo(()=> {
+const CategoryFilter = memo(({ categories }: { categories: categoryType[] }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isOpenCategoryBox, setIsOpenCategoryBox] = useState<boolean>(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  const { data: allCategories } = useQuery({
-    queryKey: ["categories"],
-    queryFn: getAllCategories,
-  });
 
   useEffect(() => {
     setSelectedCategory(searchParams.get("category"));
@@ -33,7 +26,7 @@ const CategoryFilter=memo(()=> {
       </div>
 
       <div className={`flex flex-col gap-y-[18px] ${isOpenCategoryBox ? "h-fit" : "h-0 overflow-hidden"}`}>
-        {[...allCategories?.data].reverse().map((category: categoryType) => (
+        {[...categories].reverse().map((category: categoryType) => (
           <div key={category._id} className="space-y-[18px]">
             <Checkbox
               color="secondary"
@@ -57,6 +50,6 @@ const CategoryFilter=memo(()=> {
       </div>
     </div>
   );
-})
+});
 
 export default CategoryFilter;

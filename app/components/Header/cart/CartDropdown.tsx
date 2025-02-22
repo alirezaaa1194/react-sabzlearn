@@ -1,11 +1,13 @@
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
-import React, { memo, use, useEffect, useState } from "react";
+import React, { lazy, memo, use, useEffect, useState } from "react";
 import { ShoppingBagIcon } from "public/svg/svgs";
-import CartDropdownCard from "./CartDropdownCard";
+// import CartDropdownCard from "./CartDropdownCard";
+const CartDropdownCard = lazy(() => import("./CartDropdownCard"));
 import { useLocation } from "react-router";
 import { CartContext } from "~/contexts/CartContext";
+import type { courseType } from "~/types/course.type";
 
-const CartDropdown = () => {
+const CartDropdown = ({ courses, fetcher }: { courses: courseType[], fetcher:any }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const location = useLocation();
   const cartCoursesId = use(CartContext);
@@ -26,7 +28,7 @@ const CartDropdown = () => {
       </DropdownTrigger>
       <DropdownMenu closeOnSelect={false} aria-label="Static Actions" variant="faded" className="p-0 m-0 border-none bg-transparent rounded-lg">
         <DropdownItem key="new2" className="p-0 m-0 border-none bg-transparent cursor-default">
-          <CartDropdownCard />
+          <CartDropdownCard courses={courses} fetcher={fetcher} />
         </DropdownItem>
       </DropdownMenu>
     </Dropdown>

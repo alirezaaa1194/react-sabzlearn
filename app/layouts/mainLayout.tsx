@@ -12,36 +12,39 @@ export async function loader({ request }: Route.LoaderArgs) {
   await queryClient.prefetchQuery({
     queryKey: ["menus"],
     queryFn: getMenus,
+    staleTime: 6000 * 1000,
   });
 
-  await queryClient.prefetchQuery({
-    queryKey: ["courses"],
-    queryFn: getAllCourses,
-    staleTime: 1000000000,
-  });
+  // await queryClient.prefetchQuery({
+  //   queryKey: ["courses"],
+  //   queryFn: getAllCourses,
+  //   staleTime: 1000000000,
+  // });
 
-  await queryClient.prefetchQuery({
-    queryKey: ["popular-courses"],
-    queryFn: getPopularCourses,
-  });
+  // await queryClient.prefetchQuery({
+  //   queryKey: ["popular-courses"],
+  //   queryFn: getPopularCourses,
+  // });
 
-  await queryClient.prefetchQuery({
-    queryKey: ["articles"],
-    queryFn: getAllArticles,
-  });
+  // await queryClient.prefetchQuery({
+  //   queryKey: ["articles"],
+  //   queryFn: getAllArticles,
+  // });
 
-  await queryClient.prefetchQuery({
-    queryKey: ["getme"],
-    queryFn: () => (token ? getMe(token) : null),
-  });
+  // await queryClient.prefetchQuery({
+  //   queryKey: ["getme"],
+  //   queryFn: () => (token ? getMe(token) : null),
+  //   staleTime: 6000 * 1000,
+  // });
 
-  await queryClient.prefetchQuery({
-    queryKey: ["categories"],
-    queryFn: getAllCategories,
-  });
+  // await queryClient.prefetchQuery({
+  //   queryKey: ["categories"],
+  //   queryFn: getAllCategories,
+  // });
   await queryClient.prefetchQuery({
     queryKey: ["user-tickets"],
     queryFn: () => (token ? getUserTickets(token) : null),
+    staleTime: 6000 * 1000,
   });
 
   return { dehydratedState: dehydrate(queryClient) };
@@ -53,7 +56,7 @@ function site() {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000,
+            staleTime: 6000 * 1000,
           },
         },
       })

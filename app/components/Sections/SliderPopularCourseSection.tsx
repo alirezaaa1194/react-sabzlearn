@@ -5,18 +5,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Navigation } from "swiper/modules";
 import LinkSectionHeader from "./LinkSectionHeader";
-import { useQuery } from "@tanstack/react-query";
-import { getPopularCourses } from "~/utils/utils";
 import type { courseType } from "~/types/course.type";
 import CourseCard from "../Courses/CourseCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "public/svg/svgs";
 
-const SliderPopularCourseSection = memo(() => {
-  const { data: popularCourses } = useQuery({
-    queryKey: ["popular-courses"],
-    queryFn: getPopularCourses,
-  });
-
+const SliderPopularCourseSection = memo(({ popularCourses }: { popularCourses: courseType[] }) => {
   const swiperRef = useRef<any>(null);
 
   return (
@@ -66,7 +59,7 @@ const SliderPopularCourseSection = memo(() => {
           dir="rtl"
           className="mySwiper rounded-xl"
         >
-          {popularCourses?.data.map((popularCourse: courseType) => (
+          {popularCourses?.map((popularCourse: courseType) => (
             <SwiperSlide key={popularCourse._id}>
               <CourseCard course={popularCourse} />
             </SwiperSlide>

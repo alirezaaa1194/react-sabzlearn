@@ -3,25 +3,18 @@ import React, { use } from "react";
 import { useNavigate } from "react-router";
 import CartCourse from "./CartCourse";
 import { CartContext } from "~/contexts/CartContext";
-import { useQuery } from "@tanstack/react-query";
-import { getAllCourses } from "~/utils/utils";
 import type { courseType } from "~/types/course.type";
 import { Button } from "@heroui/button";
 
-function CartDropdownCard() {
+function CartDropdownCard({ courses, fetcher }: { courses: courseType[], fetcher:any }) {
   const cartCoursesId = use(CartContext);
   const cartCoursesIds = cartCoursesId?.split("; ");
 
-  const { data: allCourses } = useQuery({
-    queryKey: ["courses"],
-    queryFn: getAllCourses,
-    staleTime:1000000000
-  });
-  const cartCourses = allCourses?.data.filter((course: courseType) => cartCoursesIds?.includes(course._id));
+  const cartCourses = courses.filter((course: courseType) => cartCoursesIds?.includes(course._id));
 
-  const coursesSumPrice = cartCourses.reduce((prev: number, curr: courseType) => prev + curr.price, 0);
+  const coursesSumPrice = cartCourses?.reduce((prev: number, curr: courseType) => prev + curr.price, 0);
 
-  const cartCoursesSumPriceWithOff = cartCourses.reduce((prev: any, curr: any) => prev + ((100 - ((curr?.discount as number) || 0)) / 100) * curr.price, 0);
+  const cartCoursesSumPriceWithOff = cartCourses?.reduce((prev: any, curr: any) => prev + ((100 - ((curr?.discount as number) || 0)) / 100) * curr.price, 0);
 
   const navigate = useNavigate();
   return (
@@ -36,7 +29,7 @@ function CartDropdownCard() {
       {cartCourses.length ? (
         <ul className="flex flex-col gap-y-4 p-5 max-h-[200px] overflow-y-auto">
           {cartCourses.map((course: courseType) => (
-            <CartCourse key={course._id} course={course} />
+            <CartCourse key={course._id} course={course} fetcher={fetcher} />
           ))}
         </ul>
       ) : (

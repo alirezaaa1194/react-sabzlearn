@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useSearchParams } from "react-router";
 import Overlay from "~/components/Overlay/Overlay";
 import { createPortal } from "react-dom";
+import type { courseType } from "~/types/course.type";
 function MobileSort() {
   const [searchParams, setSearchParams] = useSearchParams();
 

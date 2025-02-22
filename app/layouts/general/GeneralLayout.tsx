@@ -9,18 +9,19 @@ import type { courseType } from "~/types/course.type";
 
 export async function loader({ params }: Route.LoaderArgs) {
   const allCourses = await getAllCourses();
-  const filteredCourseByDiscount=allCourses.data.sort((a:courseType, b:courseType)=> (b?.discount as number) - (a?.discount as number) )
+  const filteredCourseByDiscount = allCourses.data.sort((a: courseType, b: courseType) => (b?.discount as number) - (a?.discount as number));
   const coursesDiscount = filteredCourseByDiscount[0]?.discount;
-  return { coursesDiscount };
+  return { allCourses, coursesDiscount };
 }
 
 function GeneralLayout({ loaderData }: Route.ComponentProps) {
+  const courses = loaderData.allCourses.data;
   return (
     <div>
       <HeroUIProvider>
         {loaderData.coursesDiscount ? <TimeStamp discount={loaderData.coursesDiscount} /> : null}
-        <Header />
-        <Outlet />
+        <Header courses={courses} />
+        <Outlet context={{ courses }} />
         <Footer />
       </HeroUIProvider>
     </div>
