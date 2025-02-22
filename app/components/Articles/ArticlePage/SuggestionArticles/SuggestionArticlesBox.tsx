@@ -1,9 +1,8 @@
 import moment from "jalali-moment";
-import { ArrowLeftCircleMiniIcon, CalendarIcon } from "public/svg/svgs";
+import { CalendarIcon } from "public/svg/svgs";
 import React from "react";
 import { Link } from "react-router";
 import type { articleType } from "~/types/article.type";
-import type { courseType } from "~/types/course.type";
 import { baseUrl } from "~/utils/utils";
 
 function SuggestionArticleBox({ suggestionArticle }: { suggestionArticle: articleType }) {

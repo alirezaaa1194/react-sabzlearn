@@ -59,15 +59,15 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    // <NotFound />
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <NotFound />
+    // <main className="pt-16 p-4 container mx-auto">
+    //   <h1>{message}</h1>
+    //   <p>{details}</p>
+    //   {stack && (
+    //     <pre className="w-full p-4 overflow-x-auto">
+    //       <code>{stack}</code>
+    //     </pre>
+    //   )}
+    // </main>
   );
 }
