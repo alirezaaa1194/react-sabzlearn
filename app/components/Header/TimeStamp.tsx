@@ -7,7 +7,7 @@ function TimeStamp({ discount }: { discount: number }) {
   const [dayStamp, hourStamp, minStamp, secStamp] = useTimeStamp();
 
   return (
-    <div className="max-w-[1920px] mx-auto lg:px-2.5 py-4 bg-red-500 text-white">
+    <div className="mx-auto lg:px-2.5 py-4 bg-red-500 text-white">
       <div className="container flex flex-col lg:flex-row items-center justify-between gap-y-5">
         <div className="flex flex-col lg:flex-row items-center gap-y-3">
           <BellAlertIcon className="hidden lg:inline-block size-7 lg:ml-2" />

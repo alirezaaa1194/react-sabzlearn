@@ -76,7 +76,7 @@ const SliderAllCourseSection = memo(({courses}:{courses:courseType[]}) => {
           <ChevronLeftIcon className="size-6" />
         </button>
       </div>
-      <div className="w-[300px] h-[300px] absolute top-0 -left-10 z-[1] rounded-full bg-sky-500 blur-[120px] opacity-40 hidden lg:block"></div>
+      <div className="w-[300px] h-[300px] absolute top-0 left-0 z-[1] rounded-full bg-sky-500 blur-[120px] opacity-40 hidden lg:block"></div>
     </section>
   );
 });

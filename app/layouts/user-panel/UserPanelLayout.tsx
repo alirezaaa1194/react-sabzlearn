@@ -20,7 +20,7 @@ function UserPanelLayout() {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
 
   return (
-    <div className="flex">
+    <div className="flex max-w-[1536px] mx-auto">
       <Overlay isOpen={isOpenSidebar} setIsOpen={setIsOpenSidebar} />
       <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
       <div className="w-full md:w-4/5">

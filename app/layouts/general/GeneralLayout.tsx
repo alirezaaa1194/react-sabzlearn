@@ -21,14 +21,14 @@ export function shouldRevalidate() {
 function GeneralLayout({ loaderData }: Route.ComponentProps) {
   const courses = loaderData.allCourses.data;
   return (
-    <div>
+    <main>
       <HeroUIProvider>
         {loaderData.coursesDiscount ? <TimeStamp discount={loaderData.coursesDiscount} /> : null}
         <Header courses={courses} />
         <Outlet context={{ courses }} />
         <Footer />
       </HeroUIProvider>
-    </div>
+    </main>
   );
 }
 

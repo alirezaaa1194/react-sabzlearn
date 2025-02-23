@@ -46,7 +46,7 @@ function AdminLayout({ loaderData }: Route.ComponentProps) {
     <AuthContext value={{ userInfo, token, isUserRegister: !!token }}>
       <Toaster />
       <ProgressBar />
-      <div className="flex dark">
+      <div className="flex dark max-w-[1536px] mx-auto">
         <Overlay isOpen={isOpenSidebar} setIsOpen={setIsOpenSidebar} />
         <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
         <div className={`flex flex-col w-full md:w-4/5 transition-all md:translate-x-0 ${isOpenSidebar ? "-translate-x-[256px]" : "translate-x-0"}`}>
