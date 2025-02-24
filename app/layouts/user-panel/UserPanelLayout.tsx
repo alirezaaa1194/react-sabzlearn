@@ -1,6 +1,6 @@
 import React, { use, useState } from "react";
 import { Outlet, redirect } from "react-router";
-import { getCookie } from "~/utils/utils";
+import { getAllCourses, getCookie } from "~/utils/utils";
 import type { Route } from "./+types/UserPanelLayout";
 import Sidebar from "~/components/user-panel/Sidebar/Sidebar";
 import Header from "~/components/user-panel/Header/Header";
@@ -10,13 +10,14 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
   const cookieHeader = request.headers.get("Cookie");
 
   const token = getCookie(cookieHeader, "token");
+  const allCourses = await getAllCourses();
   if (!token) {
     return redirect("/");
   }
-  return token;
+  return { token, allCourses };
 };
 
-function UserPanelLayout() {
+function UserPanelLayout({ loaderData }: Route.ComponentProps) {
   const [isOpenSidebar, setIsOpenSidebar] = useState<boolean>(false);
 
   return (
@@ -24,7 +25,7 @@ function UserPanelLayout() {
       <Overlay isOpen={isOpenSidebar} setIsOpen={setIsOpenSidebar} />
       <Sidebar isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
       <div className="w-full md:w-4/5">
-        <Header isOpenSidebar={isOpenSidebar} setIsOpenSidebar={setIsOpenSidebar} />
+        <Header courses={loaderData.allCourses.data} setIsOpenSidebar={setIsOpenSidebar} />
         <main className="p-4 md:p-8">
           <Outlet />
         </main>

@@ -1,12 +1,13 @@
 import { BarsIcon, SecondLogoIcon } from "public/svg/svgs";
 import React, { use, useEffect } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useFetcher, useLocation } from "react-router";
 import CartDropdown from "~/components/Header/cart/CartDropdown";
 import ThemeBtns from "~/components/Header/Desktop/ThemeBtns/ThemeBtns";
 import { AuthContext } from "~/contexts/AuthContext";
+import type { courseType } from "~/types/course.type";
 import type { userType } from "~/types/user.type";
 
-function Header({ isOpenSidebar, setIsOpenSidebar }: { isOpenSidebar: boolean; setIsOpenSidebar: (param: boolean) => void }) {
+function Header({ courses, setIsOpenSidebar }: { courses: courseType[]; setIsOpenSidebar: (param: boolean) => void }) {
   const { userInfo }: { userInfo: userType } = use(AuthContext)!;
 
   const location = useLocation();
@@ -14,6 +15,8 @@ function Header({ isOpenSidebar, setIsOpenSidebar }: { isOpenSidebar: boolean; s
   useEffect(() => {
     setIsOpenSidebar(false);
   }, [location]);
+
+  const fetcher = useFetcher();
 
   return (
     <header className="flex items-center justify-between bg-white dark:bg-darker px-4 md:px-8 py-[18px] md:py-5">
@@ -32,7 +35,7 @@ function Header({ isOpenSidebar, setIsOpenSidebar }: { isOpenSidebar: boolean; s
       </div>
       <div className="flex items-center gap-x-5 h-13">
         <ThemeBtns />
-        <CartDropdown />
+        <CartDropdown courses={courses} fetcher={fetcher} />
       </div>
     </header>
   );
