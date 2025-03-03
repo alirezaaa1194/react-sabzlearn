@@ -75,7 +75,7 @@ function CourseBox({ cartCourse }: { cartCourse: courseType }) {
           }}
           className="hidden sm:flex items-center justify-center size-6 group"
         >
-          {fetcher.state === "loading" ? <Spinner size="sm" /> : <TrashIcon className="size-4 text-neutral-300 dark:text-gray-400 group-hover:text-red-500 transition-colors" />}
+          {fetcher.state === "loading" ? <Spinner size="sm" color="danger" /> : <TrashIcon className="size-4 text-neutral-300 dark:text-gray-400 group-hover:text-red-500 transition-colors" />}
         </button>
       </div>
     </div>

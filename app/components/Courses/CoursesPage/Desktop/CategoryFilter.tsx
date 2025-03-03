@@ -34,11 +34,11 @@ const CategoryFilter = memo(({ categories }: { categories: categoryType[] }) => 
               onValueChange={(isSelected) => {
                 if (isSelected) {
                   searchParams.set("category", category?.name);
-                  setSearchParams(searchParams, { replace: true, preventScrollReset: true });
+                  setSearchParams(searchParams, { replace: true, });
                   setSelectedCategory(category?.name);
                 } else {
                   searchParams.delete("category");
-                  setSearchParams(searchParams, { replace: true, preventScrollReset: true });
+                  setSearchParams(searchParams, { replace: true, });
                   setSelectedCategory(null);
                 }
               }}

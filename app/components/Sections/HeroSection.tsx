@@ -1,4 +1,4 @@
-import { PlayCircleSolidIcon, PlayIcon, PlayVideoIcon } from "public/svg/svgs";
+import { PlayIcon } from "public/svg/svgs";
 import React from "react";
 import { Link } from "react-router";
 
@@ -25,7 +25,7 @@ function HeroSection() {
       <div className="relative z-[2]">
         <img src="/images/hero.svg" alt="" />
       </div>
-      <div className="w-[300px] h-[300px] absolute top-20 left-0 z-[1] rounded-full bg-sky-500 blur-[120px] opacity-40 hidden lg:block"></div>
+      <div className="w-[300px] h-[300px] absolute left-0 z-[1] rounded-full bg-sky-500 blur-[120px] opacity-40 hidden lg:block"></div>
     </section>
   );
 }

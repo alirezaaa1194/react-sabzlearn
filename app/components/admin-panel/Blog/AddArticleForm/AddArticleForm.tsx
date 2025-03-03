@@ -70,7 +70,11 @@ function AddArticleForm({ articles, categories }: { articles: articleType[]; cat
     if (fetcher?.data?.success === false) {
       showToast("خطا", "خطای غیر منتظره رخ داده است", "error");
     } else {
-      showToast("موفق", "مقاله با موفقیت افزوده شد", "success");
+      if (actionType === "publish") {
+        showToast("موفق", "مقاله با موفقیت افزوده شد", "success");
+      } else {
+        showToast("موفق", "مقاله با موفقیت پیش نویس شد", "success");
+      }
       handleReset();
     }
   };

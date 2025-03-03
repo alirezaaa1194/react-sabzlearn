@@ -20,11 +20,11 @@ const FilterSwitchs = memo(({ isUserLogedIn }: any) => {
             onValueChange={(isSelected) => {
               if (isSelected) {
                 searchParams.set("free-courses", "true");
-                setSearchParams(searchParams, { replace: true, preventScrollReset: true });
+                setSearchParams(searchParams, { replace: true, });
                 setFreeCourses(true);
               } else {
                 searchParams.delete("free-courses");
-                setSearchParams(searchParams, { replace: true, preventScrollReset: true });
+                setSearchParams(searchParams, { replace: true, });
                 setFreeCourses(false);
               }
             }}
@@ -41,11 +41,11 @@ const FilterSwitchs = memo(({ isUserLogedIn }: any) => {
             onValueChange={(isSelected) => {
               if (isSelected) {
                 searchParams.set("presell-courses", "true");
-                setSearchParams(searchParams, { replace: true, preventScrollReset: true });
+                setSearchParams(searchParams, { replace: true, });
                 setPresellCourses(true);
               } else {
                 searchParams.delete("presell-courses");
-                setSearchParams(searchParams, { replace: true, preventScrollReset: true });
+                setSearchParams(searchParams, { replace: true, });
                 setPresellCourses(false);
               }
             }}
@@ -63,11 +63,11 @@ const FilterSwitchs = memo(({ isUserLogedIn }: any) => {
               onValueChange={(isSelected) => {
                 if (isSelected) {
                   searchParams.set("registered-courses", "true");
-                  setSearchParams(searchParams, { replace: true, preventScrollReset: true });
+                  setSearchParams(searchParams, { replace: true, });
                   setRegisteredCourses(true);
                 } else {
                   searchParams.delete("registered-courses");
-                  setSearchParams(searchParams, { replace: true, preventScrollReset: true });
+                  setSearchParams(searchParams, { replace: true, });
                   setRegisteredCourses(false);
                 }
               }}

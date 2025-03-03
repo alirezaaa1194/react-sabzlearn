@@ -56,7 +56,7 @@ function CartCourse({ course, fetcher }: { course: courseType, fetcher:any }) {
           }
         }}
       >
-        {fetcher.state === "loading" ? <Spinner size="sm" /> : <TrashIcon className="size-4 transition-colors text-gray-400 hover:text-red-500" />}
+        {fetcher.state === "loading" ? <Spinner size="sm" color="danger" /> : <TrashIcon className="size-4 transition-colors text-gray-400 hover:text-red-500" />}
       </button>
     </li>
   );

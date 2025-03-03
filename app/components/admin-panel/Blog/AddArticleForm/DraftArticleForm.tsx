@@ -75,7 +75,11 @@ function DraftArticleForm({ article, categories }: { article: singleArticleType;
         if (fetcher?.data?.success === false) {
           showToast("خطا", "خطای غیر منتظره رخ داده است", "error");
         } else {
-          showToast("موفق", "مقاله با موفقیت افزوده شد", "success");
+          if (actionType === "publish") {
+            showToast("موفق", "مقاله با موفقیت افزوده شد", "success");
+          } else {
+            showToast("موفق", "مقاله با موفقیت پیش نویس شد", "success");
+          }
           handleReset();
           navigate("/admin-panel/blog");
         }
@@ -87,7 +91,7 @@ function DraftArticleForm({ article, categories }: { article: singleArticleType;
   methods.setValue("shortName", article.shortName);
   methods.setValue("description", article.description);
   methods.setValue("category", article.categoryID._id);
-  
+
   useEffect(() => {
     setTimeout(() => {
       if (editorRef.current) {
