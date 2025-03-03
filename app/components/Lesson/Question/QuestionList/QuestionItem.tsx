@@ -3,7 +3,7 @@ import React, { use, useEffect, useState } from "react";
 import QuestionAnswer from "./QuestionAnswer";
 import moment from "jalali-moment";
 import { useQuery } from "@tanstack/react-query";
-import { getTicketAnswer } from "~/utils/utils";
+import { getTicketAnswer, gravatarProfileAdress } from "~/utils/utils";
 import { AuthContext } from "~/contexts/AuthContext";
 import type { courseSessionType } from "~/types/course.type";
 import parse from "html-react-parser";
@@ -32,7 +32,7 @@ function QuestionItem({ question, session }: { question: any; session: courseSes
             <div className="absolute -top-0.5 -right-0.5 flex items-center justify-center w-5 h-5 bg-amber-400 rounded-full">
               <AcademicCapMiniIcon className="text-white size-3.5" />
             </div>
-            <img src="/images/user-profile.png" className="w-12 h-12 block object-cover rounded-full" />
+            <img src={gravatarProfileAdress(authContext?.userInfo.email)} className="w-12 h-12 block object-cover rounded-full" />
           </div>
 
           <div className="flex flex-col gap-1">

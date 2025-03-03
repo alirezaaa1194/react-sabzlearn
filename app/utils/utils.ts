@@ -1,5 +1,6 @@
 import { apiRequest } from "~/Services/Axios/config";
 import type { courseSessionType } from "~/types/course.type";
+import CryptoJS from "crypto-js"
 
 export function getMenus() {
   const res = apiRequest.get("/menus");
@@ -529,7 +530,17 @@ export const addOff = async (token: string, offInfo: any) => {
   return res;
 };
 
-// export const baseUrl = "http://127.0.0.1:4000";
-// export const baseRoute = "http://localhost:5173";
-export const baseUrl = "https://react-sabzlearn.liara.run";
-export const baseRoute = "https://react-sabzlearn.vercel.app";
+
+export const gravatarProfileAdress=(email:string):string=>{
+
+  const hashedEmail = CryptoJS.SHA256(email);
+  const gravatarUrl = `https://www.gravatar.com/avatar/${hashedEmail}?d=mp`;
+
+
+  return gravatarUrl
+}
+
+export const baseUrl = "http://127.0.0.1:4000";
+export const baseRoute = "http://localhost:5173";
+// export const baseUrl = "https://react-sabzlearn.liara.run";
+// export const baseRoute = "https://react-sabzlearn.vercel.app";

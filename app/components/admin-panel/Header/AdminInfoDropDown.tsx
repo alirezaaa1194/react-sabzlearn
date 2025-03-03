@@ -4,6 +4,7 @@ import { ChevronDownIcon } from "public/svg/svgs";
 import React, { use } from "react";
 import { useFetcher, useNavigate } from "react-router";
 import { AuthContext } from "~/contexts/AuthContext";
+import { gravatarProfileAdress } from "~/utils/utils";
 
 function AdminInfoDropDown() {
   const authContext = use(AuthContext);
@@ -11,7 +12,7 @@ function AdminInfoDropDown() {
   const navigate = useNavigate();
   return (
     <div className="flex items-center gap-4">
-      <img src="/images/user-profile.png" className="w-[50px] h-[50px] rounded-full" alt="profile" />
+      <img src={gravatarProfileAdress(authContext?.userInfo.email as string)} className="w-[50px] h-[50px] rounded-full" alt="profile" />
       <div className="flex flex-col gap-1">
         <Dropdown placement="bottom-end" shouldBlockScroll={false}>
           <DropdownTrigger>

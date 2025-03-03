@@ -12,7 +12,7 @@ function SuggestionCourses({ relatedCourses }: { relatedCourses: courseType[] })
         <SparklesIcon className="hidden md:inline-block text-amber-400 w-10 h-10" />
         <div className="font-MorabaBold text-xl md:text-2xl">دوره های مرتبط</div>
       </div>
-      <div className="space-y-4 md:space-y-5">{relatedCourses.length ? relatedCourses.map((suggestionCourse: courseType) => <SuggestionCourseBox key={suggestionCourse._id} suggestionCourse={suggestionCourse} />) : <NullMessage title="دوره ای وجود ندارد." />}</div>
+      <div className="space-y-4 md:space-y-5">{relatedCourses.length ? [...relatedCourses].reverse().map((suggestionCourse: courseType) => <SuggestionCourseBox key={suggestionCourse._id} suggestionCourse={suggestionCourse} />) : <NullMessage title="دوره ای وجود ندارد." />}</div>
     </div>
   );
 }

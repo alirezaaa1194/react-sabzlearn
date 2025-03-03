@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { use } from "react";
 import { AuthContext } from "~/contexts/AuthContext";
+import type { ticketType } from "~/types/ticket.type";
 
 function UserActivityDetails({ userTickets }: any) {
+  const supportTickets = userTickets.filter((userTicket:ticketType) => userTicket.departmentID.title === "پشتیبانی");
   const userInfos = use(AuthContext);
   return (
     <div>
@@ -74,7 +76,7 @@ function UserActivityDetails({ userTickets }: any) {
           </svg>
           <div className="flex flex-col gap-y-2">
             <span className="text-xs sm:text-sm text-gray-700 dark:text-gray-400">پرسش پاسخ های من</span>
-            <span className="text-sm sm:text-base">{userTickets?.length} پرسش </span>
+            <span className="text-sm sm:text-base">{supportTickets?.length} پرسش </span>
           </div>
         </div>
         <div className="flex items-center gap-x-4 w-64 col-span-3">

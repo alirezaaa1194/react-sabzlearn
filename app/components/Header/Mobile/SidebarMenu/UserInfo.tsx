@@ -3,6 +3,7 @@ import { ChevronLeftMiniIcon } from "public/svg/svgs";
 import React, { use } from "react";
 import { Link } from "react-router";
 import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
+import { gravatarProfileAdress } from "~/utils/utils";
 
 function UserInfo() {
   const userInfoContext = use(AuthContext) as AuthContextType;
@@ -14,7 +15,7 @@ function UserInfo() {
       <div className="flex items-center justify-between py-3.5 px-4 bg-gray-100 dark:bg-dark">
         <div className="flex items-center gap-x-2.5">
           <Link to="/my-account">
-            <img src="/images/user-profile.png" className="w-14 h-14 rounded-full" alt="" />
+            <img src={gravatarProfileAdress(userInfoContext?.userInfo?.email)} className="w-14 h-14 rounded-full" alt="" />
           </Link>
           <div className="flex flex-col gap-y-1">
             <span className="text-sm font-DanaMedium truncate">{userInfoContext.userInfo?.name}</span>

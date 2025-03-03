@@ -4,11 +4,11 @@ import { Link, useFetcher } from "react-router";
 import { AuthContext, type AuthContextType } from "~/contexts/AuthContext";
 import { Button } from "@heroui/button";
 import { useQuery } from "@tanstack/react-query";
-import { getUserTickets } from "~/utils/utils";
+import { getUserTickets, gravatarProfileAdress } from "~/utils/utils";
 import * as Spinners from "react-spinners";
 const PulseLoader = Spinners.PulseLoader;
 
-function UserProfileDropdownCard({fetcher}:any) {
+function UserProfileDropdownCard({ fetcher }: any) {
   const userInfoContext = use(AuthContext) as AuthContextType;
 
   const { data: userTickets } = useQuery({
@@ -25,7 +25,7 @@ function UserProfileDropdownCard({fetcher}:any) {
       <div className="flex items-center pb-5 gap-x-3.5  border-b border-b-neutral-200 dark:border-b-white/5">
         <div className="w-14 h-14 rounded-full flex items-center justify-center">
           <Link to="/my-account">
-            <img src="/images/user-profile.png" className="rounded-full" alt="" />
+            <img src={gravatarProfileAdress(userInfoContext.userInfo?.email)} className="rounded-full" alt="profile" />
           </Link>
         </div>
         <div className="flex flex-col gap-y-3">
