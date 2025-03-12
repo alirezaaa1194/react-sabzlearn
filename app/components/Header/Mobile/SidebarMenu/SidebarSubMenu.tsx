@@ -22,7 +22,7 @@ function SidebarSubMenu({ subMenu, mainMenu, setMainMenu }: SidebarSubMenuPropsT
   return (
     <li className="flex flex-col items-center justify-between gap-y-2.5">
       <div className="flex items-center justify-between h-8 w-full">
-        <NavLink to={`/course-cat/${subMenu.href.split("/category-info/").join("")}`} className={mainMenu === subMenu._id && isOpen ? "text-primary" : ""}>
+        <NavLink to={`/course-cat/${subMenu.href.split("/category-info/").join("")}`} className={mainMenu === subMenu?._id && isOpen ? "text-primary" : ""}>
           {subMenu.title}
         </NavLink>
         <button
@@ -31,7 +31,7 @@ function SidebarSubMenu({ subMenu, mainMenu, setMainMenu }: SidebarSubMenuPropsT
             setIsOpen((prev) => !prev);
           }}
         >
-          {subMenu.submenus.length ? <ChevronLeftMiniIcon className={`size-5 ${mainMenu === subMenu._id && isOpen ? "-rotate-90 text-primary" : ""}`} /> : null}
+          {subMenu?.submenus?.length ? <ChevronLeftMiniIcon className={`size-5 ${mainMenu === subMenu?._id && isOpen ? "-rotate-90 text-primary" : ""}`} /> : null}
         </button>
       </div>
 

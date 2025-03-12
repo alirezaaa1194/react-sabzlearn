@@ -42,7 +42,7 @@ function AllocatoToCourse({ course, isUserRegisteredToThisCourse }: { course: si
             }}
             className="bg-primary text-white hover:transition-colors hover:bg-primary-hover flex items-center justify-center gap-x-2.5 px-5 w-full lg:w-56 h-[42px] lg:h-[46px] rounded-lg text-sm lg:text-base font-DanaRegular"
           >
-            <span className="font-DanaRegular">
+            <span className="font-DanaRegular flex items-center">
               {fetcher.state === "loading" ? (
                 <Spinner size="md" color="white" />
               ) : (

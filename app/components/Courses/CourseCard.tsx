@@ -17,12 +17,12 @@ const CourseCard = memo(({ course }: CourseCardPropsType) => {
   return (
     <div className="flex flex-col rounded-xl bg-white dark:bg-darker">
       <Link to={`/course/${course.shortName}`}>
-        <img src={`${course.cover}`} className="rounded-xl w-full" alt={course.shortName} loading="lazy" />
+        <img src={`${course.cover}`} className="rounded-xl w-full aspect-video bg-white dark:bg-darker" alt={course.shortName} loading="lazy" />
       </Link>
       <div className="flex flex-col justify-between h-full">
         <div className="flex flex-col justify-between px-[18px] pb-3 pt-4 gap-8 h-full">
           <div className="flex flex-col">
-            <Link to={`/course/${course.shortName}`} className="font-DanaDemiBold line-clamp-2 mb-3">
+            <Link to={`/course/${course.shortName}`} className="font-DanaDemiBold line-clamp-2 mb-3 h-14">
               {course?.name}
             </Link>
             {mounted ? (

@@ -9,15 +9,14 @@ import type { courseType } from "~/types/course.type";
 import CourseCard from "../Courses/CourseCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "public/svg/svgs";
 
-const SliderAllCourseSection = memo(({courses}:{courses:courseType[]}) => {
-
+const SliderAllCourseSection = memo(({ courses }: { courses: courseType[] }) => {
   const swiperRef = useRef<any>(null);
 
   return (
     <section className="container flex flex-col mt-[100px] lg:mt-40 relative">
       <LinkSectionHeader
-        headerTitle="پرطرفدار ترین دوره ها"
-        headerDesc="دوره های محبوب و پروژه محور سبزلرن"
+        headerTitle="جدیدتریــن ها"
+        headerDesc="دوره‌های جدید، فرصت‌های نو"
         linkElem={
           <div className="hidden lg:flex gap-4">
             <button className="w-[50px] h-[50px] bg-transparent p-0 border border-primary rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white hover:transition-colors" onClick={() => swiperRef.current?.slidePrev()}>

@@ -13,7 +13,7 @@ function ArticlesCard({ article }: ArticlesCardPropsType) {
   return (
     <div className="flex flex-col rounded-xl bg-white dark:bg-darker">
       <Link to={`/blog/${article.shortName}`}>
-        <img src={`${article.cover}`} className="rounded-xl w-full max-h-[180px] object-cover" alt={article.title} loading="lazy" />
+        <img src={`${article.cover}`} className="rounded-xl w-full max-h-[180px] object-cover aspect-video bg-white dark:bg-darker" alt={article.title} loading="lazy" />
       </Link>
       <div className="flex flex-col justify-between h-full">
         <div className="flex flex-col justify-between px-[18px] py-4 gap-8 h-full">
