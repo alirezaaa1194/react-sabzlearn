@@ -9,7 +9,7 @@ function CourseCard({ course }: { course: courseType }) {
   return (
     <div className="flex flex-col bg-white dark:bg-darker px-3 pt-3 rounded">
       <div className="relative aspect-video -mx-3 -mt-3 mb-3">
-        <img src={`${baseUrl}/courses/covers/${course.cover}`} className="size-full object-cover rounded" alt={course.name} />
+        <img src={`${course.cover}`} className="size-full object-cover rounded" alt={course.name} />
         <Link to={`/course/${course.shortName}`}>
           <PlayCircleSolidIcon className="size-16 md:size-21 absolute inset-0 m-auto text-gray-100" />
         </Link>

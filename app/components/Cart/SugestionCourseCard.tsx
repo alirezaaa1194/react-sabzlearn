@@ -17,7 +17,7 @@ function SugestionCourseCard({ course }: { course: courseType }) {
       {/* Course Banner */}
       <div className="relative group">
         <Link to={`/course/${course.shortName}`} className="block w-full h-full" title={course.name}>
-          <img className="block w-full h-full object-cover rounded-xl" src={`${baseUrl}/courses/covers/${course.cover}`} alt={course?.name} />
+          <img className="block w-full h-full object-cover rounded-xl" src={`${course.cover}`} alt={course?.name} />
         </Link>
       </div>
       {/* Course Title & Description */}

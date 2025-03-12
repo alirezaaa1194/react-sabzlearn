@@ -9,7 +9,7 @@ function SessionCard({ session, course, sessionIndex }: { session: sessionType; 
   return (
     <div className="bg-white dark:bg-darker p-3 rounded">
       <div className="relative aspect-video -mx-3 -mt-3 mb-3">
-        <img src={`${baseUrl}/courses/covers/${course.cover}`} className="size-full object-cover rounded" alt={session.title} />
+        <img src={`${course.cover}`} className="size-full object-cover rounded" alt={session.title} />
         <Link to={`/lesson/${course.shortName}/${session._id}?index=${sessionIndex}`}>
           <PlayCircleSolidIcon className="size-16 md:size-21 absolute inset-0 m-auto text-gray-100" />
         </Link>

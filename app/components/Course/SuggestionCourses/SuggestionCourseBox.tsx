@@ -8,7 +8,7 @@ function SuggestionCourseBox({ suggestionCourse }: { suggestionCourse: courseTyp
   return (
     <div className="flex items-center justify-between flex-wrap bg-gray-100 dark:bg-dark rounded-xl py-2 pr-2 pl-4">
       <div className="flex items-center gap-x-4 w-4/5">
-        <img className="w-24 rounded-lg aspect-video" src={`${baseUrl}/courses/covers/${suggestionCourse.cover}`} alt={suggestionCourse?.name} />
+        <img className="w-24 rounded-lg aspect-video" src={`${suggestionCourse.cover}`} alt={suggestionCourse?.name} />
         <Link to={`/course/${suggestionCourse.shortName}`} className="font-DanaMedium line-clamp-2">
           {suggestionCourse?.name}
         </Link>

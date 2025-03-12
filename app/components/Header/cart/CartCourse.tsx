@@ -12,7 +12,7 @@ function CartCourse({ course, fetcher }: { course: courseType, fetcher:any }) {
       <div className="flex items-center gap-x-3">
         <div className="h-15 w-[106px]">
           <Link to={`/course/${course.shortName}`} className="inline-block h-15 w-[106px]">
-            <img src={`${baseUrl}/courses/covers/${course.cover}`} className="h-15 w-[106px] aspect-video rounded-lg" alt={course.name} />
+            <img src={`${course.cover}`} className="h-15 w-[106px] aspect-video rounded-lg" alt={course.name} />
           </Link>
         </div>
         <div className="flex flex-col gap-1 justify-between">

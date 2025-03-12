@@ -30,7 +30,7 @@ function CourseDesc({ course }: { course: singleCourseType }) {
       </div>
       <div className="relative overflow-hidden">
         <div id="course-desc-container" className={`${isOpenDesc ? "h-fit" : "max-h-[800px]"} font-DanaRegular text-[#374151] dark:text-[#d1d5db] space-y-6`}>
-          <img src={`${baseUrl}/courses/covers/${course.cover}`} alt={course?.name} />
+          <img src={`${course.cover}`} alt={course?.name} />
           {parse(course.description)}
           
         </div>

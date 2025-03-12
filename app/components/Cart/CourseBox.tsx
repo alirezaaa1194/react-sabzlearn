@@ -27,7 +27,7 @@ function CourseBox({ cartCourse }: { cartCourse: courseType }) {
         )}
 
         <Link to={`/course/${cartCourse.shortName}`} className="md:hidden lg:block mx-auto">
-          <img className="rounded-xl sm:rounded-xl w-full xs:w-[280px] sm:w-[156px]" src={`${baseUrl}/courses/covers/${cartCourse.cover}`} alt={cartCourse?.name} />
+          <img className="rounded-xl sm:rounded-xl w-full xs:w-[280px] sm:w-[156px]" src={`${cartCourse.cover}`} alt={cartCourse?.name} />
         </Link>
         <div className="flex flex-col gap-y-2 sm:max-w-60 xl:max-w-96">
           <Link to={`/course/${cartCourse.shortName}`} className="text-sm md:text-base font-DanaMedium line-clamp-2">

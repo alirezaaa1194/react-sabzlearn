@@ -49,7 +49,7 @@ function CourseInfo({ course, isUserRegisteredToThisCourse }: { course: singleCo
             <LessionPlyr video={course.sessions[0]?.video} poster={course?.cover} />
           </div>
         ) : (
-          <img src={`${baseUrl}/courses/covers/${course.cover}`} loading="lazy" alt={`${course.shortName}-cover`} className="w-full h-full rounded-xl aspect-video" />
+          <img src={`${course.cover}`} loading="lazy" alt={`${course.shortName}-cover`} className="w-full h-full rounded-xl aspect-video" />
         )}
       </div>
     </div>

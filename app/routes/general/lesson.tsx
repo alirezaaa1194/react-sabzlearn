@@ -105,16 +105,16 @@ function lesson({ loaderData }: Route.ComponentProps) {
         <LessionPlyr video={lesson.session.video} poster={course.cover} />
       </div>
 
-      {/* <img className="w-full rounded-lg mt-8 sm:mt-10" src={`${baseUrl}/courses/covers/${course.cover}`} alt={lesson.session.title} /> */}
+      {/* <img className="w-full rounded-lg mt-8 sm:mt-10" src={`${course.cover}`} alt={lesson.session.title} /> */}
 
       <div className="block md:hidden mt-6">
-        <LessonInfo course={course} session={lesson.session} videoSrc={`${baseUrl}/courses/covers/${lesson.session.video}`} />
+        <LessonInfo course={course} session={lesson.session} videoSrc={`${lesson.session.video}`} />
       </div>
 
       <div className="grid grid-cols-12 gap-6 sm:gap-7 lg:mt-10">
         <div className="col-span-12 lg:col-span-8 order-2 lg:order-1">
           <div className="hidden md:block">
-            <LessonInfo course={course} session={lesson.session} videoSrc={`${baseUrl}/courses/covers/${lesson.session.video}`} />
+            <LessonInfo course={course} session={lesson.session} videoSrc={`${lesson.session.video}`} />
           </div>
           <Question questions={loaderData.supportTickets} session={lesson.session} />
         </div>
@@ -126,7 +126,7 @@ function lesson({ loaderData }: Route.ComponentProps) {
 
           <TeacherInfo course={course} />
 
-          <DownloadBox videoSrc={`${baseUrl}/courses/covers/${lesson.session.video}`} />
+          <DownloadBox videoSrc={`${lesson.session.video}`} />
         </aside>
       </div>
     </main>

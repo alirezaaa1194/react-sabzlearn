@@ -16,11 +16,11 @@ const LessionPlyr = memo(({ video, poster }: any) => {
     type: "video",
     sources: [
       {
-        src: `${baseUrl}/courses/covers/${video}`,
+        src: `${video}`,
         type: "video/mp4",
       },
     ],
-    poster: `${baseUrl}/courses/covers/${poster}`,
+    poster: `${poster}`,
   };
   return isClient ? <Plyr source={videoOptions as any} /> : <Skeleton className="w-full aspect-video rounded-lg"></Skeleton>;
 });
