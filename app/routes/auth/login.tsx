@@ -3,7 +3,7 @@ import { getCookie, loginHandler, registerHandler, type loginFuncPropsType } fro
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link, redirect, useFetcher } from "react-router";
+import { Link, redirect, useFetcher, type MetaFunction } from "react-router";
 import type { Route } from "./+types/signup";
 import { EnvelopeIcon, LockIcon, SecondLogoIcon } from "public/svg/svgs";
 import * as Spinners from "react-spinners";
@@ -33,6 +33,14 @@ const schema = yup
     password: yup.string().min(8, "رمز عبور باید حداقل ۸ رقم باشد").required("رمز عبور الزامی است"),
   })
   .required();
+
+
+
+  export const meta: MetaFunction = () => {
+    return [{ title: "ورود - سبزلرن" }];
+  };
+
+
 
 function loign() {
   const {

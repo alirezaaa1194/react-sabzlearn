@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState, type MouseEventHandler } from "react";
 import { getCookie, loginHandler, registerHandler, type registerFuncPropsType } from "~/utils/utils";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
-import { Link, redirect, useFetcher } from "react-router";
+import { Link, redirect, useFetcher, type MetaFunction } from "react-router";
 import type { Route } from "./+types/signup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { EnvelopeIcon, LockIcon, PhoneIcon, SecondLogoIcon, UserIcon } from "public/svg/svgs";
@@ -47,6 +47,11 @@ const schema = yup
       .oneOf([yup.ref("password")], "رمز عبور و تکرار آن مغایرت دارند"),
   })
   .required();
+
+
+  export const meta: MetaFunction = () => {
+    return [{ title: "ثبت نام - سبزلرن" }];
+  };
 
 function signup() {
   const {

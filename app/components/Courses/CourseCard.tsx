@@ -17,7 +17,7 @@ const CourseCard = memo(({ course }: CourseCardPropsType) => {
   return (
     <div className="flex flex-col rounded-xl bg-white dark:bg-darker">
       <Link to={`/course/${course.shortName}`}>
-        <img src={`${course.cover}`} className="rounded-xl w-full" alt={course.shortName} />
+        <img src={`${course.cover}`} className="rounded-xl w-full" alt={course.shortName} loading="lazy" />
       </Link>
       <div className="flex flex-col justify-between h-full">
         <div className="flex flex-col justify-between px-[18px] pb-3 pt-4 gap-8 h-full">
@@ -34,9 +34,6 @@ const CourseCard = memo(({ course }: CourseCardPropsType) => {
                 </Skeleton>
                 <Skeleton className="w-4/5 rounded-lg">
                   <div className="h-3 w-4/5 rounded-lg bg-default-300" />
-                </Skeleton>
-                <Skeleton className="w-2/5 rounded-lg">
-                  <div className="h-3 w-2/5 rounded-lg bg-default-300" />
                 </Skeleton>
               </div>
             )}
