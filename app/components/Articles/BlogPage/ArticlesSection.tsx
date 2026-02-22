@@ -26,7 +26,7 @@ function ArticlesSection({ filteredArticles }: { filteredArticles: articleType[]
     <>
       {filteredArticles.length ? (
         <div className="flex flex-col items-center w-full">
-          <div className="grid grid-rows-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          <div className="grid grid-rows-1 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
             {filteredArticles.slice(0, (currentPage + 1) * 12).map((article: any) => {
               return <ArticlesCard key={article._id} article={article} />;
             })}

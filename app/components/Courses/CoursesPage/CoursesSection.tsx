@@ -25,7 +25,7 @@ function CoursesSection({ filteredCourses }: { filteredCourses: courseType[] }) 
     <>
       {filteredCourses.length ? (
         <div className="flex flex-col items-center">
-          <div className="grid grid-rows-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+          <div className="grid grid-rows-1 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
             {filteredCourses.slice(0, (currentPage + 1) * 12).map((course) => {
               return <CourseCard key={course._id} course={course} />;
             })}
