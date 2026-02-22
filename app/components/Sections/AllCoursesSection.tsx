@@ -18,7 +18,7 @@ function AllCoursesSection({ courses }: { courses: courseType[] }) {
           </Link>
         }
       />
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-7">
         {courses.slice(0, 12)?.map((course: courseType) => (
           <CourseCard key={course._id} course={course} />
         ))}
